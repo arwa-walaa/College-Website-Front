@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration</title>
+</head>
+<body>
+  
+ 
+    <h1 style="margin-top: 60px;">Register New Course</h1>
+    <!-- {{CourseInfo}} -->
+    <!-- {{StudentData}} -->
+   
+    <h5 >Available Courses</h5>
+    <div class="float-parent-element"  style="height: 400px;">
+      
+        <div class="float-child-element"  >
+            <div class="courses" >
+                
+            <div class="test" *ngFor="let course of CourseInfo">
+                <h5 style="margin-left: 10px;" *ngIf="course.type==='mandatory'" >Compulsory Courses</h5>
+                <div class="form-check" *ngIf="course.type==='mandatory'">
+                    <!-- [value]="1" (change)="checkboxSelected(1)" -->
+                    <input class="form-check-input" type="checkbox"  (click)="checkboxSelected(course.courseId)" id="flexCheckDefault" >
+                    <label class="form-check-label" for="flexCheckDefault" >
+                      {{course.courseName}}
+                    </label>
+                </div>
+                
+                <h5 style="margin-left: 10px;" *ngIf="course.type==='optional'">Elective Courses</h5>
+                <div class="form-check" *ngIf="course.type==='optional'">
+                    <!-- [(ngModel)]="obj.selected" -->
+                    <input class="form-check-input" type="checkbox"  (click)="checkboxSelected(course.courseId)" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        {{course.courseName}}
+                    </label>
+                </div>
+            </div>
+            
+            
+                
+            </div>
+            
+        </div>
+        <!-- <div class="float-child-element" >
+            <div class="remaining" >
+                    <p>Remaining Elective Hours: 0</p>
+                    <p>Remaining Mandatory Hours: 0</p>
+                    <p>remaining hours per Term: 0</p>
+                    <p>Minimum hours per Term: 3</p>
+            </div>
+        </div> -->
+        
+   
+    </div>
+        
+    
+    <button type="button" class="btn btn-primary" style="margin-left: 45%; width: 150px; margin-bottom: 20px;" (click)="navigateToStudentGroupSelection()"> Select Groups</button>
+   
+</body>
+</html>

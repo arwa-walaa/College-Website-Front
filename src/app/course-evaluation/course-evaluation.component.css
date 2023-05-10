@@ -1,0 +1,16 @@
+.active{
+    background-color:#F0F0F0;
+    border:none;
+    color:black;
+
+}
+
+.list-group-item.cell {
+    background-color: #fff; /* set the default background color of the cell */
+    transition: background-color 0.2s; /* add a transition effect to make the color change smooth */
+  }
+
+  
+.list-group-item.cell:hover {
+    background-color: #f0f0f0; /* set the hover background color of the cell */
+  }

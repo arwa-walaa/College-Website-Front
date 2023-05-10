@@ -1,0 +1,93 @@
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { OfficeHoursComponentComponent } from './office-hours-component/office-hours-component.component';
+import { OfficeHoursSearchPipe } from './office-hours-search.pipe';
+import { IconComponentComponent } from './icon-component/icon-component.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { ForgetPasswordComponentComponent } from './forget-password-component/forget-password-component.component';
+import { NavBarComponentComponent } from './nav-bar-component/nav-bar-component.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { RestPasswardComponentComponent } from './rest-passward-component/rest-passward-component.component';
+import { MatPasswordStrengthModule } from "@angular-material-extensions/password-strength";
+// import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PasswordStrengthComponent } from './password-strength/password-strength.component';
+import { Top50Component } from './top50/top50.component';
+import { ExamHallsComponent } from './exam-halls/exam-halls.component';
+import { ChnagePasswordComponent } from './chnage-password/chnage-password.component';
+// import { MatTableModule } from '@angular/material/table';
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterdCoursesAndResultsComponent } from './registerd-courses-and-results/registerd-courses-and-results.component';
+import { StudentGroupSelectionComponent } from './student-group-selection/student-group-selection.component';
+import { CourseEvaluationComponent } from './course-evaluation/course-evaluation.component';
+import { CourseFormEvaluationComponent } from './course-form-evaluation/course-form-evaluation.component';
+import { ProgramSelectionComponent } from './program-selection/program-selection.component';
+import { HomeLoginComponent } from './home-login/home-login.component';
+import { InfoBarComponent } from './info-bar/info-bar.component';
+import { SearchService } from './search.service';
+// import {NgxMatSelectModule} from "./ngx-mat-select/ngx-mat-select.module";
+
+import { HttpClientModule } from '@angular/common/http';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { GpComponent } from './gp/gp.component';
+import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/professor-evaluation-form.component';
+import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
+// import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
+import { RegisterCourseComponent } from './register-course/register-course.component';
+import { SchedualeComponent } from './scheduale/scheduale.component';
+import { FCAIChatComponent } from './fcaichat/fcaichat.component';
+import { MessageService } from './message.service';
+@NgModule({
+  declarations: [
+    AppComponent,
+    OfficeHoursComponentComponent,
+    OfficeHoursSearchPipe,
+    SearchService,
+    IconComponentComponent,
+    LoginComponentComponent,
+    ForgetPasswordComponentComponent,
+    NavBarComponentComponent,
+    RestPasswardComponentComponent,
+    PasswordStrengthComponent,
+    Top50Component,
+    ExamHallsComponent,
+    ChnagePasswordComponent,
+    RegisterdCoursesAndResultsComponent,
+    StudentGroupSelectionComponent,
+    CourseEvaluationComponent,
+    CourseFormEvaluationComponent,
+    ProgramSelectionComponent,
+    HomeLoginComponent,
+    InfoBarComponent,
+    AnnouncementsComponent,
+    GpComponent,
+    RegisterCourseComponent,
+    SchedualeComponent,
+    FCAIChatComponent,
+    // MessageService,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgxPaginationModule,
+    MatPasswordStrengthModule,
+    // MatSelectModule,
+    BrowserAnimationsModule,
+    HttpClientModule
+    // NgbModule
+    // MatSelectModule,
+    // NgxMatSelectModule,
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

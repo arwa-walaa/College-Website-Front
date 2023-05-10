@@ -1,0 +1,74 @@
+import { NgModule, Component } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ChnagePasswordComponent } from './chnage-password/chnage-password.component';
+import { CourseEvaluationComponent } from './course-evaluation/course-evaluation.component';
+import { CourseFormEvaluationComponent } from './course-form-evaluation/course-form-evaluation.component';
+import { ExamHallsComponent } from './exam-halls/exam-halls.component';
+import { ForgetPasswordComponentComponent } from './forget-password-component/forget-password-component.component';
+import { LoginComponentComponent } from './login-component/login-component.component';
+import { OfficeHoursComponentComponent } from './office-hours-component/office-hours-component.component';
+import { RegisterdCoursesAndResultsComponent } from './registerd-courses-and-results/registerd-courses-and-results.component';
+import { RestPasswardComponentComponent } from './rest-passward-component/rest-passward-component.component';
+import { StudentGroupSelectionComponent } from './student-group-selection/student-group-selection.component';
+import { Top50Component } from './top50/top50.component';
+import { ChatComponent } from './chat/chat.component';
+import { FCAIChatComponent } from './fcaichat/fcaichat.component';
+
+
+import { ContentComponent } from './content/content.component';
+import { HomeComponent } from './home/home.component';
+import { SchedualeComponent } from './scheduale/scheduale.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegisterGpComponent } from './register-gp/register-gp.component';
+// import { ProgramSelectionComponent } from './program-selection/program-selection.component';
+import { RegisterCourseComponent } from './register-course/register-course.component';
+import { ProgramSelectionComponent } from './program-selection/program-selection.component';
+import { HomeLoginComponent } from './home-login/home-login.component';
+import { InfoBarComponent } from './info-bar/info-bar.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
+import { GpComponent } from './gp/gp.component';
+import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/professor-evaluation-form.component';
+import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
+
+const routes: Routes = [
+
+{path:'forgetPassword' , component:ForgetPasswordComponentComponent },
+{path: 'changePassword',component:ChnagePasswordComponent},
+{path: 'officeHours',component:OfficeHoursComponentComponent},
+{path: 'resetPassword',component:RestPasswardComponentComponent},
+{path: 'Top50',component:Top50Component},
+{path: 'examHalls',component:ExamHallsComponent},
+{path: 'registerdCoursesAndResults',component:RegisterdCoursesAndResultsComponent},
+{path: 'studentGroupSelection',component:StudentGroupSelectionComponent},
+{path: 'CourseEvaluation',component:CourseEvaluationComponent},
+{path: 'CourseFormEvaluation',component:CourseFormEvaluationComponent},
+{path: 'ProfessorFormEvaluation',component:ProfessorEvaluationFormComponent},
+{path: 'TaFormEvaluation',component:TaEvaluationFormComponent},
+{path:'',redirectTo:'home',pathMatch:'full'},
+{path:'home',component:HomeComponent,title:'Home'},
+{path:'home_login',component:HomeLoginComponent,title:'Home'},
+{path:'Schedules_Bylaw',component:ContentComponent,title:'Bylaw'},
+{path:'Announcements',component:AnnouncementsComponent,title:'Announcements'},
+{path:'scheduale',component:SchedualeComponent,title:'scheduale'},
+{path:'profile',component:ProfileComponent,title:'profile'},
+// {path:'register_gp',component:RegisterGpComponent,title:'register_gp'},
+{path:'program_selection',component:ProgramSelectionComponent,title:'program_selection'},
+{path:'register_course',component:RegisterCourseComponent,title:'register_course'},
+{path:'login' , component:LoginComponentComponent },
+
+{path: 'gpForm',component: GpComponent,title:'register_gp' },
+{path: 'Chat', component: ChatComponent},
+{path: 'FCAIChat', component: FCAIChatComponent}
+  
+
+];
+
+
+
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  
+exports: [RouterModule]
+})
+export class AppRoutingModule { }

@@ -1,0 +1,22 @@
+<div class="container " p-5>
+    <h2 style="font-weight: bold;">Professor Evaluation</h2>
+    <p style="color:#143AA2">Geographical Information Systems</p>
+    
+    <br>
+    <div class="mx-0 mx-sm-auto">
+      <form class="card" p-5>
+        
+        <div *ngFor="let question of questions">
+          <hr>
+          <h5>{{ question.question }}</h5>
+          <div *ngFor="let option of question.options">
+            <input type="radio" id="question{{ question.id }}-option{{ option.id }}" name="question{{ question.id }}" [value]="option.id">
+            <label for="question{{ question.id }}-option{{ option.id }}"  class="option-label">{{ option.value }}</label>
+          </div>
+         
+        </div>
+        
+        <button  class="btn btn-primary" style="width:70px; margin-top:14px; margin-bottom:-43px; border:none; background-color: #3E8DE3; color:white;"><a routerLink="TaFormEvaluation" (click)="navigateToTaFormEvaluation()">Next</a></button>
+      </form>
+    </div>
+  </div>

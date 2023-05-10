@@ -1,0 +1,21 @@
+.border-between-columns {
+    border-right: 1px solid #fff;
+    height: 60px;
+}
+
+.navbar
+{
+    background-color: rgb(201, 199, 199);
+    height: 60px;
+    padding-left: 10px;
+
+}
+p
+{
+    padding-top: 10px;
+    margin-left: 10px;  
+}
+label
+{
+    font-weight: bold;
+}

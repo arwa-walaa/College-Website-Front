@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script>
+        var e = document.getElementById("ddlViewBy");
+        var value = e.value;
+        var text = e.options[e.selectedIndex].text;
+    </script>
+</head>
+<body>
+
+<h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">Specialization Program Selection</h1>
+<form action="/action_page.php"  class="form" >
+  <div class="alert alert-danger" *ngIf="flag===true">
+    Please select all preferences.
+  </div>
+  <div class="alert alert-success" *ngIf="flag===false">
+    Successfully.
+  </div>
+    
+  <label >Preference 1</label><br>
+  <select required #preference1 (change)="update(preference1.value, 0)" class="form-select" aria-label="Default select example">
+      <option value="default">{{selected[0]}}</option>
+      <option *ngFor="let dept of DepartmentsData" [value]="dept">
+          {{dept}}
+      </option>
+  </select>
+ <br><br>
+  <label >Preference 2</label><br>
+  <select required #preference2 (change)="update(preference2.value, 1)" class="form-select" aria-label="Default select example">
+      <option value="default">{{selected[1]}}</option>
+      <option *ngFor="let dept of DepartmentsData" [value]="dept">
+        {{dept}}
+      </option>
+  </select>
+<br><br>
+  
+  <label >Preference 3</label><br>
+  <select  required #preference3 (change)="update(preference3.value, 2)" class="form-select" aria-label="Default select example">
+      <option value="default">{{selected[2]}}</option>
+      <option *ngFor="let dept of DepartmentsData" [value]="dept">
+        {{dept}}
+      </option>
+  </select>
+<br><br>
+  
+  <label >Preference 4</label><br>
+  <select required #preference4 (change)="update(preference4.value, 3)" class="form-select" aria-label="Default select example">
+      <option value="default">{{selected[3]}}</option>
+      <option *ngFor="let dept of DepartmentsData" [value]="dept">
+        {{dept}}
+      </option>
+  </select>
+<br><br>
+  
+  <label >Preference 5</label><br>
+  <select required #preference5 (change)="update(preference5.value, 4)" class="form-select" aria-label="Default select example">
+      <option value="default">{{selected[4]}}</option>
+      <option *ngFor="let dept of DepartmentsData" [value]="dept">
+        {{dept}}
+      </option>
+  </select> 
+  
+<br><br>
+  
+  
+
+  <button type="button" class="btn btn-primary" style="margin-left: 45%; width: 100px; margin-bottom: 20px;"(click)="saveData()">Save</button>
+   
+    
+  </form>
+
+</body>
+</html>
+
+

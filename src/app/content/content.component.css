@@ -1,0 +1,40 @@
+.parent {
+
+    margin: 1rem;
+    padding: 2rem 2rem;
+    text-align: center;
+}
+
+.child {
+    display: inline-block;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    width: 200px;
+    height: 200px;
+
+    /* Sky Blue */
+
+    background: #3E8DE3;
+    border-radius: 40px;
+
+}
+.Ann {
+    width: 150px;
+    height: 40px;
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight:bold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    /* margin-top: 200px; */
+    color: #000000;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    
+}
+a
+{
+    text-decoration: none;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        $(function(){
+        $('#datepicker').datepicker();
+        });
+    </script>
+</head>
+<body> 
+    
+<h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">Register Graduation Project</h1>
+<form [formGroup]="GPForm" (ngSubmit)="onSubmit(GPForm)" class = "form" >
+    
+    <label >ID Team Member 1</label><br>
+    <input type="text" formControlName="member1" id="id" name="id" placeholder="enter Id team member 1"><br><br>
+    <div *ngIf="GPForm.get('member1')?.errors && GPForm.get('member1')?.touched" class = "form">
+        <p *ngIf="GPForm.get('member1')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>   
+        <p *ngIf="GPForm.get('member1')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>  
+    </div>
+    <!-- <label >ID Team Member 1</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 1" ><br><br>
+    <label >Email Team Member 1</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 1" ><br><br> -->
+
+    <label >ID Team Member 2</label><br>
+    <input type="text"  formControlName="member2" id="id" name="id" placeholder="enter Id team member 2"><br><br>
+    <div *ngIf="GPForm.get('member2')?.errors && GPForm.get('member2')?.touched">
+        <p *ngIf="GPForm.get('member2')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>  
+        <p *ngIf="GPForm.get('member2')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>     
+    </div>
+    <!-- <label >ID Team Member 2</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 2" ><br><br>
+    <label >Email Team Member 2</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 2"  ><br><br> -->
+
+    <label >ID Team Member 3</label><br>
+    <input type="text"  formControlName="member3" id="id" name="id" placeholder="enter Id team member 3"><br><br>
+    <div *ngIf="GPForm.get('member3')?.errors && GPForm.get('member3')?.touched">
+        <p *ngIf="GPForm.get('member3')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>  
+        <p *ngIf="GPForm.get('member3')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>  
+    </div>
+    <!-- <label >ID Team Member 3</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 3" ><br><br>
+    <label >Email Team Member 3</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 3"  ><br><br> -->
+
+    <label >ID Team Member 4</label><br>
+    <input type="text"  formControlName="member4" id="id" name="id" placeholder="enter Id team member 4"><br><br>
+    <div *ngIf="GPForm.get('member4')?.errors && GPForm.get('member4')?.touched">
+        <p *ngIf="GPForm.get('member4')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>   
+        <p *ngIf="GPForm.get('member4')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>    
+    </div>
+    <!-- <label >ID Team Member 4</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 4" ><br><br>
+    <label >Email Team Member 4</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 4"  ><br><br> -->
+
+    <label >ID Team Member 5</label><br>
+    <input type="text"  formControlName="member5" id="id" name="id" placeholder="enter Id team member 5"><br><br>
+    <div *ngIf="GPForm.get('member5')?.errors && GPForm.get('member5')?.touched">
+        <p *ngIf="GPForm.get('member5')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p> 
+        <p *ngIf="GPForm.get('member5')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>      
+    </div>
+    <!-- <label >ID Team Member 5</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 5" ><br><br>
+    <label >Email Team Member 5</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 5"  ><br><br> -->
+
+    <!-- <label >Name Team Member 6</label><br>
+    <input type="text" id="id" name="id" placeholder="enter name team member 6" ><br><br>
+    <label >ID Team Member 6</label><br>
+    <input type="text" id="Aname" name="Aname" placeholder="enter id team member 6"><br><br>
+    <label >Email Team Member 6</label><br>
+    <input type="text" id="Email" name="Email" placeholder="enter email team member 6" ><br><br> -->
+
+    <label >Graduation project idea</label><br>
+    <textarea name="Graduation project idea" formControlName="idea" placeholder="Enter idea here..." form="usrform"></textarea>
+    <div *ngIf="GPForm.get('idea')?.errors && GPForm.get('idea')?.touched">
+        <p *ngIf="GPForm.get('idea')?.getError('required')" class="alert py-2 alert-danger"  style="width: 1300px;" >This field is required</p>     
+    </div>
+
+    <label >Graduation project Requirements</label><br>
+    <textarea name="Graduation project Requirements" formControlName="requirements" placeholder="Enter Requirements here..." form="usrform"></textarea>
+    <div *ngIf="GPForm.get('requirements')?.errors && GPForm.get('requirements')?.touched">
+        <p *ngIf="GPForm.get('requirements')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>     
+    </div>
+
+
+    <label >Supervised by professor</label><br>
+    <input type="text"  formControlName="professor" id="pname" name="pname" placeholder="enter professor name" ><br><br>
+    <div *ngIf="GPForm.get('professor')?.errors && GPForm.get('professor')?.touched">
+        <p *ngIf="GPForm.get('professor')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>     
+    </div>
+
+
+    <label >Supervised by Teaching Assistant</label><br>
+    <input type="text"  formControlName="TA" id="TAname" name="TAname" placeholder="enter TA name" ><br><br>
+    <div *ngIf="GPForm.get('TA')?.errors && GPForm.get('TA')?.touched">
+        <p *ngIf="GPForm.get('TA')?.getError('required')" class="alert py-2 alert-danger"  style="width: 1300px;" >This field is required</p>     
+    </div>
+
+
+    <button [disabled]="GPForm.invalid" class="btn btn-primary" style="margin-left: 75%; width: 100px; margin-bottom: 20px;">Register</button>
+   
+    
+  </form>
+</body>
+</html> 
+
+

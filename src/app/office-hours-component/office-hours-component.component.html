@@ -1,0 +1,77 @@
+
+<br><br>
+
+<div class="container" p-5>
+    <h2 style="font-weight: bold;">Office Hours</h2><br>
+   
+    
+   <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
+   <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
+    <option  value="" disabled selected>Department</option>
+    <option>CS</option>
+    <option>IS</option>
+    <option>IT</option>
+    <option>DS</option>
+    <option>AI</option>
+</select>
+
+
+
+<select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
+    <option  value="" disabled selected>Day</option>
+    <option>Saturday</option>
+    <option>Sunday</option>
+    <option>Monday</option>
+    <option>Tuseday</option>
+    <option>Wednesday</option>
+    <option>Thursday</option>
+</select>
+
+<select [(ngModel)]="searchText" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+    <option  value="" disabled selected>Location</option>
+    <option>new building, 1st floor</option>
+    <option>new building, 2st floor</option>
+    <option>new building, 2st floor</option>
+    <option>new building, 3st floor</option>
+</select>
+   <br><br>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr style="background-color: #3E8DE3; color:white;" >
+                <th>Professor or TA Name</th>
+                <th>Email</th>
+                <th>  
+                    Department
+                </th>
+               
+                <th>Office Hours</th>
+                <th>
+                    Day
+                </th>
+                <th>
+                    Location
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+            <tr *ngFor="let d of tableData | officeHoursSearch:searchText| paginate: { itemsPerPage: count, currentPage: p }">
+                <td>{{d.professorOrTAName}}</td> 
+                <td>{{d.Email}}</td>
+                <td>{{d.Department}}</td>
+                <td>{{d.OfficeHours}}</td>
+                <td>{{d.Day}}</td>
+                <td>{{d.Location}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="text-right" style="margin-left: 400px; margin-top: 10px;" >
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+       
+        <p style="margin-left: 518px; margin-top:-45px;">  showing 5 items per page</p>
+    </div>
+
+</div> 

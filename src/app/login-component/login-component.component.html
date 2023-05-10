@@ -1,0 +1,49 @@
+<!-- {{token}} -->
+<br><br>
+<div class="w-75 mx-auto">
+  <h2 style="font-weight: bold;">Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+  <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+
+    <div class="mb-3">
+      <label for="id">Username</label>
+      <input formControlName="name" class="form-control mb-2" type="ID"   placeholder="Enter Your Username">
+      <div *ngIf="loginForm.get('name')?.errors && loginForm.get('name')?.touched">
+        <p *ngIf="loginForm.get('name')?.getError('required')" class="alert py-1 alert-danger">Username is required</p>
+  
+        <p *ngIf="loginForm.get('name')?.getError('pattern')" class="alert  py-1 alert-danger">Invalid Username</p>
+        
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input  formControlName="password" class="form-control  mb-2" type="password" placeholder="Enter Your Password"/>
+      
+      <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+      <p *ngIf="loginForm.get('password')?.getError('required')" class="alert py-1 alert-danger">Password is required</p>
+
+      <p *ngIf="loginForm.get('password')?.getError('pattern')" class="alert  py-1 alert-danger">Password requirements: 3 to 8 characters, and  3 to 5 numbers.</p>
+      
+      </div>
+      
+
+
+    </div>
+    <div>
+      <!-- <router-outlet></router-outlet> -->
+    </div>
+    <div>
+        <p>Can’t remember your password?<a routerLink="forgetPassword" (click)="navigateToForgotPassword()">Click here</a>.</p>
+        
+    </div>
+   
+
+    <button  [disabled]="loginForm.invalid"  class="btn btn-primary" style=" border:none; background-color: #3E8DE3; color:white;">Login</button>
+    
+      
+
+   
+  </form>
+</div>
+
+<router-outlet></router-outlet>

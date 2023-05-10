@@ -1,0 +1,30 @@
+.form
+{
+    
+    width: 800px;
+    /* margin-left: 250px; */
+}
+.form input[type=text]
+{
+    width: 1300px;
+    height: 40px;
+    
+}
+.form textarea
+{
+    width: 1300px;
+    height:120px
+}
+.form input[type=date]
+{
+    width: 800px;
+    height: 40px;
+}
+label
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.input-group-append {
+    cursor: pointer;
+  }

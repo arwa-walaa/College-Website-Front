@@ -1,0 +1,51 @@
+.courses
+{
+    border: 0.5px solid rgb(199, 197, 197);
+    border-radius: 5px;
+    padding: 5px;
+    height: 320px;
+    width: 370px;
+    padding: 20px;
+    /* display: inline-block; */
+    /* margin-top: 30px; */
+}
+
+.float-parent-element { 
+    width: 50%; 
+} 
+.float-child-element { 
+    float: left; 
+    width: 50%; 
+} 
+.form-check
+{
+    margin-left: 10px;
+}
+.form-check-label
+{
+    font-size: larger;
+    
+}
+.form-check-input
+{
+    width: 20px;
+    height: 20px;
+    
+}
+.remaining
+{
+    border: 0.5px solid rgb(199, 197, 197);
+    border-radius: 5px;
+    padding: 5px;
+    height: 320px;
+    width: 370px;
+    margin-left: 580px;
+    /* display: inline-block;    */
+    padding: 20px;
+}
+.remaining p
+{
+    height: 40px;
+    background-color: rgb(251, 251, 59);
+    padding: 10px;
+}

@@ -1,0 +1,419 @@
+<div class="container " p-5>
+ 
+  
+  
+  <br>
+  <div class="mx-0 mx-sm-auto">
+    <div *ngIf="currentPage === 1">
+      <h2 style="font-weight: bold;">Course Evaluation</h2>
+      <p style="color:#143AA2" >{{ courseName }}</p>
+
+       <!-- First page form fields -->
+      <form  #form (ngSubmit)="onSubmit()" class="card">
+        <div class="form-group">
+          <label for="isClear">Is the content clear?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isClear" [(ngModel)]="isClear" value="Yes" required>Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isClear" [(ngModel)]="isClear" value="No" required>No
+            </label>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="isRepeated">Is the content repeated</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isRepeated" [(ngModel)]="isRepeated" value="Yes" required>Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isRepeated" [(ngModel)]="isRepeated" value="No" required>No
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="preparetionForFutureCourses">How effectively did the course content prepare you for future courses or careers?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="preparetionForFutureCourses" [(ngModel)]="preparetionForFutureCourses" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="preparetionForFutureCourses" [(ngModel)]="preparetionForFutureCourses" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="preparetionForFutureCourses" [(ngModel)]="preparetionForFutureCourses" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="preparetionForFutureCourses" [(ngModel)]="preparetionForFutureCourses" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="preparetionForFutureCourses" [(ngModel)]="preparetionForFutureCourses" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="relevantToObjectives">How relevant was the course content to the course objectives?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="relevantToObjectives" [(ngModel)]="relevantToObjectives" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="relevantToObjectives" [(ngModel)]="relevantToObjectives" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="relevantToObjectives" [(ngModel)]="relevantToObjectives" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="relevantToObjectives" [(ngModel)]="relevantToObjectives" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="relevantToObjectives" [(ngModel)]="relevantToObjectives" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="contentRate">To what extent was the content of the course good?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="contentRate" [(ngModel)]="contentRate" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="contentRate" [(ngModel)]="contentRate" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="contentRate" [(ngModel)]="contentRate" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="contentRate" [(ngModel)]="contentRate" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="contentRate" [(ngModel)]="contentRate" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <button type="submit"   class="btn btn-primary" style="width:75px; margin-top:14px; margin-bottom:-43px; border:none; background-color: #3E8DE3; color:white;">Next</button>
+      </form>
+      <!-- [disabled]="!firstPageSubmitted" -->
+    </div>
+
+    <div *ngIf="currentPage === 2">
+      <h2 style="font-weight: bold;">Professor Evaluation</h2>
+      <p style="color:#143AA2">{{courseName }} ({{tableData.professorName[0].professorName}})</p>
+       <!-- First page form fields -->
+      <form  #form (ngSubmit)="onSubmit()" class="card">
+        <div class="form-group">
+          <label for="engagedStudents">How well did the professor engage students during class?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="engagedStudents" [(ngModel)]="engagedStudents" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="engagedStudents" [(ngModel)]="engagedStudents" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="engagedStudents" [(ngModel)]="engagedStudents" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="engagedStudents" [(ngModel)]="engagedStudents" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="engagedStudents" [(ngModel)]="engagedStudents" value="Excellent" required>Excellent
+            </label>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="conveiedMaterial">How effectively did the professor convey the material covered in the course?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="conveiedMaterial" [(ngModel)]="conveiedMaterial" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="conveiedMaterial" [(ngModel)]="conveiedMaterial" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="conveiedMaterial" [(ngModel)]="conveiedMaterial" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="conveiedMaterial" [(ngModel)]="conveiedMaterial" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="conveiedMaterial" [(ngModel)]="conveiedMaterial" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="isClearAgenda">Were the course expectations and grading criteria clearly communicated?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isClearAgenda" [(ngModel)]="isClearAgenda" value="Yes" required>Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="isClearAgenda" [(ngModel)]="isClearAgenda" value="No" required>No
+            </label>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="teacherEffectiveness">How would you rate the professor\'s overall effectiveness as a teacher?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="teacherEffectiveness" [(ngModel)]="teacherEffectiveness" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="teacherEffectiveness" [(ngModel)]="teacherEffectiveness" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="teacherEffectiveness" [(ngModel)]="teacherEffectiveness" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="teacherEffectiveness" [(ngModel)]="teacherEffectiveness" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="teacherEffectiveness" [(ngModel)]="teacherEffectiveness" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="communicationSkills">How would you rate the professor\'s communication skills?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="communicationSkills" [(ngModel)]="communicationSkills" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="communicationSkills" [(ngModel)]="communicationSkills" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="communicationSkills" [(ngModel)]="communicationSkills" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="communicationSkills" [(ngModel)]="communicationSkills" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="communicationSkills" [(ngModel)]="communicationSkills" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <button type="submit"   class="btn btn-primary" style="width:75px; margin-top:14px; margin-bottom:-43px; border:none; background-color: #3E8DE3; color:white;">Next</button>
+      </form>
+      <!-- [disabled]="!secondPageSubmitted" -->
+    </div>
+
+    <div *ngIf="currentPage === 3">
+      <h2 style="font-weight: bold;">TA Evaluation</h2>
+      <p style="color:#143AA2">{{courseName }} ({{ tableData.TAName[0].TAName }})</p>
+       <!-- First page form fields -->
+       <form  #form (ngSubmit)="onSubmit()" class="card">
+        <div class="form-group">
+          <label for="TAengagedStudents">How well did the TA engage students during class?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAengagedStudents" [(ngModel)]="TAengagedStudents" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAengagedStudents" [(ngModel)]="TAengagedStudents" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAengagedStudents" [(ngModel)]="TAengagedStudents" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAengagedStudents" [(ngModel)]="TAengagedStudents" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAengagedStudents" [(ngModel)]="TAengagedStudents" value="Excellent" required>Excellent
+            </label>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="TAconveiedMaterial">How effectively did the TA convey the material covered in the course?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAconveiedMaterial" [(ngModel)]="TAconveiedMaterial" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAconveiedMaterial" [(ngModel)]="TAconveiedMaterial" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAconveiedMaterial" [(ngModel)]="TAconveiedMaterial" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAconveiedMaterial" [(ngModel)]="TAconveiedMaterial" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAconveiedMaterial" [(ngModel)]="TAconveiedMaterial" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="TAisClearAgenda">Were the course expectations and grading criteria clearly communicated?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAisClearAgenda" [(ngModel)]="TAisClearAgenda" value="Yes" required>Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAisClearAgenda" [(ngModel)]="TAisClearAgenda" value="No" required>No
+            </label>
+          </div>
+          
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="TAteacherEffectiveness">How would you rate the TA\'s overall effectiveness as a teacher?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAteacherEffectiveness" [(ngModel)]="TAteacherEffectiveness" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAteacherEffectiveness" [(ngModel)]="TAteacherEffectiveness" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAteacherEffectiveness" [(ngModel)]="TAteacherEffectiveness" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAteacherEffectiveness" [(ngModel)]="TAteacherEffectiveness" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAteacherEffectiveness" [(ngModel)]="TAteacherEffectiveness" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <label for="TAcommunicationSkills">How would you rate the TA\'s communication skills?</label>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAcommunicationSkills" [(ngModel)]="TAcommunicationSkills" value="Very Poor" required>Very Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAcommunicationSkills" [(ngModel)]="TAcommunicationSkills" value="Poor" required>Poor
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAcommunicationSkills" [(ngModel)]="TAcommunicationSkills" value="Average" required>Average
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAcommunicationSkills" [(ngModel)]="TAcommunicationSkills" value="Good" required>Good
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="TAcommunicationSkills" [(ngModel)]="TAcommunicationSkills" value="Excellent" required>Excellent
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:75px; margin-top:14px; margin-bottom:-43px; border:none; background-color: #3E8DE3; color:white;">Submit</button>
+      </form>
+    </div>
+    <!--  [disabled]="!finalPageSubmitted" -->
+    <!-- [disabled]="form.valid" -->
+    <br>
+    <br>
+    <!-- <a routerLink="ProfessorFormEvaluation" (click)="navigateToProfessorFormEvaluation()">Evaluate the course professor</a> -->
+  </div>
+</div>

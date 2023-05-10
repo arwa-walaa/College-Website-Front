@@ -1,0 +1,34 @@
+
+<br><br>
+
+<div class="container" p-5>
+    <h2 style="font-weight: bold;">Course Evaluation</h2><br>
+<div class="card">
+  
+  <!-- <ul class="list-group" id="myCourses">
+    <li class="list-group-item" data-course-name="Big Data" data-course-id="1"><a routerLink="CourseFormEvaluation" (click)="navigateToEvaluateCourse($event)">Big Data</a></li>
+    <li class="list-group-item" data-course-name="Data Base 1" data-course-id="2"><a routerLink="CourseFormEvaluation" (click)="navigateToEvaluateCourse($event)">Data Base 1</a></li>
+    <li class="list-group-item active" data-course-name="Mobile" data-course-id="3"><a routerLink="CourseFormEvaluation" (click)="navigateToEvaluateCourse($event)">Mobile</a></li>
+    <li class="list-group-item" data-course-name="Machine Learning" data-course-id="4"><a routerLink="CourseFormEvaluation" (click)="navigateToEvaluateCourse($event)">Machine Learning</a></li>
+  </ul> -->
+
+<!-- <ul class="list-group" id="myCourses">
+  <li class="list-group-item" (click)="navigateToEvaluateCourse('Data Base 1','1')">Data Base 1</li>
+  <li class="list-group-item" (click)="navigateToEvaluateCourse('Mobile','3')">Mobile</li>
+  <li class="list-group-item" (click)="navigateToEvaluateCourse('Machine Learning','2')">Machine Learning</li>
+</ul> -->
+
+<ul class="list-group" id="myCourses">
+  <li class="list-group-item cell" *ngFor="let course of courses"
+     
+      (click)="navigateToEvaluateCourse(course.courseName, course.courseID)">
+    <a>{{course.courseName}}</a>
+  </li>
+</ul>
+ <!-- [ngClass]="{'active': course.selected}" -->
+  </div>
+  <br> <br>
+
+<!-- <button  class="btn btn-primary" style=" border:none; background-color: #3E8DE3; color:white;"(click)="navigateToEvaluateCourse($event)">Evaluate Course</button> -->
+</div>
+

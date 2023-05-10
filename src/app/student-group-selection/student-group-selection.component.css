@@ -1,0 +1,9 @@
+select{
+    border-radius: 5px;
+    border-color: #F0F0F0;
+}
+.remaining
+{
+    font-size: smaller; 
+    color: red;
+}

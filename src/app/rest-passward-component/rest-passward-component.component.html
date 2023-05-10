@@ -1,0 +1,52 @@
+
+<br><br>
+<div class="w-75 mx-auto">
+<h2 style="font-weight: bold;">Reset Password</h2>
+<form [formGroup]="ResetPassword"  (ngSubmit)="onSubmit()">
+  <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+  <div class="mb-3">
+    <label for="email">Email</label>
+    <input  formControlName="email" class="form-control  mb-2" type="password" placeholder="Enter Your Email"/>
+    
+    <div *ngIf="ResetPassword.get('email')?.errors && ResetPassword.get('email')?.touched">
+    <p *ngIf="ResetPassword.get('email')?.getError('required')" class="alert py-1 alert-danger">Email is required</p>
+
+    <p *ngIf="ResetPassword.get('email')?.getError('pattern')" class="alert  py-1 alert-danger">Invalid Email </p>
+    
+    </div>
+
+  </div>
+    <div class="mb-3">
+      <label for="password">New Password</label>
+      <input formControlName="password" class="form-control mb-2" 
+      type="password" placeholder="Enter Your New Password">   
+     
+      
+
+      <div *ngIf="ResetPassword.get('password')?.errors && ResetPassword.get('password')?.touched">
+        <p *ngIf="ResetPassword.get('password')?.getError('required')" class="alert py-1 alert-danger">newPassword is required</p>
+  
+        <p *ngIf="ResetPassword.get('password')?.getError('pattern')" class="alert  py-1 alert-danger">Password requirements: 3 to 8 characters, and  3 to 5 numbers.</p>
+        
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="confirmPassword">Confirm Password</label>
+      <input formControlName="password_confirmation" class="form-control mb-2" type="password" placeholder="Enter Your Confirm Password"  >
+      
+      
+        <div *ngIf="ResetPassword.get('password_confirmation')?.errors && ResetPassword.get('password_confirmation')?.touched">
+          <p *ngIf="ResetPassword.get('password_confirmation')?.getError('required')" class="alert py-1 alert-danger">Confirm Password is required</p>
+                <p *ngIf="passwordMatchError" class="alert  py-1 alert-danger">Password doesn't match</p>
+          
+          </div>
+         
+      
+    </div>
+
+    <button  [disabled]="ResetPassword.invalid && passwordMatchError" class="btn btn-primary" style=" border:none; background-color: #3E8DE3; color:white;">Save</button>
+    
+
+   
+  </form>
+</div>

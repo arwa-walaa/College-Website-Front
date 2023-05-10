@@ -1,0 +1,52 @@
+
+<br><br>
+
+<div class="container" p-5>
+    <h2 style="font-weight: bold;">Top 50</h2><br>
+    <select #depts (change)="SelectDept(depts.value)"  style="margin-right:30px; width:400px; height:30px;" >
+        <option  value="" disabled selected>Program</option>
+        <option *ngFor="let dept of Departments">
+          {{dept.departmentCode}}
+        </option>
+    </select>
+    
+    <select #levels (change)="SelectLevel(levels.value)"  style="margin-right: 30px; width:405px; height:30px;">
+        <option  value="" disabled selected>Level</option>
+        <option *ngFor="let level of Levels_data">
+          {{level}}
+        </option>
+	</select>
+    
+    <select #courses (change)="SelectCourse(courses.value)"  style="width:405px; height:30px;" >
+        <option  value="" disabled selected>Course</option>
+        <option *ngFor="let course of Courses">{{course.courseName}}</option>
+    </select>
+    <br><br>
+   
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr style="background-color: #3E8DE3; color:white;" >
+                <th>Rank</th>
+                <th>ID</th>
+                <th>Name</th>    
+                <th>Level</th>
+                <th>GPA</th>
+               
+            </tr>
+        </thead>
+        <!-- {{students}} -->
+
+        <tbody>
+            <tr *ngFor="let student of students; let i = index ">
+                <td>{{i+1}}</td>
+                <td>{{student.studentId}}</td>
+                <td>{{student.studentName}}</td>
+                <td>{{student.level}}</td>
+                <td>{{student.GPA}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+  
+
+</div>
