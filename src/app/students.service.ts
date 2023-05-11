@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentsService {
-
+  private baseUrl = "http://127.0.0.1:8000/api/updateProfile";
   constructor(private http:HttpClient) { }
   
   getAllAnnouncemets(){
@@ -127,4 +127,8 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/getAllDepartments";
     return this.http.get(url);
   }
+  update(id: any, data: any) {
+    return this.http.post(`${this.baseUrl}/${id}`, data);
+  }
 }
+

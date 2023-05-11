@@ -43,6 +43,7 @@ import { RegisterCourseComponent } from './register-course/register-course.compo
 import { SchedualeComponent } from './scheduale/scheduale.component';
 import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 import { MessageService } from './message.service';
+import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { MessageService } from './message.service';
     RegisterCourseComponent,
     SchedualeComponent,
     FCAIChatComponent,
+    ProfileComponent,
     // MessageService,
   ],
   imports: [
