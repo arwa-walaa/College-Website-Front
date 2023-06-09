@@ -40,7 +40,7 @@ onSubmit(loginForm: FormGroup) {
           
           // const token = ; // assuming the server's response includes the token as a property named 'token'
           this._AuthService.setToken(response.access_token); // store the token in local storage
-          alert(response.access_token);
+          // alert(response.access_token);
           this.router.navigate(['/home_login']);
           
        } 

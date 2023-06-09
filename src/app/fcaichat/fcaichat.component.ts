@@ -1,63 +1,162 @@
 
-import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../message.service';
 import { map } from 'rxjs';
+import { StudentsService } from './../students.service';
+import { AuthService } from '../auth.service';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fcaichat',
   templateUrl: './fcaichat.component.html',
   styleUrls: ['./fcaichat.component.css']
 })
+
 export class FCAIChatComponent implements OnInit {
-  user1: any ;
-  user2: any ;
-  message: any = '';
+  @ViewChild('fileInput') fileInput:any;
+  student: any;
   messages: any;
+  profOrTA: any;
+  message: any = '';
+  messagesOfProfessorAndTA: any;
+  messagesOfStudent: any;
   contacts:any;
   professorsDetails:any;
- TADetails:any;
- isTA:boolean=false;
- isProfessor:boolean=false;
+  TADetails:any;
+  isTA:boolean=false;
+  isProfessor:boolean=false;
+
+  senderData:any;
+  searchText='';
+
+  attachement:any;
+  selectedFile: any;
+  attachmentUrl: any;
  
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService ,private stdService:StudentsService, private _AuthService:AuthService ) { }
  
 
   ngOnInit() {
     
-    // this.user2 = 2; // Replace with recipient ID
-    this.user1 = 3;
-  
+    this.getSenderDetails();
+    this.profOrTA; // Replace with recipient ID
+    this.student;
     // this.getProfessorDetails("Ayman");
     this.getAllContacts();
-  
-    this.loadMessages().subscribe((history) => {
-      this.messages = history;
-      console.log(this.messages);
-    });
+   
   }
   
-  loadMessages() {
-    return this.messageService.getMessages(this.user1, this.user2);
+  loadProfessorAndTAMessages() {
+    return this.messageService.getProfessorAndTAHistory(this.student, this.profOrTA);
+  }
+
+  loadStudentMessages() {
+    //console.log()
+    return this.messageService.getStudentHistory(this.student);
   }
   
 
-  sendMessage() {
-    const msgDetails = {
-      from: this.user1,
-      to: this.user2,
-      message: this.message
-    };
+  // sendMessage() {
+  //   const msgDetails = {
+  //     from: this.student,
+  //     to: this.profOrTA,
+  //     message: this.message,
+  //     //attachement: this.attachement
+  //   };
 
-    this.messageService.sendMessage(msgDetails).subscribe(() => {
-      this.loadMessages().subscribe((history) => {
-        this.messages = history;
-      });
-      this.message = '';
-    }, (error) => {
-      console.log(error);
-    });
+  //  //formData.add('selectedFile', JSON.stringify(msgDetails));
+
+  //   console.log("msgDetails", msgDetails);
+  //   // if (this.selectedFile) {
+  //   //   const formData={
+  //   //     from: this.student,
+  //   //     to: this.profOrTA,
+  //   //     message: this.message,
+  //   //     selectedFile: this.selectedFile
+  //   //   };
+
+  //   // }
+
+  //   // if(this.selectedFile)
+  //   // {
+
+  //   // }
+   
+  //   this.messageService.sendMessage(msgDetails).subscribe(() => {
+  //     // this.loadProfessorAndTAMessages().subscribe((history) => {
+  //     //   this.messagesOfProfessorAndTA = history;
+  //     // });
+
+  //     // this.loadStudentMessages().subscribe((history) => {
+  //     //   this.messagesOfStudent = history;
+  //     // }
+  //     //);
+
+  //     this.message = '';
+  //   }
+  //   , (error) => {
+  //     console.log(error);
+  //   });
+
+    
+  // }
+ 
+ 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
+
+  // sendMessage() {
+  //   const msgDetails = new FormData();
+  //   msgDetails.append('from', this.student);
+  //   msgDetails.append('to', this.profOrTA);
+  //   msgDetails.append('message', this.message);
+  //   if (this.selectedFile) {
+  //     msgDetails.append('attachment', this.selectedFile, this.selectedFile.name);
+  //   }
+  //   this.messageService.sendMessage(msgDetails).subscribe(() => {
+  //     // handle success
+  //     this.message = '';
+  //   }, (error) => {
+  //     // handle error
+  //     console.log(error);
+  //   });
+  // }
+
+ 
+
+sendMessage() {
+  const formData = new FormData();
+  formData.append('from', this.student);
+  formData.append('to', this.profOrTA);
+  formData.append('message', this.message);
+  if (this.selectedFile) {
+    formData.append('attachment', this.selectedFile, this.selectedFile.name);
+  }
+  this.messageService.sendMessage(formData).subscribe((response: any) => {
+    this.loadProfessorAndTAMessages().subscribe((history) => {
+     this.messagesOfProfessorAndTA = history;
+    });
+    // handle success
+    this.message = '';
+    // if (response.attachment_url) {
+    //   this.attachmentUrl = 'http://127.0.0.1:8000/' + response.attachment_url; // set the attachment URL
+    // }
+
+    if (response.attachment_path) {
+      this.attachmentUrl = response.attachment_url;
+    }
+  }, (error) => {
+    // handle error
+    console.log(error);
+  });
+}
+
+triggerFileInput() {
+  this.fileInput.nativeElement.click();
+}
+
+
   getAllContacts(){
     this.messageService.getContacts().subscribe(
       response => {
@@ -81,8 +180,21 @@ export class FCAIChatComponent implements OnInit {
         if( this.professorsDetails!=null){
           this.isProfessor=true;
           this.isTA=false;
-          this.user2=this.professorsDetails.professorDtails[0].professorId;
+          this.profOrTA=this.professorsDetails.professorDtails[0].userID;
           console.log(this.isProfessor);
+          console.log(this.profOrTA);
+          this.loadProfessorAndTAMessages().subscribe((history) => {
+            this.messagesOfProfessorAndTA = history;
+            console.log(this.messagesOfProfessorAndTA);
+          });
+
+          this.loadStudentMessages().subscribe((studentHistory) => {
+            this.messagesOfStudent = studentHistory;
+            this.messages = this.messagesOfStudent.messages;
+            console.log('all array',this.messagesOfStudent);
+             console.log('stdmsg',this.messagesOfStudent.messages[0].message);
+          });
+      
 
         }
     
@@ -92,9 +204,6 @@ export class FCAIChatComponent implements OnInit {
       
       
     });
-  
-    
-
   }
   getTADetails(TAName:string){
     this.messageService.getTADetails(TAName)
@@ -105,19 +214,75 @@ export class FCAIChatComponent implements OnInit {
         if( this.TADetails!=null){
           this.isTA=true;
           this.isProfessor=false;
-          this.user2=this.TADetails.TADtails[0].TAId
+          this.profOrTA=this.TADetails.TADtails[0].userID;
           console.log(this.isTA);
+
+          this.loadProfessorAndTAMessages().subscribe((history) => {
+            this.messagesOfProfessorAndTA = history;
+            console.log(this.messagesOfProfessorAndTA);
+          });
+
+          this.loadStudentMessages().subscribe((history) => {
+            this.messagesOfStudent = history;
+          });
+      
 
         }
         
-    
     },
     error => {
       console.error('Error!', error);
       
       
     });
-    
-
   }
+
+  // getSenderDetails()
+  // { 
+  //   const token=this._AuthService.getToken();
+  //   this.stdService.getStudentInfo(token).subscribe({
+  //     next:(response)=> {this.senderData=response,
+      
+  //       this.student = this.senderData[0].userID;
+  //       console.log(this.student);
+  //       console.log(this.senderData);
+      
+  //     }
+     
+  //    // StudentData[0].studentId
+      
+  //   });
+
+    
+  // }
+//test from sara
+  getSenderDetails()
+  { 
+    const token=this._AuthService.getToken();
+    console.log(token);
+    this.stdService.getStudentInfo(token).subscribe(
+      response=>{ 
+        this.senderData=response;
+        this.student = this.senderData[0].userID;
+        console.log('std id',this.student);
+        console.log('sender data',this.senderData);
+      
+      },
+      error => { 
+        console.error(error,'cant work');
+        
+      }
+     
+     // StudentData[0].studentId
+      
+    );
+
+    
+  }
+
+
+  // onFileSelected(event: any) {
+  //   this.attachement = event.target.files[0];
+  //   // do something with the selected file, such as uploading it to a server
+  // }
 }

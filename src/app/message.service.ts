@@ -26,12 +26,17 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
+
   sendMessage(msgDetails: any) {
     return this.http.post(`${this.baseUrl}/message`, msgDetails);
   }
 
-  getMessages(user1: any, user2: any) {
-    return this.http.get(`${this.baseUrl}/history/${user1}/${user2}`);
+  getProfessorAndTAHistory(student: any, profOrTA: any) {
+    return this.http.get(`${this.baseUrl}/history/${student}/${profOrTA}`);
+  }
+
+  getStudentHistory(student: any) {
+    return this.http.get(`${this.baseUrl}/receive?to=${student}`);
   }
 
   getContacts(){
