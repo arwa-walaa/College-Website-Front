@@ -21,7 +21,7 @@ export class HomeLoginComponent  implements OnInit{
     this.router.navigate(['Schedules_Bylaw']);
   }
   navigateToChat() {
-    this.router.navigate(['Chat']);
+    this.router.navigate(['FCAIChat']);
   }
   navigateToOfficeHours() {
     this.router.navigate(['officeHours']);
