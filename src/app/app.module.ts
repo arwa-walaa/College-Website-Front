@@ -44,6 +44,11 @@ import { SchedualeComponent } from './scheduale/scheduale.component';
 import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 import { MessageService } from './message.service';
 import { ProfileComponent } from './profile/profile.component';
+import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
+import { ViewStudentsComponent } from './view-students/view-students.component';
+import { CourseInfoComponent } from './course-info/course-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +77,11 @@ import { ProfileComponent } from './profile/profile.component';
     SchedualeComponent,
     FCAIChatComponent,
     ProfileComponent,
+    HomeDrTaComponent,
+    AddOfficeHoursComponent,
+    DrTaCoursesComponent,
+    ViewStudentsComponent,
+    CourseInfoComponent,
     // MessageService,
   ],
   imports: [

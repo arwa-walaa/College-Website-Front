@@ -29,6 +29,11 @@ import { AnnouncementsComponent } from './announcements/announcements.component'
 import { GpComponent } from './gp/gp.component';
 import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/professor-evaluation-form.component';
 import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
+import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+import { ViewStudentsComponent } from './view-students/view-students.component';
+import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
+import { CourseInfoComponent } from './course-info/course-info.component';
 
 const routes: Routes = [
 
@@ -44,9 +49,9 @@ const routes: Routes = [
 {path: 'CourseFormEvaluation',component:CourseFormEvaluationComponent},
 {path: 'ProfessorFormEvaluation',component:ProfessorEvaluationFormComponent},
 {path: 'TaFormEvaluation',component:TaEvaluationFormComponent},
-{path:'',redirectTo:'home',pathMatch:'full'},
 {path:'home',component:HomeComponent,title:'Home'},
 {path:'home_login',component:HomeLoginComponent,title:'Home'},
+{path:'home_dr_ta',component:HomeDrTaComponent,title:'Home'},
 {path:'Schedules_Bylaw',component:ContentComponent,title:'Bylaw'},
 {path:'Announcements',component:AnnouncementsComponent,title:'Announcements'},
 {path:'scheduale',component:SchedualeComponent,title:'scheduale'},
@@ -55,9 +60,8 @@ const routes: Routes = [
 {path:'program_selection',component:ProgramSelectionComponent,title:'program_selection'},
 {path:'register_course',component:RegisterCourseComponent,title:'register_course'},
 {path:'login' , component:LoginComponentComponent },
-
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
-// {path: 'Chat', component: ChatComponent},
+{path: 'Chat', component: ChatComponent},
 {path: 'FCAIChat', component: FCAIChatComponent}
   
 
