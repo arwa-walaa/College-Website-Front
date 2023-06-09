@@ -1,0 +1,42 @@
+<div class="container">
+    <br><br>
+    <h2 style="font-weight: bold;">My Courses</h2><br>
+
+    <div>
+        <div class="row">
+            <div class="col-4"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #3E8DE3; color:white;" 
+                (click)="navigateToGpRequest()">Graduation Project Requests</button>
+            </div>
+        </div>
+        <br>
+        <div>
+            <table  class="table table-hover table-striped ">
+                <thead >
+                    <tr style="background-color: #3E8DE3; color:white; border-radius:50px">
+                        <th>Code</th>
+                        <th>Course Title</th>
+                        <th>Level</th>
+                        <th>Term</th>
+        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr (click)="navigateToCourse()">
+                        <td>IS421</td>
+                        <td>Data Mining</td>
+                        <td>4</td>
+                        <td>Spring 2023</td>
+                    </tr>
+                    <!-- <tr *ngFor="let d of RegisteredCoursesInfo | officeHoursSearch:searchText">
+                        <td>{{d.Course_Code}}</td>
+                        <td>{{d.courseName}}</td>
+                        <td>{{d.Level}}</td>
+                        <td>{{d.Semester}}</td>
+                    </tr>-->
+                </tbody>
+            </table>
+        
+            <p>This Page Shows current term only, <a href="#">Show More</a> to view all previous courses. </p>
+        </div>
+    </div>
+</div>
