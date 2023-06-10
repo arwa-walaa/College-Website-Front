@@ -30,7 +30,7 @@ export class HomeDrTaComponent implements OnInit{
     this.router.navigate(['view_students']);
   }
   navigateToMyCourses() {
-    this.router.navigate(['dr_ta_courses']);
+    this.router.navigate(['drTaCourses']);
   }
   navigateToScheduale(){
     this.router.navigate(['scheduale']);
