@@ -49,6 +49,10 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
+import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +86,10 @@ import { CourseInfoComponent } from './course-info/course-info.component';
     DrTaCoursesComponent,
     ViewStudentsComponent,
     CourseInfoComponent,
+    ProfessorSchedualeComponent,
+    TaSchedualeComponent,
+    PlaceSchedualeComponent,
+    
     // MessageService,
   ],
   imports: [
