@@ -69,7 +69,7 @@ const routes: Routes = [
 {path: 'Chat', component: ChatComponent},
 {path: 'FCAIChat', component: FCAIChatComponent},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
-{path: 'drTaHome', component: HomeDrTaComponent}
+{path: 'drTaHome', component: HomeDrTaComponent},
   
 {path: 'FCAIChat', component: FCAIChatComponent},
 
