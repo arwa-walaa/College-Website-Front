@@ -1,0 +1,69 @@
+
+<br><br>
+
+<div class="container" p-5>
+    <h2 style="font-weight: bold;">Students in my courses</h2><br>
+   
+    
+   <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
+   <!-- <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;"> -->
+    <select #coursesNames (change)="SelectCourse(coursesNames.value)"  class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
+    <option  value="Course Name" style="color: grey;">Course Name</option>
+    <option *ngFor="let course of myCourses">
+        {{course.courseName}}
+    </option>
+   
+</select>
+
+
+
+<select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
+    <option value=""  style="color: grey;">Level</option>
+    <option>First Level</option>
+    <option>Second Level</option>
+    <option>Third Level</option>
+    <option>Fourth Level</option>
+
+</select>
+
+<select #coursesGrade (change)="selectGrade(coursesGrade.value)" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+    <option  value="Course Grade" style="color: grey;">Course Grade</option>
+    <option *ngFor="let grade of grades">
+       {{grade.grade}}
+    </option>
+   
+</select>
+   <br><br>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr style="background-color: #3E8DE3; color:white;" >
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Course Grade</th>
+                <th>Level</th>
+                <th>Term</th>
+                <th>GPA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+            <tr *ngFor="let d of myStudents | officeHoursSearch:searchText| paginate: { itemsPerPage: count, currentPage: p }">
+                <td>{{d.studentName}}</td> 
+                <td>{{d.courseName}}</td>
+                <td>{{d.grade}}</td>
+                <td>{{d.Level}}</td>
+                <td>{{d.Semester}}</td>
+                <td>{{d.GPA}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="text-right" style="margin-left: 400px; margin-top: 10px;" >
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+       
+        <p style="margin-left: 518px; margin-top:-45px;">  showing 5 items per page</p>
+    </div>
+
+</div> 

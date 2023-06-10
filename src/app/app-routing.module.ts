@@ -34,6 +34,7 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 
 const routes: Routes = [
 
@@ -64,7 +65,8 @@ const routes: Routes = [
 {path: 'Chat', component: ChatComponent},
 {path: 'FCAIChat', component: FCAIChatComponent},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
-{path: 'drTaHome', component: HomeDrTaComponent}
+{path: 'drTaHome', component: HomeDrTaComponent},
+{path: 'StudentsInCourses', component: StudentsInCoursesComponent}
   
 
 ];
