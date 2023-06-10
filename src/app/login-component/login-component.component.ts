@@ -10,11 +10,13 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login-component.component.css']
 })
 
+
 export class LoginComponentComponent implements OnInit {
 
   public error :any;
   isLogin:any;
   token:any;
+ 
   constructor(private router: Router, private _AuthService:AuthService) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -22,16 +24,16 @@ export class LoginComponentComponent implements OnInit {
 
   password:any;
   public loginForm:FormGroup = new FormGroup({              
-  name: new FormControl (null,[Validators.pattern('^([1-9]{1})([0-9]{7})$'),Validators.required]),
+  name: new FormControl (null,[Validators.pattern(/^([a-zA-Z]+)|([1-9][0-9]{7})$/),Validators.required]),
   password: new FormControl (null,[Validators.pattern('^([a-z]{3,8})([0-9]{3,5})'),Validators.required])})
   
-   
-
-   
     handleError(error:any) {
       this.error = error.error.error;
     }
+  
 onSubmit(loginForm: FormGroup) {
+
+  // if is a student
   if (loginForm.valid) {
     this._AuthService.login(loginForm.value).subscribe(
       response => {
@@ -41,16 +43,14 @@ onSubmit(loginForm: FormGroup) {
           // const token = ; // assuming the server's response includes the token as a property named 'token'
           this._AuthService.setToken(response.access_token); // store the token in local storage
           // alert(response.access_token);
-          this.router.navigate(['/home_login']);
+          if(/([1-9][0-9]{7})$/.test(loginForm.get('name')?.value))
+          {this.router.navigate(['/home_login']);}
+          else{
+            this.router.navigate(['/drTaHome']);
+          }
           
        } 
-      //  this._OfficeHoursServiceService.getOfficeHours().subscribe({
-      //   next:(response)=>this.tableData =response
-      //  })
-        // else {
-        //   // The response is invalid
-        //   this.error = "Username or Password doesn\'t exist";
-        // }
+  
       },
       error => {
         // Handle the error

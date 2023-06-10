@@ -62,7 +62,9 @@ const routes: Routes = [
 {path:'login' , component:LoginComponentComponent },
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
-{path: 'FCAIChat', component: FCAIChatComponent}
+{path: 'FCAIChat', component: FCAIChatComponent},
+{path: 'drTaCourses', component: DrTaCoursesComponent},
+{path: 'drTaHome', component: HomeDrTaComponent}
   
 
 ];
