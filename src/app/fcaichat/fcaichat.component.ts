@@ -217,7 +217,12 @@ triggerFileInput() {
 
     
   }
-
+  openImagePopup(url: string) {
+    window.open(url, 'Image', 'width=800,height=600');
+  }
+  isImage(file: string): boolean {
+    return file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.gif');
+  }
 
  
 }

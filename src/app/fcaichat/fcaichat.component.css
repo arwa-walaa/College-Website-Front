@@ -16,7 +16,7 @@ body{
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
 .chat-app .people-list {
-    width: 280px;
+    width: 300px;
     position: absolute;
     left: 0;
     top: 0;
@@ -149,7 +149,10 @@ body{
 }
 
 .chat .chat-history .my-message {
-    background: #efefef
+    background: #efefef;
+    display: inline-block;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
 .chat .chat-history .my-message:after {
@@ -172,12 +175,17 @@ body{
     background: #3289c8;
     text-align: right;
     color: white;
+    /* width: 500px; */
+    display: inline-block;
+    max-width: 80%;
+    word-wrap: break-word;
 }
 
 .chat .chat-history .other-message:after {
     /* border-bottom-color: #e8f1f3; */
     border-bottom-color:  #3289c8; 
     left: 80%;
+    /* width: 500px; */
    
 }
 
