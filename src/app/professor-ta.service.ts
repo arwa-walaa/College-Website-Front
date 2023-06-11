@@ -31,13 +31,7 @@ export class ProfessorTAService {
     return this.http.get(url);
    
   }
-  insertOfficeHours(Id:any,type:any,Name:any,Email:any,Location:any,StartTime:any,EndTime:any,Day:any,Department:any)
-  {
-    let url= "http://127.0.0.1:8000/api/insertOfficeHour/"+Id+'/'+type+'/'+Name+'/'+Email+
-              '/'+Location+'/'+StartTime+'/'+EndTime+'/'+Day+'/'+Department;
-    return this.http.get(url);
-   
-  }
+ 
   
 
 }

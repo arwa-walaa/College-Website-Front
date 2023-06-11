@@ -51,11 +51,7 @@ export class AddOfficeHoursComponent {
       this.officeHours[i].location = locationInput.value;
       this.officeHours[i].Day = dayInput.value;
     }
-    // this.http.post('http://127.0.0.1:8000/api/insertOfficeHour', this.officeHours).subscribe((response) => {
-    //   console.log("===============",response);
-    // }, (error) => {
-    //   console.error("erooooor",error);
-    // });
+    
 
 
   }
