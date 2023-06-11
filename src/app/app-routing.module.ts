@@ -85,6 +85,7 @@ const routes: Routes = [
 ////////////////professor///////
 {path: 'Prof_SchedualeComponent', component: ProfessorSchedualeComponent},
 {path: 'PlaceSchedualeComponent', component: PlaceSchedualeComponent},
+{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 {path: 'TA_SchedualeComponent', component: TaSchedualeComponent} ,
 

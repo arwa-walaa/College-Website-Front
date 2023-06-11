@@ -4,24 +4,40 @@
 
     <div>
         <form (ngSubmit)="submit()">
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label >Office Hours Start at: </label>
-                    <input type="time" id="startTime" class="form-control" required>
+            <ng-container *ngFor="let officeHour of officeHours; let i = index">
+
+            <div >
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label>Office Hours Start at:</label>
+                    <input type="time" [(ngModel)]="officeHours[i].startTime" name="startTime{{i}}" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Office Hours End at:</label>
+                    <input type="time" [(ngModel)]="officeHours[i].endTime" name="endTime{{i}}" class="form-control" required>
+                  </div>
                 </div>
+                <div class="row">
                 <div class="form-group col-md-6">
-                    <label >Office Hours End at: </label>
-                    <input type="time" id="endTime" class="form-control" required>
+                    <label>Location</label>
+                    <input [(ngModel)]="officeHours[i].location" name="location{{i}}" type="text" class="form-control" id="location" placeholder="ex: TAs room at New Building, second floor." required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Day</label>
+                    <select required [(ngModel)]="officeHours[i].Day" name="Day{{i}}" #day class="form-select" aria-label="Default select example" (change)="updateDay(i, day.value)">
+                      <option value="default">choose place</option>
+                      <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
+                    </select>
+                  </div>
                 </div>
-            </div>
-            
-            <div class="form-group">
-              <label>Location</label>
-              <input ngModel type="text" class="form-control" id="location" placeholder="ex: TAs room at New Building, second floor." required>
-            </div>
-            <br>
+              </div>
+              <br>
+            </ng-container>
+              
+              <button (click)="addOfficeHour()" class="btn btn-primary">Add Another Office Hour</button>
+              
             <div class="text-center">
-                <button ngModel type="submit" class="btn btn-primary text-center">Submit</button>
+                <button (click)="submit()" type="submit" class="btn btn-primary text-center">Submit</button>
             </div>
             
           </form>
