@@ -70,6 +70,7 @@ const routes: Routes = [
 {path: 'FCAIChat', component: FCAIChatComponent},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
 {path: 'drTaHome', component: HomeDrTaComponent},
+
   
 {path: 'FCAIChat', component: FCAIChatComponent},
 
@@ -77,6 +78,7 @@ const routes: Routes = [
 ////////////////professor///////
 {path: 'Prof_SchedualeComponent', component: ProfessorSchedualeComponent},
 {path: 'PlaceSchedualeComponent', component: PlaceSchedualeComponent},
+{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 {path: 'TA_SchedualeComponent', component: TaSchedualeComponent} ,
 
