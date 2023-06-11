@@ -27,7 +27,7 @@ export class HomeDrTaComponent implements OnInit{
     this.router.navigate(['addOfficeHours']);
   }
   navigateToViewStudents(){
-    this.router.navigate(['view_students']);
+    this.router.navigate(['StudentsInCourses']);
   }
   navigateToMyCourses() {
     this.router.navigate(['drTaCourses']);

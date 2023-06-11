@@ -1,34 +1,4 @@
-<!--  <div id="plist" class="people-list">
-   hello ya sarah mohamed
-   hello ya lozzzaaa
-    <h1>Chat</h1>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fa fa-search" style="font-size: 25px; "></i></span>
-      </div>
-      <input [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search...">
-    </div>
-    <hr>
-    <ul class="list-unstyled chat-list mt-2 mb-0">
-      <li class="clearfix" *ngFor="let professor of contacts.Professors | officeHoursSearch: searchText" (click)="getProfessorDetails(professor.professorName)">
-        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-        <div class="about">
-          <div class="name">Professor. {{ professor.professorName }}</div>
-          <div class="status"><i class="fa fa-circle offline"></i> left 7 mins ago</div>
-        </div>
-      </li>
-    </ul>
-    <ul class="list-unstyled chat-list mt-2 mb-0">
-      <li class="clearfix" *ngFor="let ta of contacts.TAs | officeHoursSearch: searchText" (click)="getTADetails(ta.TAName)">
-        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
-        <div class="about">
-          <div class="name">TA. {{ ta.TAName }}</div>
-          <div class="status"><i class="fa fa-circle offline"></i> left 7 mins ago</div>
-        </div>
-      </li>
-    </ul>
-  </div> -->
-  <!DOCTYPE html>
+
 <html lang="en">
 
 
@@ -61,9 +31,7 @@
                                 <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture">
                                 <div class="about">
                                     <div class="name"  >Professor. {{ professor.professorName}}</div>
-                                    <!-- <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div> -->
-                                    <!-- <div class="status"> <i class="fa fa-circle offline"></i>  </div> -->
-                                </div>
+                                   </div>
                             </li>
                           
                     
@@ -74,9 +42,7 @@
                                 <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture">
                                 <div class="about">
                                     <div class="name">TA. {{ ta.TAName }}</div>
-                                    <!-- <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div> -->
-                                    <!-- <div class="status"> <i class="fa fa-circle offline"></i>  </div> -->
-                                </div>
+                                  </div>
                             </li>
                           
                     
@@ -103,10 +69,7 @@
                                               <h6 class="m-b-0">TA. {{TADetails.TADtails[0].TAName}}</h6>
                                             
                                           </ng-template>
-                                          <!-- <ng-template #professorHeader>
-                                            <h6 class="m-b-0">Professor. {{professorsDetails.professorDtails[0].professorName}}</h6>
-                                          </ng-template> -->
-                                      
+                                       
                                     </div>
                                 </div>
 
@@ -122,66 +85,40 @@
                                         {{msg.message}}
                                          <br>
 
-                                         <!-- <img src="http://127.0.0.1:8000/api/storge/app/attachments/5p6kzhfNwEwQ3Sj0wDFx26n56Xcy0t7DEgFRrqcG.png" *ngIf="msg.attachment_path"> -->
-                                         <!-- <span class="message-data-time float-right">{{ hour}}</span> -->
-                                         <div *ngIf="msg.attachment_path">
-                                            {{attachmentUrl}}
-                                            <img [src]="attachmentUrl" alt="Attachment">
-                                         </div>
+                                         <!-- <img src="http://127.0.0.1:8000/attachments/logo.jpeg" *ngIf="msg.attachment_path">
+                                         -->
+                                         <img [src]="'http://127.0.0.1:8000/imgs/' + msg.attachment_path" *ngIf="msg.attachment_path">
+                                        
                                          <span class="message-data-time ">{{ msg.created_at| date:'shortTime' }}</span>
                             
                                     </div>
                                     <div class="message other-message float-right"  *ngIf="msg.to === profOrTA">
 
                                         {{msg.message}} <br>
-                                        <!-- <div *ngIf="msg.attachment_path">
-                                            <img [src]="attachmentUrl" alt="Attachment">
-                                        </div> -->
-                                        <!-- <img src="http://127.0.0.1:8000/api/storge/app/attachments/5p6kzhfNwEwQ3Sj0wDFx26n56Xcy0t7DEgFRrqcG.png" *ngIf="msg.attachment_path"> -->
-                                        <span class="message-data-time float-right" style="color:white;">{{ msg.created_at| date:'shortTime' }}</span>
+                                        <!-- <img src="http://127.0.0.1:8000/imgs/attachments/logo.jpeg" *ngIf="msg.attachment_path"> -->
+                                        <img [src]="'http://127.0.0.1:8000/imgs/' + msg.attachment_path" *ngIf="msg.attachment_path">
+                                           <span class="message-data-time float-right" style="color:white;">{{ msg.created_at| date:'shortTime' }}</span>
                                     </div>
                                 </li>
 
-                                <!-- <li class="clearfix" *ngFor="let message of messages ">
-
-                                    <div class="message other-message float-right">
-
-                                        {{message.message}} <br>
-                                        <span class="message-data-time float-right">{{ message.message.created_at }}</span>
-                                    </div>
-                                </li> -->                   
+                                               
 
                             </ul>
                         </div>
                         <div class="chat-message clearfix">
                             <div class="input-group mb-0">
-                                <form (ngSubmit)="sendMessage()"> 
-
-                                    <!-- <input [(ngModel)]="user2" name="recipientId" placeholder="Recipient ID" /> -->
-                                    <input [(ngModel)]="message" name="message" type="text" class="form-control" style="width: 850px;" placeholder="Enter text here..." />
-                                <!-- <input [(ngModel)]="message  type="text" class="form-control" placeholder="Enter text here..."> -->
-                                <!-- <input [(ngModel)]="message" name="message" placeholder="Message" /> -->
-                                 <div class="input-group-prepend"  style="width: 150px;"> 
-
-                                    <span class="input-group-text" style = "margin-top: -38px;  margin-left: 848px; width: 100px; height: 39px;">
-                                        
-                                        <!-- <i style="margin-right: 10px; font-size: 24px;" class="fa fa-paperclip" type="file" (change)="onFileSelected($event)"> -->
-                                            <!-- <input id="file-upload" type="file" (change)="onFileSelected($event)"> -->
-                                            <!-- <input type="file" (change)="onFileSelected($event)">
-                                        </i> -->
-
-                                        <!-- Include the icon before the input element -->
-                             
-                                        
-                                        <button type="submit"> <i class="fa fa-send" style="font-size: 24px;"></i></button>
-
-                                        <i class="fa fa-paperclip" (click)="triggerFileInput()" style="margin-right: 10px; font-size: 24px;"></i>
-                                        <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none">
-                                    </span>
+                              <form (ngSubmit)="sendMessage()"> 
+                                <input [(ngModel)]="message" name="message" type="text" class="form-control" style="width: 850px;"placeholder="Enter text here..." />
+                                <div class="input-group-prepend" style="width: 150px;"> 
+                                  <span class="input-group-text" style="margin-top: -38px; margin-left: 848px; width: 100px; height: 39px;">
+                                    <button type="submit"> <i class="fa fa-send" style="font-size: 24px;"></i></button>
+                                    <i class="fa fa-paperclip" (click)="triggerFileInput()" style="margin-right: 10px; font-size: 24px;"></i>
+                                    <input type="file" (change)="onFileSelected($event)" #fileInput style="display:none">
+                                  </span>
                                 </div>
-                                </form>
+                              </form>
                             </div>
-                        </div>
+                          </div>
 
                     </div>
 

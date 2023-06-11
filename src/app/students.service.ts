@@ -39,10 +39,9 @@ export class StudentsService {
 
 
   getAllDepartments(){
-   
-
     return this.http.get("http://127.0.0.1:8000/api/getAllDepartments");
   }
+  
   getDeptTopbyParam50(dept:any)
   {
     let url= "http://127.0.0.1:8000/api/getTopDept50/"+dept;
