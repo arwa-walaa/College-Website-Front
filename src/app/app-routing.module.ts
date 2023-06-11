@@ -18,6 +18,7 @@ import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './home/home.component';
 import { SchedualeComponent } from './scheduale/scheduale.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterGpComponent } from './register-gp/register-gp.component';
 // import { ProgramSelectionComponent } from './program-selection/program-selection.component';
@@ -34,6 +35,16 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
+
+// import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
+import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+
+
+// import { Prof_SchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+// import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
 
@@ -62,8 +73,20 @@ const routes: Routes = [
 {path:'login' , component:LoginComponentComponent },
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
-{path: 'FCAIChat', component: FCAIChatComponent}
-  
+{path: 'FCAIChat', component: FCAIChatComponent},
+{path: 'drTaCourses', component: DrTaCoursesComponent},
+{path: 'drTaHome', component: HomeDrTaComponent},
+
+{path: 'StudentsInCourses', component: StudentsInCoursesComponent},
+
+{path: 'FCAIChat', component: FCAIChatComponent},
+
+
+////////////////professor///////
+{path: 'Prof_SchedualeComponent', component: ProfessorSchedualeComponent},
+{path: 'PlaceSchedualeComponent', component: PlaceSchedualeComponent},
+////////////ta////////////
+{path: 'TA_SchedualeComponent', component: TaSchedualeComponent} ,
 
 ];
 
