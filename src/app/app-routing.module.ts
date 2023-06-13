@@ -34,6 +34,7 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.component';
 
 const routes: Routes = [
 
@@ -67,6 +68,7 @@ const routes: Routes = [
 {path:'view_students',component:ViewStudentsComponent,title:'View Students'},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
+{path:'view_feedbacks',component:ViewFeedbacksComponent,title:'View Feedbacks'},
 {path:'',redirectTo:'home',pathMatch:'full'},
 
 ];
