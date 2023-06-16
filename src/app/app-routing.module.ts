@@ -31,19 +31,18 @@ import { GpComponent } from './gp/gp.component';
 import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/professor-evaluation-form.component';
 import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
 import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
-import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+//import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 
 // import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
-import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+//import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
-import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 
 
-// import { Prof_SchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -83,11 +82,11 @@ const routes: Routes = [
 
 
 ////////////////professor///////
-{path: 'Prof_SchedualeComponent', component: ProfessorSchedualeComponent},
-{path: 'PlaceSchedualeComponent', component: PlaceSchedualeComponent},
-{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'Schedule', component: ProfessorSchedualeComponent},
+{path: 'PlaceScheduale', component: PlaceSchedualeComponent},
+//{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
-{path: 'TA_SchedualeComponent', component: TaSchedualeComponent} ,
+
 
 ];
 

@@ -50,6 +50,9 @@ import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +87,9 @@ import { StudentsInCoursesComponent } from './students-in-courses/students-in-co
     ViewStudentsComponent,
     CourseInfoComponent,
     StudentsInCoursesComponent,
+    ProfessorSchedualeComponent,
+    PlaceSchedualeComponent,
+    TaSchedualeComponent,
     // MessageService,
   ],
   imports: [

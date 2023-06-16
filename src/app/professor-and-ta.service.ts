@@ -14,7 +14,7 @@ export class ProfessorAndTaService {
     return this.http.get(url);
   }
 
-  getMyStudents(professorId:any)
+getMyStudents(professorId:any)
   {
     let url= "http://127.0.0.1:8000/api/getMyStudents/"+professorId;
     return this.http.get(url);
@@ -26,6 +26,12 @@ export class ProfessorAndTaService {
     return this.http.get(url);
   }
   
+  getTAInfo(token:any)
+  {
+    let url= "http://127.0.0.1:8000/api/ta_info/"+token;
+    return this.http.get(url);
+  }
+
   getGrades(professorId:any){
     let url= "http://127.0.0.1:8000/api/getGrades/"+professorId;
     return this.http.get(url);

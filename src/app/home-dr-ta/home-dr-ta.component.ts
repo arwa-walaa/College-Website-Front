@@ -21,7 +21,7 @@ export class HomeDrTaComponent implements OnInit{
     this.router.navigate(['Schedules_Bylaw']);
   }
   navigateToChat() {
-    this.router.navigate(['Chat']);
+    this.router.navigate(['FCAIChat']);
   }
   navigateToAddOfficeHours() {
     this.router.navigate(['addOfficeHours']);
@@ -33,7 +33,7 @@ export class HomeDrTaComponent implements OnInit{
     this.router.navigate(['drTaCourses']);
   }
   navigateToScheduale(){
-    this.router.navigate(['scheduale']);
+    this.router.navigate(['Schedule']);
   }
 
   
