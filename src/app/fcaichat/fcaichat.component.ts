@@ -47,6 +47,7 @@ export class FCAIChatComponent implements OnInit {
   }
   
   loadProfessorAndTAMessages() {
+    
     return this.messageService.getProfessorAndTAHistory(this.student, this.profOrTA);
   }
 
@@ -56,96 +57,53 @@ export class FCAIChatComponent implements OnInit {
   }
   
 
-  // sendMessage() {
-  //   const msgDetails = {
-  //     from: this.student,
-  //     to: this.profOrTA,
-  //     message: this.message,
-  //     //attachement: this.attachement
-  //   };
-
-  //  //formData.add('selectedFile', JSON.stringify(msgDetails));
-
-  //   console.log("msgDetails", msgDetails);
-  //   // if (this.selectedFile) {
-  //   //   const formData={
-  //   //     from: this.student,
-  //   //     to: this.profOrTA,
-  //   //     message: this.message,
-  //   //     selectedFile: this.selectedFile
-  //   //   };
-
-  //   // }
-
-  //   // if(this.selectedFile)
-  //   // {
-
-  //   // }
-   
-  //   this.messageService.sendMessage(msgDetails).subscribe(() => {
-  //     // this.loadProfessorAndTAMessages().subscribe((history) => {
-  //     //   this.messagesOfProfessorAndTA = history;
-  //     // });
-
-  //     // this.loadStudentMessages().subscribe((history) => {
-  //     //   this.messagesOfStudent = history;
-  //     // }
-  //     //);
-
-  //     this.message = '';
-  //   }
-  //   , (error) => {
-  //     console.log(error);
-  //   });
-
-    
-  // }
  
  
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+
+   
+        const inputElement = document.querySelector('input[name="message"]');
+        if (inputElement instanceof HTMLInputElement) {
+          inputElement.value = this.selectedFile.name;
+        }
+     
+
   }
 
-  // sendMessage() {
-  //   const msgDetails = new FormData();
-  //   msgDetails.append('from', this.student);
-  //   msgDetails.append('to', this.profOrTA);
-  //   msgDetails.append('message', this.message);
-  //   if (this.selectedFile) {
-  //     msgDetails.append('attachment', this.selectedFile, this.selectedFile.name);
-  //   }
-  //   this.messageService.sendMessage(msgDetails).subscribe(() => {
-  //     // handle success
-  //     this.message = '';
-  //   }, (error) => {
-  //     // handle error
-  //     console.log(error);
-  //   });
-  // }
-
- 
-
+  
 sendMessage() {
   const formData = new FormData();
   formData.append('from', this.student);
   formData.append('to', this.profOrTA);
-  formData.append('message', this.message);
+  // formData.append('message', this.message);
   if (this.selectedFile) {
     formData.append('attachment', this.selectedFile, this.selectedFile.name);
+    formData.append('message',this.selectedFile.name);
   }
+  else{
+    formData.append('message', this.message);
+  }
+ 
   this.messageService.sendMessage(formData).subscribe((response: any) => {
     this.loadProfessorAndTAMessages().subscribe((history) => {
      this.messagesOfProfessorAndTA = history;
     });
     // handle success
-    this.message = '';
-    // if (response.attachment_url) {
-    //   this.attachmentUrl = 'http://127.0.0.1:8000/' + response.attachment_url; // set the attachment URL
-    // }
+   
+      this.selectedFile = null;
+      this.message = '';
+      const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
+      if (inputElement) {
+        inputElement.value = '';
+      }
+    
 
-    if (response.attachment_path) {
-      this.attachmentUrl = response.attachment_url;
-    }
+
+
+
+    
+   
   }, (error) => {
     // handle error
     console.log(error);
@@ -237,25 +195,6 @@ triggerFileInput() {
     });
   }
 
-  // getSenderDetails()
-  // { 
-  //   const token=this._AuthService.getToken();
-  //   this.stdService.getStudentInfo(token).subscribe({
-  //     next:(response)=> {this.senderData=response,
-      
-  //       this.student = this.senderData[0].userID;
-  //       console.log(this.student);
-  //       console.log(this.senderData);
-      
-  //     }
-     
-  //    // StudentData[0].studentId
-      
-  //   });
-
-    
-  // }
-//test from sara
   getSenderDetails()
   { 
     const token=this._AuthService.getToken();
@@ -272,17 +211,18 @@ triggerFileInput() {
         console.error(error,'cant work');
         
       }
-     
-     // StudentData[0].studentId
+    
       
     );
 
     
   }
+  openImagePopup(url: string) {
+    window.open(url, 'Image', 'width=800,height=600');
+  }
+  isImage(file: string): boolean {
+    return file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.gif');
+  }
 
-
-  // onFileSelected(event: any) {
-  //   this.attachement = event.target.files[0];
-  //   // do something with the selected file, such as uploading it to a server
-  // }
+ 
 }
