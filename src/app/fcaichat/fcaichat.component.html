@@ -122,7 +122,7 @@
                                         {{msg.message}}
                                          <br>
 
-                                         <!-- <img src="http://127.0.0.1:8000/api/storge/app/attachments/5p6kzhfNwEwQ3Sj0wDFx26n56Xcy0t7DEgFRrqcG.png" *ngIf="msg.attachment_path"> -->
+                                         <img src="http://127.0.0.1:8000/attachments/5p6kzhfNwEwQ3Sj0wDFx26n56Xcy0t7DEgFRrqcG.png" *ngIf="msg.attachment_path"> 
                                          <!-- <span class="message-data-time float-right">{{ hour}}</span> -->
                                          <div *ngIf="msg.attachment_path">
                                             {{attachmentUrl}}
@@ -137,7 +137,7 @@
                                         <!-- <div *ngIf="msg.attachment_path">
                                             <img [src]="attachmentUrl" alt="Attachment">
                                         </div> -->
-                                        <!-- <img src="http://127.0.0.1:8000/api/storge/app/attachments/5p6kzhfNwEwQ3Sj0wDFx26n56Xcy0t7DEgFRrqcG.png" *ngIf="msg.attachment_path"> -->
+                                        <img src="http://127.0.0.1:8000/attachments/logo.jpeg" *ngIf="msg.attachment_path"> 
                                         <span class="message-data-time float-right" style="color:white;">{{ msg.created_at| date:'shortTime' }}</span>
                                     </div>
                                 </li>
