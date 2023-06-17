@@ -21,19 +21,19 @@ export class HomeDrTaComponent implements OnInit{
     this.router.navigate(['Schedules_Bylaw']);
   }
   navigateToChat() {
-    this.router.navigate(['Chat']);
+    this.router.navigate(['FCAIChat']);
   }
   navigateToAddOfficeHours() {
     this.router.navigate(['addOfficeHours']);
   }
   navigateToViewStudents(){
-    this.router.navigate(['view_students']);
+    this.router.navigate(['StudentsInCourses']);
   }
   navigateToMyCourses() {
-    this.router.navigate(['dr_ta_courses']);
+    this.router.navigate(['drTaCourses']);
   }
   navigateToScheduale(){
-    this.router.navigate(['scheduale']);
+    this.router.navigate(['Schedule']);
   }
 
   

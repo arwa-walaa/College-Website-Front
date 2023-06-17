@@ -1,63 +1,120 @@
 
-import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../message.service';
 import { map } from 'rxjs';
+import { StudentsService } from './../students.service';
+import { AuthService } from '../auth.service';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fcaichat',
   templateUrl: './fcaichat.component.html',
   styleUrls: ['./fcaichat.component.css']
 })
+
 export class FCAIChatComponent implements OnInit {
-  user1: any ;
-  user2: any ;
-  message: any = '';
+  @ViewChild('fileInput') fileInput:any;
+  student: any;
   messages: any;
+  profOrTA: any;
+  message: any = '';
+  messagesOfProfessorAndTA: any;
+  messagesOfStudent: any;
   contacts:any;
   professorsDetails:any;
- TADetails:any;
- isTA:boolean=false;
- isProfessor:boolean=false;
+  TADetails:any;
+  isTA:boolean=false;
+  isProfessor:boolean=false;
+
+  senderData:any;
+  searchText='';
+
+  attachement:any;
+  selectedFile: any;
+  attachmentUrl: any;
  
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService ,private stdService:StudentsService, private _AuthService:AuthService ) { }
  
 
   ngOnInit() {
     
-    // this.user2 = 2; // Replace with recipient ID
-    this.user1 = 3;
-  
+    this.getSenderDetails();
+    this.profOrTA; // Replace with recipient ID
+    this.student;
     // this.getProfessorDetails("Ayman");
     this.getAllContacts();
+   
+  }
   
-    this.loadMessages().subscribe((history) => {
-      this.messages = history;
-      console.log(this.messages);
+  loadProfessorAndTAMessages() {
+    
+    return this.messageService.getProfessorAndTAHistory(this.student, this.profOrTA);
+  }
+
+  loadStudentMessages() {
+    //console.log()
+    return this.messageService.getStudentHistory(this.student);
+  }
+  
+
+ 
+ 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+
+   
+        const inputElement = document.querySelector('input[name="message"]');
+        if (inputElement instanceof HTMLInputElement) {
+          inputElement.value = this.selectedFile.name;
+        }
+     
+
+  }
+
+  
+sendMessage() {
+  const formData = new FormData();
+  formData.append('from', this.student);
+  formData.append('to', this.profOrTA);
+  // formData.append('message', this.message);
+  if (this.selectedFile) {
+    formData.append('attachment', this.selectedFile, this.selectedFile.name);
+    formData.append('message',this.selectedFile.name);
+  }
+  else{
+    formData.append('message', this.message);
+  }
+ 
+  this.messageService.sendMessage(formData).subscribe((response: any) => {
+    this.loadProfessorAndTAMessages().subscribe((history) => {
+     this.messagesOfProfessorAndTA = history;
     });
-  }
-  
-  loadMessages() {
-    return this.messageService.getMessages(this.user1, this.user2);
-  }
-  
-
-  sendMessage() {
-    const msgDetails = {
-      from: this.user1,
-      to: this.user2,
-      message: this.message
-    };
-
-    this.messageService.sendMessage(msgDetails).subscribe(() => {
-      this.loadMessages().subscribe((history) => {
-        this.messages = history;
-      });
+    // handle success
+   
+      this.selectedFile = null;
       this.message = '';
-    }, (error) => {
-      console.log(error);
-    });
-  }
+      const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
+      if (inputElement) {
+        inputElement.value = '';
+      }
+    
+
+
+
+
+    
+   
+  }, (error) => {
+    // handle error
+    console.log(error);
+  });
+}
+
+triggerFileInput() {
+  this.fileInput.nativeElement.click();
+}
+
+
   getAllContacts(){
     this.messageService.getContacts().subscribe(
       response => {
@@ -81,8 +138,21 @@ export class FCAIChatComponent implements OnInit {
         if( this.professorsDetails!=null){
           this.isProfessor=true;
           this.isTA=false;
-          this.user2=this.professorsDetails.professorDtails[0].professorId;
+          this.profOrTA=this.professorsDetails.professorDtails[0].userID;
           console.log(this.isProfessor);
+          console.log(this.profOrTA);
+          this.loadProfessorAndTAMessages().subscribe((history) => {
+            this.messagesOfProfessorAndTA = history;
+            console.log(this.messagesOfProfessorAndTA);
+          });
+
+          this.loadStudentMessages().subscribe((studentHistory) => {
+            this.messagesOfStudent = studentHistory;
+            this.messages = this.messagesOfStudent.messages;
+            console.log('all array',this.messagesOfStudent);
+             console.log('stdmsg',this.messagesOfStudent.messages[0].message);
+          });
+      
 
         }
     
@@ -92,9 +162,6 @@ export class FCAIChatComponent implements OnInit {
       
       
     });
-  
-    
-
   }
   getTADetails(TAName:string){
     this.messageService.getTADetails(TAName)
@@ -105,19 +172,57 @@ export class FCAIChatComponent implements OnInit {
         if( this.TADetails!=null){
           this.isTA=true;
           this.isProfessor=false;
-          this.user2=this.TADetails.TADtails[0].TAId
+          this.profOrTA=this.TADetails.TADtails[0].userID;
           console.log(this.isTA);
+
+          this.loadProfessorAndTAMessages().subscribe((history) => {
+            this.messagesOfProfessorAndTA = history;
+            console.log(this.messagesOfProfessorAndTA);
+          });
+
+          this.loadStudentMessages().subscribe((history) => {
+            this.messagesOfStudent = history;
+          });
+      
 
         }
         
-    
     },
     error => {
       console.error('Error!', error);
       
       
     });
-    
-
   }
+
+  getSenderDetails()
+  { 
+    const token=this._AuthService.getToken();
+    console.log(token);
+    this.stdService.getStudentInfo(token).subscribe(
+      response=>{ 
+        this.senderData=response;
+        this.student = this.senderData[0].userID;
+        console.log('std id',this.student);
+        console.log('sender data',this.senderData);
+      
+      },
+      error => { 
+        console.error(error,'cant work');
+        
+      }
+    
+      
+    );
+
+    
+  }
+  openImagePopup(url: string) {
+    window.open(url, 'Image', 'width=800,height=600');
+  }
+  isImage(file: string): boolean {
+    return file.endsWith('.jpg') || file.endsWith('.jpeg') || file.endsWith('.png') || file.endsWith('.gif');
+  }
+
+ 
 }

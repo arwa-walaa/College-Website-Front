@@ -18,6 +18,7 @@ import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './home/home.component';
 import { SchedualeComponent } from './scheduale/scheduale.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterGpComponent } from './register-gp/register-gp.component';
 // import { ProgramSelectionComponent } from './program-selection/program-selection.component';
@@ -30,11 +31,21 @@ import { GpComponent } from './gp/gp.component';
 import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/professor-evaluation-form.component';
 import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
 import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
-import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+//import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.component';
+
+// import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+//import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+
+
+import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+// import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
 
@@ -70,6 +81,20 @@ const routes: Routes = [
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
 {path:'view_feedbacks',component:ViewFeedbacksComponent,title:'View Feedbacks'},
 {path:'',redirectTo:'home',pathMatch:'full'},
+{path: 'drTaCourses', component: DrTaCoursesComponent},
+{path: 'drTaHome', component: HomeDrTaComponent},
+
+{path: 'StudentsInCourses', component: StudentsInCoursesComponent},
+
+{path: 'FCAIChat', component: FCAIChatComponent},
+
+
+////////////////professor///////
+{path: 'Schedule', component: ProfessorSchedualeComponent},
+{path: 'PlaceScheduale', component: PlaceSchedualeComponent},
+//{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+////////////ta////////////
+
 
 ];
 

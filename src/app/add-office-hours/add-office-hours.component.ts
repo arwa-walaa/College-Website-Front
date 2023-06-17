@@ -19,7 +19,27 @@ export class AddOfficeHoursComponent implements OnInit {
     }, { validator: this.checkTimeValidity });
   }
 
-  submit(){
+//   constructor(private http: HttpClient,private router: Router,private _AuthService:AuthService,
+//     private profAndTa:ProfessorAndTaService,private ProfService:ProfessorTAService) {
+//   }
+
+//   officeHours: any[] = [{ startTime: '', endTime: '',location:'',Day:'',type:'Professor',name: '' , email: '' , department: '' }];
+//   weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+//   addOfficeHour(name:any, email:any, department:any) {
+//     this.officeHours.push({ startTime: '', endTime: '',location:'',Day:'',type:'Professor',name: name , email: email , department: department});
+//   }
+//    updateDay(index: number, day: string) {
+//     this.officeHours[index].Day = day;
+//   }
+//   OnInit()
+//   {
+//     console.log("====",this.officeHours);
+//     const token=this._AuthService.getToken();
+//     this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+     
+//     });
+//   }
+//   submit() {
     
   }
 

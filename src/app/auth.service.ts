@@ -50,6 +50,12 @@ export class AuthService {
       return localStorage.getItem('token');
   }
 
+  getType(token:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getUserType/"+token;
+    return this._HttpClient.get(url);
+  }
+
   
   removeToken(): void {
     localStorage.removeItem('token'); // remove the token from local storage on logout
