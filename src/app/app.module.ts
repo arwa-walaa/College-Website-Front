@@ -53,6 +53,7 @@ import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.componen
 import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.compo
     StudentsInCoursesComponent,
     ProfessorSchedualeComponent,
     PlaceSchedualeComponent,
-    //TaSchedualeComponent,
+    SchedualeComponent,
+    ProfissorProfileComponent,
     // MessageService,
   ],
   imports: [
