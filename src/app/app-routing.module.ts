@@ -43,6 +43,8 @@ import { StudentsInCoursesComponent } from './students-in-courses/students-in-co
 
 
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
+import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
+//import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -75,7 +77,7 @@ const routes: Routes = [
 {path: 'FCAIChat', component: FCAIChatComponent},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
 {path: 'drTaHome', component: HomeDrTaComponent},
-
+{path: 'courseStatistics', component: CourseInfoComponent},
 {path: 'StudentsInCourses', component: StudentsInCoursesComponent},
 
 {path: 'FCAIChat', component: FCAIChatComponent},
@@ -84,6 +86,7 @@ const routes: Routes = [
 ////////////////professor///////
 {path: 'Schedule', component: ProfessorSchedualeComponent},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
+{path: 'ProfProfile', component: ProfissorProfileComponent},
 //{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <title>Document</title> -->
+    <script>
+        $(function(){
+        $('#datepicker').datepicker();
+        });
+    </script>
+</head>
+<body>
+    {{  officeHours}}
+<h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">Profile</h1>
+<div class="alert alert-success" *ngIf="flag === true">
+    <strong>Updated Successfully</strong> 
+</div>
+<form #myForm="ngForm" (ngSubmit)="onSubmit()" class="form">
+   
+    
+    <label >Name</label><br>
+    <input type="text" id="EName" name="EName" value={{ProfData[0].professorName}}  ><br><br>
+
+    
+    <label >Address</label><br>
+    <input type="text" id="Address" name="Address" value={{ProfData[0].address}} ><br><br>
+    
+    <label >Phone</label><br>
+    <input type="text" id="Phone" name="Phone" value={{ProfData[0].phoneNumber}} ><br><br>
+    
+    
+    <label >Email</label><br>
+    <input type="text" id="Email" name="Email" value={{ProfData[0].email}} ><br><br>
+
+    
+    <label >Gender</label><br>
+    <input type="text" id="gender" name="gender" value={{ProfData[0].gender}} disabled><br><br>
+    
+
+    <label >National Id</label><br>
+    <input type="text" id="National Id" name="National Id"   value={{ProfData[0].nationalId}} class="disabled" disabled><br><br>
+    
+    <label >Department</label><br>
+    <input type="text" id="Department" name="Department"   value={{ProfData[0].departmentCode}} class="disabled" disabled><br><br>
+    
+    <section class="officeHours">
+        <label>officeHours</label>
+        <div class="input-row" *ngFor="let officehour of officeHours">
+          <label for="">Day</label>
+          <input type="text" name="Day" id="Day" class="off"  value={{officehour.Day}} #dayInput style="width: 100px; height: 30px;">
+          <label for="">From </label>
+          <input type="time" name="StartTime" id="StartTime" value={{officehour.StartTime}}  #startTimeInput class="off">
+          <label for="">To </label>
+          <input type="time" name="EndTime" id="EndTime"  value={{officehour.EndTime}}  #endTimeInput class="off">
+          <label for="">Location</label>
+          <input type="text" name="Location" id="Location" value={{officehour.Location}}  #locationInput class="off" style="width: 100px; height: 30px;">
+          <button class="btn btn-primary" (click)="updateOfficeHour(dayInput.value, startTimeInput.value, endTimeInput.value, locationInput.value, officehour.id)">Update</button>
+          <button class="btn btn-danger" (click)="deleteOfficeHour(officehour.id)">Delete</button>
+        </div>
+      </section>
+    <br><br>
+    <button type="button" class="btn btn-primary" style="margin-left: 44%;" (click)="onSubmit() ">Submit</button>
+   
+    
+  </form>
+
+</body>
+</html>
+
+
