@@ -42,10 +42,28 @@ export class MessageService {
   getContacts(){
     return this.http.get(`${this.baseUrl}/professorsAndTas`);
   }
+
+  listTAsStudents(){
+    return this.http.get(`${this.baseUrl}/listTAsStudents`);
+  }
+
+  listProfessorsStudents(){
+    return this.http.get(`${this.baseUrl}/listProfessorsStudents`);
+  }
+
+
+
   getProfessorDetails(profName: any) {
     return this.http.get(`${this.baseUrl}/professorsDetails?professorName=${profName}`);
   }
+
   getTADetails(TAName:any){
     return this.http.get(`${this.baseUrl}/TADetails?TAName=${TAName}`);
   }
+
+  
+  getStudentsDetails(StudentName:any){
+    return this.http.get(`${this.baseUrl}/getStudentsDetails?studentName=${StudentName}`);
+  }
+  
 }
