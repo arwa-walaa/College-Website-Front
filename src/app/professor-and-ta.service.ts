@@ -46,5 +46,18 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/selectGrade/"+grade;
     return this.http.get(url);
   }
-
+  getProfOfficeHours(profID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnProfOfficeHours/"+profID;
+    return this.http.get(url);
+  }
+  deleteOfficeHour(officeHourId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/deleteOfficeHours/"+officeHourId;
+    return this.http.delete(url);
+  }
+  updateOfficeHour(officeHourId: any, officeHourData: any) {
+    let url = "http://127.0.0.1:8000/api/updateProfOfficeHour/" + officeHourId;
+    return this.http.put(url, officeHourData);
+  }
 }

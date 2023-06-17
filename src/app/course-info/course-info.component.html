@@ -4,17 +4,48 @@
 
     <div>
         <h4>Course Info</h4>
-        <p>Code &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Title
-        <br>
-        Semester &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Level 
-        <br>
-        TA: XX, YY, ZZ
-        <br>
-        Sections: S1,S2 at Sunday 2nd slot 
-        <br>
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; S3 at Monday 4th slot
-        <br>
-        ___________________________________________________________________________________________________________________________________________________________________________________________________</p>
+        <div class="row">
+            <div class="col-2">
+                Code
+            </div>
+            <div class="col-6">
+                Title
+            </div>
+            <div class="col-2">
+                Semester
+            </div>
+            <div class="col-2">
+                Level
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                TA: 
+            </div>
+            <div class="col-2">
+                TA1
+            </div>
+            <div class="col-2">
+                TA2
+            </div>
+            <div class="col-2">
+                TA3
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                Sections:
+            </div>
+            <div class="col-10">
+                <div class="row">
+                    S1,S2 at Sunday 2nd slot 
+                </div>
+                <div class="row">
+                    S3 at Monday 4th slot
+                </div>
+            </div>
+        </div>
+        <p>_________________________________________________________________________________________________________________________________________________________________________________________________</p>
     </div>
 
     <div class="row">
@@ -22,7 +53,7 @@
             (click)="navigateToAddGrades()">Add Grades</button>
         </div>
         <div class="col-4"><button class="btn btn-primary" style="width:420px; border:none; background-color: #F0F0F0; color:#ABABAB;"
-            (click)="navigateToSeeFeedbacks()">See Feedbacks</button>
+            (click)="navigateToSeeFeedbacks()">View Feedbacks</button>
         </div>
         <div class="col-4"><button class="btn btn-primary" style="width:420px; border:none; background-color: #3E8DE3; color:white;" 
             (click)="navigateToViewStudents()">View Students</button>
@@ -31,7 +62,39 @@
 
     <br><br>
 
-    <div>
-        <h3 style="text-align: center;"> Statistics </h3>
-    </div>
+    <section>
+        <h3 style="text-align: center; font-weight: bold;"> Statistics </h3>
+        <div class="row">
+            <div class="col-3" style="padding: 5px;">
+                <div class="stat_card">
+                    <h5>Number of Enrolled Students</h5>
+                    <div style="font-size:22px;">258</div>
+                </div>
+                <div class="stat_card">
+                    <h5>Attendance Percentage</h5>
+                    <div style="font-size:22px;">94%</div>
+                </div>
+                <div class="stat_card">
+                    <h5>Number of Enrolled Students in S1</h5>
+                    <div style="font-size:22px;">36</div>
+                </div>
+                <div class="stat_card">
+                    <h5>Number of Enrolled Students in S2</h5>
+                    <div style="font-size:22px;">40</div>
+                </div>
+            </div>
+            <div class="col-4" style="padding: 5px;">
+                <div class="stat_card">
+                    <h5>Success Percentage</h5>
+                    <div id="pie_chart"></div>
+                </div>
+            </div>
+            <div class="col-5" style="padding: 5px;">
+                <div class="stat_card">
+                    <h5>Grades Histogram</h5>
+                    <div id="histogram"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
