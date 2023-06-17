@@ -1,46 +1,33 @@
-<!-- <p>add-office-hours works!</p>
+
 <div class="container">
     <br><br>
     <h2 style="font-weight: bold;">Add Office Hours</h2><br>
 
     <div>
-        <form (ngSubmit)="submit()">
-            <ng-container *ngFor="let officeHour of officeHours; let i = index">
-
-            <div >
-                <div class="row">
-                  <div class="form-group col-md-6">
-                    <label>Office Hours Start at:</label>
-                    <input type="time" [(ngModel)]="officeHours[i].startTime" name="startTime{{i}}" class="form-control" required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Office Hours End at:</label>
-                    <input type="time" [(ngModel)]="officeHours[i].endTime" name="endTime{{i}}" class="form-control" required>
-                  </div>
+        <form [formGroup]="officeHoursForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label >Office Hours Start at: </label>
+                    <input type="time" formControlName="startTime" class="form-control" required>
                 </div>
                 <div class="row">
                 <div class="form-group col-md-6">
-                    <label>Location</label>
-                    <input [(ngModel)]="officeHours[i].location" name="location{{i}}" type="text" class="form-control" id="location" placeholder="ex: TAs room at New Building, second floor." required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label>Day</label>
-                    <select required [(ngModel)]="officeHours[i].Day" name="Day{{i}}" #day class="form-select" aria-label="Default select example" (change)="updateDay(i, day.value)">
-                      <option value="default">choose place</option>
-                      <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
-                    </select>
-                  </div>
+                    <label >Office Hours End at: </label>
+                    <input type="time" formControlName="endTime" class="form-control" required>
                 </div>
-              </div>
-              <br>
-            </ng-container>
-              
-              <button (click)="submitOfficeHours()" class="btn btn-primary">Add Another Office Hour</button>
-              
-            <div class="text-center">
-                <button (click)="submit()" type="submit" class="btn btn-primary text-center">Submit</button>
             </div>
             
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" class="form-control" formControlName="location" placeholder="ex: TAs room at New Building, second floor." required>
+            </div>
+            <br>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary text-center">Submit</button>
+            </div>
+            <div *ngIf="officeHoursForm.errors?.['invalidTime']">
+                {{ officeHoursForm.errors?.['invalidTime'].message }}
+              </div>
           </form>
     </div>
-</div> -->
+</div> 

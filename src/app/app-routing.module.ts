@@ -35,6 +35,7 @@ import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
+import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.component';
 
 // import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 //import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
@@ -43,8 +44,6 @@ import { StudentsInCoursesComponent } from './students-in-courses/students-in-co
 
 
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
-import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
-//import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -75,6 +74,12 @@ const routes: Routes = [
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
 {path: 'FCAIChat', component: FCAIChatComponent},
+{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
+{path:'view_students',component:ViewStudentsComponent,title:'View Students'},
+{path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
+{path:'course_info',component:CourseInfoComponent,title:'Course Info'},
+{path:'view_feedbacks',component:ViewFeedbacksComponent,title:'View Feedbacks'},
+{path:'',redirectTo:'home',pathMatch:'full'},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
 {path: 'drTaHome', component: HomeDrTaComponent},
 {path: 'courseStatistics', component: CourseInfoComponent},
