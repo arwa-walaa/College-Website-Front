@@ -12,7 +12,7 @@ export class DrTaCoursesComponent {
   myCourses: any;
   constructor(private router: Router,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService) {} 
   navigateToGpRequest() {
-    this.router.navigate(['']);
+    this.router.navigate(['gp_requests']);
   }
 
   ngOnInit(): void {

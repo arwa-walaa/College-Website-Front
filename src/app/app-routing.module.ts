@@ -45,6 +45,7 @@ import { StudentsInCoursesComponent } from './students-in-courses/students-in-co
 
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -80,7 +81,7 @@ const routes: Routes = [
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
 {path:'view_feedbacks',component:ViewFeedbacksComponent,title:'View Feedbacks'},
-{path:'',redirectTo:'home',pathMatch:'full'},
+{path:'gp_requests',component:GpRequestsComponent,title:'Graduation Project Requests'},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
 {path: 'drTaHome', component: HomeDrTaComponent},
 
@@ -95,7 +96,7 @@ const routes: Routes = [
 //{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 
-
+{path:'',redirectTo:'home',pathMatch:'full'},
 ];
 
 
