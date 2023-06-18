@@ -46,6 +46,7 @@ import { MessageService } from './message.service';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
 //import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+//import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { ViewStudentsComponent } from './view-students/view-students.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
@@ -53,6 +54,7 @@ import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.componen
 import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
+import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 @NgModule({
@@ -92,6 +94,8 @@ import { ProfissorProfileComponent } from './profissor-profile/profissor-profile
     StudentsInCoursesComponent,
     ProfessorSchedualeComponent,
     PlaceSchedualeComponent,
+    GpRequestsComponent,
+    //TaSchedualeComponent,
     SchedualeComponent,
     ProfissorProfileComponent,
     // MessageService,

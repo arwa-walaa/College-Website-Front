@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { StudentsService } from '../students.service';
-import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { Router } from '@angular/router';
 declare var google:any;
 
 @Component({
@@ -12,54 +9,35 @@ declare var google:any;
   styleUrls: ['./course-info.component.css']
 })
 export class CourseInfoComponent implements OnInit {
-  courseInfo: any;
-  TAs:any
-  courseStat: any;
-  pased!: Number; 
-  faild!:Number 
-  constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
-  
-  }
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
-   
-    this.route.queryParams.subscribe(params => {
-     
-      this.courseInfo=params;  
-      console.log('courseInfo==',this.courseInfo);
-      this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
-      console.log("tas==",this.TAs)})
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(this.drawPieChart);
+    google.charts.setOnLoadCallback(this.drawHistogram);
+  }
 
-      this.profAndTa.returnCourseStat(this.courseInfo.courseID).subscribe((courseStat: any) => {
-        this.courseStat = courseStat;
-        this.pased = this.courseStat[0].num_students_passed;
-        this.faild = this.courseStat[0].num_students_failed;
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(() => {
-          const data = new google.visualization.DataTable();
-          data.addColumn('string', 'Success');
-          data.addColumn('number', 'Number of Students');
-          data.addRows([
-            ['Succeeded', this.pased],
-            ['Failed', this.faild]
-          ]);
-        
-          const options = {
-            'title': 'Student Success Rates',
-            'width': 400,
-            'height': 300
-          };
-        
-          const chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
-          chart.draw(data, options);
-        });
-  
-        google.charts.setOnLoadCallback(this.drawHistogram);
-      });
+  drawPieChart(){
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Success');
+    data.addColumn('number', 'Number of Students');
+    data.addRows([
+      ['Succeeded', 140],
+      ['Failed', 50]
+    ]);
 
-      }
-     
-    );
-    
+    // Set chart options
+    var options = {pieHole: 0.4,
+    'legend':'bottom',
+    'width':375,
+    'height':400,
+    colors:['#3E8DE3', '#141ba2'],
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+    chart.draw(data, options);
   }
 
   // drawPieChart(numStudentsPassed: any , numStudentsFailed: any){
@@ -139,7 +117,7 @@ export class CourseInfoComponent implements OnInit {
     this.router.navigate(['']);
   }
   navigateToSeeFeedbacks() {
-    this.router.navigate(['view_feedbacks']);
+    this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
   }
   navigateToViewStudents() {
     this.router.navigate(['']);
