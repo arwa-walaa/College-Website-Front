@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var google:any;
 
 @Component({
@@ -8,12 +8,24 @@ declare var google:any;
   styleUrls: ['./course-info.component.css']
 })
 export class CourseInfoComponent implements OnInit {
-  constructor(private router: Router) {}
+  courseName: any;
+  courseID:any;
+  
+  constructor(private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     google.charts.load('current', {packages: ['corechart']});
     google.charts.setOnLoadCallback(this.drawPieChart);
     google.charts.setOnLoadCallback(this.drawHistogram);
+
+    this.route.queryParams.subscribe(params => {
+      const test = params['courseName'];
+      const test2 = params['courseID'];
+      this.courseName=test;
+      this.courseID = test2;
+      console.log('Course Name:',test);
+      console.log('Course ID:',test2);
+    });
   }
 
   drawPieChart(){
@@ -85,7 +97,7 @@ export class CourseInfoComponent implements OnInit {
     this.router.navigate(['']);
   }
   navigateToSeeFeedbacks() {
-    this.router.navigate(['view_feedbacks']);
+    this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
   }
   navigateToViewStudents() {
     this.router.navigate(['']);

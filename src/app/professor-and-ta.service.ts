@@ -14,6 +14,12 @@ export class ProfessorAndTaService {
     return this.http.get(url);
   }
 
+  getTACourses(TAId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getTACourses/"+TAId;
+    return this.http.get(url);
+  }
+
 getMyStudents(professorId:any)
   {
     let url= "http://127.0.0.1:8000/api/getMyStudents/"+professorId;

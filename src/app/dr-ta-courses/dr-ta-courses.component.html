@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let d of myCourses">
-                         <td>{{d.Course_Code}}</td>
-                         <td>{{d.courseName}}</td>
-                         <td>{{d.Level}}</td>
-                         <td>{{d.Semester}}</td>
+                    <tr *ngFor="let course of myCourses" (click)="navigateToSelectedCourse(course.courseName, course.courseID)">
+                         <td>{{course.Course_Code}}</td>
+                         <td>{{course.courseName}}</td>
+                         <td>{{course.Level}}</td>
+                         <td>{{course.Semester}}</td>
                     </tr>
                     <!-- <tr *ngFor="let d of RegisteredCoursesInfo | officeHoursSearch:searchText">
                         <td>{{d.Course_Code}}</td>
