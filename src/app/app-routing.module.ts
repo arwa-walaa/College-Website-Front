@@ -37,15 +37,16 @@ import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.component';
 
-// import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 //import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
 import { PlaceSchedualeComponent } from './place-scheduale/place-scheduale.component';
-import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
+//import { StudentsInCoursesComponent } from './students-in-courses/students-in-courses.component';
 
 
 import { ProfessorSchedualeComponent } from './professor-scheduale/professor-scheduale.component';
-import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+//import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { GpRequestsComponent } from './gp-requests/gp-requests.component';
+import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -76,7 +77,7 @@ const routes: Routes = [
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
 {path: 'FCAIChat', component: FCAIChatComponent},
-{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
+//{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 {path:'view_students',component:ViewStudentsComponent,title:'View Students'},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
@@ -84,7 +85,7 @@ const routes: Routes = [
 {path:'gp_requests',component:GpRequestsComponent,title:'Graduation Project Requests'},
 {path: 'drTaCourses', component: DrTaCoursesComponent},
 {path: 'drTaHome', component: HomeDrTaComponent},
-
+{path: 'courseStatistics', component: CourseInfoComponent},
 {path: 'StudentsInCourses', component: StudentsInCoursesComponent},
 
 {path: 'FCAIChat', component: FCAIChatComponent},
@@ -93,14 +94,12 @@ const routes: Routes = [
 ////////////////professor///////
 {path: 'Schedule', component: ProfessorSchedualeComponent},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
+{path: 'ProfProfile', component: ProfissorProfileComponent},
 //{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 
 {path:'',redirectTo:'home',pathMatch:'full'},
 ];
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,41 @@
+.form
+{
+    
+    width: 800px;
+    margin-left: 250px;
+}
+.officeHours {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .input-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .input-row > * {
+    margin-right: 10px;
+  }
+.form input[type=text]
+{
+    width: 865px;
+    height: 40px;
+    
+}
+
+.form input[type=date]
+{
+    width: 800px;
+    height: 40px;
+}
+label
+{
+    margin-bottom: 5px;
+}
+.input-group-append {
+    cursor: pointer;
+  }
