@@ -96,7 +96,10 @@ export class DrTaCoursesComponent {
 
  
   
-  navigateToCourse() {
-    this.router.navigate(['course_info']);
+  navigateToCourse(d:any) {
+    this.router.navigate(['course_info'],{ queryParams: d  });
   }
+ 
+
+  
 }

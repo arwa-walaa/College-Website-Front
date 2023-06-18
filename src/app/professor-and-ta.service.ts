@@ -66,4 +66,19 @@ getMyStudents(professorId:any)
     let url = "http://127.0.0.1:8000/api/updateProfOfficeHour/" + officeHourId;
     return this.http.put(url, officeHourData);
   }
+  returnCourseTAS(coursID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnCourseTAS/"+coursID;
+    return this.http.get(url);
+  }
+  returnCourseStat(coursID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnCourseStat/"+coursID;
+    return this.http.get(url);
+  }
+  returnCourseStudent(coursID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnCourseStudent/"+coursID;
+    return this.http.get(url);
+  }
 }

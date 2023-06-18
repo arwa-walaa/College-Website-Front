@@ -1,50 +1,42 @@
 <div class="container">
     <br><br>
-    <h2 style="font-weight: bold;">Course Title</h2><br>
+    <h2 style="font-weight: bold;">{{courseInfo.courseName
+    }}</h2><br>
 
     <div>
         <h4>Course Info</h4>
         <div class="row">
             <div class="col-2">
-                Code
-            </div>
-            <div class="col-6">
-                Title
+                Code : {{courseInfo.Course_Code}}
             </div>
             <div class="col-2">
-                Semester
+                Title : {{courseInfo.courseName}}
             </div>
             <div class="col-2">
-                Level
+                Semester : {{courseInfo.Semester}}
+            </div>
+            <div class="col-2">
+                Level : {{courseInfo.Level}}
+            </div>
+            <div class="col-2">
+                Year : {{courseInfo.Year}}
             </div>
         </div>
         <div class="row">
-            <div class="col-1">
+            <div class="col-1" >
                 TA: 
             </div>
-            <div class="col-2">
-                TA1
+            <div class="col-2" *ngFor="let ta of TAs">
+                {{ta.TAName}}
             </div>
-            <div class="col-2">
+            <!-- <div class="col-2">
                 TA2
             </div>
             <div class="col-2">
                 TA3
-            </div>
+            </div> -->
         </div>
-        <div class="row">
-            <div class="col-2">
-                Sections:
-            </div>
-            <div class="col-10">
-                <div class="row">
-                    S1,S2 at Sunday 2nd slot 
-                </div>
-                <div class="row">
-                    S3 at Monday 4th slot
-                </div>
-            </div>
-        </div>
+    
         <p>_________________________________________________________________________________________________________________________________________________________________________________________________</p>
     </div>
 
@@ -68,20 +60,20 @@
             <div class="col-3" style="padding: 5px;">
                 <div class="stat_card">
                     <h5>Number of Enrolled Students</h5>
-                    <div style="font-size:22px;">258</div>
+                    <div style="font-size:22px;">{{courseStat[0].num_students_registered}}</div>
                 </div>
                 <div class="stat_card">
                     <h5>Attendance Percentage</h5>
                     <div style="font-size:22px;">94%</div>
                 </div>
-                <div class="stat_card">
+                <!-- <div class="stat_card">
                     <h5>Number of Enrolled Students in S1</h5>
                     <div style="font-size:22px;">36</div>
                 </div>
                 <div class="stat_card">
                     <h5>Number of Enrolled Students in S2</h5>
                     <div style="font-size:22px;">40</div>
-                </div>
+                </div> -->
             </div>
             <div class="col-4" style="padding: 5px;">
                 <div class="stat_card">
