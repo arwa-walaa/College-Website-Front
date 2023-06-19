@@ -60,7 +60,7 @@ export class CourseInfoComponent {
         // console.log("studentStat==",studentStat)
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
-       
+
       });
       this.profAndTa.returnGradeAvg(this.courseInfo.courseID).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
       }
