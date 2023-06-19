@@ -23,7 +23,7 @@ export class FCAIChatComponent implements OnInit {
   messagesOfProfessorAndTA: any;
   messagesOfStudent: any;
   contacts: any;
-  // contacts: {[key: string]: object} = {};
+
   professorsDetails: any;
   TADetails: any;
   StudentChat: any;
@@ -39,7 +39,9 @@ export class FCAIChatComponent implements OnInit {
   attachmentUrl: any;
   userTypeValue: any;
 
-
+  currentSender = 'profOrTA'; // default sender is professor or TA
+  currentReceiver = 'student'; // default receiver is student
+  chatPartner :any='';
   constructor(private messageService: MessageService,
     private stdService: StudentsService,
     private _AuthService: AuthService,
@@ -107,63 +109,9 @@ export class FCAIChatComponent implements OnInit {
   }
 
   //enter as a student
-
   loadProfessorAndTAMessages() {
-    //prof to TA or Stud
-    if (this.userTypeValue === "Professor") {
-      console.log('from prof to stud', this.professorsDetails[0].userID);
-
-      if (this.StudentChat != null) {
-        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
-        // console.log('ta',this.TADetails[0].userID);
-        return this.messageService.getProfessorAndTAHistory(this.professorsDetails[0].userID, this.StudentChat.StudentDtails[0].userID);
-      }
-      else {
-        console.log('ta', this.TADetails.TADtails[0].userID);
-        return this.messageService.getProfessorAndTAHistory(this.professorsDetails[0].userID, this.TADetails.TADtails[0].userID);
-      }
-    }
-    //TA to prof or Stud
-    else if (this.userTypeValue === "TA") {
-      console.log('ta',this.TADetails[0].userID);
-      // console.log('from TA to stud');
-      if (this.StudentChat != null) {
-        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
-      
-        return this.messageService.getProfessorAndTAHistory(this.TADetails[0].userID, this.StudentChat.StudentDtails[0].userID);
-      }
-      else {
-        console.log('prof', this.professorsDetails.professorDtails[0].userID);
-       
-        return this.messageService.getProfessorAndTAHistory(this.TADetails[0].userID,this.professorsDetails.professorDtails[0].userID);
-      }
-     
-    }
-     //Stud to prof or TA
-    else {
-      console.log('from Stud to TA or prof');
-      console.log('stud',this.StudentChat[0].userID);
-      if (this.professorsDetails != null) {
-        console.log('prof', this.professorsDetails.professorDtails[0].userID);
-        return this.messageService.getProfessorAndTAHistory( this.StudentChat[0].userID,this.professorsDetails.professorDtails[0].userID);
-      }
-      else {
-        console.log('ta',  this.TADetails.TADtails[0].userID);
-        return this.messageService.getProfessorAndTAHistory(this.StudentChat[0].userID, this.TADetails.TADtails[0].userID);
-      }
-     
-    }
-
-
-
+    return this.messageService.getProfessorAndTAHistory(this.currentSender, this.currentReceiver);
   }
-
-  loadStudentMessages() {
-    //console.log()
-    return this.messageService.getStudentHistory(this.profOrTA);
-  }
-
-
 
 
   onFileSelected(event: any) {
@@ -181,8 +129,59 @@ export class FCAIChatComponent implements OnInit {
 
   sendMessage() {
     const formData = new FormData();
-    formData.append('from', this.student);
-    formData.append('to', this.profOrTA);
+    //prof to TA or Stud
+    if (this.userTypeValue === "Professor") {
+      console.log('from prof to stud', this.professorsDetails[0].userID);
+      formData.append('from', this.professorsDetails[0].userID);
+      this.setCurrentSender(this.professorsDetails[0].userID);
+      if (this.StudentChat != null) {
+        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
+        formData.append('to', this.StudentChat.StudentDtails[0].userID);
+        this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
+      }
+      else {
+        console.log('ta', this.TADetails.TADtails[0].userID);
+        formData.append('to', this.TADetails.TADtails[0].userID);
+        this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
+      }
+    }
+    //TA to prof or Stud
+    else if (this.userTypeValue === "TA") {
+      console.log('ta', this.TADetails[0].userID);
+      formData.append('from', this.TADetails[0].userID);
+      this.setCurrentSender(this.TADetails[0].userID);
+      if (this.StudentChat != null) {
+        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
+        formData.append('to', this.StudentChat.StudentDtails[0].userID);
+        this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
+      }
+      else {
+        console.log('prof', this.professorsDetails.professorDtails[0].userID);
+        formData.append('to', this.professorsDetails.professorDtails[0].userID);
+        this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
+      }
+
+    }
+    //Stud to prof or TA
+    else {
+      console.log('from Stud to TA or prof');
+      console.log('stud', this.StudentChat[0].userID);
+      formData.append('from', this.StudentChat[0].userID);
+      this.setCurrentSender(this.StudentChat[0].userID);
+      if (this.professorsDetails != null) {
+        console.log('prof', this.professorsDetails.professorDtails[0].userID);
+        formData.append('to', this.professorsDetails.professorDtails[0].userID);
+        this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
+      }
+      else {
+        console.log('ta', this.TADetails.TADtails[0].userID);
+        formData.append('to', this.TADetails.TADtails[0].userID);
+        this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
+      }
+
+    }
+    /////////
+
     // formData.append('message', this.message);
     if (this.selectedFile) {
       formData.append('attachment', this.selectedFile, this.selectedFile.name);
@@ -191,21 +190,17 @@ export class FCAIChatComponent implements OnInit {
     else {
       formData.append('message', this.message);
     }
-
     this.messageService.sendMessage(formData).subscribe((response: any) => {
       this.loadProfessorAndTAMessages().subscribe((history) => {
         this.messagesOfProfessorAndTA = history;
       });
       // handle success
-
       this.selectedFile = null;
       this.message = '';
       const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
       if (inputElement) {
         inputElement.value = '';
       }
-
-
 
     }, (error) => {
       // handle error
@@ -216,7 +211,6 @@ export class FCAIChatComponent implements OnInit {
   triggerFileInput() {
     this.fileInput.nativeElement.click();
   }
-
 
   getAllContacts() {
     this.messageService.getContacts().subscribe(
@@ -258,24 +252,23 @@ export class FCAIChatComponent implements OnInit {
           this.professorsDetails = response;
           console.log(this.professorsDetails.professorDtails[0].professorName);
           if (this.professorsDetails != null) {
-            this.isProfessor = true;
-            this.isTA = false;
-            //this.isStudent=false;
-            this.profOrTA = this.professorsDetails.professorDtails[0].userID;
+            // this.isProfessor = true;
+            // this.isTA = false;
+            this.currentReceiver = this.professorsDetails.professorDtails[0].userID;
+            this.chatPartner= 'Prof. '+this.professorsDetails.professorDtails[0].professorName;
+            if (this.userTypeValue === "TA") {
+              this.currentSender = this.TADetails[0].userID;
+            }
+            else {
+              this.currentSender = this.StudentChat[0].userID;
+            }
+
             console.log(this.isProfessor);
             console.log(this.profOrTA);
             this.loadProfessorAndTAMessages().subscribe((history) => {
               this.messagesOfProfessorAndTA = history;
               console.log(this.messagesOfProfessorAndTA);
             });
-
-            this.loadStudentMessages().subscribe((studentHistory) => {
-              this.messagesOfStudent = studentHistory;
-              this.messages = this.messagesOfStudent.messages;
-              console.log('all array', this.messagesOfStudent);
-              console.log('stdmsg', this.messagesOfStudent.messages[0].message);
-            });
-
 
           }
 
@@ -293,10 +286,17 @@ export class FCAIChatComponent implements OnInit {
           this.TADetails = response;
           console.log(this.TADetails.TADtails[0].TAName);
           if (this.TADetails != null) {
-            this.isTA = true;
-            this.isProfessor = false;
+            // this.isTA = true;
+            // this.isProfessor = false;
             //this.isStudent=false;
-            this.profOrTA = this.TADetails.TADtails[0].userID;
+            this.currentReceiver = this.TADetails.TADtails[0].userID;
+            this.chatPartner= 'TA. '+this.TADetails.TADtails[0].TAName;
+            if (this.userTypeValue === "Professor") {
+              this.currentSender = this.professorsDetails[0].userID;
+            }
+            else {
+              this.currentSender = this.StudentChat[0].userID;
+            }
             console.log(this.isTA);
 
             this.loadProfessorAndTAMessages().subscribe((history) => {
@@ -304,17 +304,11 @@ export class FCAIChatComponent implements OnInit {
               console.log('iman to dina: ', this.messagesOfProfessorAndTA);
             });
 
-            this.loadStudentMessages().subscribe((history) => {
-              this.messagesOfStudent = history;
-            });
-
-
           }
 
         },
         error => {
           console.error('Error!', error);
-
 
         });
   }
@@ -326,6 +320,7 @@ export class FCAIChatComponent implements OnInit {
       response => {
         this.senderData = response;
         this.student = this.senderData[0].userID;
+
         console.log('std id', this.student);
         console.log('sender data', this.senderData);
 
@@ -344,19 +339,25 @@ export class FCAIChatComponent implements OnInit {
           this.StudentChat = response;
           console.log('fist', this.StudentChat.StudentDtails[0].studentName);
           if (this.StudentChat != null) {
-            this.isStudent = true;
-            this.isProfessor = false;
+            // this.isStudent = true;
+            // this.isProfessor = false;
             // this.isTA=false;
-            this.student = this.StudentChat.StudentDtails[0].userID;
+            this.currentReceiver = this.StudentChat.StudentDtails[0].userID;
+            this.chatPartner= this.StudentChat.StudentDtails[0].studentName;
+            if (this.userTypeValue === "Professor") {
+              this.currentSender = this.professorsDetails[0].userID;
+            }
+            else {
+              this.currentSender = this.TADetails[0].userID;
+            }
+            // this.student = this.StudentChat.StudentDtails[0].userID;
+
             this.loadProfessorAndTAMessages().subscribe((history) => {
               this.messagesOfProfessorAndTA = history;
               console.log('iman to ahmed msg1 ', this.messagesOfProfessorAndTA);
             });
 
-            this.loadStudentMessages().subscribe((history) => {
-              this.messagesOfStudent = history;
-              console.log('iman to ahmed msg2 ', this.messagesOfStudent);
-            });
+
           }
 
           console.log(this.isStudent);
@@ -369,8 +370,12 @@ export class FCAIChatComponent implements OnInit {
     console.log("heloo");
 
   }
-
-
+  setCurrentSender(sender: any) {
+    this.currentSender = sender;
+  }
+  setCurrentReceiver(receiver: any) {
+    this.currentReceiver = receiver;
+  }
 
   openImagePopup(url: string) {
     window.open(url, 'Image', 'width=800,height=600');
