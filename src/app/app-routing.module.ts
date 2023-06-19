@@ -97,6 +97,7 @@ const routes: Routes = [
 {path: 'Schedule', component: ProfessorSchedualeComponent},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
 {path: 'ProfProfile', component: ProfissorProfileComponent},
+{path: 'gpRequest', component: GpRequestsComponent},
 //{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 

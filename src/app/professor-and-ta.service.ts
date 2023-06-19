@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 @Injectable({
   providedIn: 'root'
 })
@@ -84,6 +85,31 @@ getMyStudents(professorId:any)
   returnGradeAvg(coursID:any)
   {
     let url= "http://127.0.0.1:8000/api/returnGradeAvg/"+coursID;
+    return this.http.get(url);
+  }
+  returnRequestsGP(Type:any,id:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnRequestsGP/"+Type+"/"+id;
+    return this.http.get(url);
+  }
+  acceptGP(gpID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/acceptGP/"+gpID;
+    return this.http.put(url,gpID);
+  }
+  rejectGP(gpID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/rejectGP/"+gpID;
+    return this.http.put(url,gpID);
+  }
+  getUserType(token:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getUserType/"+token;
+    return this.http.get(url);
+  }
+  getStudentData(StudentID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getStudentData/"+StudentID;
     return this.http.get(url);
   }
 }

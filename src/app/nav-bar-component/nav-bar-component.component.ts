@@ -27,6 +27,7 @@ export class NavBarComponentComponent {
   }
 
   goToUserProfile(studentInfo: any) {
+    console.log('studentInfo',studentInfo)
     this.router.navigate(['ViewStudentProfile'],{ queryParams: studentInfo  });
   }
 }
