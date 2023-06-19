@@ -15,8 +15,8 @@ export class CourseInfoComponent {
   courseInfo: any;
   TAs:any
   courseStat: any;
-  pased!: Number; 
-  faild!:Number;
+  pased!: number; 
+  faild!:number;
   AvgGrades: any;
   courseName: any;
   courseID:any;
