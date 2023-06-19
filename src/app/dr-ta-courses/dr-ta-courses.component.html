@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of myCourses" (click)="navigateToSelectedCourse(course.courseName, course.courseID)">
+                    <tr *ngFor="let course of myCourses" (click)="navigateToCourse(course)">
                          <td>{{course.Course_Code}}</td>
                          <td>{{course.courseName}}</td>
                          <td>{{course.Level}}</td>

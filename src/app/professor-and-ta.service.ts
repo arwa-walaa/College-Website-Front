@@ -81,4 +81,9 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/returnCourseStudent/"+coursID;
     return this.http.get(url);
   }
+  returnGradeAvg(coursID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnGradeAvg/"+coursID;
+    return this.http.get(url);
+  }
 }
