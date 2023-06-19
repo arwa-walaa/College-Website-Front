@@ -276,3 +276,42 @@ body{
     }
 }
 
+/* 
+.side-list {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .side-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .side-list li {
+    margin-bottom: 10px;
+  }
+  
+  .side-list a {
+    display: block;
+    padding: 10px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .side-list a:hover {
+    background-color: #ccc;
+  } */
+/* 
+  .block-message {
+    background-color: #f44336;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+ } */
+

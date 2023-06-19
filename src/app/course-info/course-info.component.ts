@@ -16,14 +16,24 @@ export class CourseInfoComponent implements OnInit {
   TAs:any
   courseStat: any;
   pased!: Number; 
-  faild!:Number 
+  faild!:Number;
+
+  courseName: any;
+  courseID:any;
   constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }
   ngOnInit(): void {
    
     this.route.queryParams.subscribe(params => {
-     
+     //////////////////  
+      const test = params['courseName'];
+      const test2 = params['courseID'];
+      this.courseName=test;
+      this.courseID = test2;
+      console.log('Course Name:',test);
+      console.log('Course ID:',test2);
+     //////////////////  
       this.courseInfo=params;  
       console.log('courseInfo==',this.courseInfo);
       this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
@@ -57,6 +67,8 @@ export class CourseInfoComponent implements OnInit {
       });
 
       }
+
+      
      
     );
     
@@ -139,7 +151,7 @@ export class CourseInfoComponent implements OnInit {
     this.router.navigate(['']);
   }
   navigateToSeeFeedbacks() {
-    this.router.navigate(['view_feedbacks']);
+    this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
   }
   navigateToViewStudents() {
     this.router.navigate(['']);

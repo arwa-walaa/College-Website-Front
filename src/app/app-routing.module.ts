@@ -76,7 +76,7 @@ const routes: Routes = [
 {path:'login' , component:LoginComponentComponent },
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
-{path: 'FCAIChat', component: FCAIChatComponent},
+//{path: 'FCAIChat', component: FCAIChatComponent},
 //{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 {path:'view_students',component:ViewStudentsComponent,title:'View Students'},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
