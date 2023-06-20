@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { LoginComponentComponent } from '../login-component/login-component.component';
 import { StudentsService } from '../students.service';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
   
 
 @Component({
@@ -14,30 +17,32 @@ export class InfoBarComponent {
   isLoggedIn :any;
   authenticated:any;
   StudentData: any;
+  isStudent: any;
   // , private _LoginComponentComponent:LoginComponentComponent
-  constructor(private _AuthService:AuthService,private studendService: StudentsService) { 
-    // if (this._AuthService.getToken()==true) {
-    //   // Verify the token with your backend
-    //   // If the token is valid, set isLoggedIn to true
-    //   this.isLoggedIn = true;
-    // }
-    // else{
-    //   this.isLoggedIn = false;
-    // }
-    // this.authenticated = !!this._AuthService.getToken();
+  constructor(private _AuthService:AuthService,private studendService: StudentsService,
+    private router: Router,private route: ActivatedRoute,
+    private profAndTa:ProfessorAndTaService ,
+    private http: HttpClient,
+    ) { 
+   
   }
   ngOnInit(): void {
+    const token=this._AuthService.getToken();
     // alert(this._AuthService.getToken());
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor" ||type[0].Type==="TA"){
+        this.isStudent=false;
+      }
+      else if(type[0].Type==="Student"){
+        this.isStudent=true;
+      }
+    });
     if(this._AuthService.getToken()){
       this.isLog=true;
       
-    }
-    
-    else{
+    } else{
       this.isLog=false;
     }
-    // const authToken = localStorage.getItem('authToken');
-    const token=this._AuthService.getToken();
     this.studendService.getStudentInfo(token).subscribe({
       next:(response)=> this.StudentData=response
       

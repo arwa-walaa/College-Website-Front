@@ -32,7 +32,12 @@ export class NavBarComponentComponent {
       }
     
     });
-     }
+    }
+    logout()
+    {
+      const token=this._AuthService.getToken();
+      this._AuthService.removeToken();
+    }
       
   searchUsers() {
     this.http.get<any[]>('http://127.0.0.1:8000/api/searchByStudent?q=' + this.searchQuery)
@@ -49,4 +54,19 @@ export class NavBarComponentComponent {
     console.log('studentInfo',studentInfo)
     this.router.navigate(['ViewStudentProfile'],{ queryParams: studentInfo  });
   }
+  goToProfile() {
+    
+    const token=this._AuthService.getToken();
+      this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor" ||type[0].Type==="TA"){
+        this.router.navigate(['ProfProfile']);
+      }
+      else if(type[0].Type==="Student"){
+        this.router.navigate(['profile']);
+      }
+    
+    });
+    
+  }
+
 }
