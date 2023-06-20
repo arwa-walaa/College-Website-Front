@@ -16,7 +16,7 @@
 //   }
 // }
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,23 @@ export class MessageService {
   getContacts(){
     return this.http.get(`${this.baseUrl}/professorsAndTas`);
   }
+
+  // updateStudentStatus(studentId:any , studentStatus:any)
+  // {
+  //   return this.http.post(`${this.baseUrl}/updateStudentStatus`,studentId,studentStatus);
+  // }
+
+  updateStudentStatus(studentId: string, status: string) {
+    const url = `${this.baseUrl}/updateStudentStatus/${studentId}/${status}`;
+    return this.http.post(url, {});
+  }
+
+  getStudentStatus(studentId:any)
+  {
+    return this.http.get(`${this.baseUrl}/getStudentStatus/${studentId}`);
+  }
+
+  
 
   listTAsStudents(){
     return this.http.get(`${this.baseUrl}/listTAsStudents`);

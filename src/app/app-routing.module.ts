@@ -47,6 +47,9 @@ import { ProfessorSchedualeComponent } from './professor-scheduale/professor-sch
 //import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
+import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+// import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -76,8 +79,8 @@ const routes: Routes = [
 {path:'login' , component:LoginComponentComponent },
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
-{path: 'FCAIChat', component: FCAIChatComponent},
-//{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
+//{path: 'FCAIChat', component: FCAIChatComponent},
+// {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 {path:'view_students',component:ViewStudentsComponent,title:'View Students'},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
@@ -87,6 +90,7 @@ const routes: Routes = [
 {path: 'drTaHome', component: HomeDrTaComponent},
 {path: 'courseStatistics', component: CourseInfoComponent},
 {path: 'StudentsInCourses', component: StudentsInCoursesComponent},
+{path: 'ViewStudentProfile', component: ViewStudentProfileComponent},
 
 {path: 'FCAIChat', component: FCAIChatComponent},
 
@@ -95,7 +99,8 @@ const routes: Routes = [
 {path: 'Schedule', component: ProfessorSchedualeComponent},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
 {path: 'ProfProfile', component: ProfissorProfileComponent},
-//{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'gpRequest', component: GpRequestsComponent},
+{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 
 {path:'',redirectTo:'home',pathMatch:'full'},

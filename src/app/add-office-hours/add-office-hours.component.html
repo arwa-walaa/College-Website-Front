@@ -1,4 +1,10 @@
-<!-- <p>add-office-hours works!</p>
+<br><br>
+<div class="alert alert-danger" *ngIf="flag===false">
+    please insert office hours data 
+  </div>
+  <div class="alert alert-success" *ngIf="flag===true">
+    Office Hours Added Successfully.
+  </div>
 <div class="container">
     <br><br>
     <h2 style="font-weight: bold;">Add Office Hours</h2><br>
@@ -25,7 +31,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label>Day</label>
-                    <select required [(ngModel)]="officeHours[i].Day" name="Day{{i}}" #day class="form-select" aria-label="Default select example" (change)="updateDay(i, day.value)">
+                    <select required [(ngModel)]="officeHours[i].Day" name="Day{{i}}" #day class="form-select" aria-label="Default select example" (change)="updateDay(i, day.value)" required>
                       <option value="default">choose place</option>
                       <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
                     </select>
@@ -35,7 +41,7 @@
               <br>
             </ng-container>
               
-              <button (click)="submitOfficeHours()" class="btn btn-primary">Add Another Office Hour</button>
+              <button (click)="addOfficeHour()" class="btn btn-primary">Add Another Office Hour</button>
               
             <div class="text-center">
                 <button (click)="submit()" type="submit" class="btn btn-primary text-center">Submit</button>
@@ -43,4 +49,4 @@
             
           </form>
     </div>
-</div> -->
+</div>

@@ -1,0 +1,5 @@
+
+.navbar-nav:first-child,
+.navbar-nav:last-child {
+  flex-shrink: 0;
+}
