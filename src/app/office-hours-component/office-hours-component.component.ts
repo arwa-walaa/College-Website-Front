@@ -10,6 +10,8 @@ import { OfficeHoursServiceService } from '../office-hours-service.service';
   styleUrls: ['./office-hours-component.component.css']
 })
 export class OfficeHoursComponentComponent implements OnInit {
+  locations: any;
+  departments: any;
   constructor(private _OfficeHoursServiceService:OfficeHoursServiceService) {}
   title='Office Hours';
   p: number = 1;
@@ -19,7 +21,17 @@ export class OfficeHoursComponentComponent implements OnInit {
   ngOnInit(): void {
     this._OfficeHoursServiceService.getOfficeHours().subscribe({
      next:(response)=>this.tableData =response
-    })}
+    })
+
+    this._OfficeHoursServiceService.returnAllLocations().subscribe({
+      next:(response)=>this.locations =response
+     })
+
+     this._OfficeHoursServiceService.returnAllDepartments().subscribe({
+      next:(response)=>this.departments =response
+     })
+  
+  }
   // data2=[
   //   {professorOrTaName:"Iman Helal" ,email:"i.helal@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
   //   {professorOrTaName:"Ali Zedan" ,email:"a.zedan@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Saturday", location:"new building, 1st floor"},
