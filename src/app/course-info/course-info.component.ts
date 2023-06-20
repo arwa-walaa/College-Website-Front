@@ -16,15 +16,24 @@ export class CourseInfoComponent {
   TAs:any
   courseStat: any;
   pased!: number; 
-  faild!: number;
+  faild!:number;
   AvgGrades: any;
+  courseName: any;
+  courseID:any;
   constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }
   ngOnInit(): void {
    
-    this.route.queryParams.subscribe(params => { 
-     
+    this.route.queryParams.subscribe(params => {
+     //////////////////  
+      const test = params['courseName'];
+      const test2 = params['courseID'];
+      this.courseName=test;
+      this.courseID = test2;
+      console.log('Course Name:',test);
+      console.log('Course ID:',test2);
+     //////////////////  
       this.courseInfo=params;  
       // console.log('courseInfo==',this.courseInfo);
       this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
@@ -51,10 +60,12 @@ export class CourseInfoComponent {
         // console.log("studentStat==",studentStat)
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
-       
+
       });
       this.profAndTa.returnGradeAvg(this.courseInfo.courseID).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
       }
+
+      
      
     );
     
@@ -142,7 +153,7 @@ export class CourseInfoComponent {
     this.router.navigate(['']);
   }
   navigateToSeeFeedbacks() {
-    this.router.navigate(['view_feedbacks']);
+    this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
   }
   navigateToViewStudents() {
     this.router.navigate(['']);

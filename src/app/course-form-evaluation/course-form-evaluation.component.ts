@@ -52,15 +52,7 @@ export class CourseFormEvaluationComponent implements OnInit{
   //courseId:any;
   constructor(private route: ActivatedRoute,private router: Router,private __StudentsService:StudentsService,private http: HttpClient) {}
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {
-    //   this.courseId = params['courseId'];
-    //   this.courseName = params['courseName'];
-
-    //   console.log(this.courseName);
-
-    //   console.log('Query Params:', this.route.snapshot.queryParams);
-    // });
-
+ 
     this.route.queryParams.subscribe(params => {
       const test = params['courseName'];
       const test2 = params['courseID'];
@@ -70,20 +62,6 @@ export class CourseFormEvaluationComponent implements OnInit{
       console.log('Course ID:',test2);
     });
   
-//     this.__StudentsService.getCourseID(this.courseName).subscribe({
-//       next: (response:any) => {
-//         this.courseID = response;
-//         console.log('Course ID:',this.courseID[0].courseID); // Move the console.log statement inside the subscribe block
-//         // Code that uses the tableData variable goes here
-//         this.CID=this.courseID[0].courseID;
-//       },
-//       error: (error) => {
-//         console.error('Error getting course details:', error);
-//       }
-//  });
-
-// this.hambozo=this.courseID;
-
     this.__StudentsService.getCourseDetails(this.courseID).subscribe({
       next: (response) => {
         this.tableData = response;
@@ -120,21 +98,6 @@ export class CourseFormEvaluationComponent implements OnInit{
     });
     
   }
-  // onSubmit() {
-  //   const formData = {
-  //     contentRate: this.contentRate,
-  //     isRepeated: this.isRepeated,
-  //     isClear: this.isClear,
-  //     relevantToObjectives: this.relevantToObjectives,
-  //     preparetionForFutureCourses: this.preparetionForFutureCourses
-  //   };
-  //   this.http.post('http://127.0.0.1:8000/api/courseEvaluation/', formData).subscribe(response => {
-  //     console.log(response);
-  //   });
-  // }
-  // navigateToProfessorFormEvaluation() {
-  //   this.router.navigate(['ProfessorFormEvaluation']);
-  // }
 
   onSubmit() {
     // Submit current page

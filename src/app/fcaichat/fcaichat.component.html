@@ -72,17 +72,25 @@
                     <div class="chat">
                         <div class="chat-header clearfix">
                             <div class="row">
+                               
                                 <div class="col-lg-8">
-
-                                    <div class="chat-about" style="margin-left: 40%; display:flex; align-items:center;">
-                                    
-                                            <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png"
-                                                style="margin-right: 29px;" alt="Profile Picture"  *ngIf="chatPartner">
-                                            
-                                            <h6 class="m-b-0">{{chatPartner}}</h6>
-                                    
+                                    <div class="chat-about">
+                                      <div style="display:flex; align-items:center;">
+                                        <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" style="margin-right: 29px;" alt="Profile Picture" *ngIf="chatPartner">
+                                        <h6 class="m-b-0">{{chatPartner}}</h6>
+                                        <!-- <div class="side-list" style="margin-left: 10px;">
+                                          <ul>
+                                            <li>
+                                             <i class="fa fa-ban" aria-hidden="true" (click)="BlockStudent()"></i> Block
+                                            </li>
+                                            <li>
+                                              <i class="fa fa-check" aria-hidden="true" (click)="UnblockStudent()"></i> Unblock
+                                            </li>
+                                          </ul>
+                                        </div> -->
+                                      </div>
                                     </div>
-                                </div>
+                                  </div>
 
                             </div>
                         </div>
@@ -136,6 +144,10 @@
                                             msg.created_at| date:'shortTime' }}</span>
                                     </div>
                                 </li>
+                               
+                                  <!-- <div *ngIf="isBlocked" class="block-message">
+                                    <p>{{isBlocked[0].isBlocked}}"You are blocked.</p>
+                                  </div> -->
 
 
 
