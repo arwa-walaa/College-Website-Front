@@ -92,16 +92,27 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/returnRequestsGP/"+Type+"/"+id;
     return this.http.get(url);
   }
-  acceptGP(gpID:any)
+  acceptGP_prof(gpID:any)
   {
-    let url= "http://127.0.0.1:8000/api/acceptGP/"+gpID;
+    let url= "http://127.0.0.1:8000/api/acceptGP_prof/"+gpID;
     return this.http.put(url,gpID);
   }
-  rejectGP(gpID:any)
+  rejectGP_prof(gpID:any)
   {
-    let url= "http://127.0.0.1:8000/api/rejectGP/"+gpID;
+    let url= "http://127.0.0.1:8000/api/rejectGP_prof/"+gpID;
     return this.http.put(url,gpID);
   }
+  acceptGP_TA(gpID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/acceptGP_TA/"+gpID;
+    return this.http.put(url,gpID);
+  }
+  rejectGP_TA(gpID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/rejectGP_TA/"+gpID;
+    return this.http.put(url,gpID);
+  }
+
   getUserType(token:any)
   {
     let url= "http://127.0.0.1:8000/api/getUserType/"+token;

@@ -79,11 +79,11 @@
   </nav>
   <!-- <div class="container-fluid mt-3" *ngIf="searchResults && searchResults.length > 0"> -->
     
-      <div class="col-md-6" *ngIf="searchResults && searchResults.length > 0">
+      <div  class="col-md-6" *ngIf="searchResults && searchResults.length > 0">
         
-          <div class="card-body" style="margin-left: 30%;">
+          <div class="card-body" style="margin-left: 30%; z-index: 2;" >
             
-            <div class="row">
+            <div class="row" >
               <div class="col-md-5" *ngFor="let result of searchResults">
                 <div class="card" (click)="goToUserProfile(result)">
                   <div class="card-body">
