@@ -12,7 +12,11 @@ import { ProfessorAndTaService } from '../professor-and-ta.service';
 export class GpRequestsComponent {
   gpRequests: any;
   public response2 = false
-  constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private profAndTa:ProfessorAndTaService ,
+    private http: HttpClient,
+    private _AuthService:AuthService) {
   
   }
 

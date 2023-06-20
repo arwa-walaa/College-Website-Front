@@ -11,18 +11,8 @@
           <li class="nav-item">
             <a class="nav-link" style="font-weight:bold; color: white; font-size:17px">FCAI WEBSITE</a>
           </li>
-          <!-- <li class="nav-item">
-            <form class="d-flex">
-              <div class="input-group" style="width: 300px; margin-top: 3px; margin-left: 20px;">
-                
-                <input class="form-control form-control-lg" name="searchQuery"  [(ngModel)]="searchQuery" type="search"  placeholder="Search" aria-label="Search">
-                
-                <span  (click)="searchUsers()" class="input-group-text"><i  class="bi bi-search"></i></span>
-              </div>
-            </form>
-           
-          </li> -->
-          <li class="nav-item">
+         
+          <li class="nav-item" *ngIf="isStudent==false">
             <form class="d-flex">
               <div class="input-group" style="width: 300px; margin-top: 3px; margin-left: 20px;">
                 <input class="form-control form-control-lg" name="searchQuery" [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
@@ -31,37 +21,10 @@
             </form>
           </li>
           
-          <!-- <div class="container mt-15" *ngIf="searchResults && searchResults.length > 0">
-            <div class="row">
-              <div class="col-md-7" *ngFor="let result of searchResults">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ searchResults[0].studentName }}</h5>
-                    <p class="card-text">ID: {{ searchResults[0].studentId }}</p>
-                    <button class="btn btn-primary" (click)="goToUserProfile(result.id)">View Profile</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
+        
         </ul>
 
-        <!-- <ul class="navbar-nav me-auto" style="margin-left: 70%;">
-          <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;"  routerLink="home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" routerLink="Schedules_Bylaw">Schedules/Bylaw</a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" href="#" id="navbarDropdown" role="button"
-                data-mdb-toggle="dropdown" aria-expanded="false" routerLink="profile"> Hi,Guest <i class="bi bi-person-fill"></i>  </a>
-            
-            
-          </li>
-
-        </ul> -->
+        
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" style="font-weight:bold; color: white;" routerLink="home">Home</a>
@@ -77,8 +40,7 @@
       </div>
     </div>
   </nav>
-  <!-- <div class="container-fluid mt-3" *ngIf="searchResults && searchResults.length > 0"> -->
-    
+      
       <div  class="col-md-6" *ngIf="searchResults && searchResults.length > 0">
         
           <div class="card-body" style="margin-left: 30%; z-index: 2;" >
@@ -98,4 +60,4 @@
         
       </div>
     
-  <!-- </div> -->
+

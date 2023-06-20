@@ -48,6 +48,8 @@ import { ProfessorSchedualeComponent } from './professor-scheduale/professor-sch
 import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+// import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
 const routes: Routes = [
@@ -78,7 +80,7 @@ const routes: Routes = [
 {path: 'gpForm',component: GpComponent,title:'register_gp' },
 {path: 'Chat', component: ChatComponent},
 //{path: 'FCAIChat', component: FCAIChatComponent},
-//{path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
+// {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 {path:'view_students',component:ViewStudentsComponent,title:'View Students'},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses'},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info'},
@@ -98,7 +100,7 @@ const routes: Routes = [
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
 {path: 'ProfProfile', component: ProfissorProfileComponent},
 {path: 'gpRequest', component: GpRequestsComponent},
-//{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 ////////////ta////////////
 
 {path:'',redirectTo:'home',pathMatch:'full'},
