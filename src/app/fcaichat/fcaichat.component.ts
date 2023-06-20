@@ -104,8 +104,14 @@ export class FCAIChatComponent implements OnInit {
       }
       console.log('students and tas', this.contacts);
     });
-
-
+/////////
+setInterval(() => {
+  this.loadProfessorAndTAMessages().subscribe((history) => {
+    this.messagesOfProfessorAndTA = history;
+    console.log(this.messagesOfProfessorAndTA);
+  });
+}, 2000);
+/////////
   }
 
   //enter as a student
