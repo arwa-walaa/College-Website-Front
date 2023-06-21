@@ -2,3 +2,14 @@
     display: inline-block;
     margin-right: 10px;
   }
+
+  .form-check-inline {
+    display: inline-block;
+    margin-right: 100px; /* adjust this value to your liking */
+  }
+  .card {
+    padding-left: 100px;
+    padding-top: 5px;
+    padding-bottom: 50px;
+    padding-right: 100px;
+  }
