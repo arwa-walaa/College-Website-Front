@@ -9,9 +9,10 @@
         </div>
         <div class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToEvaluateCourses()">Evaluate Courses</button>
         </div>
-        <div class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
+        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level'"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
         </div>
-        <div class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #3E8DE3; color:white;"(click)="navigateToRegisterGraduationProject()">Register Graduation Project</button>
+        <div class="col-3"  *ngIf="StudentData[0].level==='Fourth Level'"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #3E8DE3; color:white;"(click)="navigateToRegisterGraduationProject()" 
+           >Register Graduation Project</button>
         </div>
 
     </div>

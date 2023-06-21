@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterdCoursesAndResultsComponent implements OnInit{
   RegisteredCoursesInfo: any;
+  StudentData: any;
 
   constructor(private router: Router,private studendService: StudentsService,private _AuthService:AuthService) {}
   
@@ -17,6 +18,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
      
     const token=this._AuthService.getToken();
     this.studendService.getStudentInfo(token).subscribe((StudentData:any ) => {
+      this.StudentData=StudentData
       this.getRegisteredCourses(StudentData[0].studentId)
 
     });

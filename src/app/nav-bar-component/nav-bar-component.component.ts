@@ -68,5 +68,18 @@ export class NavBarComponentComponent {
     });
     
   }
+  navigateHome(){
+    const token=this._AuthService.getToken();
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+    if(type[0].Type==="Professor" ||type[0].Type==="TA"){
+      this.router.navigate(['home_dr_ta']);
+    }
+    else if(type[0].Type==="Student"){
+      this.router.navigate(['home_login']);
+    }
+  
+  });
+
+  }
 
 }

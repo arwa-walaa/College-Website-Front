@@ -8,13 +8,18 @@ import { ActivatedRoute, Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit  {
 
-  constructor(private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
 
   navigateToAnnoucements() {
-    this.router.navigate(['Announcements']);
+   
+    // if (this.activatedRoute.snapshot.routeConfig) {
+    //   const currentRoute = this.activatedRoute.snapshot.routeConfig.path;
+    //   this.router.navigate([currentRoute, 'Announcements']);
+    // }
+      this.router.navigate(['Announcements']);
   }
   navigateToLogin() {
     this.router.navigate(['login']);

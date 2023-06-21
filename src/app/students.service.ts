@@ -142,5 +142,15 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/getStudentCourses/"+studId;
     return this.http.get(url);
   }
+  returnAllTAs()
+  {
+    let url= "http://127.0.0.1:8000/api/returnAllTAs/";
+    return this.http.get(url);
+  }
+  returnAllProfessor()
+  {
+    let url= "http://127.0.0.1:8000/api/returnAllProfessor/";
+    return this.http.get(url);
+  }
 }
 

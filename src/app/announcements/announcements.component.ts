@@ -33,10 +33,6 @@ Announcemets: any;
     }
     }); 
   }
-  // formatDate(dateString: string): any {
-  //   const date = new Date(dateString);
-  //   return this.datePipe.transform(date, 'short');
-  // }
   formatDate(dateString: string): any {
     const offsetMs = new Date().getTimezoneOffset() * 60 * 1000;
     const date = new Date(Date.parse(dateString) + offsetMs);

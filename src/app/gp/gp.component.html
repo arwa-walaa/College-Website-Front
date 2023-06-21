@@ -90,8 +90,23 @@
         <p *ngIf="GPForm.get('requirements')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>     
     </div>
 
+    <label>Supervised by professor</label><br>
+<select class="selectButton" style="width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;" formControlName="professor">
+    <option value="" disabled selected>Professors</option>
+    <option *ngFor="let professor of professors" [value]="professor.professorId">{{professor.professorName}}</option>
+</select><br><br>
 
-    <label >Supervised by professor</label><br>
+<label>Supervised by Teaching Assistant</label><br>
+<select class="selectButton" style="width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;" formControlName="TA">
+    <option value="" disabled selected>TAs</option>
+    <option *ngFor="let ta of TAs" [value]="ta.TAId">{{ta.TAName}}</option>
+</select><br><br>
+    <!-- <label >Supervised by professor</label><br>
+    <select class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+        <option  value="" disabled selected>Professors</option>
+        <option *ngFor="let professor of professors" formControlName="professor" [value]="professor.professorId">{{professor.professorName}}</option>
+        
+    </select><br><br>
     <input type="text"  formControlName="professor" id="pname" name="pname" placeholder="enter professor name" ><br><br>
     <div *ngIf="GPForm.get('professor')?.errors && GPForm.get('professor')?.touched">
         <p *ngIf="GPForm.get('professor')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>     
@@ -99,10 +114,15 @@
 
 
     <label >Supervised by Teaching Assistant</label><br>
+    <select class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+        <option  value="" disabled selected>TAs</option>
+        <option *ngFor="let ta of TAs"  formControlName="TA"  id="ta.TAId" name="ta.TAId"  [value]="ta.TAId">{{ta.TAName}}</option>
+        
+    </select><br><br>
     <input type="text"  formControlName="TA" id="TAname" name="TAname" placeholder="enter TA name" ><br><br>
     <div *ngIf="GPForm.get('TA')?.errors && GPForm.get('TA')?.touched">
         <p *ngIf="GPForm.get('TA')?.getError('required')" class="alert py-2 alert-danger"  style="width: 1300px;" >This field is required</p>     
-    </div>
+    </div> -->
 
 
     <button [disabled]="GPForm.invalid" class="btn btn-primary" style="margin-left: 75%; width: 100px; margin-bottom: 20px;">Register</button>

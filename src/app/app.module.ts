@@ -65,6 +65,7 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
 import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
+import {BreadcrumbModule} from 'angular-crumbs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -128,6 +129,7 @@ import { DatePipe } from '@angular/common';
     // MatSelectModule,
     // NgxMatSelectModule,
     EditorModule,
+    BreadcrumbModule
 
   ],
   providers: [DatePipe,
