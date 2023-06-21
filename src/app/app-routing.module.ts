@@ -49,6 +49,7 @@ import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
@@ -101,6 +102,7 @@ const routes: Routes = [
 {path: 'ProfProfile', component: ProfissorProfileComponent},
 {path: 'gpRequest', component: GpRequestsComponent},
 {path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'AddAnnouncements', component: AddAnnouncementsComponent},
 ////////////ta////////////
 
 {path:'',redirectTo:'home',pathMatch:'full'},

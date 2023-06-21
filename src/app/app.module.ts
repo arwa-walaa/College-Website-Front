@@ -60,6 +60,9 @@ import { ViewStudentProfileComponent } from './view-student-profile/view-student
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
+import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
+import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +106,7 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
     ProfissorProfileComponent,
     ViewStudentProfileComponent,
     AddOfficeHoursComponent,
+    AddAnnouncementsComponent,
     // MessageService,
   ],
   imports: [
@@ -115,13 +119,17 @@ import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.com
     MatPasswordStrengthModule,
     // MatSelectModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
     // NgbModule
     // MatSelectModule,
     // NgxMatSelectModule,
+    EditorModule,
 
   ],
-  providers: [],
+  providers: [DatePipe,
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

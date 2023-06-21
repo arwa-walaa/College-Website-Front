@@ -26,14 +26,17 @@
         </div>
 
         <table id="example" class="table " >
-
+<!--             
             <tr *ngFor="let ann of Announcemets | SearchService:searchText">
-                <td>
-                    <p>{{ ann.content }}</p>
+                <td [innerHTML]="ann.content">
                     <p class="dateFont">{{ ann.created_at | date :'short'}} </p>
                 </td>
-                
-            </tr>
+              </tr> -->
+              <tr *ngFor="let ann of Announcemets | SearchService:searchText">
+                <td [innerHTML]="ann.content"></td>
+                <td><p class="dateFont">{{ ann.created_at_formatted }}</p></td>
+              </tr>
+           
             
         </table>
 
