@@ -1,70 +1,109 @@
-// <<<<<<< HEAD
-// import { HttpClient } from '@angular/common/http';
-// import { Component, OnInit } from '@angular/core';
-// import { ProfessorTAService } from '../professor-ta.service';
-// import { Router } from '@angular/router';
-// import { ProfessorAndTaService } from '../professor-and-ta.service';
-// import { AuthService } from '../auth.service';
-// =======
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// >>>>>>> 7a543ae9a5556d00a6aa087637956a1a7d2fa01b
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
+;
 
-// @Component({
-//   selector: 'app-add-office-hours',
-//   templateUrl: './add-office-hours.component.html',
-//   styleUrls: ['./add-office-hours.component.css']
-// })
-// <<<<<<< HEAD
-// export class AddOfficeHoursComponent {
-// =======
-// export class AddOfficeHoursComponent implements OnInit {
-//   officeHoursForm!: FormGroup;
 
-//   constructor(private formBuilder: FormBuilder) { }
 
-//   ngOnInit(): void {
-//     this.officeHoursForm = this.formBuilder.group({
-//       startTime: ['', [Validators.required]],
-//       endTime: ['', [Validators.required]],
-//       location: ['', [Validators.required]]
-//     }, { validator: this.checkTimeValidity });
-//   }
-// >>>>>>> 7a543ae9a5556d00a6aa087637956a1a7d2fa01b
+@Component({
+  selector: 'app-add-office-hours',
+  templateUrl: './add-office-hours.component.html',
+  styleUrls: ['./add-office-hours.component.css']
+})
+export class AddOfficeHoursComponent {
+  flag:any=null
 
-/*   officeHours: any[] = [{ startTime: '', endTime: '',location:'',Day:'',type:'Professor',name: '' , email: '' , department: '' }];
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private profAndTa:ProfessorAndTaService ,
+    private http: HttpClient,
+    private _AuthService:AuthService) {
+  
+  }
+  officeHours: any[] = [{ startTime: '', endTime: '',location:'',Day:'',type:'',
+  name:'',email:'',department:'',id:'' }];
   weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
-  addOfficeHour(name:any, email:any, department:any) {
-    this.officeHours.push({ startTime: '', endTime: '',location:'',Day:'',type:'Professor',name: name , email: email , department: department});
+
+  ngOnInit() {
+    const token = this._AuthService.getToken();
+    this.profAndTa.getUserType(token).subscribe((type: any) => {
+      if (type[0].Type === 'Professor') {
+        this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
+          this.officeHours[0].name = ProfessorData[0].professorName;
+          this.officeHours[0].email = ProfessorData[0].email;
+          this.officeHours[0].department = ProfessorData[0].departmentCode;
+          this.officeHours[0].id = ProfessorData[0].professorId;
+          this.officeHours[0].type = type[0].Type;
+        });
+      } else if (type[0].Type === 'TA') {
+        this.profAndTa.getTAInfo(token).subscribe((TaData: any) => {
+          this.officeHours[0].name = TaData[0].TAName;
+          this.officeHours[0].email = TaData[0].email;
+          this.officeHours[0].department = TaData[0].departmentCode;
+          this.officeHours[0].id = TaData[0].TAId;
+          this.officeHours[0].type = type[0].Type;
+          
+
+        });
+      }
+    });
+  }
+  addOfficeHour() {
+    const token=this._AuthService.getToken();
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor"){
+        this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+          console.log("prof==",ProfessorData)
+        this.officeHours.push({ startTime: '', endTime: '',location:'',Day:'',
+        type: type[0].Type,name:ProfessorData[0].professorName,email:ProfessorData[0].email,
+        department:ProfessorData[0].departmentCode,id:ProfessorData[0].professorId });
+       
+      });
+    }
+    else if(type[0].Type==="TA"){
+      this.profAndTa.getTAInfo(token).subscribe((TaData:any ) => {
+       this.officeHours.push({ startTime: '', endTime: '',location:'',Day:'',type: type[0].Type ,
+       name:TaData[0].TAName,email:TaData[0].email,department:TaData[0].departmentCode,id:TaData[0].TAId  });
+
+       
+      });
+  
+    }
+  
+
+
+  });
+
+
+   
   }
    updateDay(index: number, day: string) {
     this.officeHours[index].Day = day;
   }
-  OnInit()
-  {
-    console.log("====",this.officeHours);
-    const token=this._AuthService.getToken();
-    this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-     
-    });
-  }
+ 
   submit() {
-    
+   
 
+    console.log("this.officeHours",this.officeHours)
+    console.log("this.officeHours.id",this.officeHours[0].id)
     // Loop through the form inputs and update the corresponding office hours
-    console.log("===============start test=========");
+    // console.log("===============start test=========");
     let url = 'http://127.0.0.1:8000/api/insertOfficeHour';
     let options = { headers: { 'Content-Type': 'application/json' } };
-    let professorOrTAId = 'ihelal'; // replace with the actual ID
+    let professorOrTAId = this.officeHours[0].id;; // replace with the actual ID
     
     this.http.post(url + '/' + professorOrTAId, this.officeHours, options).subscribe(
         (response) => {
-           console.log("===============", response);
+            console.log("===============", response)
+            this.flag=true;
         }, (error) => {
-           console.error("erooooor", error);
+            console.error("erooooor", error);
+            this.flag=false;
         });
     
-    console.log(this.officeHours);
+    console.log("test=",this.officeHours);
     for (let i = 0; i < this.officeHours.length; i++) {
       const startTimeInput = document.getElementsByName(`startTime${i}`)[0] as HTMLInputElement;
       const endTimeInput = document.getElementsByName(`endTime${i}`)[0] as HTMLInputElement;
@@ -75,70 +114,13 @@
       this.officeHours[i].endTime = endTimeInput.value;
       this.officeHours[i].location = locationInput.value;
       this.officeHours[i].Day = dayInput.value;
+     
+      
     }
-     */
-//   }
-
-// <<<<<<< HEAD
-//     // Loop through the form inputs and update the corresponding office hours
-//     console.log("===============start test=========");
-//     let url = 'http://127.0.0.1:8000/api/insertOfficeHour';
-//     let options = { headers: { 'Content-Type': 'application/json' } };
-//     let professorOrTAId = 'ihelal'; // replace with the actual ID
     
-//     this.http.post(url + '/' + professorOrTAId, this.officeHours, options).subscribe(
-//         (response) => {
-//            console.log("===============", response);
-//         }, (error) => {
-//            console.error("erooooor", error);
-//         });
-    
-//     console.log(this.officeHours);
-//     for (let i = 0; i < this.officeHours.length; i++) {
-//       const startTimeInput = document.getElementsByName(`startTime${i}`)[0] as HTMLInputElement;
-//       const endTimeInput = document.getElementsByName(`endTime${i}`)[0] as HTMLInputElement;
-//       const locationInput = document.getElementsByName(`location${i}`)[0] as HTMLInputElement;
-//       const dayInput = document.getElementsByName(`Day${i}`)[0] as HTMLSelectElement;
 
-//       this.officeHours[i].startTime = startTimeInput.value;
-//       this.officeHours[i].endTime = endTimeInput.value;
-//       this.officeHours[i].location = locationInput.value;
-//       this.officeHours[i].Day = dayInput.value;
-//     }
-    
-//   }
 
-//   submitOfficeHours() {
-//     const token = this._AuthService.getToken();
+  }
 
-//     this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-//       this.addOfficeHour(ProfessorData[0].professorName,ProfessorData[0].email,ProfessorData[0].departmentCode);
-
-//     });
-
-//   }
- 
   
-// =======
-//   checkTimeValidity(group: FormGroup): any {
-//     const startTime = group.controls['startTime'].value;
-//     const endTime = group.controls['endTime'].value;
-
-//     if (startTime && endTime) {
-//       const startDate = new Date(`2023-06-13T${startTime}`);
-//       const endDate = new Date(`2023-06-13T${endTime}`);
-
-//       if (startDate >= endDate) {
-//         return { invalidTime: true, message: 'End time must be after start time' };
-//       }
-
-//       const startHours = startDate.getHours();
-//       const endHours = endDate.getHours();
-
-//       if (startHours < 8 || startHours >= 19 || endHours < 8 || endHours >= 19) {
-//         return { invalidTime: true, message: 'Start and end times must be between 8:00 AM and 7:00 PM' };
-//       }
-//     }
-//   }
-// >>>>>>> 7a543ae9a5556d00a6aa087637956a1a7d2fa01b
-// }
+}

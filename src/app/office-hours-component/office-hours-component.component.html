@@ -8,11 +8,8 @@
    <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
    <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
     <option  value="" disabled selected>Department</option>
-    <option>CS</option>
-    <option>IS</option>
-    <option>IT</option>
-    <option>DS</option>
-    <option>AI</option>
+    <option *ngFor="let d of departments">{{d.departmentCode}}</option>
+    
 </select>
 
 
@@ -29,10 +26,8 @@
 
 <select [(ngModel)]="searchText" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
     <option  value="" disabled selected>Location</option>
-    <option>new building, 1st floor</option>
-    <option>new building, 2st floor</option>
-    <option>new building, 2st floor</option>
-    <option>new building, 3st floor</option>
+    <option *ngFor="let location of locations">{{location.Location}}</option>
+    
 </select>
    <br><br>
     <table class="table table-hover table-striped">
@@ -44,7 +39,8 @@
                     Department
                 </th>
                
-                <th>Office Hours</th>
+                <th>From</th>
+                <th>To</th>
                 <th>
                     Day
                 </th>
@@ -60,7 +56,8 @@
                 <td>{{d.professorOrTAName}}</td> 
                 <td>{{d.Email}}</td>
                 <td>{{d.Department}}</td>
-                <td>{{d.OfficeHours}}</td>
+                <td>{{d.StartTime}}</td>
+                <td>{{d.EndTime}}</td>
                 <td>{{d.Day}}</td>
                 <td>{{d.Location}}</td>
 

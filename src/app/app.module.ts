@@ -58,6 +58,9 @@ import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
 import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
+import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+// import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 @NgModule({
   declarations: [
@@ -88,7 +91,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FCAIChatComponent,
     ProfileComponent,
     HomeDrTaComponent,
-    //AddOfficeHoursComponent,
+  //  AddOfficeHoursComponent,
     DrTaCoursesComponent,
     ViewStudentsComponent,
     CourseInfoComponent,
@@ -102,6 +105,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ProfissorProfileComponent,
     HomeAdminComponent,
     DashboardComponent,
+    ViewStudentProfileComponent,
+    AddOfficeHoursComponent,
     // MessageService,
   ],
   imports: [

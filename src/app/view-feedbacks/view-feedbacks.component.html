@@ -6,30 +6,29 @@
         <div class="col-6">
             <h4>Feedback about Curriculum</h4>
             <div id="c_chart"></div>
-            <h5>Written Feedbacks</h5>
-            <div class="feedback">I really liked the course</div>
-            <div class="feedback">I think things would have been better if .....</div>
+            
         </div>
-        <div class="col-6">
+        <div *ngIf="userTypeValue === 'Professor'" class="col-6">
             <h4>Feedback about Professor</h4>
             <div id="p_chart"></div>
-            <h5>Written Feedbacks</h5>
-            <div class="feedback">I think things would have been better if .....</div>
+            
+            
+        </div>
+        <div *ngIf="userTypeValue === 'TA'" class="col-6">
+            <h4>Feedback about TA</h4>
+            <div id="ta1_chart"></div>
+            
         </div>
     </div>
     <div class="row" style="margin-bottom: 50px;">
-        <div class="col-6">
+        <div class="col-8" *ngIf="userTypeValue === 'Professor'" >
             <h4>Feedback about TA1</h4>
             <div id="ta1_chart"></div>
-            <h5>Written Feedbacks</h5>
-            <div class="feedback">I think things would have been better if .....</div>
             
         </div>
-        <div class="col-6">
+        <!-- <div class="col-6" *ngIf="userTypeValue === 'Professor'" >
             <h4>Feedback about TA2</h4>
             <div id="ta2_chart"></div>
-            <h5>Written Feedbacks</h5>
-            <div class="feedback">I think things would have been better if .....</div>
-        </div>
+        </div> -->
     </div>
 </div>

@@ -1,4 +1,4 @@
-<nav  class="navbar navbar-expand-sm navbar-dark" style="background-color:#143AA2; height:58px" >
+<nav  class="navbar navbar-expand navbar-dark" style="background-color:#143AA2; height:68px; width:auto" >
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
             <img src="assets\logo.jpeg" alt="Logo" style="width:50px;" class="rounded-pill">
@@ -12,22 +12,59 @@
             <a class="nav-link" style="font-weight:bold; color: white; font-size:17px">FCAI WEBSITE</a>
           </li>
          
+          <li class="nav-item" *ngIf="isStudent==false">
+            <form class="d-flex">
+              <div class="input-group" style="width: 300px; margin-top: 3px; margin-left: 20px;">
+                <input class="form-control form-control-lg" name="searchQuery" [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
+                <span (click)="searchUsers()" class="input-group-text"><i class="bi bi-search"></i></span>
+              </div>
+            </form>
+          </li>
+          
+        
         </ul>
-        <ul class="navbar-nav me-auto" style="margin-left: 70%;">
+
+        
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;"  routerLink="home">Home</a>
+            <a class="nav-link" style="font-weight:bold; color: white;" routerLink="home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" style="font-weight:bold; color: white;" routerLink="Schedules_Bylaw">Schedules/Bylaw</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" href="#" id="navbarDropdown" role="button"
-                data-mdb-toggle="dropdown" aria-expanded="false" routerLink="profile"> Hi,Guest <i class="bi bi-person-fill"></i>  </a>
-            
-            
+            <a class="nav-link" style="font-weight:bold; color: white;"  id="navbarDropdown" role="button"
+                data-mdb-toggle="dropdown" aria-expanded="false" (click)="goToProfile()"> Hi,Guest <i class="bi bi-person-fill"></i>  </a>
           </li>
 
+          <li class="nav-item" (click)="logout()">
+            <a class="nav-link"  style="font-weight:bold; color: white;"  id="navbarDropdown" role="button"
+                data-mdb-toggle="dropdown" aria-expanded="false" routerLink="home"> Logout 
+                <i class="bi bi-box-arrow-right"></i> 
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+      
+      <div  class="col-md-6" *ngIf="searchResults && searchResults.length > 0">
+        
+          <div class="card-body" style="margin-left: 30%; z-index: 2;" >
+            
+            <div class="row" >
+              <div class="col-md-5" *ngFor="let result of searchResults">
+                <div class="card" (click)="goToUserProfile(result)">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ result.studentName }}</h5>
+                    <p class="card-text">ID: {{ result.studentId }}</p>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    
+
