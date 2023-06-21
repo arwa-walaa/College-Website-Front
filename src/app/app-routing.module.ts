@@ -47,6 +47,8 @@ import { ProfessorSchedualeComponent } from './professor-scheduale/professor-sch
 //import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { GpRequestsComponent } from './gp-requests/gp-requests.component';
 import { ProfissorProfileComponent } from './profissor-profile/profissor-profile.component';
+import { HomeAdminComponent } from './home-admin/home-admin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
@@ -70,6 +72,7 @@ const routes: Routes = [
 {path:'home',component:HomeComponent,title:'Home'},
 {path:'home_login',component:HomeLoginComponent,title:'Home'},
 {path:'home_dr_ta',component:HomeDrTaComponent,title:'Home'},
+{path:'home_admin',component:HomeAdminComponent,title:'Home'},
 {path:'Schedules_Bylaw',component:ContentComponent,title:'Bylaw'},
 {path:'Announcements',component:AnnouncementsComponent,title:'Announcements'},
 {path:'scheduale',component:SchedualeComponent,title:'scheduale'},
@@ -104,6 +107,8 @@ const routes: Routes = [
 {path: 'AddOfficeHours', component: AddOfficeHoursComponent},
 {path: 'AddAnnouncements', component: AddAnnouncementsComponent},
 ////////////ta////////////
+
+{path:'dashboard',component:DashboardComponent,title:'Dashboards'},
 
 {path:'',redirectTo:'home',pathMatch:'full'},
 ];

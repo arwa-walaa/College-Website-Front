@@ -1,4 +1,3 @@
-import { MessageService } from '../message.service';
 import { map } from 'rxjs';
 import { StudentsService } from './../students.service';
 import { AuthService } from '../auth.service';
@@ -6,6 +5,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { ProfessorTAService } from '../professor-ta.service';
 import { Router } from '@angular/router';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { MessageService } from './../message.service';
 
 @Component({
   selector: 'app-fcaichat',
@@ -37,6 +37,7 @@ export class FCAIChatComponent implements OnInit {
   selectedFile: any;
   attachmentUrl: any;
   userTypeValue: any;
+  isBlocked: any;
 
   currentSender = 'profOrTA'; // default sender is professor or TA
   currentReceiver = 'student'; // default receiver is student
@@ -104,13 +105,48 @@ export class FCAIChatComponent implements OnInit {
       console.log('students and tas', this.contacts);
     });
 
-    setInterval(() => {
-      this.loadProfessorAndTAMessages().subscribe((history) => {
-        this.messagesOfProfessorAndTA = history;
-        console.log(this.messagesOfProfessorAndTA);
-      });
-    }, 10000);
+///////////////
+setInterval(() => {
+  this.loadProfessorAndTAMessages().subscribe((history) => {
+    this.messagesOfProfessorAndTA = history;
+    console.log(this.messagesOfProfessorAndTA);
+  });
+}, 2000);
+
+this.getStudentStatus(this.StudentChat.StudentDtails[0].userID);
   }
+  /////////////////
+  BlockStudent(){
+    this.messageService.updateStudentStatus(this.StudentChat.StudentDtails[0].userID, '1').subscribe((response) => {
+      console.log(response); // log the response message to the console
+      this.getStudentStatus(this.StudentChat.StudentDtails[0].userID);
+      
+       alert("you have blocked this student");
+    });
+  }
+
+  UnblockStudent(){ 
+     this.messageService.updateStudentStatus(this.StudentChat.StudentDtails[0].userID, '0').subscribe((response) => {
+      console.log(response); // log the response message to the console
+      this.getStudentStatus(this.StudentChat.StudentDtails[0].userID);
+      
+      alert("you have unblocked this student");
+    });
+  }
+
+  getStudentStatus(studentID:any)
+  {
+    this.messageService.getStudentStatus(studentID)
+    .subscribe((status: any) => {
+        this.isBlocked = status;
+        console.log('is blocked or not',this.isBlocked[0].isBlocked);
+    });
+
+      
+  }
+
+ 
+  /////////////////
 
   //enter as a student
   loadProfessorAndTAMessages() {
@@ -129,87 +165,114 @@ export class FCAIChatComponent implements OnInit {
 
 
   }
-
-
   sendMessage() {
     const formData = new FormData();
-    //prof to TA or Stud
-    if (this.userTypeValue === "Professor") {
-      console.log('from prof to stud', this.professorsDetails[0].userID);
-      formData.append('from', this.professorsDetails[0].userID);
-      this.setCurrentSender(this.professorsDetails[0].userID);
-      if (this.StudentChat != null) {
-        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
-        formData.append('to', this.StudentChat.StudentDtails[0].userID);
-        this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
-      }
-      else {
-        console.log('ta', this.TADetails.TADtails[0].userID);
-        formData.append('to', this.TADetails.TADtails[0].userID);
-        this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
-      }
+  
+    if (!this.message) {
+      return;
     }
-    //TA to prof or Stud
-    else if (this.userTypeValue === "TA") {
-      console.log('ta', this.TADetails[0].userID);
-      formData.append('from', this.TADetails[0].userID);
-      this.setCurrentSender(this.TADetails[0].userID);
-      if (this.StudentChat != null) {
-        console.log(' stud', this.StudentChat.StudentDtails[0].userID);
-        formData.append('to', this.StudentChat.StudentDtails[0].userID);
-        this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
-      }
-      else if (this.StudentChat == null) {
-        console.log('prof', this.professorsDetails.professorDtails[0].userID);
-        formData.append('to', this.professorsDetails.professorDtails[0].userID);
-        this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
-      }
-
-    }
-    //Stud to prof or TA
-    else {
-      console.log('from Stud to TA or prof');
-      console.log('stud', this.StudentChat[0].userID);
-      formData.append('from', this.StudentChat[0].userID);
-      this.setCurrentSender(this.StudentChat[0].userID);
-      if (this.professorsDetails != null) {
-        console.log('prof', this.professorsDetails.professorDtails[0].userID);
-        formData.append('to', this.professorsDetails.professorDtails[0].userID);
-        this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
-      }
-      else {
-        console.log('ta', this.TADetails.TADtails[0].userID);
-        formData.append('to', this.TADetails.TADtails[0].userID);
-        this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
-      }
-
-    }
-    /////////
-
-    // formData.append('message', this.message);
+  
     if (this.selectedFile) {
       formData.append('attachment', this.selectedFile, this.selectedFile.name);
       formData.append('message', this.selectedFile.name);
-    }
-    else {
+    } else {
       formData.append('message', this.message);
     }
-    this.messageService.sendMessage(formData).subscribe((response: any) => {
-      this.loadProfessorAndTAMessages().subscribe((history) => {
-        this.messagesOfProfessorAndTA = history;
-      });
-      // handle success
-      this.selectedFile = null;
-      this.message = '';
-      const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
-      if (inputElement) {
-        inputElement.value = '';
-      }
+  
+    // this.messageService.getStudentStatus(this.currentReceiver).subscribe((status: any) => {
+    //   const isBlocked = status[0].isBlocked;
+    //   console.log('isBlocked', isBlocked);
+  
+      if (this.userTypeValue === "Professor") {
+        console.log('ta det',this.TADetails);
+        formData.append('from', this.professorsDetails[0].userID);
+        this.setCurrentSender(this.professorsDetails[0].userID);
+        console.log('sending from prof');
+       // if (this.StudentChat != null && isBlocked == '0') 
+        if (this.StudentChat != null ) {
+          formData.append('to', this.StudentChat.StudentDtails[0].userID);
+          this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
+          // console.log('if1 returning from sendMessage()');
+          // alert('You can send a message to this student.');
+  
+        } 
+        // else if (this.StudentChat != null && isBlocked == '1') {
+        //   formData.append('to', this.StudentChat.StudentDtails[0].userID);
+        //   alert('You cannot send a message to this student.');
+        //   console.log('if 2 returning from sendMessage()');
+        //   return;
+  
+        // } 
+        // else if (this.TADetails != null && this.StudentChat == null) {
+        //   formData.append('to', this.TADetails.TADtails[0].userID);
+        //   this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
+        //   console.log('if 3 returning from sendMessage()');
+  
+        // }
+         else {
+          // If there is an active chat with a student, send the message to the TA
+          formData.append('to', this.TADetails.TADtails[0].userID);
+          this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
+          console.log('else returning from sendMessage()');
+        }
+  
+      } else if (this.userTypeValue === "TA") {
+        console.log('StudentChat');
+        formData.append('from', this.TADetails[0].userID);
+        this.setCurrentSender(this.TADetails[0].userID);
+     
+        console.log('StudentChat');
+         
+        // if (this.StudentChat != null && isBlocked == '0') 
+       if (this.StudentChat != null) {
+          formData.append('to', this.StudentChat.StudentDtails[0].userID);
+          this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
+          // console.log('if1 returning from sendMessage()');
+          // alert('You can send a message to this student.');
+          // this.StudentChat = null;
 
-    }, (error) => {
-      // handle error
-      console.log(error);
-    });
+        }  
+        else{
+          formData.append('to', this.professorsDetails.professorDtails[0].userID);
+          this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
+        }
+        // else if (this.StudentChat != null && isBlocked == '1'){
+        //   formData.append('to', this.StudentChat.StudentDtails[0].userID);
+        //   this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
+        //   alert('You cannot send a message to this student.');
+        //   console.log('if 2 returning from sendMessage()');
+        //   this.StudentChat = null;
+        //   return;
+        // }
+     
+      } else {
+        formData.append('from', this.StudentChat[0].userID);
+        this.setCurrentSender(this.StudentChat[0].userID);
+  
+        if (this.professorsDetails != null) {
+          formData.append('to', this.professorsDetails.professorDtails[0].userID);
+          this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
+        } else {
+          formData.append('to', this.TADetails.TADtails[0].userID);
+          this.setCurrentReceiver(this.TADetails.TADtails[0].userID);
+        }
+      }
+  
+      this.messageService.sendMessage(formData).subscribe((response: any) => {
+        this.loadProfessorAndTAMessages().subscribe((history) => {
+          this.messagesOfProfessorAndTA = history;
+        });
+  
+        this.selectedFile = null;
+        this.message = '';
+        const inputElement = document.querySelector('input[name="message"]') as HTMLInputElement;
+        if (inputElement) {
+          inputElement.value = '';
+        }
+      }, (error) => {
+        console.log(error);
+      });
+  //  });
   }
 
   triggerFileInput() {
@@ -273,7 +336,7 @@ export class FCAIChatComponent implements OnInit {
               this.messagesOfProfessorAndTA = history;
               console.log(this.messagesOfProfessorAndTA);
             });
-
+          
           }
 
         },
