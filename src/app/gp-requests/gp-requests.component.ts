@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { AdminService } from './../admin.service';
 
 @Component({
   selector: 'app-gp-requests',
@@ -16,7 +17,8 @@ export class GpRequestsComponent {
     private route: ActivatedRoute,
     private profAndTa:ProfessorAndTaService ,
     private http: HttpClient,
-    private _AuthService:AuthService) {
+    private _AuthService:AuthService,
+    private _AdminService:AdminService) {
   
   }
 
@@ -24,16 +26,18 @@ export class GpRequestsComponent {
   public response = false
   public message = ""
   selectedGpId: any = null;
+  userType: any;
 
  ngOnInit(): void {
   const token=this._AuthService.getToken();
   this.profAndTa.getUserType(token).subscribe((type:any ) => {
+    this.userType = type[0].Type;
     if(type[0].Type==="Professor"){
       this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
       this.profAndTa.returnRequestsGP(type[0].Type,ProfessorData[0].professorId)
       .subscribe((gpRequests:any ) => {
-        this.gpRequests=gpRequests
-        console.log("gpRequests",this.gpRequests)
+        this.gpRequests=gpRequests;
+        console.log("gpRequests",this.gpRequests);
       });
     });
   }
@@ -41,11 +45,21 @@ export class GpRequestsComponent {
     this.profAndTa.getTAInfo(token).subscribe((TaData:any ) => {
       this.profAndTa.returnRequestsGP(type[0].Type,TaData[0].TAId)
       .subscribe((gpRequests:any ) => {
-        this.gpRequests=gpRequests
+        this.gpRequests=gpRequests;
       });
     });
 
   }
+  else if(type[0].Type==="Admin"){
+    this._AdminService.returnAcceptedRequestsGP().subscribe((acceptedGps:any ) => { 
+        this.gpRequests=acceptedGps;
+        console.log("gpRequests",this.gpRequests);
+     
+    });
+
+
+  }
+
 
 });
  }
@@ -70,7 +84,7 @@ export class GpRequestsComponent {
       console.log('studentData[0]',studentData[0])
      
       this.router.navigate(['/ViewStudentProfile'], { queryParams: studentData[0]} );
-      
+    
     });
    
   }
