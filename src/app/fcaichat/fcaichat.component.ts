@@ -1,5 +1,3 @@
-
-import { MessageService } from '../message.service';
 import { map } from 'rxjs';
 import { StudentsService } from './../students.service';
 import { AuthService } from '../auth.service';
@@ -104,13 +102,13 @@ export class FCAIChatComponent implements OnInit {
       }
       console.log('students and tas', this.contacts);
     });
-
     setInterval(() => {
       this.loadProfessorAndTAMessages().subscribe((history) => {
         this.messagesOfProfessorAndTA = history;
         console.log(this.messagesOfProfessorAndTA);
       });
-    }, 2000);
+    }, 10000);
+
   }
 
   //enter as a student
@@ -160,7 +158,7 @@ export class FCAIChatComponent implements OnInit {
         formData.append('to', this.StudentChat.StudentDtails[0].userID);
         this.setCurrentReceiver(this.StudentChat.StudentDtails[0].userID);
       }
-      else {
+      else if (this.StudentChat == null) {
         console.log('prof', this.professorsDetails.professorDtails[0].userID);
         formData.append('to', this.professorsDetails.professorDtails[0].userID);
         this.setCurrentReceiver(this.professorsDetails.professorDtails[0].userID);
@@ -274,7 +272,7 @@ export class FCAIChatComponent implements OnInit {
               this.messagesOfProfessorAndTA = history;
               console.log(this.messagesOfProfessorAndTA);
             });
-
+          
           }
 
         },

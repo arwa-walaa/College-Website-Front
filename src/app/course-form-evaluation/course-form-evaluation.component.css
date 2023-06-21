@@ -2,14 +2,27 @@
     display: inline-block;
     margin-right: 10px;
   }
-
   .form-check-inline {
     display: inline-block;
-    margin-right: 100px; /* adjust this value to your liking */
+    margin-right: 120px; /* adjust this value to your liking */
   }
   .card {
     padding-left: 100px;
     padding-top: 5px;
     padding-bottom: 50px;
     padding-right: 100px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    margin-bottom: -43px;
+  }
+  
+  button[type="button"],
+  button[type="submit"] {
+    width: 75px;
+    border: none;
+    background-color: #3E8DE3;
+    color: white;
   }

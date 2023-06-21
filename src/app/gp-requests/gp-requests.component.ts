@@ -12,7 +12,11 @@ import { ProfessorAndTaService } from '../professor-and-ta.service';
 export class GpRequestsComponent {
   gpRequests: any;
   public response2 = false
-  constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private profAndTa:ProfessorAndTaService ,
+    private http: HttpClient,
+    private _AuthService:AuthService) {
   
   }
 
@@ -94,22 +98,55 @@ export class GpRequestsComponent {
   // }
 
   acceptGp(id: any){
-    this.profAndTa.acceptGP(id).subscribe(() => {
-      this.message = "Request accepted successfully.";
-      this.response = true;
-    }, (error: any) => {
-      console.error('Accept request error:', error);
+    const token=this._AuthService.getToken();
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor"){
+        this.profAndTa.acceptGP_prof(id).subscribe(() => {
+          this.message = "Request accepted successfully.";
+          this.response = true;
+        }, (error: any) => {
+          console.error('Accept request error:', error);
+        });
+
+      } else if(type[0].Type==="TA"){
+        this.profAndTa.acceptGP_TA(id).subscribe(() => {
+          this.message = "Request accepted successfully.";
+          this.response = true;
+        }, (error: any) => {
+          console.error('Accept request error:', error);
+        });
+
+      }
+    
+    
     });
+   
     this.selectedGpId = id;
   }
   
   rejectGp(id: any){
-    this.profAndTa.rejectGP(id).subscribe(() => {
-      this.message = "Request rejected successfully.";
-      this.response2 = true;
-    }, (error: any) => {
-      console.error('Reject request error:', error);
+
+    const token=this._AuthService.getToken();
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor"){
+        this.profAndTa.rejectGP_prof(id).subscribe(() => {
+          this.message = "Request rejected successfully.";
+          this.response2 = true;
+        }, (error: any) => {
+          console.error('Reject request error:', error);
+        });
+      
+      } else if(type[0].Type==="TA"){
+        this.profAndTa.rejectGP_TA(id).subscribe(() => {
+          this.message = "Request rejected successfully.";
+          this.response2 = true;
+        }, (error: any) => {
+          console.error('Reject request error:', error);
+        });
+      }
+    
     });
+   
     this.selectedGpId = id;
   }
 }
