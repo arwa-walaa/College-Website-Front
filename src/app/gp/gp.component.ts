@@ -27,10 +27,23 @@ export class GpComponent implements OnInit {
   
 
   error:any;
+  professors: any;
+  TAs: any;
 
   constructor(private router: Router,private __StudentsService:StudentsService) {}
   ngOnInit(): void {
-   
+    
+
+
+    this.__StudentsService.returnAllProfessor().subscribe((professors:any ) => {
+     this.professors=professors
+    
+    });
+    this.__StudentsService.returnAllTAs().subscribe((TAs:any ) => {
+      this.TAs=TAs
+     
+     });
+    
   }
 
   public GPForm:FormGroup = new FormGroup({  
@@ -41,10 +54,13 @@ export class GpComponent implements OnInit {
     member3: new FormControl (null,[Validators.pattern('^([1-9]{1})([0-9]{7})$'),Validators.required]),
     member4: new FormControl (null,[Validators.pattern('^([1-9]{1})([0-9]{7})$'),Validators.required]),
     member5: new FormControl (null,[Validators.pattern('^([1-9]{1})([0-9]{7})$'),Validators.required]),
-    professor: new FormControl (null,[Validators.required]),
-    TA: new FormControl (null,[Validators.required]),
+    // professor: new FormControl (null,[Validators.required]),
+    // TA: new FormControl (null,[Validators.required]),
+    professor: new FormControl (),
+    TA: new FormControl (),
    
   })
+
   
 
   onSubmit(GPForm:FormGroup) {

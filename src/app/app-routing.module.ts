@@ -20,7 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { SchedualeComponent } from './scheduale/scheduale.component';
 
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterGpComponent } from './register-gp/register-gp.component';
+// import { RegisterGpComponent } from './register-gp/register-gp.component';
 // import { ProgramSelectionComponent } from './program-selection/program-selection.component';
 import { RegisterCourseComponent } from './register-course/register-course.component';
 import { ProgramSelectionComponent } from './program-selection/program-selection.component';
@@ -51,6 +51,7 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
+import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
@@ -68,12 +69,13 @@ const routes: Routes = [
 {path: 'CourseFormEvaluation',component:CourseFormEvaluationComponent},
 {path: 'ProfessorFormEvaluation',component:ProfessorEvaluationFormComponent},
 {path: 'TaFormEvaluation',component:TaEvaluationFormComponent},
+//{path:'home',component:HomeComponent,title:'Home'},
 {path:'home',component:HomeComponent,title:'Home'},
 {path:'home_login',component:HomeLoginComponent,title:'Home'},
 {path:'home_dr_ta',component:HomeDrTaComponent,title:'Home'},
 {path:'home_admin',component:HomeAdminComponent,title:'Home'},
 {path:'Schedules_Bylaw',component:ContentComponent,title:'Bylaw'},
-{path:'Announcements',component:AnnouncementsComponent,title:'Announcements'},
+ {path:'Announcements',component:AnnouncementsComponent,title:'Announcements'},
 {path:'scheduale',component:SchedualeComponent,title:'scheduale'},
 {path:'profile',component:ProfileComponent,title:'profile'},
 // {path:'register_gp',component:RegisterGpComponent,title:'register_gp'},
@@ -103,7 +105,8 @@ const routes: Routes = [
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
 {path: 'ProfProfile', component: ProfissorProfileComponent},
 {path: 'gpRequest', component: GpRequestsComponent},
-{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'addOfficeHours', component: AddOfficeHoursComponent},
+{path: 'AddAnnouncements', component: AddAnnouncementsComponent},
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards'},

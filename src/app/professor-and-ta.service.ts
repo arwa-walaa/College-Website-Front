@@ -72,19 +72,19 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/returnCourseTAS/"+coursID;
     return this.http.get(url);
   }
-  returnCourseStat(coursID:any)
+  returnCourseStat(coursID:any,Year:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnCourseStat/"+coursID;
+    let url= "http://127.0.0.1:8000/api/returnCourseStat/"+coursID+"/"+Year;
     return this.http.get(url);
   }
-  returnCourseStudent(coursID:any)
+  returnCourseStudent(coursID:any,Year:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnCourseStudent/"+coursID;
+    let url= "http://127.0.0.1:8000/api/returnCourseStudent/"+coursID+"/"+Year;
     return this.http.get(url);
   }
-  returnGradeAvg(coursID:any)
+  returnGradeAvg(coursID:any,Year:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnGradeAvg/"+coursID;
+    let url= "http://127.0.0.1:8000/api/returnGradeAvg/"+coursID+"/"+Year;
     return this.http.get(url);
   }
   returnRequestsGP(Type:any,id:any)
@@ -121,6 +121,11 @@ getMyStudents(professorId:any)
   getStudentData(StudentID:any)
   {
     let url= "http://127.0.0.1:8000/api/getStudentData/"+StudentID;
+    return this.http.get(url);
+  } 
+  getCourseYears(ProfId:any,CourseId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getCourseYears/"+ProfId+"/"+CourseId;
     return this.http.get(url);
   }
 }

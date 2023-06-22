@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { StudentsService } from '../students.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
 declare var google:any;
-
 @Component({
   selector: 'app-course-info',
   templateUrl: './course-info.component.html',
@@ -20,57 +18,71 @@ export class CourseInfoComponent {
   AvgGrades: any;
   courseName: any;
   courseID:any;
+  Years: any;
+  chooseYear: any;
   constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }
   ngOnInit(): void {
    
     this.route.queryParams.subscribe(params => {
-     //////////////////  
-      const test = params['courseName'];
-      const test2 = params['courseID'];
-      this.courseName=test;
-      this.courseID = test2;
-      console.log('Course Name:',test);
-      console.log('Course ID:',test2);
-     //////////////////  
       this.courseInfo=params;  
-      // console.log('courseInfo==',this.courseInfo);
+      const token=this._AuthService.getToken();
+      this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+        this.profAndTa.getCourseYears(ProfessorData[0].professorId,params['courseID'])
+        .subscribe((Years:any ) => {
+            this.Years=Years
+            console.log("Years",this.Years)
+        });
+      });
+    
+      
+      console.log('courseInfo==',this.courseInfo);
       this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
-      // console.log("tas==",this.TAs)
+      console.log("tas==",this.TAs)
     })
    
-
-      this.profAndTa.returnCourseStat(this.courseInfo.courseID).subscribe((courseStat: any) => {
-        this.courseStat = courseStat;
-        // this.pased = this.courseStat[0].num_students_passed;
-        // this.faild = this.courseStat[0].num_students_failed;
-        this.pased = Number(this.courseStat[0].num_students_passed);
-      this.faild = Number(this.courseStat[0].num_students_failed);
-        // console.log(this.pased)
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(() => {
-          this.drawPieChart(this.pased,this.faild)
-          
-        });
   
-        // google.charts.setOnLoadCallback(this.drawHistogram);
-      });
-      this.profAndTa.returnCourseStudent(this.courseInfo.courseID).subscribe((studentStat: any) => {
-        // console.log("studentStat==",studentStat)
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
-
-      });
-      this.profAndTa.returnGradeAvg(this.courseInfo.courseID).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
-      }
-
-      
      
-    );
+    });
     
   }
+  update(selectedValue: any): void {
+   this.chooseYear=selectedValue
+   console.log("this.chooseYear",this.chooseYear)
+   this.route.queryParams.subscribe(params => {
+    this.courseInfo=params; 
+    this.profAndTa.returnCourseStat(this.courseInfo.courseID,this.chooseYear).subscribe((courseStat: any) => {
+      this.courseStat = courseStat;
+      // this.pased = this.courseStat[0].num_students_passed;
+      // this.faild = this.courseStat[0].num_students_failed;
+      this.pased = Number(this.courseStat[0].num_students_passed);
+    this.faild = Number(this.courseStat[0].num_students_failed);
+      // console.log(this.pased)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(() => {
+        this.drawPieChart(this.pased,this.faild)
+        
+      });
 
+      // google.charts.setOnLoadCallback(this.drawHistogram);
+    });
+    this.profAndTa.returnCourseStudent(this.courseInfo.courseID,this.chooseYear).subscribe((studentStat: any) => {
+      // console.log("studentStat==",studentStat)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
+
+    });
+    this.profAndTa.returnGradeAvg(this.courseInfo.courseID,this.chooseYear).subscribe((AvgGrades: any) =>
+    {this.AvgGrades=AvgGrades});
+    
+
+  
+  
+  
+  
+  });
+}
   drawPieChart(numStudentsPassed: number , numStudentsFailed: number){
     
     // Create the data table.
@@ -159,3 +171,4 @@ export class CourseInfoComponent {
     this.router.navigate(['']);
   }
 }
+

@@ -74,6 +74,96 @@ times = ['08:00:00', '09:30:00', '11:15:00', '12:45:00', '02:30:00', '04:00:00',
     }
     return result;
   }
+  // downloadSchedule() {
+  //   // Get the printable table div
+  //   const printableTable = document.getElementById('printable-table');
   
+  //   // Check if printableTable exists and is a valid element
+  //   if (!printableTable || !(printableTable instanceof HTMLElement)) {
+  //     console.error('Printable table element not found');
+  //     return;
+  //   }
+  
+  //   // Clone the table and remove any Angular bindings
+  //   const clonedTable = printableTable.cloneNode(true) as HTMLElement;
+  //   clonedTable.querySelectorAll('*').forEach((el) => {
+  //     el.removeAttribute('ng-reflect-ng-for');
+  //     el.removeAttribute('ng-version');
+  //   });
+  
+  //   // Open a new window with only the table content
+  //   const printWindow = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+  
+  //   // Check if printWindow is not null before accessing its document property
+  //   if (printWindow !== null) {
+  //     printWindow.document.write('<html><head><title>Schedule</title>');
+  //     printWindow.document.write('</head><body>');
+  //     printWindow.document.write(clonedTable.innerHTML);
+  //     printWindow.document.write('</body></html>');
+  
+  //     // Print and close the new window
+  //     printWindow.document.close();
+  //     printWindow.focus();
+  //     printWindow.print();
+  //     printWindow.close();
+  
+  //     // Set the display property of the printable table element back to its original value
+  //     printableTable.style.display = 'block';
+  //   } else {
+  //     console.error('Failed to open print window');
+  //   }
+  // }
+  async downloadSchedule() {
+    // Get the printable table div
+    const printableTable = document.getElementById('printable-table');
+  
+    // Check if printableTable exists and is a valid element
+    if (!printableTable || !(printableTable instanceof HTMLElement)) {
+      console.error('Printable table element not found');
+      return;
+    }
+  
+    try {
+      // Clone the table and remove any Angular bindings
+      const clonedTable = printableTable.cloneNode(true) as HTMLElement;
+      clonedTable.querySelectorAll('*').forEach((el) => {
+        el.removeAttribute('ng-reflect-ng-for');
+        el.removeAttribute('ng-version');
+      });
+  
+      // Open a new window with only the table content
+      const printWindow = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+  
+      // Check if printWindow is not null before accessing its document property
+      if (printWindow !== null) {
+        printWindow.document.write('<html><head><title>Schedule</title>');
+        printWindow.document.write('</head><body>');
+        printWindow.document.write(clonedTable.innerHTML);
+        printWindow.document.write('</body></html>');
+  
+        // Wait for the window to fully load before triggering the print action
+        await new Promise(resolve => printWindow.onload = resolve);
+  
+        // Use the native browser functionality to print to PDF
+        printWindow.print();
+  
+        // Close the new window
+        printWindow.close();
+  
+        // Set the display property of the printable table element back to its original value
+        printableTable.style.display = 'block';
+      } else {
+        console.error('Failed to open print window');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  
+  
+  
+  
+ 
   
 }

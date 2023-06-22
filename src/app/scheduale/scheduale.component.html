@@ -7,7 +7,11 @@
     <!-- {{array}} -->
     <div class="row">
         <div class="col-md-18">
-            <div class="schedule-table">
+          
+          <button class="btn btn-primary" (click)="downloadSchedule()">Download</button>
+<br><br>
+            <div class="schedule-table"  id="printable-table">
+              <!-- <div class="schedule-table"  id="printable-table" style="display:none"></div> -->
                 <table class="table">
                     <thead>
                       <tr>
@@ -35,6 +39,7 @@
                       </tr>
                     </tbody>
                   </table>
+
             </div>
         </div>
     </div>

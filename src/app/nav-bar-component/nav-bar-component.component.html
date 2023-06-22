@@ -27,12 +27,17 @@
         
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" routerLink="home">Home</a>
+            <a class="nav-link" style="font-weight:bold; color: white;" (click)="navigateHome()">Home</a>
+            
           </li>
           <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" routerLink="Schedules_Bylaw">Schedules/Bylaw</a>
+            <a class="nav-link" style="font-weight:bold; color: white;" routerLink="Schedules_Bylaw">Schedules</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLog===true ">
+            <a class="nav-link" style="font-weight:bold; color: white;"  id="navbarDropdown" role="button"
+                data-mdb-toggle="dropdown" aria-expanded="false" (click)="goToProfile()"> Hi,{{name}} <i class="bi bi-person-fill"></i>  </a>
+          </li>
+          <li class="nav-item" *ngIf="isLog===false ">
             <a class="nav-link" style="font-weight:bold; color: white;"  id="navbarDropdown" role="button"
                 data-mdb-toggle="dropdown" aria-expanded="false" (click)="goToProfile()"> Hi,Guest <i class="bi bi-person-fill"></i>  </a>
           </li>

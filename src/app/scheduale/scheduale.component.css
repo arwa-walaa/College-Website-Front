@@ -181,3 +181,12 @@ font-size: 15px;
 min-width: 135px;
 }
 }
+@media print {
+    #printable-table * {
+        visibility: hidden;
+    }
+
+    #printable-table table {
+        visibility: visible;
+    }
+}

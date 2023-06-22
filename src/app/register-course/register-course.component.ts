@@ -32,7 +32,11 @@ export class RegisterCourseComponent implements OnInit {
   getStudentData(level:any,id:any,department:any,semester:any){
     this.studendService.getCoursesForStudent(level,id,department,semester)
     .subscribe({
-      next:(response)=> this.CourseInfo=response
+      next:(response)=>{
+        this.CourseInfo=response
+        console.log("courses",this.CourseInfo)
+      }
+     
 
     });
    }

@@ -5,16 +5,16 @@
     <h2 style="font-weight: bold;">Office Hours</h2><br>
    
     
-   <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
+   <!-- <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
    <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
     <option  value="" disabled selected>Department</option>
     <option *ngFor="let d of departments">{{d.departmentCode}}</option>
     
-</select>
+</select> -->
 
 
 
-<select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
+<!-- <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
     <option  value="" disabled selected>Day</option>
     <option>Saturday</option>
     <option>Sunday</option>
@@ -22,11 +22,16 @@
     <option>Tuseday</option>
     <option>Wednesday</option>
     <option>Thursday</option>
-</select>
-
+</select> -->
+<!-- <label for="">Professors Name</label> -->
 <select [(ngModel)]="searchText" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
-    <option  value="" disabled selected>Location</option>
-    <option *ngFor="let location of locations">{{location.Location}}</option>
+    <option  value="" disabled selected>professors</option>
+    <option *ngFor="let professor of professors">{{professor.professorName}}</option>
+    
+</select>
+<select [(ngModel)]="searchText" class="selectButton" style="margin-left: 30px; width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+    <option  value="" disabled selected>TAs</option>
+    <option *ngFor="let ta of TAs">{{ta.TAName}}</option>
     
 </select>
    <br><br>

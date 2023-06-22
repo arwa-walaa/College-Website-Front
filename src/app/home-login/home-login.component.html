@@ -11,14 +11,43 @@
 <div class="container" >
     <div class="General" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; ">
         <div class="parent" >
+            <a (click)="navigateToRegisterdCoursesAndResults()" class="child" >
+                <i class="bi bi-book" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" (click)="navigateToRegisterdCoursesAndResults()" >Registered Courses & Result</a>
+            </a>
+            <a (click)="navigateToScheduale()" class="child" style="margin-left: 60px;" >
+                <i class="bi bi-table" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" (click)="navigateToScheduale()"><br> My Schedule</a>
+            </a>
+            
+            <a (click)="navigateToExamHalls()" class="child" style="margin-left: 60px;" >
+                <i class="bi bi-table" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" (click)="navigateToExamHalls()">Exam Halls</a>
+            </a>
+            <!-- <a (click)="navigateToAnnoucements()" class="child" >
+                <i class="bi bi-chat-left-text-fill" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" routerLink="Announcements" (click)="navigateToAnnoucements()"  >Announcements</a>
+            </a>
+           
+            <a (click)="navigateToChat()" class="child" style="margin-left: 60px; text-align: center;">
+                <i class="bi bi-chat" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" (click)="navigateToChat()" >Chat</a>
+            </a>
+            <a (click)="navigateToOfficeHours() " class="child" style="margin-left: 60px;" >
+                <i class="bi bi-clock" style="font-size:8rem ; color: white;"></i>
+                <a class="Ann" (click)="navigateToOfficeHours() ">Office Hours</a>
+            </a> -->
+           
+        </div>
+    </div>
+    <div class="Special" style="margin-bottom: 60px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; " >
+        <div class="parent" style="margin-bottom: 60px;">
+
             <a (click)="navigateToAnnoucements()" class="child" >
                 <i class="bi bi-chat-left-text-fill" style="font-size:8rem ; color: white;"></i>
                 <a class="Ann" routerLink="Announcements" (click)="navigateToAnnoucements()"  >Announcements</a>
             </a>
-            <a (click)="navigateToScheduale_Bylaw()" class="child" style="margin-left: 60px;">
-                <i class="bi bi-table" style="font-size:8rem ; color: white;"></i>
-                <a  routerLink="Schedules_Bylaw" (click)="navigateToScheduale_Bylaw()"class="Ann" >Scheduale&Bylaw</a>
-            </a>
+           
             <a (click)="navigateToChat()" class="child" style="margin-left: 60px; text-align: center;">
                 <i class="bi bi-chat" style="font-size:8rem ; color: white;"></i>
                 <a class="Ann" (click)="navigateToChat()" >Chat</a>
@@ -27,24 +56,21 @@
                 <i class="bi bi-clock" style="font-size:8rem ; color: white;"></i>
                 <a class="Ann" (click)="navigateToOfficeHours() ">Office Hours</a>
             </a>
-           
-        </div>
-    </div>
-    <div class="Special" style="margin-bottom: 60px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; " >
-        <div class="parent" style="margin-bottom: 60px;">
-            <a (click)="navigateToRegisterdCoursesAndResults()" class="child" >
+
+
+            <!-- <a (click)="navigateToRegisterdCoursesAndResults()" class="child" >
                 <i class="bi bi-book" style="font-size:8rem ; color: white;"></i>
                 <a class="Ann" (click)="navigateToRegisterdCoursesAndResults()" >Registered Courses & Result</a>
             </a>
             <a (click)="navigateToScheduale()" class="child" style="margin-left: 60px;" >
                 <i class="bi bi-table" style="font-size:8rem ; color: white;"></i>
-                <a class="Ann" (click)="navigateToScheduale()"> Schedule</a>
+                <a class="Ann" (click)="navigateToScheduale()"><br> My Schedule</a>
             </a>
             
             <a (click)="navigateToExamHalls()" class="child" style="margin-left: 60px;" >
                 <i class="bi bi-table" style="font-size:8rem ; color: white;"></i>
                 <a class="Ann" (click)="navigateToExamHalls()">Exam Halls</a>
-            </a>
+            </a> -->
            
         </div>
     </div>

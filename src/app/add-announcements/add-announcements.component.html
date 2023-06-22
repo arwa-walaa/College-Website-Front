@@ -1,0 +1,20 @@
+<br>
+<div class="container">
+  <br><br>
+  <h2 style="font-weight: bold;">Add Announcement</h2><br>
+
+<!-- <breadcrumb #parent>  
+    <ol class="breadcrumb">
+      <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs">
+        <li *ngIf="!route.terminal" class="breadcrumb-item">
+          <a href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
+        </li>
+        <li *ngIf="route.terminal" class="breadcrumb-item active" aria-current="page">{{ route.displayName }}</li>
+      </ng-template>
+    </ol>
+  </breadcrumb> -->
+<form (submit)="saveAnnouncement()">
+    <editor [init]="editorConfig"></editor><br><br>
+    <button type="submit" name="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

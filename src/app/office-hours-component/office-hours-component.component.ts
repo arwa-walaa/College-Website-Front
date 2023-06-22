@@ -12,6 +12,8 @@ import { OfficeHoursServiceService } from '../office-hours-service.service';
 export class OfficeHoursComponentComponent implements OnInit {
   locations: any;
   departments: any;
+  professors: any;
+  TAs: any;
   constructor(private _OfficeHoursServiceService:OfficeHoursServiceService) {}
   title='Office Hours';
   p: number = 1;
@@ -29,6 +31,14 @@ export class OfficeHoursComponentComponent implements OnInit {
 
      this._OfficeHoursServiceService.returnAllDepartments().subscribe({
       next:(response)=>this.departments =response
+     })
+
+     this._OfficeHoursServiceService.returnAllProfessore().subscribe({
+      next:(response)=>this.professors =response
+     })
+
+     this._OfficeHoursServiceService.returnAllTAs().subscribe({
+      next:(response)=>this.TAs =response
      })
   
   }

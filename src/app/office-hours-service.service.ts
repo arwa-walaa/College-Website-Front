@@ -16,4 +16,12 @@ export class OfficeHoursServiceService {
   returnAllLocations():Observable<any>{
     return this._HttpClient.get('http://127.0.0.1:8000/api/returnAllLocations');
   }
+  returnAllProfessore()
+  {
+    return this._HttpClient.get("http://127.0.0.1:8000/api/returnAllProfessor/");
+  }
+  returnAllTAs()
+  {
+    return this._HttpClient.get("http://127.0.0.1:8000/api/returnAllTAs/");
+  }
 }
