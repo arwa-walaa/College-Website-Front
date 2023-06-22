@@ -84,6 +84,12 @@ export class StudentsService {
     
     return this.http.get(url);
   }
+  getTAId(GroupNmber:any,CousreId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getTAId/"+GroupNmber+"/"+CousreId;
+    
+    return this.http.get(url);
+  }
   getCourseGroup(CourseId:any){
     let url= "http://127.0.0.1:8000/api/getCourseGroup/"+CourseId;
     return this.http.get(url);

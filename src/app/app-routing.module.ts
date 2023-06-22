@@ -101,11 +101,11 @@ const routes: Routes = [
 
 
 ////////////////professor///////
-{path: 'Schedule', component: ProfessorSchedualeComponent,data: { breadcrumb: 'Schedule'}},
+{path: 'Schedule', component: ProfessorSchedualeComponent},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent},
 {path: 'ProfProfile', component: ProfissorProfileComponent},
 {path: 'gpRequest', component: GpRequestsComponent},
-{path: 'AddOfficeHours', component: AddOfficeHoursComponent},
+{path: 'addOfficeHours', component: AddOfficeHoursComponent},
 {path: 'AddAnnouncements', component: AddAnnouncementsComponent},
 ////////////ta////////////
 

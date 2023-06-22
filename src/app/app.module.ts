@@ -125,7 +125,7 @@ import {BreadcrumbModule} from 'angular-crumbs';
     // MatSelectModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // NgbModule
+    // NgModule,
     // MatSelectModule,
     // NgxMatSelectModule,
     EditorModule,

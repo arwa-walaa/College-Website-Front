@@ -25,6 +25,7 @@ export class StudentGroupSelectionComponent {
   StudentData:any
   noConfilect:any={};
   flag:any=false;
+  taData: any;
   // count:any=0;
 
  
@@ -78,25 +79,40 @@ saveSelectedGroup(courseData: any, selectedGroup: any, id: any) {
   // find the object in the array with the matching course code
   const courseObjIndex = this.courseDataArray.findIndex(obj => obj.courseID == courseData.courseID);
 
+
   // if the object already exists, update the selected group
   if (courseObjIndex !== -1) {
     this.courseDataArray[courseObjIndex].selectedGroup = selectedGroup;
   }
   // otherwise, add a new object to the array with the course data and selected group
   else {
-    this.courseDataArray.push({
-      courseID: courseData.courseID,
-      endTimeCourse1: courseData.startTime1,
-      startTimeCourse1: courseData.startTime1,
-      slotDayCourse1: courseData.slotday1,
-      endTimeCourse2: courseData.startTime2,
-      startTimeCourse2: courseData.startTime2,
-      slotDayCourse2: courseData.slotday2,
-      selectedGroup: selectedGroup,
-      grade:null,
-      creditHours:courseData.creditHours,
-      studentId:id,
+    this.studendService.getTAId(selectedGroup,courseData.courseID).subscribe({
+      next:(response)=>{
+        const today = new Date();
+       
+        this.taData=response
+        this.courseDataArray.push({
+          courseID: courseData.courseID,
+          endTimeCourse1: courseData.startTime1,
+          startTimeCourse1: courseData.startTime1,
+          slotDayCourse1: courseData.slotday1,
+          endTimeCourse2: courseData.startTime2,
+          startTimeCourse2: courseData.startTime2,
+          slotDayCourse2: courseData.slotday2,
+          selectedGroup: selectedGroup,
+          grade:null,
+          creditHours:courseData.creditHours,
+          studentId:id,
+          professor1:courseData.professor1,
+          professor2:courseData.professor2,
+          TAId:this.taData[0].TAId,
+          Year: today.getFullYear(),
+        });
+
+      }
     });
+   
+   
   }
 }
 // saveSelectedGroup(courseData: any,selectedGroup: any,id:any) {
