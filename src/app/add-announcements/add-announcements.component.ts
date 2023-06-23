@@ -21,28 +21,28 @@ constructor(private http: HttpClient) {}
 ngOnInit() {
  
 }
-  saveAnnouncement() {
-    console.log("ann title",this.AnnTitle)
-    if (tinymce.activeEditor) {
-      const editorContent = tinymce.activeEditor.getContent(); 
-      const currentDateTimeString = new Date().toLocaleString();
-      console.log(currentDateTimeString);
-      const announcementData = { content: editorContent,time:currentDateTimeString ,announcmentTitle:this.AnnTitle};
-      console.log('you write == ',announcementData);
+  // saveAnnouncement() {
+  //   console.log("ann title",this.AnnTitle)
+  //   if (tinymce.activeEditor) {
+  //     const editorContent = tinymce.activeEditor.getContent(); 
+  //     const currentDateTimeString = new Date().toLocaleString();
+  //     console.log(currentDateTimeString);
+  //     const announcementData = { content: editorContent,time:currentDateTimeString ,announcmentTitle:this.AnnTitle};
+  //     console.log('you write == ',announcementData);
       
-  this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
+  // this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
         
-        console.log('Announcement saved successfully!');
-        this.flag=true
-      },
-       error => {
-        console.error('Error saving announcement:', error);
-        this.flag=false
-      });
-    }
+  //       console.log('Announcement saved successfully!');
+  //       this.flag=true
+  //     },
+  //      error => {
+  //       console.error('Error saving announcement:', error);
+  //       this.flag=false
+  //     });
+  //   }
     
     
 
     
-   }
+  //  }
 }
