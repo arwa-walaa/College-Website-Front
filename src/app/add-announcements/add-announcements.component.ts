@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
- import tinymce from 'tinymce';
+//  import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-add-announcements',
