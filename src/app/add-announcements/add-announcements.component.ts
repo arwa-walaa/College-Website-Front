@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import tinymce from 'tinymce';
+// import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-add-announcements',
@@ -30,7 +30,7 @@ ngOnInit() {
       const announcementData = { content: editorContent,time:currentDateTimeString ,announcmentTitle:this.AnnTitle};
       console.log('you write == ',announcementData);
       
-      this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
+  //     this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
         
         console.log('Announcement saved successfully!');
         this.flag=true
@@ -43,5 +43,5 @@ ngOnInit() {
     
 
     
-  }
+  // }
 }
