@@ -19,7 +19,7 @@ export class CourseInfoComponent {
   courseName: any;
   courseID:any;
   Years: any;
-  chooseYear: any;
+  chooseYear: any=2023;
   constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }

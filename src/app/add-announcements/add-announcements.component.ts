@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import tinymce from 'tinymce';
+// import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-add-announcements',
@@ -16,24 +16,24 @@ export class AddAnnouncementsComponent {
 };
 constructor(private http: HttpClient) {}
 
-  saveAnnouncement() {
-    if (tinymce.activeEditor) {
-      const editorContent = tinymce.activeEditor.getContent(); 
-      const currentDateTimeString = new Date().toLocaleString();
-      console.log(currentDateTimeString);
-      const announcementData = { content: editorContent,time:currentDateTimeString };
-      console.log('you write == ',announcementData);
+  // saveAnnouncement() {
+  //   if (tinymce.activeEditor) {
+  //     // const editorContent = tinymce.activeEditor.getContent(); 
+  //     const currentDateTimeString = new Date().toLocaleString();
+  //     console.log(currentDateTimeString);
+  //     const announcementData = { content: editorContent,time:currentDateTimeString };
+  //     console.log('you write == ',announcementData);
       
-      this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
+  //     this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
         
-        console.log('Announcement saved successfully!');
-      }, error => {
-        console.error('Error saving announcement:', error);
-      });
-    }
+  //       console.log('Announcement saved successfully!');
+  //     }, error => {
+  //       console.error('Error saving announcement:', error);
+  //     });
+  //   }
     
     
 
     
-  }
+  // }
 }

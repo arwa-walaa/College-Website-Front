@@ -65,10 +65,10 @@ import { StatisticsCoursesComponent } from './statistics-courses/statistics-cour
 import { StatisticsCoursesCompareComponent } from './statistics-courses-compare/statistics-courses-compare.component';
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
-import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
+// import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
-import {BreadcrumbModule} from 'angular-crumbs';
+// import {BreadcrumbModule} from 'angular-crumbs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -134,12 +134,12 @@ import {BreadcrumbModule} from 'angular-crumbs';
     // NgModule,
     // MatSelectModule,
     // NgxMatSelectModule,
-    EditorModule,
-    BreadcrumbModule
+    // EditorModule,
+    // BreadcrumbModule
 
   ],
   providers: [DatePipe,
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    // { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]
   

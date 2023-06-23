@@ -62,7 +62,7 @@ export class StatisticsCoursesCompareComponent {
        // مش عارفة ازاي اظبط حوار ان عندنا الداتا بتاعت مادتين فسبتها لكم باك 
          
 
-       this.profAndTa.returnCourseStat(this.courseInfo.courseID).subscribe((courseStat: any) => {
+       this.profAndTa.returnCourseStat(this.courseInfo.courseID,2019).subscribe((courseStat: any) => {
          this.courseStat = courseStat;
          // this.pased = this.courseStat[0].num_students_passed;
          // this.faild = this.courseStat[0].num_students_failed;
@@ -76,13 +76,13 @@ export class StatisticsCoursesCompareComponent {
    
          // google.charts.setOnLoadCallback(this.drawHistogram);
        });
-       this.profAndTa.returnCourseStudent(this.courseInfo.courseID).subscribe((studentStat: any) => {
+       this.profAndTa.returnCourseStudent(this.courseInfo.courseID,2019).subscribe((studentStat: any) => {
          // console.log("studentStat==",studentStat)
          google.charts.load('current', {'packages':['corechart']});
          google.charts.setOnLoadCallback(this.drawHistogram1(studentStat));
  
        });
-       this.profAndTa.returnGradeAvg(this.courseInfo.courseID).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
+       this.profAndTa.returnGradeAvg(this.courseInfo.courseID,2019).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
        }
      );
     
