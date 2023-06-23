@@ -158,5 +158,8 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/returnAllProfessor/";
     return this.http.get(url);
   }
+  updateAnnouncmentStatus(annID: number) {
+    const url = `http://127.0.0.1:8000/api/updateAnnouncmentStatus/${annID}`;
+    return this.http.post(url, {});}
 }
 

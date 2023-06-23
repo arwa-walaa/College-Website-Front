@@ -20,18 +20,18 @@
                 Level : {{courseInfo.Level}}
             </div>
             <div class="col-2">
-                Year :
+                Year :{{Years[1].Year}}
                 <select  required #year (change)="update(year.value)"  class="form-select" aria-label="Default select example">
-                    <option  value=""> choose year</option>
+                    <option  value=" "> choose year</option>
                     <option  *ngFor= "let Year of Years" [value]="Year.Year">
-                        {{Year.Year}}
+                        {{Year.Year}} 
                     </option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-1" >
-                TA: 
+                TA: {{TAs}}
             </div>
             <div class="col-2" *ngFor="let ta of TAs" >
                 {{ta.TAName}} 

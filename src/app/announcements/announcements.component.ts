@@ -13,6 +13,8 @@ export class AnnouncementsComponent {
   
 Announcemets: any;
   searchText='';
+  selectedAnnouncement: any;
+  isOpened:any;
  
   constructor(private router: Router, private studendService: StudentsService,private sanitizer: DomSanitizer, private datePipe: DatePipe) {
    
@@ -23,13 +25,12 @@ Announcemets: any;
         console.log(this.Announcemets)
         this.Announcemets = this.Announcemets.map((item: { content: string, created_at: string }) => {
           return {
-            ...item, // copy all the properties of item
-            content: this.sanitizer.bypassSecurityTrustHtml(item.content), // transform the content field
-            created_at_formatted: this.formatDate(item.created_at)
+            ...item,
+            content: this.sanitizer.bypassSecurityTrustHtml(item.content),
+            created_at: this.formatDate(item.created_at)
           };
-        }
-        );
-        console.log(this.Announcemets)
+        });
+        console.log("====",this.Announcemets)
     }
     }); 
   }
@@ -38,10 +39,32 @@ Announcemets: any;
     const date = new Date(Date.parse(dateString) + offsetMs);
     return this.datePipe.transform(date, 'short');
   }
+ 
   navigateToTop50()
   {
     this.router.navigate(['Top50']);
   }
-
+  selectAnnouncement(announcement: any) {
+    this.selectedAnnouncement = announcement;
+    console.log('isOpenedId= ',this.selectedAnnouncement.id);
+    
+    // this.studendService.updateAnnouncmentStatus(this.selectedAnnouncement.id);
+    // this.isOpened=true;
+    this.studendService.updateAnnouncmentStatus(this.selectedAnnouncement.id).subscribe(
+      response => {
+       
+        console.log('Announcement status updated successfully');
+      },
+      error => {
+        console.error('Error updating announcement status:', error);
+        // handle error here
+      }
+    );
+    
+  }
+  isAnnouncementOpened(announcement: any): boolean {
+    return announcement.isOpened === '1';
+  }
+ 
  
 }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { FormControl, FormGroup } from '@angular/forms';
 declare var google:any;
 @Component({
   selector: 'app-course-info',
@@ -19,7 +20,7 @@ export class CourseInfoComponent {
   courseName: any;
   courseID:any;
   Years: any;
-  chooseYear: any;
+  chooseYear: any=2019;
   constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }
@@ -45,17 +46,19 @@ export class CourseInfoComponent {
   
      
     });
-    
+   
   }
+
+
   update(selectedValue: any): void {
    this.chooseYear=selectedValue
    console.log("this.chooseYear",this.chooseYear)
+   
    this.route.queryParams.subscribe(params => {
     this.courseInfo=params; 
     this.profAndTa.returnCourseStat(this.courseInfo.courseID,this.chooseYear).subscribe((courseStat: any) => {
       this.courseStat = courseStat;
-      // this.pased = this.courseStat[0].num_students_passed;
-      // this.faild = this.courseStat[0].num_students_failed;
+  
       this.pased = Number(this.courseStat[0].num_students_passed);
     this.faild = Number(this.courseStat[0].num_students_failed);
       // console.log(this.pased)
@@ -82,6 +85,7 @@ export class CourseInfoComponent {
   
   
   });
+  
 }
   drawPieChart(numStudentsPassed: number , numStudentsFailed: number){
     
@@ -159,7 +163,10 @@ export class CourseInfoComponent {
     //   chart.draw(data, options);
   }
 
-
+seeYears(){
+  console.log("test years",this.Years)
+  console.log("test TAs",this.TAs)
+}
   
   navigateToAddGrades() {
     this.router.navigate(['']);
