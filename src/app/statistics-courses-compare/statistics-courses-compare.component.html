@@ -1,24 +1,31 @@
-<div class="row">
+<div class="row ">
+    <div >
+        <button class="btn btn-primary button " style="margin-left: 590px; margin-bottom: 10px;" (click)="calculate()">compare</button>
+    </div>
     <div class="col-6" style="border-right: 1px solid lightgrey">
+       
         <div style="margin-left: 10px;">
             <div class="row" style="margin-bottom: 15px;">
                 <select #depts (change)="SelectDept(depts.value)"  style="width:300px; height:30px;" >
                     <option  value="" disabled selected>Program</option>
-                    <option *ngFor="let dept of Departments">
+                    <option *ngFor="let dept of Departments" [value]="dept.departmentCode">
                       {{dept.departmentCode}}
                     </option>
                 </select>
                 <select #courses (change)="SelectCourse(courses.value)"  style="width:300px; height:30px; margin-left: 20px;" >
                     <option  value="" disabled selected>Course</option>
-                    <option *ngFor="let course of Courses">{{course.courseName}}</option>
+                    <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
                 </select>
             </div>
             <div class="row" style="margin-bottom: 20px;">
                 <!-- معرفتش المفروض احط ايه فحطيت قيمة مؤقتة لغاية ما نظبطها  -->
-                <select #courses (change)="SelectYear(2023)"  style="width:620px; height:30px;" >
+                <select #Year (change)="SelectYear(Year.value)"  style="width:300px; height:30px;" >
                     <option  value="" disabled selected>Year</option>
-                    <option *ngFor="let year of Years"></option>
+                    <option *ngFor="let year of Years"[value]="year.Year">{{year.Year}}</option>
                 </select>
+                <!-- <div style="width:300px; height:30px;">
+                    <button class="btn btn-primary button "  (click)="calculate1()">Calculate</button>
+                </div> -->
             </div>
     
         </div>
@@ -26,11 +33,11 @@
         <div>
             <div class="stat_card">
                 <h5>Number of Enrolled Students</h5>
-                <div style="font-size:22px;">{{courseStat[0].num_students_registered}}</div>
+                <div style="font-size:22px;"*ngIf="courseStat && courseStat.length > 0">{{courseStat[0].num_students_registered}}</div>
             </div>
             <div class="stat_card">
                 <h5>Average Grades</h5>
-                <div style="font-size:22px;">{{AvgGrades[0].avg_grade}}</div>
+                <div style="font-size:22px;"  *ngIf="AvgGrades && AvgGrades.length > 0 ">{{AvgGrades[0].avg_grade}}</div>
             </div>
             <div class="stat_card">
                 <h5>Success Percentage</h5>
@@ -46,34 +53,37 @@
     <div class="col-6">
         <div style="margin-left: 15px;">
             <div class="row" style="margin-bottom: 15px;">
-                <select #depts (change)="SelectDept(depts.value)"  style="width:300px; height:30px;" >
+                <select  #depts2 (change)="SelectDept2(depts2.value)" style="width:300px; height:30px;" >
                     <option  value="" disabled selected>Program</option>
-                    <option *ngFor="let dept of Departments">
+                    <option *ngFor="let dept of Departments" [value]="dept.departmentCode">
                       {{dept.departmentCode}}
                     </option>
                 </select>
-                <select #courses (change)="SelectCourse(courses.value)"  style="width:300px; height:30px; margin-left: 20px;" >
+                <select #courses2 (change)="SelectCourse2(courses2.value)"  style="width:300px; height:30px; margin-left: 20px;" >
                     <option  value="" disabled selected>Course</option>
-                    <option *ngFor="let course of Courses">{{course.courseName}}</option>
+                    <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
                 </select>
             </div>
             <div class="row" style="margin-bottom: 20px;">
                 <!-- معرفتش المفروض احط ايه فحطيت قيمة مؤقتة لغاية ما نظبطها  -->
-                <select #courses (change)="SelectYear(2023)"  style="width:620px; height:30px;" >
+                <select #Year2 (change)="SelectYear2(Year2.value)" style="width:620px; height:30px;" >
                     <option  value="" disabled selected>Year</option>
-                    <option *ngFor="let year of Years"></option>
+                    <option *ngFor="let year of Years"[value]="year.Year">{{year.Year}}</option>
                 </select>
+                <!-- <div style="width:300px; height:30px;">
+                    <button class="btn btn-primary button "  (click)="calculate2()">Calculate</button>
+                </div> -->
             </div>
         </div>
         
         <div>
             <div class="stat_card">
                 <h5>Number of Enrolled Students</h5>
-                <div style="font-size:22px;">{{courseStat[0].num_students_registered}}</div>
+                <div style="font-size:22px;" *ngIf="courseStat2 && courseStat2.length > 0" >{{courseStat2[0].num_students_registered}}</div>
             </div>
             <div class="stat_card">
                 <h5>Average Grades</h5>
-                <div style="font-size:22px;">{{AvgGrades[0].avg_grade}}</div>
+                <div style="font-size:22px;" *ngIf="AvgGrades2 && AvgGrades2.length > 0 ">{{AvgGrades2[0].avg_grade}}</div>
             </div>
             <div class="stat_card">
                 <h5>Success Percentage</h5>

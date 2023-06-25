@@ -21,11 +21,15 @@
             </div>
             <div class="col-2">
                 Year :{{Years[1].Year}}
-                <select  required #year (change)="update(year.value)"  class="form-select" aria-label="Default select example">
+                <!-- <select  required #year (change)="update(year.value)"  class="form-select" aria-label="Default select example">
                     <option  value=" "> choose year</option>
                     <option  *ngFor= "let Year of Years" [value]="Year.Year">
                         {{Year.Year}} 
                     </option>
+                </select> -->
+                <select #Year (change)="update(Year.value)"  style="width:300px; height:30px;" >
+                    <option  value="" disabled selected  >Year</option>
+                    <option *ngFor="let year of Years" [value]="year.Year">{{year.Year}}</option>
                 </select>
             </div>
         </div>
@@ -63,11 +67,11 @@
             <div class="col-3" style="padding: 5px;">
                 <div class="stat_card">
                     <h5>Number of Enrolled Students</h5>
-                    <div style="font-size:22px;">{{courseStat[0].num_students_registered}}</div>
+                    <div style="font-size:22px;" *ngIf="courseStat && courseStat.length > 0">{{courseStat[0].num_students_registered}}</div>
                 </div>
                 <div class="stat_card">
                     <h5>Average Grades</h5>
-                    <div style="font-size:22px;">{{AvgGrades[0].avg_grade}}</div>
+                    <div style="font-size:22px;"  *ngIf="AvgGrades && AvgGrades.length > 0 ">{{AvgGrades[0].avg_grade}}</div>
                 </div>
                 <!-- <div class="stat_card">
                     <h5>Number of Enrolled Students in S1</h5>

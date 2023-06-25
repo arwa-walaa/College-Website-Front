@@ -161,5 +161,17 @@ export class StudentsService {
   updateAnnouncmentStatus(annID: number) {
     const url = `http://127.0.0.1:8000/api/updateAnnouncmentStatus/${annID}`;
     return this.http.post(url, {});}
+  getCourseYears()
+    {
+      let url= "http://127.0.0.1:8000/api/getCourseYears/";
+      return this.http.get(url);
+    }
+  getCourseProfYears(ProfId:any,CourseId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getCourseProfYears/"+ProfId+"/"+CourseId;
+    return this.http.get(url);
+  }
+
 }
+
 
