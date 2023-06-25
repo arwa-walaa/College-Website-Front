@@ -18,14 +18,20 @@ export class StatisticsCoursesCompareComponent {
   Departments:any;
   Years:any;
   data:any;
-
+  couseId:any
+  DepatmentCode:any
+  year:any
+  couseId2:any
+DepatmentCode2:any
+year2:any
   courseInfo: any;
   courseStat: any;
   pased!: number; 
   faild!:number;
   AvgGrades: any;
-  courseName: any;
-  courseID:any;
+  courseStat2: any;
+  AvgGrades2: any;
+ 
 
   constructor(private router: Router, private studendService: StudentsService,
     private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
@@ -42,75 +48,105 @@ export class StatisticsCoursesCompareComponent {
       next:(response)=> this.Departments=response
       
     });
+    this.studendService.getCourseYears().subscribe({
+      next:(response)=>{this.Years=response
+      console.log("years,",this.Years)} 
+      
+    });
 
-    //another method to get all years 
-
-
-
-    this.route.queryParams.subscribe(params => {
-      //////////////////  
-       const test = params['courseName'];
-       const test2 = params['courseID'];
-       this.courseName=test;
-       this.courseID = test2;
-       console.log('Course Name:',test);
-       console.log('Course ID:',test2);
-      //////////////////  
-       this.courseInfo=params;  
-       // console.log('courseInfo==',this.courseInfo);
-
-       // مش عارفة ازاي اظبط حوار ان عندنا الداتا بتاعت مادتين فسبتها لكم باك 
-         
-
-       this.profAndTa.returnCourseStat(this.courseInfo.courseID,2019).subscribe((courseStat: any) => {
-         this.courseStat = courseStat;
-         // this.pased = this.courseStat[0].num_students_passed;
-         // this.faild = this.courseStat[0].num_students_failed;
-         this.pased = Number(this.courseStat[0].num_students_passed);
-         this.faild = Number(this.courseStat[0].num_students_failed);
-         // console.log(this.pased)
-         google.charts.load('current', {'packages':['corechart']});
-         google.charts.setOnLoadCallback(() => {
-           this.drawPieChart1(this.pased,this.faild) 
-         });
-   
-         // google.charts.setOnLoadCallback(this.drawHistogram);
-       });
-       this.profAndTa.returnCourseStudent(this.courseInfo.courseID,2019).subscribe((studentStat: any) => {
-         // console.log("studentStat==",studentStat)
-         google.charts.load('current', {'packages':['corechart']});
-         google.charts.setOnLoadCallback(this.drawHistogram1(studentStat));
  
-       });
-       this.profAndTa.returnGradeAvg(this.courseInfo.courseID,2019).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
-       }
-     );
     
   }
 
+calculate(){
+  console.log("course1=",this.couseId,this.year,this.DepatmentCode)
+  this.profAndTa.returnCourseStat(this.couseId,this.year,this.DepatmentCode).subscribe((courseStat: any) => {
+    this.courseStat = courseStat;
+    // this.pased = this.courseStat[0].num_students_passed;
+    // this.faild = this.courseStat[0].num_students_failed;
+    this.pased = Number(this.courseStat[0].num_students_passed);
+    this.faild = Number(this.courseStat[0].num_students_failed);
+    // console.log(this.pased)
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(() => {
+      this.drawPieChart1(this.pased,this.faild) 
+    });
+
+    // google.charts.setOnLoadCallback(this.drawHistogram);
+  });
+  this.profAndTa.returnCourseStudent(this.couseId,this.year,this.DepatmentCode).subscribe((studentStat: any) => {
+    // console.log("studentStat==",studentStat)
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(this.drawHistogram1(studentStat));
+
+  });
+ 
+  this.profAndTa.returnGradeAvg(this.couseId,this.year,this.DepatmentCode).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
+ ///////////////////////////////////////Second course////////////////////
+    console.log("course2=",this.couseId2,this.year2,this.DepatmentCode2)
+    this.profAndTa.returnCourseStat(this.couseId2,this.year2,this.DepatmentCode2).subscribe((courseStat2: any) => {
+      this.courseStat2 = courseStat2;
+      // this.pased = this.courseStat[0].num_students_passed;
+      // this.faild = this.courseStat[0].num_students_failed;
+      this.pased = Number(this.courseStat2[0].num_students_passed);
+      this.faild = Number(this.courseStat2[0].num_students_failed);
+      // console.log(this.pased)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(() => {
+        this.drawPieChart2(this.pased,this.faild) 
+      });
+  
+      // google.charts.setOnLoadCallback(this.drawHistogram);
+    });
+    this.profAndTa.returnCourseStudent(this.couseId2,this.year2,this.DepatmentCode2).subscribe((studentStat2: any) => {
+      // console.log("studentStat==",studentStat)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(this.drawHistogram2(studentStat2));
+  
+    });
+    this.profAndTa.returnGradeAvg(this.couseId2,this.year2,this.DepatmentCode2).subscribe((AvgGrades2: any) => {this.AvgGrades2=AvgGrades2});
+    
+  
+
+}
 
 
   SelectDept(dept:any)
   {
-    console.log("select dept"+dept );
-    //this.studendService.getDeptTopbyParam50(dept).subscribe({
-    //  next:(response)=> this.data=response   
-    //});
+   
+    this.DepatmentCode=dept
+    
   }
 
   SelectCourse(course:any)
   {
-    console.log("select course "+course );
-    //this.studendService.getCourseTopbyParam50(course).subscribe({
-    //  next:(response)=> this.data=response 
-    //});
+   
+    this.couseId=course
   }
   SelectYear(year:any)
   {
-    console.log("select year "+ year );
-    //this.studendService.getLevelTopbyParam50(year).subscribe({
-    //  next:(response)=> this.data=response  
-    //});
+   
+   this.year=year
+   
+  }
+
+  SelectDept2(dept:any)
+  {
+   
+    this.DepatmentCode2=dept
+    
+  }
+
+  SelectCourse2(course:any)
+  {
+   
+    this.couseId2=course
+  }
+  SelectYear2(year:any)
+  {
+   
+   this.year2=year
+   
   }
 
 

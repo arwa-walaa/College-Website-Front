@@ -4,7 +4,7 @@
         <div class="col-3">
             <select #depts (change)="SelectDept(depts.value)"  style="width:300px; height:30px;" >
                 <option  value="" disabled selected>Program</option>
-                <option *ngFor="let dept of Departments">
+                <option *ngFor="let dept of Departments" [value]="dept.departmentCode">
                   {{dept.departmentCode}}
                 </option>
             </select>
@@ -12,39 +12,35 @@
         <div class="col-3">
             <select #courses (change)="SelectCourse(courses.value)"  style="width:300px; height:30px;" >
                 <option  value="" disabled selected>Course</option>
-                <option *ngFor="let course of Courses">{{course.courseName}}</option>
+                <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
             </select>
         </div>
         <div class="col-3">
             <!-- معرفتش المفروض احط ايه فحطيت قيمة مؤقتة لغاية ما نظبطها  -->
-            <select #courses (change)="SelectYear(2023)"  style="width:300px; height:30px;" >
-                <option  value="" disabled selected>Year</option>
-                <option *ngFor="let year of Years"></option>
+            <select #Year (change)="SelectYear(Year.value)"  style="width:300px; height:30px;" >
+                <option  value="" disabled selected  >Year</option>
+                <option *ngFor="let year of Years" [value]="year.Year">{{year.Year}}</option>
             </select>
         </div>
         <div class="col-3">
-            <button class="btn btn-primary button" (click)="showComparison = true">Compare</button>
+            <button class="btn btn-primary button2" (click)="showComparison = true">Compare</button>
+            <button class="btn btn-primary button2" style="margin-left: 10px;" (click)="test()">Calculate</button>
         </div>
+        
+      
     </div>
 
     <div class="row">
         <div class="col-3" style="padding: 5px;">
             <div class="stat_card">
                 <h5>Number of Enrolled Students</h5>
-                <div style="font-size:22px;">{{courseStat[0].num_students_registered}}</div>
+                <div style="font-size:22px;" *ngIf="courseStat && courseStat.length > 0 ">{{courseStat[0].num_students_registered}}</div>
             </div>
             <div class="stat_card">
                 <h5>Average Grades</h5>
-                <div style="font-size:22px;">{{AvgGrades[0].avg_grade}}</div>
+                <div style="font-size:22px;"  *ngIf="AvgGrades && AvgGrades.length > 0 ">{{AvgGrades[0].avg_grade}}</div>
             </div>
-            <!-- <div class="stat_card">
-                <h5>Number of Enrolled Students in S1</h5>
-                <div style="font-size:22px;">36</div>
-            </div>
-            <div class="stat_card">
-                <h5>Number of Enrolled Students in S2</h5>
-                <div style="font-size:22px;">40</div>
-            </div> -->
+           
         </div>
         <div class="col-4" style="padding: 5px;">
             <div class="stat_card">

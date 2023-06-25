@@ -18,7 +18,9 @@ export class StatisticsCoursesComponent {
   Departments:any;
   Years:any;
   data:any;
-
+couseId:any
+DepatmentCode:any
+year:any
   courseInfo: any;
   courseStat: any;
   pased!: number; 
@@ -42,74 +44,72 @@ export class StatisticsCoursesComponent {
       next:(response)=> this.Departments=response
       
     });
-
-    //another method to get all years 
-
-
-
-    this.route.queryParams.subscribe(params => {
-      //////////////////  
-       const test = params['courseName'];
-       const test2 = params['courseID'];
-       this.courseName=test;
-       this.courseID = test2;
-       console.log('Course Name:',test);
-       console.log('Course ID:',test2);
-      //////////////////  
-       this.courseInfo=params;  
-       // console.log('courseInfo==',this.courseInfo);
-         
-
-       this.profAndTa.returnCourseStat(this.courseInfo.courseID,2019).subscribe((courseStat: any) => {
-         this.courseStat = courseStat;
-         // this.pased = this.courseStat[0].num_students_passed;
-         // this.faild = this.courseStat[0].num_students_failed;
-         this.pased = Number(this.courseStat[0].num_students_passed);
-         this.faild = Number(this.courseStat[0].num_students_failed);
-         // console.log(this.pased)
-         google.charts.load('current', {'packages':['corechart']});
-         google.charts.setOnLoadCallback(() => {
-           this.drawPieChart(this.pased,this.faild) 
-         });
-   
-         // google.charts.setOnLoadCallback(this.drawHistogram);
-       });
-       this.profAndTa.returnCourseStudent(this.courseInfo.courseID,2019).subscribe((studentStat: any) => {
-         // console.log("studentStat==",studentStat)
-         google.charts.load('current', {'packages':['corechart']});
-         google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
+    this.studendService.getCourseYears().subscribe({
+      next:(response)=>{this.Years=response
+      console.log("years,",this.Years)} 
+      
+    });
  
-       });
-       this.profAndTa.returnGradeAvg(this.courseInfo.courseID,2019).subscribe((AvgGrades: any) => {this.AvgGrades=AvgGrades});
-       }
-     );
+ 
+
+
+   
+    
     
   }
+test(){
+  console.log("select year "+ this.year );
+  console.log("select course "+this.couseId );
+  console.log("select dept"+this.DepatmentCode );
+ 
+    this.profAndTa.returnCourseStat(this.couseId,this.year,this.DepatmentCode).subscribe((courseStat: any) => {
+      this.courseStat = courseStat;
+      // this.pased = this.courseStat[0].num_students_passed;
+      // this.faild = this.courseStat[0].num_students_failed;
+      this.pased = Number(this.courseStat[0].num_students_passed);
+      this.faild = Number(this.courseStat[0].num_students_failed);
+      // console.log(this.pased)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(() => {
+        this.drawPieChart(this.pased,this.faild) 
+      });
+  
+      // google.charts.setOnLoadCallback(this.drawHistogram);
+    });
+    this.profAndTa.returnCourseStudent(this.couseId,this.year,this.DepatmentCode).subscribe((studentStat: any) => {
+       console.log("studentStat==",studentStat)
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
+  
+    });
+    this.profAndTa.returnGradeAvg(this.couseId,this.year,this.DepatmentCode).subscribe((AvgGrades: any) =>
+     {this.AvgGrades=AvgGrades
+    console.log("AvgGrades",this.AvgGrades)});
+ 
 
+}
 
 
   SelectDept(dept:any)
   {
-    console.log("select dept"+dept );
-    //this.studendService.getDeptTopbyParam50(dept).subscribe({
-    //  next:(response)=> this.data=response   
-    //});
+   
+    this.DepatmentCode=dept
+    
   }
 
   SelectCourse(course:any)
   {
-    console.log("select course "+course );
-    //this.studendService.getCourseTopbyParam50(course).subscribe({
-    //  next:(response)=> this.data=response 
-    //});
+   
+    this.couseId=course
   }
   SelectYear(year:any)
   {
-    console.log("select year "+ year );
-    //this.studendService.getLevelTopbyParam50(year).subscribe({
-    //  next:(response)=> this.data=response  
-    //});
+   
+   this.year=year
+   
   }
+
+ 
 
 
   drawPieChart(numStudentsPassed: number , numStudentsFailed: number){

@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ProfessorTAService } from '../professor-ta.service';
+import { StudentsService } from '../students.service';
 declare var google:any;
 @Component({
   selector: 'app-course-info',
@@ -21,7 +23,7 @@ export class CourseInfoComponent {
   courseID:any;
   Years: any;
   chooseYear: any=2019;
-  constructor(private router: Router,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService) {
+  constructor(private router: Router,private studendService: StudentsService,private route: ActivatedRoute,private profAndTa:ProfessorAndTaService ,private http: HttpClient,private _AuthService:AuthService,private profService:ProfessorTAService) {
   
   }
   ngOnInit(): void {
@@ -30,10 +32,11 @@ export class CourseInfoComponent {
       this.courseInfo=params;  
       const token=this._AuthService.getToken();
       this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-        this.profAndTa.getCourseYears(ProfessorData[0].professorId,params['courseID'])
-        .subscribe((Years:any ) => {
-            this.Years=Years
-            console.log("Years",this.Years)
+        this.studendService.getCourseProfYears(ProfessorData[0].professorId,params['courseID'])
+        .subscribe({
+          next:(response)=>{this.Years=response
+          console.log("years,",this.Years)} 
+          
         });
       });
     
@@ -56,7 +59,8 @@ export class CourseInfoComponent {
    
    this.route.queryParams.subscribe(params => {
     this.courseInfo=params; 
-    this.profAndTa.returnCourseStat(this.courseInfo.courseID,this.chooseYear).subscribe((courseStat: any) => {
+    this.profAndTa.returnCourseStat(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode
+      ).subscribe((courseStat: any) => {
       this.courseStat = courseStat;
   
       this.pased = Number(this.courseStat[0].num_students_passed);
@@ -70,13 +74,13 @@ export class CourseInfoComponent {
 
       // google.charts.setOnLoadCallback(this.drawHistogram);
     });
-    this.profAndTa.returnCourseStudent(this.courseInfo.courseID,this.chooseYear).subscribe((studentStat: any) => {
+    this.profAndTa.returnCourseStudent(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode).subscribe((studentStat: any) => {
       // console.log("studentStat==",studentStat)
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
 
     });
-    this.profAndTa.returnGradeAvg(this.courseInfo.courseID,this.chooseYear).subscribe((AvgGrades: any) =>
+    this.profAndTa.returnGradeAvg(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode).subscribe((AvgGrades: any) =>
     {this.AvgGrades=AvgGrades});
     
 
