@@ -68,6 +68,7 @@ import { StatisticsCoursesCompareComponent } from './statistics-courses-compare/
 // import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
+import { AdminService } from './admin.service';
 // import {BreadcrumbModule} from 'angular-crumbs';
 @NgModule({
   declarations: [
@@ -138,7 +139,9 @@ import { DatePipe } from '@angular/common';
     // BreadcrumbModule
 
   ],
-  providers: [DatePipe,
+  providers:
+   [DatePipe,
+  AdminService
     // { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]

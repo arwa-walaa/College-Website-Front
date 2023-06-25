@@ -19,23 +19,13 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-4">
+    <div  class="row">
+    
+        <div *ngFor="let departmentData of histogramData" class="col-4">
             <div class="stat_card">
-                <h5>GPA distrbution in IT</h5>
-                <div id="chart3"></div>
+              <h5>GPA distribution in {{departmentData.department}} Department</h5>
+              <div [id]="'chart-' + departmentData.department"></div>
+              <!-- <div id="IS"></div> -->
             </div>
-        </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in DS</h5>
-                <div id="chart4"></div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in AI</h5>
-                <div id="chart5"></div>
-            </div>
-        </div>
+          </div>
     </div>

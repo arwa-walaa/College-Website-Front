@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { StudentsService } from '../students.service';
 import { AuthService } from '../auth.service';
+import { AdminService } from './../admin.service';
 
 @Component({
   selector: 'app-registerd-courses-and-results',
@@ -11,25 +12,32 @@ import { AuthService } from '../auth.service';
 export class RegisterdCoursesAndResultsComponent implements OnInit{
   RegisteredCoursesInfo: any;
   StudentData: any;
+  registerationStatus: any;
 
-  constructor(private router: Router,private studendService: StudentsService,private _AuthService:AuthService) {}
+  constructor(private router: Router,private studentService: StudentsService,
+    private _AuthService:AuthService ,private _AdminService:AdminService) {}
   
   ngOnInit(): void {
      
     const token=this._AuthService.getToken();
-    this.studendService.getStudentInfo(token).subscribe((StudentData:any ) => {
-      this.StudentData=StudentData
-      this.getRegisteredCourses(StudentData[0].studentId)
+    this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
+      this.StudentData=StudentData;
+      this.getRegisteredCourses(StudentData[0].studentId);
+      
 
     });
+
+    
+    this.registerationStatus = this._AdminService.getRegisterationStatus();
   }
   getRegisteredCourses(studentId:any){
-    this.studendService.returnCourseResult(studentId).subscribe({
+    this.studentService.returnCourseResult(studentId).subscribe({
       next:(response)=> this.RegisteredCoursesInfo=response
       
     });
     
    }
+
   title='Registered Courses & Results';
   data=[
     // {code:"IS422" ,name:"Big Data", group:"S1" ,hours:"3", level:"Four",year:"2019", term:"First",absence:0,termWork:40,examWork:55,result:95,grade:"A+"},
