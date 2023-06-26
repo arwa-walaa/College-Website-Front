@@ -128,5 +128,13 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/getCourseProfYears/"+ProfId+"/"+CourseId;
     return this.http.get(url);
   }
-
+  getFeedbacks(courseName:any,professorId:any)
+  {
+   let url= "http://127.0.0.1:8000/api/getFeedbacks/"+courseName+"/"+professorId; 
+    return this.http.get(url);
+  }
+  getTAs_Feedbacks_for_specific_course(courseName:any,professorId:any){
+    let url= "http://127.0.0.1:8000/api/getTAs_Feedbacks_for_specific_course/"+courseName+"/"+professorId; 
+    return this.http.get(url);
+  }
 }
