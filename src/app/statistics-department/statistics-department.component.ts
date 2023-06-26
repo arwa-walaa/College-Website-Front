@@ -10,13 +10,11 @@ declare var google:any;
 })
 
 export class StatisticsDepartmentComponent {
-
-  
   private _AdminService: AdminService;
   numStudents:any;
   GPADepartments: any;
- // histogramData:string[] = [];
   histogramData:any;
+  departments: any;
 
   constructor(adminService: AdminService,
     private _AuthService:AuthService) {
@@ -42,13 +40,17 @@ export class StatisticsDepartmentComponent {
         (data: any) => {
           console.log('GPA Distribution by Department', data);
           this.histogramData = [];
+          this.departments=[];
 
+          google.charts.setOnLoadCallback(() => {
           for (let department in data) {
             console.log('dept', department);
             console.log('data of dept', data[department]);
             this.histogramData.push({ department: department, data: data[department] });
+            this.departments.push(department);
             this.drawHistogram(department, data[department]);
           }
+        });
         },
         error => {
           console.error('Error!', error);
@@ -77,33 +79,7 @@ export class StatisticsDepartmentComponent {
     chart.draw(chartData, options);
   }
 
-  // drawHistogramIS(data: any[]) {
-  //   google.charts.load('current', {packages: ['corechart']});
-  //   var chartData = new google.visualization.DataTable();
-  //   chartData.addColumn('string', 'Student');
-  //   chartData.addColumn('number', 'GPA');
-  //   data.forEach(row => {
-  //     chartData.addRow([row.studentId, row.GPA]);
-  //   });
-  
-  //   // Set chart options
-  //   var options = {
-  //     histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-  //     hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-  //     legend:{ position: 'none' },
-  //     width:365,
-  //     height:400,
-  //     colors:['#141ba2'],
-  //     };
-
-  //     var chart = new google.visualization.Histogram(document.getElementById('chart2'));
-  //     chart.draw(chartData, options);
-  // }
-
-  drawHistogram(department: string, data: any[]) {
-    //google.charts.load('current', {packages: ['corechart']});
-    google.charts.setOnLoadCallback(() => {
-          
+  drawHistogram(department: string, data: any[]) {       
     var chartData = new google.visualization.DataTable();
     chartData.addColumn('string', 'Student');
     chartData.addColumn('number', 'GPA');
@@ -113,194 +89,25 @@ export class StatisticsDepartmentComponent {
   
     // Set chart options
     var options = {
-      title: 'GPA Distribution in ' + department + ' Department',
+      // title: 'GPA Distribution in ' + department + ' Department',
       histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-      hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
+      hAxis: 
+      {
+        title: 'GPA',
+        ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]
+      },
+      vAxis: {
+        title: 'Number of Students',        
+      },
       legend:{ position: 'none' },
+      
       width:365,
       height:400,
       colors:['#141ba2'],
     };
-  
-    var chart = new google.visualization.Histogram(document.getElementById(`chart-${department}`));
-    // var chart = new google.visualization.Histogram(document.getElementById('IS'));
+    
+    var chart = new google.visualization.Histogram(document.getElementById(department));
     chart.draw(chartData, options);
-
-  });
-  }
-
-  // drawHistogramCS(){
-  //   // Create the data table.
-  //   var data = new google.visualization.DataTable();
-  //   data.addColumn('string', 'Stident');;
-  //   data.addColumn('number', 'GPA');
-    
-  //   data.addRows([
-  //     ['20190078', 2.3],
-  //     ['20190475', 3.6],
-  //     ['20190143', 1.4], 
-  //     ['20190186', 2.9],
-  //     ['20190028', 3.3],
-  //     ['20190475', 3.8],
-  //   ]);
-  //   // Add data from studentData array to DataTable
-  //   //for(var i=0; i<studentData.length; i++){
-  //   //  data.addRow([studentData[i].studentId, studentData[i].Result]);
-  //   //}
-
-  //   // Set chart options
-  //   var options = {
-  //     histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-  //     hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-  //     legend:{ position: 'none' },
-  //     width:365,
-  //     height:400,
-  //     colors:['#141ba2'],
-  //     };
-
-  //   // Instantiate and draw our chart, passing in some options.
-  //   var chart = new google.visualization.Histogram(document.getElementById('chart1'));
-  //   chart.draw(data, options);
-  // }
-
-  // drawHistogramIS(){
-  //   // Create the data table.
-  //   var data = new google.visualization.DataTable();
-  //   data.addColumn('string', 'Student');;
-  //   data.addColumn('number', 'GPA');
-    
-  //   data.addRows([
-  //     ['20190078', 2.1],
-  //     ['20190475', 3.6],
-  //     ['20190143', 1.2], 
-  //     ['20190186', 2.9],
-  //     ['20190028', 1.8],
-  //     ['20190475', 3.0],
-  //     ['20190475', 2.6],
-  //   ]);
-  //   // Add data from studentData array to DataTable
-  //   //for(var i=0; i<studentData.length; i++){
-  //   //  data.addRow([studentData[i].studentId, studentData[i].Result]);
-  //   //}
-
-  //   // Set chart options
-  //   var options = {
-  //     histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-  //     hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-  //     legend:{ position: 'none' },
-  //     width:365,
-  //     height:400,
-  //     colors:['#141ba2'],
-  //     };
-
-  //   // Instantiate and draw our chart, passing in some options.
-  //   var chart = new google.visualization.Histogram(document.getElementById('chart2'));
-  //   chart.draw(data, options);
-  // }
-
-  drawHistogramIT(){
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Stident');;
-    data.addColumn('number', 'GPA');
-    
-    data.addRows([
-      ['20190078', 2.1],
-      ['20190475', 3.6],
-      ['20190143', 1.2], 
-      ['20190186', 2.9],
-      ['20190028', 1.8],
-      ['20190475', 3.0],
-      ['20190475', 2.6],
-    ]);
-    // Add data from studentData array to DataTable
-    //for(var i=0; i<studentData.length; i++){
-    //  data.addRow([studentData[i].studentId, studentData[i].Result]);
-    //}
-
-    // Set chart options
-    var options = {
-      histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-      hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-      legend:{ position: 'none' },
-      width:365,
-      height:400,
-      colors:['#141ba2'],
-      };
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.Histogram(document.getElementById('chart3'));
-    chart.draw(data, options);
-  }
-
-  drawHistogramDS(){
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Stident');;
-    data.addColumn('number', 'GPA');
-    
-    data.addRows([
-      ['20190078', 2.1],
-      ['20190475', 3.6],
-      ['20190143', 1.2], 
-      ['20190186', 2.9],
-      ['20190028', 1.8],
-      ['20190475', 3.0],
-      ['20190475', 2.6],
-    ]);
-    // Add data from studentData array to DataTable
-    //for(var i=0; i<studentData.length; i++){
-    //  data.addRow([studentData[i].studentId, studentData[i].Result]);
-    //}
-
-    // Set chart options
-    var options = {
-      histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-      hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-      legend:{ position: 'none' },
-      width:365,
-      height:400,
-      colors:['#141ba2'],
-      };
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.Histogram(document.getElementById('chart4'));
-    chart.draw(data, options);
-  }
-
-  drawHistogramAI(){
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Stident');;
-    data.addColumn('number', 'GPA');
-    
-    data.addRows([
-      ['20190078', 2.1],
-      ['20190475', 3.6],
-      ['20190143', 1.2], 
-      ['20190186', 2.9],
-      ['20190028', 1.8],
-      ['20190475', 3.0],
-      ['20190475', 2.6],
-    ]);
-    // Add data from studentData array to DataTable
-    //for(var i=0; i<studentData.length; i++){
-    //  data.addRow([studentData[i].studentId, studentData[i].Result]);
-    //}
-
-    // Set chart options
-    var options = {
-      histogram: {bucketSize: 0.5, minValue: 0, maxValue: 4, hideBucketItems:true,},
-      hAxis: {ticks: [0, 1.5, 2, 2.5, 3, 3.5, 4]},
-      legend:{ position: 'none' },
-      width:365,
-      height:400,
-      colors:['#141ba2'],
-      };
-
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.Histogram(document.getElementById('chart5'));
-    chart.draw(data, options);
   }
 
 }

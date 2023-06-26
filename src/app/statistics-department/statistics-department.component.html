@@ -9,23 +9,52 @@
         <div class="col-4">
             <div class="stat_card">
                 <h5>GPA distrbution in CS</h5>
-                <div id="chart1"></div>
+                <div id="CS"></div>
             </div>
         </div>
         <div class="col-4">
             <div class="stat_card">
                 <h5>GPA distrbution in IS</h5>
-                <div id="chart2"></div>
+                <div id="IS"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="stat_card">
+                <h5>GPA distrbution in IT</h5>
+                <div id="IT"></div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="stat_card">
+                <h5>GPA distrbution in DS</h5>
+                <div id="DS"></div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="stat_card">
+                <h5>GPA distrbution in AI</h5>
+                <div id="AI"></div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="stat_card">
+                <h5>GPA distrbution in General</h5>
+                <div id="general"></div>
             </div>
         </div>
     </div>
     <div  class="row">
     
-        <div *ngFor="let departmentData of histogramData" class="col-4">
+        <!-- <div *ngFor="let department of departments" class="col-4">
             <div class="stat_card">
-              <h5>GPA distribution in {{departmentData.department}} Department</h5>
-              <div [id]="'chart-' + departmentData.department"></div>
-              <!-- <div id="IS"></div> -->
+              <h5>GPA distribution in {{department}} Department</h5>
+              
+              <div [id]="department"></div>
+             
+             
             </div>
-          </div>
+          </div> -->
+          
     </div>
