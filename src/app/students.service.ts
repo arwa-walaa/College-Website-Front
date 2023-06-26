@@ -78,9 +78,9 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/student_info/"+token;
     return this.http.get(url);
   }
-  getCoursesForStudent(level:any,StudendID:any,department:any,semester:any)
+  getCoursesForStudent(level:any,StudendID:any,semester:any)
   {
-    let url= "http://127.0.0.1:8000/api/CourseeForSemester/"+level+"/"+semester+"/"+department+"/"+StudendID;
+    let url= "http://127.0.0.1:8000/api/CourseeForSemester/"+level+"/"+semester+"/"+StudendID;
     
     return this.http.get(url);
   }

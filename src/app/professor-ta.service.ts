@@ -7,15 +7,15 @@ import { Injectable } from '@angular/core';
 export class ProfessorTAService {
 
   constructor(private http:HttpClient) { }  
-  returnProfScheduale(ProfessorID:any)
+  returnProfScheduale(ProfessorID:any,Semester:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnProfScheudule/"+ProfessorID;
+    let url= "http://127.0.0.1:8000/api/returnProfScheudule/"+ProfessorID+"/"+Semester;
     return this.http.get(url);
    
   }
-  returnTAScheduale(TAID:any)
+  returnTAScheduale(TAID:any,Semeter:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnTAScheudule/"+TAID;
+    let url= "http://127.0.0.1:8000/api/returnTAScheudule/"+TAID+"/"+Semeter;
     return this.http.get(url);
    
   }
@@ -25,9 +25,9 @@ export class ProfessorTAService {
     return this.http.get(url);
    
   }
-  returnSchedualePlace(place:any)
+  returnSchedualePlace(place:any,Semeter:any)
   {
-    let url= "http://127.0.0.1:8000/api/returnPlaceScheduale/"+place;
+    let url= "http://127.0.0.1:8000/api/returnPlaceScheduale/"+place+"/"+Semeter;
     return this.http.get(url);
    
   }

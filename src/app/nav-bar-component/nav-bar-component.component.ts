@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
 import { StudentsService } from '../students.service';
+import { BreadcrumbService } from '../breadcrumb.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar-component',
@@ -22,9 +24,17 @@ export class NavBarComponentComponent {
     private profAndTa:ProfessorAndTaService ,
     private http: HttpClient,
     private _AuthService:AuthService,
-    private studendService: StudentsService) {}
+    private studendService: StudentsService
+    ,private breadcrumbService: BreadcrumbService) {}
  
     ngOnInit(): void {
+
+
+
+      
+      
+
+
       const token=this._AuthService.getToken();
       if(this._AuthService.getToken()){
         this.isLog=true;
@@ -108,6 +118,16 @@ export class NavBarComponentComponent {
   
   });
 
+  }
+  private updateBreadcrumbData(url: string): void {
+    const segments = url.split('/').slice(1);
+    const crumbs = [{ label: 'Home', path: '/' }];
+    segments.forEach((segment, index) => {
+      const label = segment.charAt(0).toUpperCase() + segment.slice(1); // Capitalize first letter
+      const path = `/${segments.slice(0, index + 1).join('/')}`;
+      crumbs.push({ label, path });
+    });
+    this.breadcrumbService.crumbsSubject.next(crumbs);
   }
 
 }

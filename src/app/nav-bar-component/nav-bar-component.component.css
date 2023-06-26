@@ -3,3 +3,13 @@
 .navbar-nav:last-child {
   flex-shrink: 0;
 }
+@media (max-width: 767px) {
+  .col-md-6 {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .input-group {
+    width: 100%;
+  }
+}

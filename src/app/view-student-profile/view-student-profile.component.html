@@ -13,8 +13,8 @@
 </head>
 <body>
     
-<h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">Profile</h1>
-
+    <h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder; display: inline-block;">Profile</h1>
+    <button (click)="navigateToStudentGrades()" class="btn btn-primary button" style="display: inline-block; margin-left: 965px;">View Student Grades</button>
 <form action="/action_page.php"  class="form">
     <label >ID</label><br>
     <input type="text" id="id" name="id" value={{StudentData.studentId}} class="disabled" disabled><br><br>
