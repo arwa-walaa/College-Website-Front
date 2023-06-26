@@ -29,6 +29,11 @@ export class CourseInfoComponent {
   ngOnInit(): void {
    
     this.route.queryParams.subscribe(params => {
+      const test = params['courseName'];
+      const test2 = params['Course_Code'];
+      this.courseName=test;
+      this.courseID = test2;
+      //////////////////////////////
       this.courseInfo=params;  
       const token=this._AuthService.getToken();
       this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
@@ -45,11 +50,9 @@ export class CourseInfoComponent {
       this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
       console.log("tas==",this.TAs)
     })
-   
-  
      
     });
-   
+ 
   }
 
 
@@ -83,11 +86,6 @@ export class CourseInfoComponent {
     this.profAndTa.returnGradeAvg(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode).subscribe((AvgGrades: any) =>
     {this.AvgGrades=AvgGrades});
     
-
-  
-  
-  
-  
   });
   
 }
@@ -178,8 +176,8 @@ seeYears(){
   navigateToSeeFeedbacks() {
     this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
   }
+
   navigateToViewStudents() {
     this.router.navigate(['']);
   }
 }
-

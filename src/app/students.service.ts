@@ -106,11 +106,7 @@ export class StudentsService {
    //return 'helo';
   }
 
-  getFeedbacks(courseName:any,professorId:any)
-  {
-   let url= "http://127.0.0.1:8000/api/getFeedbacks/"+courseName+"/"+professorId; 
-    return this.http.get(url);
-  }
+ 
 
 
   evaluateProfessor(formData:any)
