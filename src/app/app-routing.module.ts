@@ -52,6 +52,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
+import { AdminOptionsComponent } from './admin-options/admin-options.component';
+import { AddGradesComponent } from './add-grades/add-grades.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
 
@@ -110,6 +113,9 @@ const routes: Routes = [
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards'},
+{path:'admin_options',component:AdminOptionsComponent,title:'Admin Options'},
+{path:'add_grades',component:AddGradesComponent,title:'Add Grades'},
+{path:'add_course',component:AddCourseComponent,title:'Add Course'},
 
 {path:'',redirectTo:'home',pathMatch:'full'},
 ];

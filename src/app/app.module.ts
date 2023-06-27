@@ -69,6 +69,9 @@ import { StatisticsCoursesCompareComponent } from './statistics-courses-compare/
 import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
 import { AdminService } from './admin.service';
+import { AdminOptionsComponent } from './admin-options/admin-options.component';
+import { AddGradesComponent } from './add-grades/add-grades.component';
+import { AddCourseComponent } from './add-course/add-course.component';
 // import {BreadcrumbModule} from 'angular-crumbs';
 @NgModule({
   declarations: [
@@ -119,6 +122,9 @@ import { AdminService } from './admin.service';
     StatisticsCoursesComponent,
     StatisticsCoursesCompareComponent,
     AddAnnouncementsComponent,
+    AdminOptionsComponent,
+    AddGradesComponent,
+    AddCourseComponent,
     // MessageService,
   ],
   imports: [

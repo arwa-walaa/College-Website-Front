@@ -1,0 +1,53 @@
+<div class="container">
+    <br><br>
+    <h2 style="font-weight: bold;">Add Grades</h2><br>
+
+    <div style="width: 1000px; margin: 5px auto;">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-6">
+                <select #courses (change)="SelectCourse(courses.value)"  style="width:490px; height:30px;" >
+                    <option  value="" disabled selected>Course</option>
+                    <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <select #students (change)="SelectStudent(students.value)"  style="width:490px; height:30px;" >
+                    <option  value="" disabled selected>Student</option>
+                    <option *ngFor="let student of Students" [value]="student.courseID">{{student.courseName}}</option>
+                </select>
+            </div>
+        </div>
+        
+        
+        
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group">
+              <label for="termGrade">Term Work Grade</label>
+              <input type="number" class="form-control" placeholder="Enter term work grade" formControlName="termGrade">
+              <div *ngIf="form.get('termGrade')?.errors && form.get('termGrade')?.touched" style="margin-top: 5px;">
+                <p *ngIf="form.get('termGrade')?.getError('required')" class="alert py-1 alert-danger">Term Work Grade is required</p>
+                <p *ngIf="form.get('termGrade').hasError('min')" class="alert py-1 alert-danger">Term Work Grade cannot be less than 0</p>
+                <p *ngIf="form.get('termGrade').hasError('max')" class="alert py-1 alert-danger">Term Work Grade cannot be greater than 40</p>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="finalGrade">Final Exam Grade</label>
+                <input type="number" class="form-control" placeholder="Enter final exam grade" formControlName="finalGrade">
+                <div *ngIf="form.get('finalGrade')?.errors && form.get('finalGrade')?.touched" style="margin-top: 5px;">
+                  <p *ngIf="form.get('finalGrade')?.getError('required')" class="alert py-1 alert-danger">Final Exam Grade is required</p>
+                  <p *ngIf="form.get('finalGrade').hasError('min')" class="alert py-1 alert-danger">Final Exam Grade cannot be less than 0</p>
+                  <p *ngIf="form.get('finalGrade').hasError('max')" class="alert py-1 alert-danger">Final Exam Grade cannot be greater than 60</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center" style="margin-top: 10px;">
+                <button type="submit" class="btn btn-primary button">Add Grades</button>
+            </div>  
+
+            <div  style="margin-top: 10px;">
+                <p *ngIf="formSubmitted && form.valid" class="alert py-1 alert-success">Grade was added successfully.</p>
+            </div>
+        </form>
+    </div>
+
+    
+</div>

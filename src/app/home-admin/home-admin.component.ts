@@ -18,8 +18,8 @@ export class HomeAdminComponent implements OnInit{
   navigateToDashboards() {
     this.router.navigate(['dashboard']);
   }
-  navigateToAddGrades() {
-    this.router.navigate(['']);
+  navigateToOptions() {
+    this.router.navigate(['admin_options']);
   }
   navigateToAcceptedGP() {
     this.router.navigate(['']);

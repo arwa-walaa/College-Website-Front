@@ -1,0 +1,59 @@
+<div class="container">
+    <br><br>
+    <h2 style="font-weight: bold;">Admin Options</h2><br>
+
+    <div class="row">
+        <div class="col-md-6"  style="border-right: 1px solid lightgrey">
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary button" style="width: 290px;" (click)="navigateToAddGrades()">Add Grades</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary button" style="width: 280px;" (click)="navigateToAddCourse()">Add Course</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary button" style="width: 290px;" (click)="calculateGPA()">Calculate GPA</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary button" style="width: 280px;" (click)="calculatePreferences()">Calculate Program Preferences</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex justify-content-between">
+                <p>Open course registration to students</p>
+                <label class="switch">
+                  <input type="checkbox" (click)="setRegistrationStatus($event)">
+                  <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <p>Open course evaluation form to students</p>
+                <label class="switch">
+                  <input type="checkbox" (click)="setEvaluationStatus($event)">
+                  <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <p>Open specialization program selection to students</p>
+                <label class="switch">
+                  <input type="checkbox" (click)="setSelectionStatus($event)">
+                  <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <p>Open graduation project form to students</p>
+                <label class="switch">
+                  <input type="checkbox" (click)="setGPFormStatus($event)">
+                  <span class="slider round"></span>
+                </label>
+            </div>
+
+        </div>
+    </div>
+</div>

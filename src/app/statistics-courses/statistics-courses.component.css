@@ -17,13 +17,6 @@ select{
     border:none; 
     background-color: #3E8DE3; 
     color:white;
-    padding: 5px;
-    width: 300px;
-}
-.button {
-    border:none; 
-    background-color: #3E8DE3; 
-    color:white;
-    padding: 5px;
-    width: 200px;
+    padding: 4px 30px;
+    margin-left: 5px;
 }
