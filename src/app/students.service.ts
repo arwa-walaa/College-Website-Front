@@ -25,15 +25,15 @@ export class StudentsService {
     return this.http.get(url);
   }
 
-  getProfessorID(courseID:any)
+  getProfessorID(studId:any,courseID:any)
   {
-    let url= "http://127.0.0.1:8000/api/getProfessorID/"+courseID;
+    let url= "http://127.0.0.1:8000/api/getProfessorID/"+studId+"/"+courseID;
     return this.http.get(url);
   }
 
   getTAID(courseID:any)
   {
-    let url= "http://127.0.0.1:8000/api/getTAID/"+courseID;
+    let url= "http://127.0.0.1:8000/api/getTAID/"+courseID;;
     return this.http.get(url);
   }
 

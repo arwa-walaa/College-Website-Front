@@ -14,7 +14,9 @@ import { AuthService } from '../auth.service';
 export class CourseFormEvaluationComponent implements OnInit {
 
   @ViewChild('form') form: any;
+  courseValid:boolean = false;
   currentPage = 1;
+  counter = 0;
   firstPageSubmitted: boolean = false;
   secondPageSubmitted: boolean = false;
   finalPageSubmitted: boolean = false;
@@ -33,24 +35,67 @@ export class CourseFormEvaluationComponent implements OnInit {
   isClearAgenda: any;
   teacherEffectiveness: any;
   communicationSkills: any;
-  professorId: any;
-
   TAengagedStudents: any;
   TAconveiedMaterial: any;
   TAisClearAgenda: any;
   TAteacherEffectiveness: any;
   TAcommunicationSkills: any;
   TAId: any;
-
-  CID: any;
-
-
-  //courseID:any;
   tableData: any;
-
   isValid: any;
-studId:any;
-  //courseId:any;
+  studId:any;
+  professorIds: any;
+  professorObjects: any = [];
+  ///////////////////////
+
+  options = [
+    { value: "1", label: 'Very Poor' },
+    
+    { value: "2", label: 'Poor' },
+    
+    { value: "3", label: 'Average' },
+    
+    { value: "4", label: 'Good' },
+    
+    { value: "5", label: 'Excellent' } 
+  ];
+
+  course = [
+    { name: "isClear", question: 'To what extent the content is clear?', value: null },
+    
+    { name: "isRepeated", question: 'To what extent the content is not repeated?' , value: null},
+    
+    { name: "preparetionForFutureCourses", question: 'How effectively did the course content' ,value: null},
+    
+    { name: "relevantToObjectives", question: 'How relevant was the course content to the course objectives?',value:null },
+    
+    { name: "contentRate", question: 'To what extent was the content of the course good?',value: null } 
+  ];
+
+  professor = [
+    { name: "engagedStudents", question: 'How well did the professor engage students during class?',value: null },
+    
+    { name: "teacherEffectiveness", question: "How would you rate the professor\'s overall effectiveness as a teacher?" ,value: null},
+    
+    { name: "communicationSkills", question: 'How would you rate the professor\'s communication skills?',value: null },
+    
+    { name: "isClearAgenda", question: 'Were the course expectations and grading criteria clearly communicated?',value: null },
+    
+    { name: "conveiedMaterial", question: 'How effectively did the professor convey the material covered in the course?',value: null } 
+  ];
+
+  ta = [
+    { name: "TAengagedStudents", question: 'How well did the ta engage students during class?',value: null },
+    
+    { name: "TAteacherEffectiveness", question: "How would you rate the ta\'s overall effectiveness as a teacher?",value: null },
+    
+    { name: "TAcommunicationSkills", question: 'How would you rate the ta\'s communication skills?',value: null },
+    
+    { name: "TAisClearAgenda", question: 'Were the course expectations and grading criteria clearly communicated?',value: null },
+    
+    { name: "TAconveiedMaterial", question: 'How effectively did the ta convey the material covered in the course?' ,value: null} 
+  ];
+
   constructor(private _AuthService:AuthService,private route: ActivatedRoute, private router: Router, private __StudentsService: StudentsService, private http: HttpClient) { }
   ngOnInit(): void {
     const token=this._AuthService.getToken();
@@ -80,10 +125,27 @@ studId:any;
     });
 
 
-    this.__StudentsService.getProfessorID(this.courseID).subscribe({
+    this.__StudentsService.getProfessorID(this.studId,this.courseID).subscribe({
       next: (response: any) => {
-        this.professorId = response;
-        console.log(this.professorId); // Move the console.log statement inside the subscribe block
+        this.professorIds = response;
+        console.log('prof idssssssssss',this.professorIds);
+        this.professorObjects = [];
+
+        for (const professor of this.professorIds) {
+          for (const key in professor) {
+            if (key.startsWith('professorID')) {
+              const index = key.replace('professorID', '');
+              const professorName = professor[`professorName${index}`];
+              if (this.professorIds[0].professorName2 != null) {
+                this.professorObjects.push({
+                  professorId: professor[key],
+                  professorName: professorName
+                });
+              }
+            }
+          }
+        }
+        console.log('prof ids',this.professorObjects); // Move the console.log statement inside the subscribe block
         // Code that uses the tableData variable goes here
       },
       error: (error) => {
@@ -106,91 +168,132 @@ studId:any;
 
   onSubmit() {
     // Submit current page
+    const formData = new FormData();
+
     if (this.currentPage === 1) {
-      if (this.isClear != null && this.isRepeated != null && this.preparetionForFutureCourses != null &&
-        this.relevantToObjectives != null && this.contentRate != null &&
-        this.courseID != null) {
+      let unfilledOptions = [];
+      for (let i = 0; i < this.course.length; i++) {
+        console.log('course array',this.course[i].value);
+        if (this.course[i].value != null && this.courseID != null)
+        {
+        }
+        else
+        {
+          unfilledOptions.push(this.course[i].question);
+        }
+      }
+
+      if (unfilledOptions.length === 0) {
         this.firstPageSubmitted = true;
         this.currentPage = 2;
       }
+
       else {
         alert("Please, fill all fields");
       }
-    }
+
+     }
+
 
     else if (this.currentPage === 2) {
-      if (this.engagedStudents != null && this.conveiedMaterial != null && this.isClearAgenda != null &&
-        this.teacherEffectiveness != null && this.communicationSkills != null &&
-        this.professorId != null) {
+      let unfilledOptions = [];
+      for (let i = 0; i < this.professor.length; i++) {
+        console.log('course array',this.professor[i].value);
+        if (this.professor[i].value != null)
+        {}
+        else
+        {
+          unfilledOptions.push(this.professor[i].question);
+        }
+      }
+
+      if(unfilledOptions.length === 0)
+      {
         this.secondPageSubmitted = true;
         this.currentPage = 3;
       }
+
       else {
         alert("Please, fill all fields");
       }
+    }
 
-    } else {
-      if (this.TAengagedStudents != null && this.TAconveiedMaterial != null && this.TAisClearAgenda != null &&
-        this.TAteacherEffectiveness != null && this.TAcommunicationSkills != null &&
-        this.TAId != null) {
-        // Submit final page
+    else  {
+      let unfilledOptions = [];
+      for (let i = 0; i < this.ta.length; i++) {
+        console.log('ta array',this.ta[i].value);
+        if (this.ta[i].value != null)
+        {}
+        else
+        {
+          unfilledOptions.push(this.ta[i].question);
+        }
+      }
+
+      if(unfilledOptions.length === 0)
+      {
         this.finalPageSubmitted = true;
+       
+        const courseJSON = JSON.stringify(this.course);
+        formData.append('course id', this.courseID);
+        formData.append('course evaluation', courseJSON);
+        
 
-        // Make API request to insert form data into database
-        const formData = {
-          isClear: this.isClear,
-          isRepeated: this.isRepeated,
-          preparetionForFutureCourses: this.preparetionForFutureCourses,
-          relevantToObjectives: this.relevantToObjectives,
-          contentRate: this.contentRate,
-          /////cont
-          // courseID: this.courseID[0].courseID,
-          courseID: this.courseID,
-          //courseID: "1",
+        const professorJSON = JSON.stringify(this.professor);
+        // formData.append('profeesor id', this.professorIds[0].professorId1);
+        formData.append('professor id', 'ihelal');
+        formData.append('professor evaluation', professorJSON);
 
-          engagedStudents: this.engagedStudents,
-          conveiedMaterial: this.conveiedMaterial,
-          isClearAgenda: this.isClearAgenda,
-          teacherEffectiveness: this.teacherEffectiveness,
-          communicationSkills: this.communicationSkills,
-          professorId: this.professorId[0].professorId,
-          //professorId: "1",
+        const taJSON = JSON.stringify(this.ta);
+        // formData.append('ta id', this.TAId[0].TAId);
+        formData.append('ta id', 'damr');
+        formData.append('ta evaluation', taJSON);
 
-          TAengagedStudents: this.TAengagedStudents,
-          TAconveiedMaterial: this.TAconveiedMaterial,
-          TAisClearAgenda: this.TAisClearAgenda,
-          TAteacherEffectiveness: this.TAteacherEffectiveness,
-          TAcommunicationSkills: this.TAcommunicationSkills,
-          //TAId: "1"
-          TAId: this.TAId[0].TAId
-        };
-
-        if (formData == null) {
-          this.isValid = false;
+        for (let entry of (<any>formData).entries()) {
+          console.log(entry[0] + ': ' + entry[1]);
         }
 
+        // this.http.post('http://127.0.0.1:8000/api/courseEvaluation', formData).subscribe(
+        //   response => {
+        //     console.log('Form data inserted successfully!');
+        //   },
+        //   error => {
+        //     console.error('Form data inserted successfully!', error);
+        //     // alert('The form has been submitted successfully');
+        //     // this.router.navigate(['/CourseEvaluation']);
 
-        this.http.post('http://127.0.0.1:8000/api/courseEvaluation', formData).subscribe(
-          response => {
-            console.log('Form data inserted successfully!');
+        //   }
+        // );
 
-
-          },
-          error => {
-            console.error('Form data inserted successfully!', error);
-            alert('The form has been submitted successfully');
-            this.router.navigate(['/CourseEvaluation']);
-
-          }
-        );
+        const requestBody = {
+          "course evaluation": this.course,
+          "professor evaluation": this.professor,
+          "ta evaluation": this.ta,
+          "course id": this.courseID,
+          "professor id": 'ihelal',
+          "ta id": 'damr',
+        };
         
+        fetch('http://127.0.0.1:8000/api/courseEvaluation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        })
+        .then(response => {
+          console.log('data has been inserted successfully');
+        })
+        .catch(error => {
+          console.error('error');
+        });
       }
 
       else {
         alert("Please, fill all fields");
       }
-
     }
+    
   }
   goToPreviousPage() {
     this.currentPage -= 1;
