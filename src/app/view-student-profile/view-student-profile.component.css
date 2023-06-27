@@ -23,3 +23,7 @@ label
 .input-group-append {
     cursor: pointer;
   }
+.button
+{
+    display: flex;
+}

@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./professor-scheduale.component.css']
 })
 export class ProfessorSchedualeComponent {
-
+  Semester:any="Second"
 
   weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
   times = ['08:00:00', '09:30:00', '11:15:00', '12:45:00', '02:30:00', '04:00:00', '05:30:00'];
@@ -58,7 +58,7 @@ this._AuthService.getType(token).subscribe((userType:any ) => {
     
 
     getSchedualeProf(ProfessorID:any){
-      this.ProfService.returnProfScheduale(ProfessorID).subscribe({
+      this.ProfService.returnProfScheduale(ProfessorID,this.Semester).subscribe({
         next:(response)=>{
         
           this.ScheduleInfo=response
@@ -70,7 +70,7 @@ this._AuthService.getType(token).subscribe((userType:any ) => {
     }
 
     getSchedualeTa(TaID:any){
-      this.ProfService.returnTAScheduale(TaID).subscribe({
+      this.ProfService.returnTAScheduale(TaID,this.Semester).subscribe({
         next:(response)=>{
         
           this.ScheduleInfo=response
