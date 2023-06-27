@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { StudentsService } from '../students.service';
 // import { DataService } from './data.service';
 // import * as _ from 'lodash';
@@ -15,10 +15,17 @@ export class Top50Component {
   Courses:any;
   Departments:any;
   students:any;
-  constructor(private router: Router, private studendService: StudentsService) {
+  constructor(private route: ActivatedRoute,private router: Router, private studendService: StudentsService) {
    
   }
+  previousPath: string = '';
   ngOnInit(): void {
+
+ 
+  
+  // You can display the path to the user using a toast, alert, or other UI element
+
+
     this.studendService.getAllCourses().subscribe({
       next:(response)=> this.Courses=response
       

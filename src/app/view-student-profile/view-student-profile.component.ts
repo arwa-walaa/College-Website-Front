@@ -15,6 +15,9 @@ export class ViewStudentProfileComponent {
       console.log("this.StudentData",this.StudentData)
      }); 
   }
-  
+  navigateToStudentGrades(){
+    this.router.navigate(['registerdCoursesAndResults'],{ queryParams: this.StudentData  });
+
+  }
 
 }

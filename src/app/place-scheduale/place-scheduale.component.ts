@@ -13,6 +13,7 @@ export class PlaceSchedualeComponent {
     ScheduleInfo: any;
     public places:any[]=[] 
    public array:any[]=[]
+  Semeter: any='Second';
     constructor(private ProfService: ProfessorTAService) {}
     ngOnInit(): void {
       // this.getScheduale()
@@ -28,7 +29,7 @@ export class PlaceSchedualeComponent {
       this.getScheduale(place)
     }
     getScheduale(place:any){
-      this.ProfService.returnSchedualePlace(place).subscribe({
+      this.ProfService.returnSchedualePlace(place,this.Semeter).subscribe({
         next:(response)=>{
         
           this.ScheduleInfo=response

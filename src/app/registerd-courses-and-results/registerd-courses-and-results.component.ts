@@ -3,6 +3,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { StudentsService } from '../students.service';
 import { AuthService } from '../auth.service';
 import { AdminService } from './../admin.service';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-registerd-courses-and-results',
@@ -14,25 +15,48 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   StudentData: any;
   registerationStatus: any;
 
-  constructor(private router: Router,private studentService: StudentsService,
-    private _AuthService:AuthService ,private _AdminService:AdminService) {}
+  constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
+    private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
   
   ngOnInit(): void {
      
     const token=this._AuthService.getToken();
-    this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
-      this.StudentData=StudentData;
-      this.getRegisteredCourses(StudentData[0].studentId);
-      
 
+    this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
+        this.route.queryParams.subscribe(params => {
+          this.StudentData=[params]
+          
+          this.getRegisteredCourses(this.StudentData[0].studentId);
+          console.log("this.StudentData",this.StudentData[0].studentId)
+         });
+      }
+     
+      else if(type[0].Type==="Student"){
+       
+        this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
+          this.StudentData=StudentData;
+          this.getRegisteredCourses(StudentData[0].studentId);
+          
+    
+        });
+      }
+    
     });
+
+
+   
 
     
     this.registerationStatus = this._AdminService.getRegisterationStatus();
+    
   }
   getRegisteredCourses(studentId:any){
     this.studentService.returnCourseResult(studentId).subscribe({
-      next:(response)=> this.RegisteredCoursesInfo=response
+      next:(response)=>{
+        this.RegisteredCoursesInfo=response
+        console.log(" this.RegisteredCoursesInfo", this.RegisteredCoursesInfo)
+      }
       
     });
     

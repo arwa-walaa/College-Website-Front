@@ -4,31 +4,26 @@
 
     <div class="row" style="margin-bottom: 20px;">
         <div class="col-6">
-            <h4>Feedback about Curriculum</h4>
+
             <div id="c_chart"></div>
-            
+
         </div>
         <div *ngIf="userTypeValue === 'Professor'" class="col-6">
-            <h4>Feedback about Professor</h4>
+
             <div id="p_chart"></div>
-            
-            
+
         </div>
         <div *ngIf="userTypeValue === 'TA'" class="col-6">
-            <h4>Feedback about TA</h4>
-            <div id="ta1_chart"></div>
-            
+           
+            <div [id]="TAId"></div>
+
         </div>
     </div>
-    <div class="row" style="margin-bottom: 50px;">
-        <div class="col-8" *ngIf="userTypeValue === 'Professor'" >
-            <h4>Feedback about TA1</h4>
-            <div id="ta1_chart"></div>
-            
-        </div>
-        <!-- <div class="col-6" *ngIf="userTypeValue === 'Professor'" >
-            <h4>Feedback about TA2</h4>
-            <div id="ta2_chart"></div>
-        </div> -->
+    <div class="row" style="margin-bottom: 50px;" *ngIf="userTypeValue === 'Professor'">
+       <div  *ngFor="let id of TAsIds"  class="col-6">
+        <div [id]="id"></div>
+       </div>
+
+       
     </div>
 </div>

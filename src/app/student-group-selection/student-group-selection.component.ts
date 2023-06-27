@@ -102,6 +102,7 @@ saveSelectedGroup(courseData: any, selectedGroup: any, id: any) {
           selectedGroup: selectedGroup,
           grade:null,
           creditHours:courseData.creditHours,
+          type:courseData.type,
           studentId:id,
           professor1:courseData.professor1,
           professor2:courseData.professor2,
