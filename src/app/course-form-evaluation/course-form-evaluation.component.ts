@@ -14,39 +14,19 @@ import { AuthService } from '../auth.service';
 export class CourseFormEvaluationComponent implements OnInit {
 
   @ViewChild('form') form: any;
-  courseValid:boolean = false;
   currentPage = 1;
-  counter = 0;
   firstPageSubmitted: boolean = false;
   secondPageSubmitted: boolean = false;
+  thirdPageSubmitted: boolean = false;
   finalPageSubmitted: boolean = false;
+  seconedProfessorPageSubmitted: boolean = false;
+  
 
-  courseName: any;
-
-  contentRate: any;
-  isRepeated: any;
-  isClear: any;
-  relevantToObjectives: any;
-  preparetionForFutureCourses: any;
-  courseID: any;
-
-  engagedStudents: any;
-  conveiedMaterial: any;
-  isClearAgenda: any;
-  teacherEffectiveness: any;
-  communicationSkills: any;
-  TAengagedStudents: any;
-  TAconveiedMaterial: any;
-  TAisClearAgenda: any;
-  TAteacherEffectiveness: any;
-  TAcommunicationSkills: any;
-  TAId: any;
-  tableData: any;
-  isValid: any;
   studId:any;
-  professorIds: any;
-  professorObjects: any = [];
-  ///////////////////////
+  courseName: any;
+  courseID: any;
+  professorsToEvaluate: any;
+  TAData:any;
 
   options = [
     { value: "1", label: 'Very Poor' },
@@ -84,6 +64,19 @@ export class CourseFormEvaluationComponent implements OnInit {
     { name: "conveiedMaterial", question: 'How effectively did the professor convey the material covered in the course?',value: null } 
   ];
 
+  
+  professor2 = [
+    { name: "engagedStudents", question: 'How well did the professor engage students during class?',value: null },
+    
+    { name: "teacherEffectiveness", question: "How would you rate the professor\'s overall effectiveness as a teacher?" ,value: null},
+    
+    { name: "communicationSkills", question: 'How would you rate the professor\'s communication skills?',value: null },
+    
+    { name: "isClearAgenda", question: 'Were the course expectations and grading criteria clearly communicated?',value: null },
+    
+    { name: "conveiedMaterial", question: 'How effectively did the professor convey the material covered in the course?',value: null } 
+  ];
+
   ta = [
     { name: "TAengagedStudents", question: 'How well did the ta engage students during class?',value: null },
     
@@ -99,8 +92,36 @@ export class CourseFormEvaluationComponent implements OnInit {
   constructor(private _AuthService:AuthService,private route: ActivatedRoute, private router: Router, private __StudentsService: StudentsService, private http: HttpClient) { }
   ngOnInit(): void {
     const token=this._AuthService.getToken();
-    this.__StudentsService.getStudentInfo(token).subscribe((StudData:any ) => {
-      this.studId=StudData[0].studentId
+    this.__StudentsService.getStudentInfo(token).subscribe({
+      next: (StudData:any) => {
+        this.studId=StudData[0].studentId
+        console.log('studId:',this.studId); 
+        ///////////////////////////////
+        this.__StudentsService.getProfessorDetailsToEvaluate(this.studId,this.courseID).subscribe({
+          next: (response: any) => {
+            this.professorsToEvaluate = response;
+            console.log('professorsToEvaluate: ',this.professorsToEvaluate);
+          
+          },
+          error: (error) => {
+            console.error('Error getting course details:', error);
+          }
+        });
+    
+        this.__StudentsService.getTADetailsToEvaluate(this.studId,this.courseID).subscribe({
+          next: (response: any) => {
+            this.TAData = response;
+            console.log('TAData:',this.TAData); 
+          },
+          error: (error) => {
+            console.error('Error getting course details:', error);
+          }
+        });
+        /////////////////////////////
+      },
+      error: (error) => {
+        console.error('Error getting studId:', error);
+      }
     });
 
     this.route.queryParams.subscribe(params => {
@@ -112,62 +133,9 @@ export class CourseFormEvaluationComponent implements OnInit {
       console.log('Course ID:', test2);
     });
 
-    this.__StudentsService.getCourseDetails(this.courseID).subscribe({
-      next: (response) => {
-        this.tableData = response;
-        //this.courseID = response;
-        console.log(this.tableData); // Move the console.log statement inside the subscribe block
-        // Code that uses the tableData variable goes here
-      },
-      error: (error) => {
-        console.error('Error getting course details:', error);
-      }
-    });
-
-
-    this.__StudentsService.getProfessorID(this.studId,this.courseID).subscribe({
-      next: (response: any) => {
-        this.professorIds = response;
-        console.log('prof idssssssssss',this.professorIds);
-        this.professorObjects = [];
-
-        for (const professor of this.professorIds) {
-          for (const key in professor) {
-            if (key.startsWith('professorID')) {
-              const index = key.replace('professorID', '');
-              const professorName = professor[`professorName${index}`];
-              if (this.professorIds[0].professorName2 != null) {
-                this.professorObjects.push({
-                  professorId: professor[key],
-                  professorName: professorName
-                });
-              }
-            }
-          }
-        }
-        console.log('prof ids',this.professorObjects); // Move the console.log statement inside the subscribe block
-        // Code that uses the tableData variable goes here
-      },
-      error: (error) => {
-        console.error('Error getting course details:', error);
-      }
-    });
-
-    this.__StudentsService.getTAID(this.courseID).subscribe({
-      next: (response: any) => {
-        this.TAId = response;
-        console.log(this.TAId); // Move the console.log statement inside the subscribe block
-        // Code that uses the tableData variable goes here
-      },
-      error: (error) => {
-        console.error('Error getting course details:', error);
-      }
-    });
-
   }
 
   onSubmit() {
-    // Submit current page
     const formData = new FormData();
 
     if (this.currentPage === 1) {
@@ -207,10 +175,39 @@ export class CourseFormEvaluationComponent implements OnInit {
         }
       }
 
-      if(unfilledOptions.length === 0)
+      if(unfilledOptions.length === 0 && this.professorsToEvaluate[0].professorName2 != null)
       {
         this.secondPageSubmitted = true;
         this.currentPage = 3;
+        this.seconedProfessorPageSubmitted=true;
+        
+      }
+      else if(unfilledOptions.length === 0 && this.professorsToEvaluate[0].professorName2 == null)
+      {
+        this.secondPageSubmitted = true;
+        this.currentPage = 4;
+      }
+      else {
+        alert("Please, fill all fields");
+      }
+    }
+    else if (this.currentPage === 3 && this.professorsToEvaluate[0].professorName2 !=null ) {
+      let unfilledOptions = [];
+      
+      for (let i = 0; i < this.professor2.length; i++) {
+        console.log('course array',this.professor2[i].value);
+        if (this.professor2[i].value != null)
+        {}
+        else
+        {
+          unfilledOptions.push(this.professor2[i].question);
+        }
+      }
+
+      if(unfilledOptions.length === 0)
+      {
+        this.thirdPageSubmitted = true;
+        this.currentPage = 4;
       }
 
       else {
@@ -232,61 +229,71 @@ export class CourseFormEvaluationComponent implements OnInit {
 
       if(unfilledOptions.length === 0)
       {
+        // All evaluations submitted, insert data into database
         this.finalPageSubmitted = true;
-       
-        const courseJSON = JSON.stringify(this.course);
-        formData.append('course id', this.courseID);
-        formData.append('course evaluation', courseJSON);
-        
-
-        const professorJSON = JSON.stringify(this.professor);
-        // formData.append('profeesor id', this.professorIds[0].professorId1);
-        formData.append('professor id', 'ihelal');
-        formData.append('professor evaluation', professorJSON);
-
-        const taJSON = JSON.stringify(this.ta);
-        // formData.append('ta id', this.TAId[0].TAId);
-        formData.append('ta id', 'damr');
-        formData.append('ta evaluation', taJSON);
-
-        for (let entry of (<any>formData).entries()) {
-          console.log(entry[0] + ': ' + entry[1]);
-        }
-
-        // this.http.post('http://127.0.0.1:8000/api/courseEvaluation', formData).subscribe(
-        //   response => {
-        //     console.log('Form data inserted successfully!');
-        //   },
-        //   error => {
-        //     console.error('Form data inserted successfully!', error);
-        //     // alert('The form has been submitted successfully');
-        //     // this.router.navigate(['/CourseEvaluation']);
-
-        //   }
-        // );
-
-        const requestBody = {
+        let professor1Evaluation = {
           "course evaluation": this.course,
           "professor evaluation": this.professor,
           "ta evaluation": this.ta,
           "course id": this.courseID,
-          "professor id": 'ihelal',
-          "ta id": 'damr',
+          "professor id": this.professorsToEvaluate[0].professorID1,
+          "ta id": this.TAData[0].TAId,
+          "student id":this.studId
         };
-        
-        fetch('http://127.0.0.1:8000/api/courseEvaluation', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(requestBody)
-        })
-        .then(response => {
-          console.log('data has been inserted successfully');
-        })
-        .catch(error => {
-          console.error('error');
-        });
+        let professor2Evaluation = {
+          "course evaluation": this.course,
+          "professor evaluation": this.professor2,
+          "ta evaluation": this.ta,
+          "course id": this.courseID,
+          "professor id": this.professorsToEvaluate[0].professorID2,
+          "ta id": this.TAData[0].TAId,
+          "student id":this.studId
+        };
+        if (this.professorsToEvaluate[0].professorName2 != null) {
+          // Two professors evaluated, insert two separate records
+          fetch('http://127.0.0.1:8000/api/courseEvaluation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(professor1Evaluation)
+          })
+          .then(response => {
+            console.log('data has been inserted successfully for professor 1');
+          })
+          .catch(error => {
+            console.error('error');
+          });
+          fetch('http://127.0.0.1:8000/api/courseEvaluation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(professor2Evaluation)
+          })
+          .then(response => {
+            console.log('data has been inserted successfully for professor 2');
+          })
+          .catch(error => {
+            console.error('error');
+          });
+        } else {
+          // Only one professor evaluated, insert one record
+          fetch('http://127.0.0.1:8000/api/courseEvaluation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(professor1Evaluation)})
+          .then(response => {
+            console.log('data has been inserted successfully');
+          })
+          .catch(error => {
+            console.error('error');
+          });
+        }
+        alert("Form has been submitted successfully");
+        this.router.navigate(['/CourseEvaluation']);
       }
 
       else {

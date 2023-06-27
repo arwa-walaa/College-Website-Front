@@ -1,7 +1,6 @@
 
 <div class="container " p-5>
 
-  <br>
   <div class="mx-0 mx-sm-auto">
     <div *ngIf="currentPage === 1">
       <h2 style="font-weight: bold;">Course Evaluation</h2>
@@ -29,7 +28,7 @@
 
     <div *ngIf="currentPage === 2">
       <h2 style="font-weight: bold;">Professor Evaluation</h2>
-      <!-- <p style="color:hsl(224, 78%, 36%)">{{courseName }} ({{professorIds[0].professorName1}})</p> -->
+      <p style="color:hsl(224, 78%, 36%)">{{courseName }} ({{this.professorsToEvaluate[0].professorName1}})</p>
       <!-- First page form fields -->
       <form #form (ngSubmit)="onSubmit()" class="card">
       
@@ -52,10 +51,35 @@
       </form>
     </div>
 
-    <div *ngIf="currentPage === 3">
-      <h2 style="font-weight: bold;">TA Evaluation</h2>
-      <p style="color:#143AA2">{{courseName }} ({{ tableData.TAName[0].TAName }})</p>
+    <div *ngIf="currentPage === 3  ">
+      <h2 style="font-weight: bold;">Professor Evaluation</h2>
+      <p style="color:hsl(224, 78%, 36%)">{{courseName }} ({{this.professorsToEvaluate[0].professorName2}})</p>
       <!-- First page form fields -->
+      <form #form (ngSubmit)="onSubmit()" class="card">
+      
+        <div *ngFor="let q of professor2" class="form-group">
+          <label for="isClear" style=" font-weight: bold;">{{q.question}}</label>
+          <div class="form-group form-inline">
+            <div *ngFor="let o of options" class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [name]='q.name'
+                  [(ngModel)]='q.value' [value]='o.value' required>{{o.label}}
+              </label>
+            </div>
+        </div>
+        <hr>
+      </div>
+        <div class="button-container">
+            <button  style="width:90px;" type="button" class="btn btn-secondary" (click)="goToPreviousPage()">Previous</button>
+            <button type="submit" class="btn btn-primary">Next</button>
+          </div>
+      </form>
+    </div>
+
+    <div *ngIf="currentPage === 4 ">
+      <h2 style="font-weight: bold;">TA Evaluation</h2>
+      <p style="color:#143AA2">{{courseName }} ({{this.TAData[0].TAName }})</p>
+      
       <form #form (ngSubmit)="onSubmit()" class="card">
         
         <div *ngFor="let q of ta" class="form-group">

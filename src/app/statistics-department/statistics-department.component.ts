@@ -35,7 +35,20 @@ export class StatisticsDepartmentComponent {
           console.error('Error!', error);
         }
       );
-
+        /////////////////////////////
+        this._AdminService.get_GPA_distribution_In_Department().subscribe(
+          (data: any) => {
+            console.log('GPA Distribution by Department', data);
+        
+            this.departments= Object.keys(data);
+            console.log('departments', this.departments);
+  
+          },
+          error => {
+            console.error('Error!', error);
+          }
+        );
+        ////////////////////////////
       this._AdminService.get_GPA_distribution_In_Department().subscribe(
         (data: any) => {
           console.log('GPA Distribution by Department', data);

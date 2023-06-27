@@ -6,55 +6,12 @@
                 <div id="pie_chart"></div>
             </div>
         </div>
-        <div class="col-4">
+        <div *ngFor="let id of departments" class="col-4">
             <div class="stat_card">
-                <h5>GPA distrbution in CS</h5>
-                <div id="CS"></div>
+                <h5>GPA distrbution in {{id}}</h5>
+                <div [id]="id"></div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in IS</h5>
-                <div id="IS"></div>
-            </div>
-        </div>
+        
     </div>
-    <div class="row">
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in IT</h5>
-                <div id="IT"></div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in DS</h5>
-                <div id="DS"></div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in AI</h5>
-                <div id="AI"></div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="stat_card">
-                <h5>GPA distrbution in General</h5>
-                <div id="general"></div>
-            </div>
-        </div>
-    </div>
-    <div  class="row">
     
-        <!-- <div *ngFor="let department of departments" class="col-4">
-            <div class="stat_card">
-              <h5>GPA distribution in {{department}} Department</h5>
-              
-              <div [id]="department"></div>
-             
-             
-            </div>
-          </div> -->
-          
-    </div>
