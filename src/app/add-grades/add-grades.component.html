@@ -13,14 +13,15 @@
             <div class="col-6">
                 <select #students (change)="SelectStudent(students.value)"  style="width:490px; height:30px;" >
                     <option  value="" disabled selected>Student</option>
-                    <option *ngFor="let student of Students" [value]="student.courseID">{{student.courseName}}</option>
+                    <option *ngFor="let student of Students" [value]="student.studentId">{{student.studentId}}</option>
                 </select>
             </div>
         </div>
         
         
         
-        <form [formGroup]="form" (ngSubmit)="submit()">
+        <form [formGroup]="form" (ngSubmit)="submit(form)">
+                       
             <div class="form-group">
               <label for="termGrade">Term Work Grade</label>
               <input type="number" class="form-control" placeholder="Enter term work grade" formControlName="termGrade">
@@ -40,7 +41,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center" style="margin-top: 10px;">
-                <button type="submit" class="btn btn-primary button">Add Grades</button>
+                <button type="submit"  class="btn btn-primary button">Add Grades</button>
             </div>  
 
             <div  style="margin-top: 10px;">

@@ -39,7 +39,9 @@ export class AdminOptionsComponent implements OnInit{
     if (target != null) {
       this.registrationStatus = target.checked ? 'open' : 'closed';
     }
+    this._AdminService.setRegisterationStatus(this.registrationStatus);
     console.log('Registration status:', this.registrationStatus);
+
   }
 
   setEvaluationStatus(event: Event) {

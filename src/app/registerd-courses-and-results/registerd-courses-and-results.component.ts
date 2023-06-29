@@ -24,6 +24,8 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   console.log("this.evaluationStatus",this.evaluationStatus)
     const token=this._AuthService.getToken();
 
+    this.registerationStatus = this._AdminService.getRegisterationStatus();
+
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
       if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
         this.route.queryParams.subscribe(params => {
@@ -38,19 +40,13 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
        
         this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
           this.StudentData=StudentData;
-          this.getRegisteredCourses(StudentData[0].studentId);
-          
-    
+          this.getRegisteredCourses(StudentData[0].studentId);  
         });
       }
     
     });
 
-
-   
-
     
-    this.registerationStatus = this._AdminService.getRegisterationStatus();
     
   }
   getRegisteredCourses(studentId:any){

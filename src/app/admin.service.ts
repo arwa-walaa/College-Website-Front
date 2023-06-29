@@ -13,6 +13,11 @@ export class AdminService {
   public  registerationStatus:any = '0';
   public EvaluationFormStatus:any = 0;
   public GPFormStatus:any = '0';
+
+
+
+  private baseUrl = 'http://127.0.0.1:8000/api';
+
   returnAcceptedRequestsGP()
   {
     let url= "http://127.0.0.1:8000/api/returnAcceptedRequestsGP/";
@@ -38,11 +43,17 @@ export class AdminService {
 
   setRegisterationStatus(data: any) {
     this.registerationStatus = data;
+    console.log('registerationStatusssssssssss',this.registerationStatus);
+
+    this.getRegisterationStatus();  
   }
 
   getRegisterationStatus() {
+    console.log('registerationStatus',this.registerationStatus);
     return this.registerationStatus;
   }
+
+
   setEvaluationFormStatus(data: any) {
     this.EvaluationFormStatus = data;
   }
@@ -58,5 +69,21 @@ export class AdminService {
     return this.GPFormStatus;
   }
 
+  getAllCourses()
+  {
+    let url= "http://127.0.0.1:8000/api/getAllCourses/";
+    return this.http.get(url);  
+  }
+
+  getStudentInCourse(courseId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getStudentInCourse/"+courseId;
+    return this.http.get(url);  
+  }
+
+  addGrade(courseId:any , studentId:any,formData:any)
+  { 
+    return this.http.post(`${this.baseUrl}/addGrade/${courseId}/${studentId}`, formData); 
+  }
 
 }

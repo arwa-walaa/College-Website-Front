@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { StudentsService } from '../students.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AdminService } from './../admin.service';
 
 @Component({
   selector: 'app-add-grades',
@@ -12,33 +13,39 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class AddGradesComponent implements OnInit{
   Courses:any;
-  couseId:any;
+  courseId:any;
   Students:any;
   studentId:any;
+
   form: FormGroup | any;
   formSubmitted = false;
 
   constructor(private router: Router, private studendService: StudentsService,
-    private route: ActivatedRoute,private http: HttpClient,private _AuthService:AuthService) {
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private _AuthService:AuthService,
+    private _AdminService:AdminService) {
   }
 
   
   ngOnInit(): void {
     this.form = new FormGroup({
-      course: new FormControl(this.couseId, Validators.required),
+      course: new FormControl(this.courseId, Validators.required),
       student: new FormControl(this.studentId, Validators.required),
       termGrade: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(40)] ),
       finalGrade: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(60)]),
     })
 
-    this.studendService.getAllCourses().subscribe({
+    this._AdminService.getAllCourses().subscribe({
       next:(response)=> this.Courses=response
     });
   }
 
   SelectCourse(course:any)
   {
-    this.couseId=course
+    this.courseId=course;
+    console.log('course id',this.courseId);
+    this.getStudentInCourse(this.courseId);
   }
 
   SelectStudent(student:any)
@@ -46,9 +53,34 @@ export class AddGradesComponent implements OnInit{
     this.studentId=student
   }
 
-  submit(){
+  getStudentInCourse(courseId:any)
+  {
+    this._AdminService.getStudentInCourse(courseId).subscribe(
+      response => {
+        this.Students=response;
+        console.log('courseId',this.courseId)
+        console.log('students',this.Students)
+
+    },
+    error => {
+      console.error('Error!', error);   
+    });
+  }
+
+  submit(form:FormGroup){
     this.formSubmitted = true;
-    console.log(this.form);
+    console.log('form',form.value),
+
+    this._AdminService.addGrade(this.courseId,this.studentId,form.value).subscribe(
+      response=> {
+        if (response && !('error' in response)) {
+          alert('grades have been inserted succefully');     
+        }    
+    }
+    ,
+    error => { 
+      console.error(error);  
+    });
   }
 
 }
