@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-admin-options',
@@ -8,11 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AdminOptionsComponent implements OnInit{
   registrationStatus= 'closed';
-  evaluationFormStatus= 'closed';
+  evaluationFormStatus= '0';
   programSelectionStatus= 'closed';
-  gpFormStatus= 'closed';
+  gpFormStatus= '0';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private adminService:AdminService) {}
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -30,6 +31,7 @@ export class AdminOptionsComponent implements OnInit{
 
   calculatePreferences(){
 
+  this.adminService.setDepatmentToStudent()
   }
 
   setRegistrationStatus(event: Event) {
@@ -43,9 +45,9 @@ export class AdminOptionsComponent implements OnInit{
   setEvaluationStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.evaluationFormStatus = target.checked ? 'open' : 'closed';
+      this.adminService.EvaluationFormStatus = target.checked ? 1 : 0;
     }
-    console.log('Evaluation Form status:', this.evaluationFormStatus);
+    console.log('Evaluation Form status:', this.adminService.EvaluationFormStatus);
   }
 
   setSelectionStatus(event: Event) {
@@ -59,9 +61,9 @@ export class AdminOptionsComponent implements OnInit{
   setGPFormStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.gpFormStatus = target.checked ? 'open' : 'closed';
+      this.adminService.GPFormStatus = target.checked ? '1' : '0';
     }
-    console.log('GP Form status:', this.gpFormStatus);
+    console.log('GP Form status:', this.adminService.GPFormStatus);
   }
 
 }

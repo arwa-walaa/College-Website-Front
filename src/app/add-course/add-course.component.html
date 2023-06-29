@@ -1,88 +1,189 @@
 <div class="container">
     <br><br>
+    <div class="alert alert-danger" *ngIf="flag===false">
+        please insert All Course information
+      </div>
+      <div class="alert alert-success" *ngIf="flag===true">
+        Course Added Successfully.
+      </div>
     <h2 style="font-weight: bold;">Add Course</h2><br>
     
     <form>
         <div class="row">
             <div class="col-3">
                 <div class="form-group">
+                    <label for="courseName">Course Name</label>
+                    <input type="text" [(ngModel)]="Course_Info.courseName" name="courseName" class="form-control" id="courseName"  placeholder="Enter course name">
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="form-group">
                     <label for="courseName">Course Code</label>
-                    <input type="text" class="form-control" id="courseCode" name="courseCode" placeholder="Enter course code">
+                    <input type="text" [(ngModel)]="Course_Info.Course_Code" name="Course_Code" class="form-control" id="courseCode"placeholder="Enter course code">
                   </div>
             </div>
-            <div class="col-9">
+            <div class="col-3">
                 <div class="form-group">
-                    <label for="courseName">Course Name</label>
-                    <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Enter course name">
-                </div>
+                   
+                    <label for="courseName">Course ID</label>
+                    <input type="text" [(ngModel)]="Course_Info.courseID" name="courseID" class="form-control" id="courseCode"placeholder="Enter course code">
+                  </div>
             </div>
+            <div class="col-3">
+                <div class="form-group">
+                   
+                    <label for="courseName">Department Code</label>
+                    <select required  #dep  [(ngModel)]="departmentCode" name="departmentCode" class="form-select" aria-label="Default select example"  required>
+                        <option value="default">choose Department Code</option>
+                        <option *ngFor="let d of departments" [value]="d.departmentCode">{{d.departmentCode}}</option>
+                      </select>
+                  </div>
+            </div>
+           
         </div>
 
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label for="currentSemester">Current Semester</label>
-                    <select class="form-control" id="currentSemester" name="currentSemester">
-                      <option>First</option>
-                      <option>Second</option>
-                      <option>Summer</option>
+                    <label  for="currentSemester">Current Semester</label>
+                    <select  aria-label="Default select example" class="form-control" #semster  [(ngModel)]="Semester" id="Semester" name="Semester">
+                      <option value="First">First</option>
+                      <option value="Second">Second</option>
+                      <option value="Summer">Summer</option>
                     </select>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label for="year"> Current Year</label>
-                    <input type="number" class="form-control" id="year" name="year" placeholder="Enter year">
+                    <label for="Level"> Level</label>
+                    <select #level aria-label="Default select example" [(ngModel)]="Level" class="form-control" id="Level" name="Level">
+                        <option value="First Level">First Level</option>
+                        <option value="Second Level">Second Level</option>
+                        <option value="Third Level">Third Level</option>
+                        <option value="Fourth Level">Fourth Level</option>
+                      </select>
                 </div>
+
             </div>
         </div>
 
+       
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label for="professor">Professor 1 </label>
-                    <select #professors (change)="SelectProf1(professors.value)" class="form-control" id="professor" name="professor">
-                        <option  value="" disabled selected>Professor 1</option>
-                        <option *ngFor="let prof of Professors" [value]="prof.profID">{{prof.proessorName}}</option>
-                    </select>
-                </div>
+                    {{professor1}}
+                   
+                    <label for="courseName">professor1</label>
+                    <select required  #prof1  [(ngModel)]="professor1" name="professor1" class="form-select" aria-label="Default select example"  required>
+                        <option value="">choose Professor</option>
+                        <option *ngFor="let p of professors" [value]="p.professorId">{{p.professorName}}</option>
+                      </select>
+                  </div>
             </div>
             <div class="col-6">
+               {{professor2}}
                 <div class="form-group">
-                    <label for="professor">Professor 2 </label>
-                    <select #professors (change)="SelectProf2(professors.value)" class="form-control" id="professor" name="professor">
-                        <option  value="" disabled selected>Professor 2</option>
-                        <option *ngFor="let prof of Professors" [value]="prof.profID">{{prof.proessorName}}</option>
-                    </select>
-                </div>
+                    <label for="courseName">professor2</label>
+                    <select required  #prof2  [(ngModel)]="professor2" name="professor2" class="form-select" aria-label="Default select example"  required>
+                        <option value="">choose Professor</option>
+                        <option *ngFor="let p1 of professors" [value]="p1.professorId">{{p1.professorName}}</option>
+                      </select>
+                  </div>
             </div>
+           
         </div>
+       
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-4">
                 <div class="form-group">
-                    <label for="ta"> Number of Teaching Assistants</label>
-                    <input type="number" class="form-control" id="ta" name="ta" placeholder="Enter number of teaching assistants">
+                    <label for="ta"> CreditHours</label>
+                    <input type="number" [(ngModel)]="Course_Info.creditHours" name="creditHours" class="form-control" id="ta" placeholder="Enter creditHours">
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="ta"> Number of Groups</label>
+                    <input type="number" [(ngModel)]="Course_Info.Num_of_groups" name="Num_of_groups" class="form-control" id="ta" placeholder="Enter number of teaching assistants">
+                </div>
+            </div>
+            <div class="col-4">
                 <!-- we still need an ngFor here -->
                 <div class="form-group">
-                    <label for="teachingAssistant">Teaching Assistant</label>
-                    <select class="form-control" id="teachingAssistant" name="teachingAssistant">
-                      <option>TA 1</option>
-                      <option>TA 2</option>
-                      <option>TA 3</option>
+                    <label for="teachingAssistant">Type</label>
+                    <select #Type  [(ngModel)]="type" aria-label="Default select example" class="form-control" id="teachingAssistant" name="type">
+                      <option value="mandatory">mandatory</option>
+                      <option value="optional">optional</option>
+                      
                     </select>
                   </div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta">Lecture1 Slot Day</label>
+                    <select required  [(ngModel)]="slotday1" aria-label="Default select example" #day1 class="form-select" name="slotday1" aria-label="Default select example"  required>
+                        <option value="default">choose Day</option>
+                        <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta">Lecture1 Start Time</label>
+                    <input type="time" [(ngModel)]="Course_Info.startTime1" name="startTime1" class="form-control" id="ta"  placeholder="Enter creditHours">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta"> Lecture1 End Time</label>
+                    <input type="time" class="form-control" [(ngModel)]="Course_Info.endTime1" name="endTime1" id="ta" placeholder="Enter creditHours">
+                </div>
+            </div>
+            <div class="col-3">
+                <!-- we still need an ngFor here -->
+                <div class="form-group">
+                    <label for="teachingAssistant">Lecture1 Place Slot</label>
+                    <input type="text" class="form-control" [(ngModel)]="Course_Info.slotPlace1" name="slotPlace1" id="ta" placeholder="Enter Place Slot">
+                  </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta">Lecture2 Slot Day</label>
+                    <select required  #day2 aria-label="Default select example" [(ngModel)]="slotday2" name="slotday2"  class="form-select" aria-label="Default select example"  required>
+                        <option value="default">choose Day</option>
+                        <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta">Lecture2 Start Time</label>
+                    <input type="time" class="form-control" id="ta" [(ngModel)]="Course_Info.startTime2" name="startTime2" placeholder="Enter creditHours">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="ta"> Lecture2 End Time</label>
+                    <input type="time" class="form-control" id="ta" [(ngModel)]="Course_Info.endTime2" name="endTime2" placeholder="Enter creditHours">
+                </div>
+            </div>
+            <div class="col-3">
+                <!-- we still need an ngFor here -->
+                <div class="form-group">
+                    <label for="teachingAssistant">Lecture2 Place Slot</label>
+                    <input type="text" class="form-control" id="ta"  [(ngModel)]="Course_Info.slotPlace2" name="slotPlace2" placeholder="Enter Place Slot">
+                  </div>
+            </div>
+        </div>
         <div class="d-flex justify-content-center" style="margin-top: 10px;">
-            <button type="submit" class="btn btn-primary button">Add Couse</button>
+            <button type="submit" class="btn btn-primary button" (click)="supmit()">Add Couse</button>
         </div>  
 
       </form>

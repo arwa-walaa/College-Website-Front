@@ -10,7 +10,9 @@
         <div *ngIf ="registerationStatus === '0'" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"  >Register New Courses</button>
 
         </div>
-        <div class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToEvaluateCourses()">Evaluate Courses</button>
+        <div *ngIf ="evaluationStatus === 1" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToEvaluateCourses()">Evaluate Courses</button>
+        </div>
+        <div *ngIf ="evaluationStatus === 0" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToEvaluateCourses()" disabled >Evaluate Courses</button>
         </div>
         <div class="col-3"  *ngIf="StudentData[0].level==='Third Level'"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
         </div>
