@@ -19,8 +19,9 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
   
   ngOnInit(): void {
-     
     const token=this._AuthService.getToken();
+
+    this.registerationStatus = this._AdminService.getRegisterationStatus();
 
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
       if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
@@ -36,19 +37,13 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
        
         this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
           this.StudentData=StudentData;
-          this.getRegisteredCourses(StudentData[0].studentId);
-          
-    
+          this.getRegisteredCourses(StudentData[0].studentId);  
         });
       }
     
     });
 
-
-   
-
     
-    this.registerationStatus = this._AdminService.getRegisterationStatus();
     
   }
   getRegisteredCourses(studentId:any){
