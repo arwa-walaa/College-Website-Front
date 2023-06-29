@@ -54,6 +54,7 @@ export class FCAIChatComponent implements OnInit {
       this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
         this.chatHistory = history;
       });
+      this.getRecentContacts(this.currentSender,true);
     }, 2000);
 
   }
