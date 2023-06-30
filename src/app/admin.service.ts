@@ -41,16 +41,27 @@ export class AdminService {
     return this.http.get(url);  
   }
 
-  setRegisterationStatus(data: any) {
-    this.registerationStatus = data;
-    console.log('registerationStatusssssssssss',this.registerationStatus);
+  // setRegisterationStatus(data: any) {
+  //   this.registerationStatus = data;
+  //   console.log('registerationStatusssssssssss',this.registerationStatus);
 
-    this.getRegisterationStatus();  
+  //   this.getRegisterationStatus();  
+  // }
+
+  // getRegisterationStatus() {
+  //   console.log('registerationStatus',this.registerationStatus);
+  //   return this.registerationStatus;
+  // }
+
+  updateRegisterationStatus(status:any)
+  {  
+      return this.http.post(`http://127.0.0.1:8000/api/updateRegisterationStatus`, status);
   }
-
-  getRegisterationStatus() {
-    console.log('registerationStatus',this.registerationStatus);
-    return this.registerationStatus;
+  
+  getRegisterationStatus()
+  {
+    let url= "http://127.0.0.1:8000/api/getRegisterationStatus/";
+    return this.http.get(url);  
   }
 
 

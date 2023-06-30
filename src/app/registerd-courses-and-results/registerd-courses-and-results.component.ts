@@ -24,7 +24,18 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   console.log("this.evaluationStatus",this.evaluationStatus)
     const token=this._AuthService.getToken();
 
-    this.registerationStatus = this._AdminService.getRegisterationStatus();
+    
+    this._AdminService.getRegisterationStatus()
+    .subscribe(
+      response=> {
+        this.registerationStatus = response;
+        console.log('registerationStatus',this.registerationStatus[0].registerationStatus);
+    }
+    ,
+    error => { 
+      console.error(error);  
+    });
+  
 
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
       if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
@@ -45,9 +56,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
       }
     
     });
-
-    
-    
+   
   }
   getRegisteredCourses(studentId:any){
     this.studentService.returnCourseResult(studentId).subscribe({

@@ -36,8 +36,7 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/getTADetails/"+studId+"/"+courseID;
     return this.http.get(url);
   }
-
-
+  
   getAllDepartments(){
     return this.http.get("http://127.0.0.1:8000/api/getAllDepartments");
   }
@@ -98,16 +97,11 @@ export class StudentsService {
   registerGP(formData:any)
   {
     return this.http.post('http://127.0.0.1:8000/api/registerGP/',formData);
-   //return 'helo';
   }
   evaluateCourse(formData:any)
   {
     return this.http.post('http://127.0.0.1:8000/api/courseEvaluation/',formData);
-   //return 'helo';
   }
-
- 
-
 
   evaluateProfessor(formData:any)
   {
