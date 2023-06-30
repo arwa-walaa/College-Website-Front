@@ -79,6 +79,7 @@ export class AddGradesComponent implements OnInit{
     }
     ,
     error => { 
+      alert('grades have been inserted succefully'); 
       console.error(error);  
     });
   }

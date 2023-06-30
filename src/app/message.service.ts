@@ -13,46 +13,22 @@ export class MessageService {
     return this.http.post(`${this.baseUrl}/message`, msgDetails);
   }
 
-  getProfessorAndTAHistory(student: any, profOrTA: any) {
-    return this.http.get(`${this.baseUrl}/history/${student}/${profOrTA}`);
+  getHistory(from: any, to: any) {
+    return this.http.get(`${this.baseUrl}/getHistory/${from}/${to}`);
   }
 
-  getStudentHistory(student: any) {
-    return this.http.get(`${this.baseUrl}/receive?to=${student}`);
+
+  getAllContacts(senderID: any, sendertype: any) {
+    return this.http.get(`${this.baseUrl}/getAllContacts/${senderID}/${sendertype}`);
   }
 
-  getContacts(){
-    return this.http.get(`${this.baseUrl}/professorsAndTas`);
+  getRecentContacts(senderID: any) {
+    return this.http.get(`${this.baseUrl}/getRecentContacts/${senderID}`);
   }
 
-  updateStudentStatus(studentId: string, status: string) {
-    const url = `${this.baseUrl}/updateStudentStatus/${studentId}/${status}`;
-    return this.http.post(url, {});
+  getUserInfo(token: any) {
+    return this.http.get(`${this.baseUrl}/getUserInfo/${token}`);
   }
-
-  getStudentStatus(studentId:any)
-  {
-    return this.http.get(`${this.baseUrl}/getStudentStatus/${studentId}`);
-  }
-
-  listTAsStudents(){
-    return this.http.get(`${this.baseUrl}/listTAsStudents`);
-  }
-
-  listProfessorsStudents(){
-    return this.http.get(`${this.baseUrl}/listProfessorsStudents`);
-  }
-
-  getProfessorDetails(profName: any) {
-    return this.http.get(`${this.baseUrl}/professorsDetails?professorName=${profName}`);
-  }
-
-  getTADetails(TAName:any){
-    return this.http.get(`${this.baseUrl}/TADetails?TAName=${TAName}`);
-  }
-
-  getStudentsDetails(StudentName:any){
-    return this.http.get(`${this.baseUrl}/getStudentsDetails?studentName=${StudentName}`);
-  }
+  
   
 }
