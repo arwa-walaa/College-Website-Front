@@ -48,12 +48,14 @@ export class AdminOptionsComponent implements OnInit{
   setRegistrationStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.registrationStatus = target.checked ? 'open' : 'closed';
+      this.registrationStatus = target.checked ? 'opened' : 'closed';
+      this.adminService.updateRegisterationStatus(this.registrationStatus);
     }
-    this.adminService.setRegisterationStatus(this.registrationStatus);
+   
     console.log('Registration status:', this.registrationStatus);
 
   }
+
 
   setEvaluationStatus(event: Event) {
     const target = event.target as HTMLInputElement;

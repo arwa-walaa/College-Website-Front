@@ -74,11 +74,20 @@
                                
                                 <div class="col-lg-8">
                                     <div class="chat-about">
-                                      <div style="display:flex; align-items:center;">
-                                        <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" style="margin-right: 29px;" alt="Profile Picture" *ngIf="chatPartner">
-                                        <h6 class="m-b-0">{{chatPartner}}</h6>
-                                        
-                                      </div>
+                      
+                                        <div class="chat-partner">
+                                            <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture" *ngIf="chatPartner">
+                                            <h6 class="m-b-0">{{chatPartner}}</h6>
+                                            <span class="ellipsis"  *ngIf="chatPartner && senderInfo[0].Type != 'Student' && chatPartnerType == 'Student'" (click)="blockContent = !blockContent">
+                                              <i class="fas fa-ellipsis-v" title="Click to block or unblock this contact"></i>
+                                              <div class="block-content" *ngIf="blockContent">
+                                                <ul>
+                                                  <li (click)="blockUser()"><i class="fas fa-ban"></i> Block</li>
+                                                  <li (click)="unBlockUser()"><i class="fas fa-undo"></i> Unblock</li>
+                                                </ul>
+                                              </div>
+                                            </span>
+                                          </div>
                                     </div>
                                   </div>
 
