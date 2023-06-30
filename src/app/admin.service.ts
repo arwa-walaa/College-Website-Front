@@ -54,20 +54,8 @@ export class AdminService {
   }
 
 
-  setEvaluationFormStatus(data: any) {
-    this.EvaluationFormStatus = data;
-  }
 
-  getEvaluationFormnStatus() {
-    return this.EvaluationFormStatus;
-  }
-  setGPFormStatus(data: any) {
-    this.GPFormStatus = data;
-  }
-
-  getGPFormStatus() {
-    return this.GPFormStatus;
-  }
+ 
 
   getAllCourses()
   {
@@ -84,6 +72,21 @@ export class AdminService {
   addGrade(courseId:any , studentId:any,formData:any)
   { 
     return this.http.post(`${this.baseUrl}/addGrade/${courseId}/${studentId}`, formData); 
+  }
+  setGPFormStatus(satus:any)
+  {
+    let url= "http://127.0.0.1:8000/api/setGPFormStatus/"+satus;
+    return this.http.put(url,satus);
+  }
+  setEvaluationStatus(satus:any)
+  {
+    let url= "http://127.0.0.1:8000/api/setEvaluationStatus/"+satus;
+    return this.http.put(url,satus);
+  }
+  getAdminControlStatus()
+  {
+    let url= "http://127.0.0.1:8000/api/getAdminControlStatus/";
+    return this.http.get(url);  
   }
 
 }

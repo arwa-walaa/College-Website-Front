@@ -9,13 +9,24 @@ import { AdminService } from '../admin.service';
 })
 export class AdminOptionsComponent implements OnInit{
   registrationStatus= 'closed';
-  evaluationFormStatus= '0';
+  evaluationFormStatus:any
   programSelectionStatus= 'closed';
-  gpFormStatus= '0';
+  gpFormStatus:any
 
   constructor(private router: Router, private adminService:AdminService) {}
+  // ngOnInit(): void {
+  //   this.adminService.getAdminControlStatus().subscribe((Data:any)=>{
+  //     this.gpFormStatus= Data[0].GpFormStatus
+  //     this.evaluationFormStatus= Data[0].evaluationStatus ===1
+  //     console.log("Data",Data)
+  //   })
+  // }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.adminService.getAdminControlStatus().subscribe((data: any) => {
+      this.gpFormStatus = data[0].GpFormStatus;
+      this.evaluationFormStatus = data[0].evaluationStatus;
+      console.log("evaluationFormStatus", this.evaluationFormStatus);
+    });
   }
 
   navigateToAddGrades(){
@@ -47,9 +58,28 @@ export class AdminOptionsComponent implements OnInit{
   setEvaluationStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.adminService.EvaluationFormStatus = target.checked ? 1 : 0;
+      if(target.checked){
+        this.adminService.setEvaluationStatus(1).subscribe( response => {
+          console.log(response);
+        
+          // Show success message to user
+        },
+        error => {console.log(error);})
+       
+      }
+      else{
+        this.adminService.setEvaluationStatus(0).subscribe( response => {
+          console.log(response);
+        
+        },
+        error => {console.log(error);})
+       
+       
+      }
+    
     }
-    console.log('Evaluation Form status:', this.adminService.EvaluationFormStatus);
+
+   
   }
 
   setSelectionStatus(event: Event) {
@@ -63,9 +93,27 @@ export class AdminOptionsComponent implements OnInit{
   setGPFormStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.adminService.GPFormStatus = target.checked ? '1' : '0';
+      if(target.checked){
+        this.adminService.setGPFormStatus(1).subscribe( response => {
+          console.log(response);
+        
+          // Show success message to user
+        },
+        error => {console.log(error);})
+       
+      }
+      else{
+        this.adminService.setGPFormStatus(0).subscribe( response => {
+          console.log(response);
+        
+        },
+        error => {console.log(error);})
+       
+       
+      }
     }
-    console.log('GP Form status:', this.adminService.GPFormStatus);
+   
   }
+ 
 
 }

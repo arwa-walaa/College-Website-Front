@@ -30,13 +30,14 @@
                 </label>
             </div>
 
+          
             <div class="d-flex justify-content-between">
                 <p>Open course evaluation form to students</p>
                 <label class="switch">
-                  <input type="checkbox" (click)="setEvaluationStatus($event)">
+                  <input type="checkbox" [checked]="evaluationFormStatus == 1" (click)="setEvaluationStatus($event)">
                   <span class="slider round"></span>
                 </label>
-            </div>
+              </div>
 
             <div class="d-flex justify-content-between">
                 <p>Open specialization program selection to students</p>
@@ -49,7 +50,7 @@
             <div class="d-flex justify-content-between">
                 <p>Open graduation project form to students</p>
                 <label class="switch">
-                  <input type="checkbox" (click)="setGPFormStatus($event)">
+                  <input type="checkbox" [checked]="gpFormStatus == 1" (click)="setGPFormStatus($event)">
                   <span class="slider round"></span>
                 </label>
             </div>

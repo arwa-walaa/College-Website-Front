@@ -15,12 +15,18 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   StudentData: any;
   registerationStatus: any;
   evaluationStatus: any;
+  gpFormStatus: any;
+  evaluationFormStatus: any;
 
   constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
   
   ngOnInit(): void {
-  this.evaluationStatus= this. _AdminService.EvaluationFormStatus
+    this._AdminService.getAdminControlStatus().subscribe((data: any) => {
+      this.gpFormStatus = data[0].GpFormStatus;
+      this.evaluationFormStatus = data[0].evaluationStatus;
+      console.log("evaluationFormStatus", this.evaluationFormStatus);
+    });
   console.log("this.evaluationStatus",this.evaluationStatus)
     const token=this._AuthService.getToken();
 
