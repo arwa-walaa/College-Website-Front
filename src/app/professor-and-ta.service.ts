@@ -58,6 +58,11 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/returnProfOfficeHours/"+profID;
     return this.http.get(url);
   }
+  returnTAOfficeHours(TAID:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnTAOfficeHours/"+TAID;
+    return this.http.get(url);
+  }
   deleteOfficeHour(officeHourId:any)
   {
     let url= "http://127.0.0.1:8000/api/deleteOfficeHours/"+officeHourId;

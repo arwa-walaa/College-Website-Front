@@ -11,22 +11,50 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./profissor-profile.component.css']
 })
 export class ProfissorProfileComponent {
-  ProfData:any;
+  UserData:any;
   officeHours:any;
   flag :any=false;
+  TAInfo: any;
+  Type:any;
+  name:any
+  phone:any
+  weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+ token=this._AuthService.getToken();
   constructor(private _AuthService:AuthService,private profTaService: ProfessorAndTaService,
-    private http: HttpClient,private cdr: ChangeDetectorRef){}
+    private http: HttpClient,private cdr: ChangeDetectorRef, private profAndTa:ProfessorAndTaService ){}
   
   ngOnInit(): void {
-    const token=this._AuthService.getToken();
-    this.profTaService.getProfessorInfo(token).subscribe((ProfData:any)=>
-    {
-       this.ProfData=ProfData;
-       this.profTaService.getProfOfficeHours(ProfData[0].professorId).subscribe((officeHours:any)=>{
+   
+    this.profAndTa.getUserType(this.token).subscribe((type:any ) => {
+      this.Type=type[0].Type
+      if(type[0].Type==="Professor" ){
+       
+        this.profAndTa.getProfessorInfo(this.token).subscribe((profInfo:any ) => {
+          // this.name=profInfo[0].professorName
+          this.UserData=profInfo;
+          this.name=this.UserData[0].professorName
+          this.phone=this.UserData[0].phoneNumber
+          this.profTaService.getProfOfficeHours(profInfo[0].professorId).subscribe((officeHours:any)=>{
+             this.officeHours=officeHours;
+             console.log('======officehours',officeHours);
+          })
+
+        });
+      }
+      else if(type[0].Type==="TA"){
+       
+        this.profAndTa.getTAInfo(this.token).subscribe((TaInfo:any ) => {
+         this.UserData=TaInfo
+         this.name=this.UserData[0].TAName
+         this.phone=this.UserData[0].phone
+         this.profTaService.returnTAOfficeHours(TaInfo[0].TAId).subscribe((officeHours:any)=>{
           this.officeHours=officeHours;
           console.log('======officehours',officeHours);
        })
-    })  
+
+        });
+      }});
+    
   }
   onSubmit() {
     const updatedValues = {
@@ -35,18 +63,46 @@ export class ProfissorProfileComponent {
       Phone: (<HTMLInputElement>document.getElementById('Phone')).value,
       Email: (<HTMLInputElement>document.getElementById('Email')).value,
     };
-    this.http.put('http://127.0.0.1:8000/api/updateProfProfile/' + this.ProfData[0].professorId , updatedValues)
-    .subscribe(
-      response => {
-        console.log(response);
-        this.flag=true;
-        // Show success message to user
-      },
-      error => {
-        console.error(error);
-        // Show error message to user
-      }
-    )
+    this.profAndTa.getUserType(this.token).subscribe((type:any ) => {
+     
+     
+      if(type[0].Type==="Professor" ){
+        this.profAndTa.getProfessorInfo(this.token).subscribe((profInfo:any ) => {
+        this.http.put('http://127.0.0.1:8000/api/updateProfProfile/' +profInfo[0].professorId , updatedValues)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.flag=true;
+            // Show success message to user
+          },
+          error => {
+            console.error(error);
+            // Show error message to user
+          }
+        )
+      });
+    }else if(type[0].Type==="TA"){
+      this.profAndTa.getTAInfo(this.token).subscribe((TaInfo:any ) => {
+        this.http.put('http://127.0.0.1:8000/api/updateTAProfile/' +TaInfo[0].TAId , updatedValues)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.flag=true;
+            // Show success message to user
+          },
+          error => {
+            console.error(error);
+            // Show error message to user
+          }
+        )
+
+
+      });
+
+    }
+    });
+ 
+   
     
   }
   
