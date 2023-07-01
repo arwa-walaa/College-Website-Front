@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { OfficeHoursServiceService } from '../office-hours-service.service';
 import { StudentsService } from '../students.service';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-course',
@@ -9,25 +10,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add-course.component.css']
 })
 export class AddCourseComponent {
+  form: FormGroup | any;
+
   departments: any;
   professors: any;
-  departmentCode:any;
   professor2:any=""
   professor1:any=""
-  slotday1:any
-  slotday2:any
-  type:any
-  Semester:any
-  Level:any
   flag: any=null;
  
 
   constructor( private http: HttpClient, private _OfficeHoursServiceService:OfficeHoursServiceService,private __StudentsService:StudentsService) {}
 
 weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
-Course_Info: any = { courseName: '', departmentCode: '',Course_Code:'',Level:'',Semester:'',
-                      type:'',slotday1:'',startTime1:'',endTime1:'',creditHours:'',slotday2:'',startTime2:'',
-                      endTime2:'',slotPlace1:'',slotPlace2:'',professor1:'',professor2:'',Num_of_groups:'' ,courseID:""};
   
   prof1ID:any;
   prof2ID:any;
@@ -40,22 +34,40 @@ Course_Info: any = { courseName: '', departmentCode: '',Course_Code:'',Level:'',
       this.professors=professors
      
      });
+
+     this.form = new FormGroup({
+      course_name: new FormControl('', Validators.required),
+      course_code: new FormControl(null, [Validators.required, Validators.pattern("^[a-zA-Z]{2}\d{3}$")]),
+      course_ID: new FormControl(null, [Validators.required, Validators.pattern("^[a-zA-Z]{2}\d{3}$")]),
+      department_code: new FormControl(null, Validators.required),
+      semester: new FormControl(null, Validators.required),
+      year: new FormControl(2000, [Validators.required, Validators.pattern("/^[2-3]\d{3}$/")]),
+      level: new FormControl(null, Validators.required),
+      professor1: new FormControl(null, Validators.required),
+      professor2: new FormControl('none',),
+      credit_hours: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(5)] ),
+      num_of_groups: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(100)] ),
+      type: new FormControl('mandatory', Validators.required),
+      slot_day1: new FormControl(null, Validators.required),
+      start_time1: new FormControl(null, Validators.required),
+      end_time1: new FormControl(null, Validators.required),
+      slot_place1: new FormControl(null, Validators.required),
+      slot_day2: new FormControl(null, Validators.required),
+      start_time2: new FormControl(null, Validators.required),
+      end_time2: new FormControl(null, Validators.required),
+      slot_place2: new FormControl(null, Validators.required),
+
+    })
+
   }
 
-  supmit(){
-    this.Course_Info.Level=this.Level
-    this.Course_Info.Semester=this.Semester
-    this.Course_Info.type=this.type
-    this.Course_Info.slotday2=this.slotday2
-    this.Course_Info.slotday1=this.slotday1
-    this.Course_Info.professor1=this.professor1
-    this.Course_Info.professor2=this.professor2
-    this.Course_Info.departmentCode=this.departmentCode
-    console.log("Course_Info",this.Course_Info)
+  supmit(form:FormGroup){
+
+    console.log('Course Info:',form.value),
     // let url = 'http://127.0.0.1:8000/api/AddCourse/';
     // let options = { headers: { 'Content-Type': 'application/json' } };
     // replace with the actual ID
-    this.http.post('http://127.0.0.1:8000/api/AddCourse', this.Course_Info).subscribe(
+    this.http.post('http://127.0.0.1:8000/api/AddCourse', form.value).subscribe(
     // this.http.post(url +this.Course_Info, options).subscribe(
         (response) => {
             console.log("===============", response)

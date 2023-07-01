@@ -1,0 +1,96 @@
+<div class="container">
+    <br><br>
+    <h2 style="font-weight: bold;">Add Course</h2><br>
+
+    <div class="row" style="margin-bottom: 25px;">
+        <div class="col-7">
+            <select #courses (change)="SelectCourse(courses.value)"  style="width:700px; height:30px;" >
+                <option  value="" disabled selected>Course</option>
+                <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <b>Number of Groups: {{num_of_groups}}</b>
+        </div>
+        <div class="col-3">
+            <b>Number of Remaning Groups: {{num_of_remaning_groups}}</b>
+        </div>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="submit(form)">
+        <div style="border-bottom: 1px solid black; margin-bottom: 20px;">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="gropName">Section/Lab Group Name</label>
+                        <input type="text" formControlName="group_name" class="form-control" placeholder="Enter group name/number in form S01">
+                        <div *ngIf="form.get('group_name')?.errors && form.get('group_name')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('group_name')?.getError('required')" class="alert py-1 alert-danger">Section/Lab Group Name is required</p>
+                            <p *ngIf="form.get('group_name').hasError('pattern')" class="alert py-1 alert-danger">Section/Lab Group Name must be like S01</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <label for="taName">TA Name</label>
+                        <select #ta  formControlName="ta_name" class="form-select" aria-label="Default select example">
+                            <option value="">choose TA</option>
+                            <option *ngFor="let ta of TAs" [value]="ta.taId">{{ta.taName}}</option>
+                        </select>
+                        <div *ngIf="form.get('ta_name')?.errors && form.get('ta_name')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('ta_name')?.getError('required')" class="alert py-1 alert-danger">TA Name is required</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="ta">Section/Lab Day</label>
+                        <select aria-label="Default select example" #day1 class="form-select" formControlName="slot_day" aria-label="Default select example">
+                            <option value="default">choose Day</option>
+                            <option *ngFor="let day of weekdays" [value]="day">{{day}}</option>
+                        </select>
+                        <div *ngIf="form.get('slot_day')?.errors && form.get('slot_day')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('slot_day')?.getError('required')" class="alert py-1 alert-danger">Section/Lab Day is required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="ta">Section/Lab Start Time</label>
+                        <input type="time" formControlName="start_time" class="form-control" placeholder="0:00">
+                        <div *ngIf="form.get('start_time')?.errors && form.get('start_time')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('start_time')?.getError('required')" class="alert py-1 alert-danger">Section/Lab Start Time is required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="ta"> Section/Lab End Time</label>
+                        <input type="time" class="form-control" formControlName="end_time" placeholder="0:00">
+                        <div *ngIf="form.get('end_time')?.errors && form.get('end_time')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('end_time')?.getError('required')" class="alert py-1 alert-danger">Section/Lab End Time is required</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label for="teachingAssistant">Section/Lab Place</label>
+                        <input type="text" class="form-control" formControlName="slot_place" placeholder="Enter place of section/lab">
+                        <div *ngIf="form.get('slot_place')?.errors && form.get('slot_place')?.touched" style="margin-top: 5px;">
+                            <p *ngIf="form.get('slot_place')?.getError('required')" class="alert py-1 alert-danger">Section/Lab Place is required</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-center" style="margin-top: 10px;">
+            <button type="submit" class="btn btn-primary button">Add Group</button>
+        </div>
+    </form>
+</div>
+    
