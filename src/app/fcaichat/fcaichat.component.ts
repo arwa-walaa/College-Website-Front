@@ -2,6 +2,7 @@ import { AuthService } from '../auth.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MessageService } from './../message.service';
 import { ThisReceiver } from '@angular/compiler';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-fcaichat',
@@ -32,7 +33,7 @@ export class FCAIChatComponent implements OnInit {
   
 
   constructor(private messageService: MessageService,
-    private _AuthService: AuthService,
+    private _AuthService: AuthService,private datePipe: DatePipe
    ) { }
 
 
@@ -73,12 +74,25 @@ getAllContacts(){
   });
   
 }
+formatDate(dateString: string): any {
+  const offsetMs = new Date().getTimezoneOffset() * 60 * 1000;
+  const date = new Date(Date.parse(dateString) - offsetMs);
+  return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm');
+}
 
 getRecentContacts(senderID:any){
   this.flag2=true;
   this.messageService.getRecentContacts(senderID).subscribe(
     response=> {
       this.recentContacts=response;
+      this.recentContacts = this.recentContacts.map((item: { last_contact_time: string }) => {
+        return {
+          ...item,
+         
+          last_contact_time: this.formatDate(item. last_contact_time)
+        };
+      });
+
       console.log('recent contacts',this.recentContacts);     
   }
   ,

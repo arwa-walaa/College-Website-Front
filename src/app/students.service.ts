@@ -133,9 +133,9 @@ export class StudentsService {
   update(id: any, data: any) {
     return this.http.post(`${this.baseUrl}/${id}`, data);
   }
-  getStudentCourses(studId:any)
+  getStudentCourses(studId:any,term:any)
   {
-    let url= "http://127.0.0.1:8000/api/getStudentCourses/"+studId;
+    let url= "http://127.0.0.1:8000/api/getStudentCourses/"+studId+"/"+term;
     return this.http.get(url);
   }
   returnAllTAs()

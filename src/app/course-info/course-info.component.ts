@@ -107,6 +107,7 @@ export class CourseInfoComponent {
     'legend':'bottom',
     'width':375,
     'height':400,
+  
     colors:['#3E8DE3', '#141ba2'],
     };
 
@@ -137,6 +138,14 @@ export class CourseInfoComponent {
       'legend':{ position: 'none' },
       'width':480,
       'height':400,
+      hAxis: 
+      {
+        title: 'Grade',
+       
+      },
+      vAxis: {
+        title: 'Number of Students',        
+      },
       colors:['#141ba2'],
     };
   

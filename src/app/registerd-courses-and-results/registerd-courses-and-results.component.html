@@ -5,17 +5,27 @@
     <h2 style="font-weight: bold;">Registered Courses & Results</h2><br>
     <!-- <mat-select (selectonChange)="onChange"></mat-select> -->
     <div class="row">
-        <div *ngIf ="registerationStatus[0].registerationStatus === 'opened'" class="col-3"><button class="btn btn-primary"  style="width:300px ; border:none; background-color: #3E8DE3; color:white;" (click)="navigateToRegisterCourse()">Register New Courses</button>        
+        <div *ngIf ="registerationStatus[0].registerationStatus == 1" class="col-3">
+            <button class="btn btn-primary"  style="width:300px ; border:none; " (click)="navigateToRegisterCourse()">Register New Courses</button>        
         </div>
-        <div *ngIf ="registerationStatus[0].registerationStatus === 'closed'" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"  >Register New Courses</button>
+        <div *ngIf ="registerationStatus[0].registerationStatus == 0" class="col-3">
+            <button class="btn btn-primary" style="width:300px ; border:none; "  disabled >Register New Courses</button>
 
         </div>
         <div *ngIf ="evaluationFormStatus == 1" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none; "(click)="navigateToEvaluateCourses()">Evaluate Courses</button>
         </div>
         <div *ngIf ="evaluationFormStatus == 0" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToEvaluateCourses()" disabled >Evaluate Courses</button>
         </div>
-        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level'"><button class="btn btn-primary" style="width:300px ; border:none; background-color: #F0F0F0; color:#ABABAB;"(click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
+        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==1">
+            <button class="btn btn-primary" style="width:300px ; border:none"
+            (click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
         </div>
+
+        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==0">
+            <button class="btn btn-primary" style="width:300px ; border:none" disabled
+            (click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
+        </div>
+
         <div class="col-3"  *ngIf="StudentData[0].level==='Fourth Level' && gpFormStatus == 1"><button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToRegisterGraduationProject()" 
            >Register Graduation Project</button>
         </div>

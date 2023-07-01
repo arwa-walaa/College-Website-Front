@@ -13,7 +13,7 @@ export class HomeAdminComponent implements OnInit{
   }
 
   navigateToAddAnnouncment() {
-    this.router.navigate(['']);
+    this.router.navigate(['AddAnnouncements']);
   }
   navigateToDashboards() {
     this.router.navigate(['dashboard']);
@@ -22,7 +22,7 @@ export class HomeAdminComponent implements OnInit{
     this.router.navigate(['admin_options']);
   }
   navigateToAcceptedGP() {
-    this.router.navigate(['']);
+    this.router.navigate(['gp_requests']);
   }
 
 }

@@ -8,23 +8,20 @@ import { AdminService } from '../admin.service';
   styleUrls: ['./admin-options.component.css']
 })
 export class AdminOptionsComponent implements OnInit{
-  registrationStatus= 'closed';
+  registrationStatus:any;
   evaluationFormStatus:any
-  programSelectionStatus= 'closed';
+  programSelectionStatus:any;
   gpFormStatus:any
+  registerationStatus: any;
 
   constructor(private router: Router, private adminService:AdminService) {}
-  // ngOnInit(): void {
-  //   this.adminService.getAdminControlStatus().subscribe((Data:any)=>{
-  //     this.gpFormStatus= Data[0].GpFormStatus
-  //     this.evaluationFormStatus= Data[0].evaluationStatus ===1
-  //     console.log("Data",Data)
-  //   })
-  // }
+  
   ngOnInit(): void {
     this.adminService.getAdminControlStatus().subscribe((data: any) => {
       this.gpFormStatus = data[0].GpFormStatus;
       this.evaluationFormStatus = data[0].evaluationStatus;
+      this.registerationStatus = data[0].registerationStatus;
+      this.programSelectionStatus = data[0].programSelectionStatus;
       console.log("evaluationFormStatus", this.evaluationFormStatus);
     });
   }
@@ -48,11 +45,16 @@ export class AdminOptionsComponent implements OnInit{
   setRegistrationStatus(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.registrationStatus = target.checked ? 'opened' : 'closed';
-      this.adminService.updateRegisterationStatus(this.registrationStatus);
+      this.registerationStatus = target.checked ? 1 : 0;
+      this.adminService.updateRegisterationStatus(this.registerationStatus).subscribe(response => {
+        console.log(response);
+      
+        // Show success message to user
+      },
+      error => {console.log(error);});
     }
    
-    console.log('Registration status:', this.registrationStatus);
+    console.log('Registration status:', this.registerationStatus);
 
   }
 
@@ -83,13 +85,21 @@ export class AdminOptionsComponent implements OnInit{
 
    
   }
-
-  setSelectionStatus(event: Event) {
+  setSelectionStatus(event: Event) 
+  {
     const target = event.target as HTMLInputElement;
     if (target != null) {
-      this.programSelectionStatus = target.checked ? 'open' : 'closed';
+      this.programSelectionStatus = target.checked ? 1 : 0;
+      this.adminService.updateprogramSelectionStatus(this.programSelectionStatus).subscribe(response => {
+        console.log(response);
+      
+        // Show success message to user
+      },
+      error => {console.log(error);});
     }
-    console.log('Program Selection status:', this.programSelectionStatus);
+   
+    console.log('programSelection status:', this.programSelectionStatus);
+
   }
 
   setGPFormStatus(event: Event) {

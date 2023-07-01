@@ -160,6 +160,14 @@ test(){
       'legend':{ position: 'none' },
       'width':480,
       'height':400,
+      hAxis: 
+      {
+        title: 'Grade',
+       
+      },
+      vAxis: {
+        title: 'Number of Students',        
+      },
       colors:['#141ba2'],
     };
   
