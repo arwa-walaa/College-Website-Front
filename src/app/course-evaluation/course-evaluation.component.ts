@@ -38,7 +38,7 @@ export class CourseEvaluationComponent implements OnInit  {
   }
  
   getStudentCourses(studID:any){
-    this.stdService.getStudentCourses(studID).subscribe((studCourses: any) => {
+    this.stdService.getStudentCourses(studID,'Second').subscribe((studCourses: any) => {
       if (studCourses && studCourses.length > 0) {
        this.courses=studCourses;
         console.log('studCourses',studCourses);

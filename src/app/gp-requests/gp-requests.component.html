@@ -21,11 +21,16 @@
                     <a style="margin-left: 15px;"  (click)="navigateToStudent(d.member5)">{{d.member5}}</a>
                 </div>
             </div><br>
-            <h5>Supervised by</h5>
-            <div class="row">
+            <h5 >Supervised by</h5>
+            <div  *ngIf="userType != 'Admin'" class="row">
                 <div class="col-6">Requested Professor: {{d.professorName}}</div>
                 <div class="col-6">Requested Teaching Assistant: {{d.TAName}}</div>
+            </div>
+            <div  *ngIf="userType == 'Admin'" class="row">
+                <div class="col-6">Professor: {{d.professorName}}</div>
+                <div class="col-6">Teaching Assistant: {{d.TAName}}</div>
             </div><br>
+
             <h5>Graduation Project Idea</h5>
             <div class="row">
                 <p> {{d.idea}} </p>

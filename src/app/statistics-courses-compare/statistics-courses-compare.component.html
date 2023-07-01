@@ -19,7 +19,7 @@
             </div>
             <div class="row" style="margin-bottom: 20px;">
                 <!-- معرفتش المفروض احط ايه فحطيت قيمة مؤقتة لغاية ما نظبطها  -->
-                <select #Year (change)="SelectYear(Year.value)"  style="width:300px; height:30px;" >
+                <select #Year (change)="SelectYear(Year.value)" style="width:620px; height:30px;">
                     <option  value="" disabled selected>Year</option>
                     <option *ngFor="let year of Years"[value]="year.Year">{{year.Year}}</option>
                 </select>
@@ -37,15 +37,15 @@
             </div>
             <div class="stat_card">
                 <h5>Average Grades</h5>
-                <div style="font-size:22px;"  *ngIf="AvgGrades && AvgGrades.length > 0 ">{{AvgGrades[0].avg_grade}}</div>
+                <div style="font-size:22px;"  *ngIf="AvgGrades && AvgGrades.length > 0 ">{{AvgGrades[0].avg_grade}}%</div>
             </div>
             <div class="stat_card">
                 <h5>Success Percentage</h5>
-                <div id="pie_chart1"></div>
+                <div id="pie_chart1" style="margin-left: 100px;"></div>
             </div>
             <div class="stat_card">
                 <h5>Grades Histogram</h5>
-                <div id="histogram1"></div>
+                <div id="histogram1" style="margin-left: 60px;"></div>
             </div>
         </div>
     </div>
@@ -83,15 +83,15 @@
             </div>
             <div class="stat_card">
                 <h5>Average Grades</h5>
-                <div style="font-size:22px;" *ngIf="AvgGrades2 && AvgGrades2.length > 0 ">{{AvgGrades2[0].avg_grade}}</div>
+                <div style="font-size:22px;" *ngIf="AvgGrades2 && AvgGrades2.length > 0 ">{{AvgGrades2[0].avg_grade}}%</div>
             </div>
             <div class="stat_card">
                 <h5>Success Percentage</h5>
-                <div id="pie_chart2"></div>
+                <div id="pie_chart2" style="margin-left: 100px;"></div>
             </div>
             <div class="stat_card">
                 <h5>Grades Histogram</h5>
-                <div id="histogram2"></div>
+                <div id="histogram2" style="margin-left: 60px;" ></div>
             </div>
         </div>
     </div>

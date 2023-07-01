@@ -55,14 +55,17 @@ export class AdminService {
 
   updateRegisterationStatus(status:any)
   {  
-      return this.http.post(`http://127.0.0.1:8000/api/updateRegisterationStatus`, status);
+      let url= "http://127.0.0.1:8000/api/updateRegisterationStatus/"+status;
+      return this.http.put(url,status);
+  }
+  updateprogramSelectionStatus(status:any)
+  {  
+       
+      let url= "http://127.0.0.1:8000/api/updateprogramSelectionStatus/"+status;
+      return this.http.put(url,status);
   }
   
-  getRegisterationStatus()
-  {
-    let url= "http://127.0.0.1:8000/api/getRegisterationStatus/";
-    return this.http.get(url);  
-  }
+  
 
 
 

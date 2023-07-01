@@ -17,6 +17,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   evaluationStatus: any;
   gpFormStatus: any;
   evaluationFormStatus: any;
+  programSelectionStatus:any
 
   constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
@@ -31,10 +32,11 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
     const token=this._AuthService.getToken();
 
     
-    this._AdminService.getRegisterationStatus()
+    this._AdminService.getAdminControlStatus()
     .subscribe(
       response=> {
         this.registerationStatus = response;
+        this.programSelectionStatus = response;
         console.log('registerationStatus',this.registerationStatus[0].registerationStatus);
     }
     ,
