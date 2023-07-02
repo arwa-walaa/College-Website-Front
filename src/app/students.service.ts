@@ -161,6 +161,10 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/getCourseProfYears/"+ProfId+"/"+CourseId;
     return this.http.get(url);
   }
+  getCourseInfo(CourseID:any){
+    let url= "http://127.0.0.1:8000/api/getCourseInfo/"+CourseID;
+    return this.http.get(url);
+  }
 
 }
 

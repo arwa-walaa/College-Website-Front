@@ -1,4 +1,10 @@
-<div class="container">
+<div class="container"><br>
+    <div class="alert alert-danger" *ngIf="flag===false">
+        please,Enter All Group Data
+      </div>
+      <div class="alert alert-success" *ngIf="flag===true">
+        Group Added Successfully.
+      </div>
     <br><br>
     <h2 style="font-weight: bold;">Add Course</h2><br>
 
@@ -10,15 +16,17 @@
             </select>
         </div>
         <div class="col-2">
-            <b>Number of Groups: {{num_of_groups}}</b>
+            <b  *ngIf="CourseInfo && CourseInfo.length > 0 ">Number of Groups: {{CourseInfo[0].Num_of_groups}} </b>
         </div>
-        <div class="col-3">
+        <!-- <div class="col-3">
             <b>Number of Remaning Groups: {{num_of_remaning_groups}}</b>
-        </div>
+        </div> -->
     </div>
-    
-    <form [formGroup]="form" (ngSubmit)="submit(form)">
-        <div style="border-bottom: 1px solid black; margin-bottom: 20px;">
+    <ng-container *ngIf="CourseInfo && CourseInfo[0]">
+    <div style="border-bottom: 1px solid black; margin-bottom: 20px;" *ngFor="let i of groupArray" >
+        <form [formGroup]="form" (ngSubmit)="submit(form)">
+       
+        <!-- <div style="border-bottom: 1px solid black; margin-bottom: 20px;" *ngFor="let i of groupArray" > -->
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
@@ -35,7 +43,7 @@
                         <label for="taName">TA Name</label>
                         <select #ta  formControlName="ta_name" class="form-select" aria-label="Default select example">
                             <option value="">choose TA</option>
-                            <option *ngFor="let ta of TAs" [value]="ta.taId">{{ta.taName}}</option>
+                            <option *ngFor="let ta of TAs" [value]="ta.TAId">{{ta.TAName}}</option>
                         </select>
                         <div *ngIf="form.get('ta_name')?.errors && form.get('ta_name')?.touched" style="margin-top: 5px;">
                             <p *ngIf="form.get('ta_name')?.getError('required')" class="alert py-1 alert-danger">TA Name is required</p>
@@ -86,11 +94,14 @@
                 </div>
             </div>
 
-        </div>
+        <!-- </div> -->
 
         <div class="d-flex justify-content-center" style="margin-top: 10px;">
             <button type="submit" class="btn btn-primary button">Add Group</button>
         </div>
+    
     </form>
+</div>
+</ng-container>
 </div>
     
