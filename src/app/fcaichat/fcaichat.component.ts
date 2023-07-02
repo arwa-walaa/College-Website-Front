@@ -77,7 +77,7 @@ getAllContacts(){
 formatDate(dateString: string): any {
   const offsetMs = new Date().getTimezoneOffset() * 60 * 1000;
   const date = new Date(Date.parse(dateString) - offsetMs);
-  return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm');
+  return this.datePipe.transform(date, 'dd/MM/yyyy h:mm a');
 }
 
 getRecentContacts(senderID:any){
@@ -198,6 +198,7 @@ getBlockedUsers()
     }
     formData.append('from', this.currentSender);
     formData.append('to', this.currentReceiver);
+    formData.append('senderName', this.senderInfo[0].name);
   
     this.messageService.sendMessage(formData).subscribe((response: any) => {
       this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
