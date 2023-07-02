@@ -32,6 +32,9 @@ export class AdminOptionsComponent implements OnInit{
   navigateToAddCourse(){
     this.router.navigate(['add_course']);
   }
+  navigateToAddGroups(){
+    this.router.navigate(['add_groups']);
+  }
 
   calculateGPA(){
 
