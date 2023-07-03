@@ -1,4 +1,8 @@
 <h4>Statistics about Departments</h4>
+<select #Year (change)="SelectYear(Year.value)"  style="width:300px; height:30px;" >
+    <option  value="" disabled selected  >Year</option>
+    <option *ngFor="let year of Years" [value]="year.Year">{{year.Year}}</option>
+</select>
     <div class="row">
         <div class="col-4">
             <div class="stat_card">

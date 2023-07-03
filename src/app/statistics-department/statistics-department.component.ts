@@ -15,6 +15,7 @@ export class StatisticsDepartmentComponent {
   GPADepartments: any;
   histogramData:any;
   departments: any;
+  Years: any;
 
   constructor(adminService: AdminService,
     private _AuthService:AuthService) {
@@ -23,9 +24,22 @@ export class StatisticsDepartmentComponent {
 
   
   ngOnInit(): void {
+    this._AdminService.getPreferencesYears().subscribe(
+      data => {
+        this.Years=data;
+        console.log("Years=",this.Years)
+      },
+      error => {
+        console.error('Error!', error);
+      }
+    );
+   
+  }
+  SelectYear(year:any)
+  {
     google.charts.load('current', { packages: ['corechart'] });
     google.charts.setOnLoadCallback(() => {
-      this._AdminService.get_Number_Of_Students_In_Department().subscribe(
+      this._AdminService.get_Number_Of_Students_In_Department(year).subscribe(
         data => {
           this.numStudents = data;
           console.log('number of students', this.numStudents);
@@ -36,7 +50,7 @@ export class StatisticsDepartmentComponent {
         }
       );
         /////////////////////////////
-        this._AdminService.get_GPA_distribution_In_Department().subscribe(
+        this._AdminService.get_GPA_distribution_In_Department(year).subscribe(
           (data: any) => {
             console.log('GPA Distribution by Department', data);
         
@@ -49,7 +63,7 @@ export class StatisticsDepartmentComponent {
           }
         );
         ////////////////////////////
-      this._AdminService.get_GPA_distribution_In_Department().subscribe(
+      this._AdminService.get_GPA_distribution_In_Department(year).subscribe(
         (data: any) => {
           console.log('GPA Distribution by Department', data);
           this.histogramData = [];

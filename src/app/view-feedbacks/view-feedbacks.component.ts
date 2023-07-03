@@ -105,7 +105,7 @@ export class ViewFeedbacksComponent implements OnInit {
     });
 
   }
-  update(selectedValue: any){
+  update(year: any){
     
     const token = this._AuthService.getToken();
     //////////////////////
@@ -138,7 +138,7 @@ export class ViewFeedbacksComponent implements OnInit {
 
 
 
-                  this.profAndTa.getFeedbacks(this.courseName, this.professorId).subscribe((data: any) => {
+                  this.profAndTa.getFeedbacks(this.courseName, this.professorId,year).subscribe((data: any) => {
                     this.feedbacks = data;
 
                     // Call the chart drawing functions here using the feedbacks data
@@ -146,7 +146,7 @@ export class ViewFeedbacksComponent implements OnInit {
                     google.charts.setOnLoadCallback(() => this.drawChart1(this.feedbacks));
                     google.charts.setOnLoadCallback(() => this.drawChart2(this.feedbacks));
                     ///////////////////////////////////
-                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId).subscribe(
+                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId,year).subscribe(
                       (data: any) => {
                         this.chartData = data;
                         console.log('chartData of ta', this.chartData);
@@ -161,7 +161,7 @@ export class ViewFeedbacksComponent implements OnInit {
                       }
                     );
                     //////////////////////////
-                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId).subscribe(
+                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId,year).subscribe(
                       (data: any) => {
                         this.chartData = data;
                         console.log('chartData of ta', this.chartData);
@@ -208,7 +208,7 @@ export class ViewFeedbacksComponent implements OnInit {
                   this.courseName = params['courseName'];
                   console.log('courseName', this.courseName);
 
-                  this.profAndTa.getFeedbacks(this.courseName, this.TAId).subscribe((data: any) => {
+                  this.profAndTa.getFeedbacks(this.courseName, this.TAId,year).subscribe((data: any) => {
                     this.feedbacks = data;
 
                     // Call the chart drawing functions here using the feedbacks data
