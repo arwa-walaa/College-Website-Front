@@ -20,6 +20,7 @@ export class ViewFeedbacksComponent implements OnInit {
   TAId:any;
   userTypeValue: any;
   TAsIds: string[] = [];
+  Years:any
   chartData: { [key: string]: Array<any> } = {};
 
   constructor(private http: HttpClient, private stdService: StudentsService,
@@ -39,6 +40,8 @@ export class ViewFeedbacksComponent implements OnInit {
 
         if (this.userTypeValue === "Professor") {
           this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
+          
+
             if (ProfessorData && ProfessorData.length > 0) {
               this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
                 this.professorId = ProfessorData[0].professorId;
@@ -48,8 +51,94 @@ export class ViewFeedbacksComponent implements OnInit {
                 this.route.queryParams.subscribe(params => {
                   this.courseName = params['courseName'];
                   console.log('courseName', this.courseName);
+                  this.stdService.getCourseProfYears2(ProfessorData[0].professorId,params['courseName'])
+                  .subscribe({
+                    next:(response)=>{this.Years=response
+                    console.log("years,",this.Years)} 
+                    
+                  });
 
-                  this.profAndTa.getFeedbacks(this.courseName, this.professorId).subscribe((data: any) => {
+
+
+
+                  
+                   
+
+                  });
+                });
+              
+
+            } else {
+              console.error("professor data is empty or null");
+            }
+          });
+
+        }
+        else if (this.userTypeValue === "TA") {
+          this.profAndTa.getTAInfo(token).subscribe((TAData: any) => {
+            if (TAData && TAData.length > 0) {
+              this.profAndTa.getTAInfo(token).subscribe((TAData: any) => {
+                this.TAId = TAData[0].TAId;
+                console.log('TA id', this.TAId);
+
+                this.route.queryParams.subscribe(params => {
+                  this.courseName = params['courseName'];
+                  console.log('courseName', this.courseName);
+                  this.stdService.getCourseTAYears(this.TAId, this.courseName).subscribe((year: any) => {
+                    this.Years=year
+                  })
+               
+                });
+              });
+            } else {
+              console.error("TA data is empty or null");
+            }
+          });
+        }
+        else {
+          console.error("Unknown userType: " + this.userTypeValue);
+        }
+      } else {
+        console.error("userType is empty or null");
+      }
+
+    });
+
+  }
+  update(year: any){
+    
+    const token = this._AuthService.getToken();
+    //////////////////////
+
+    this._AuthService.getType(token).subscribe((userType: any) => {
+      if (userType && userType.length > 0) {
+        this.userTypeValue = userType[0].Type;
+        console.log("usertype", this.userTypeValue);
+
+        if (this.userTypeValue === "Professor") {
+          this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
+          
+
+            if (ProfessorData && ProfessorData.length > 0) {
+              this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
+                this.professorId = ProfessorData[0].professorId;
+                this.professorName = ProfessorData[0].professorName;
+                console.log('prof id', this.professorId);
+
+                this.route.queryParams.subscribe(params => {
+                  this.courseName = params['courseName'];
+                  console.log('courseName', this.courseName);
+                  this.stdService.getCourseProfYears2(ProfessorData[0].professorId,params['courseName'])
+                  .subscribe({
+                    next:(response)=>{this.Years=response
+                    console.log("years,",this.Years)} 
+                    
+                  });
+
+
+
+
+                  this.profAndTa.getFeedbacks(this.courseName, this.professorId,year).subscribe((data: any) => {
                     this.feedbacks = data;
 
                     // Call the chart drawing functions here using the feedbacks data
@@ -57,7 +146,7 @@ export class ViewFeedbacksComponent implements OnInit {
                     google.charts.setOnLoadCallback(() => this.drawChart1(this.feedbacks));
                     google.charts.setOnLoadCallback(() => this.drawChart2(this.feedbacks));
                     ///////////////////////////////////
-                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId).subscribe(
+                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId,year).subscribe(
                       (data: any) => {
                         this.chartData = data;
                         console.log('chartData of ta', this.chartData);
@@ -72,7 +161,7 @@ export class ViewFeedbacksComponent implements OnInit {
                       }
                     );
                     //////////////////////////
-                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId).subscribe(
+                    this.profAndTa.getTAs_Feedbacks_for_specific_course(this.courseName, this.professorId,year).subscribe(
                       (data: any) => {
                         this.chartData = data;
                         console.log('chartData of ta', this.chartData);
@@ -119,7 +208,7 @@ export class ViewFeedbacksComponent implements OnInit {
                   this.courseName = params['courseName'];
                   console.log('courseName', this.courseName);
 
-                  this.profAndTa.getFeedbacks(this.courseName, this.TAId).subscribe((data: any) => {
+                  this.profAndTa.getFeedbacks(this.courseName, this.TAId,year).subscribe((data: any) => {
                     this.feedbacks = data;
 
                     // Call the chart drawing functions here using the feedbacks data
@@ -146,6 +235,17 @@ export class ViewFeedbacksComponent implements OnInit {
       }
 
     });
+    // const token = this._AuthService.getToken();
+    // this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData: any) => {
+    //   this.professorId = ProfessorData[0].professorId;
+    //   this.professorName = ProfessorData[0].professorName;
+    //   console.log('prof id', this.professorId);
+
+    //   this.route.queryParams.subscribe(params => {
+    //     this.courseName = params['courseName'];})
+    //   })
+
+
 
   }
 

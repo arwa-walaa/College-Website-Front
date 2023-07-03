@@ -161,6 +161,16 @@ export class StudentsService {
     let url= "http://127.0.0.1:8000/api/getCourseProfYears/"+ProfId+"/"+CourseId;
     return this.http.get(url);
   }
+  getCourseProfYears2(ProfId:any,courseName:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getCourseProfYears2/"+ProfId+"/"+courseName;
+    return this.http.get(url);
+  }
+  getCourseTAYears(TAId:any,courseName:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getCourseTAYears/"+TAId+"/"+courseName;
+    return this.http.get(url);
+  }
   getCourseInfo(CourseID:any){
     let url= "http://127.0.0.1:8000/api/getCourseInfo/"+CourseID;
     return this.http.get(url);
