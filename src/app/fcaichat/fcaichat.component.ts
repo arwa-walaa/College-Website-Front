@@ -3,6 +3,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MessageService } from './../message.service';
 import { ThisReceiver } from '@angular/compiler';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fcaichat',
@@ -31,9 +32,10 @@ export class FCAIChatComponent implements OnInit {
   isBlocked:boolean = false;
   blockedUsers:any;
   mailMessage:any;
+  chatPartnerId: any;
   
 
-  constructor(private messageService: MessageService,
+  constructor(private router: Router,private messageService: MessageService,
     private _AuthService: AuthService,private datePipe: DatePipe
    ) { }
 
@@ -111,7 +113,9 @@ setCurrentReceiver(receiver: any) {
   this.currentReceiver = receiver.userID;
   this.chatPartner= receiver.Type+'. '+receiver.name;
   this.chatPartnerType= receiver.Type;
+
   console.log('currentReceiver',this.currentReceiver);
+  console.log('student ID:',this.chatPartnerId);
   this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
     this.chatHistory = history;
     console.log('chatHistory',this.chatHistory);
@@ -264,5 +268,9 @@ sendNotification(mailMessage:any)
     console.error(error); 
   }); 
 }
+// goToStudentProfile(studentInfo:any){
+//   console.log('studentInfo',studentInfo)
+//     this.router.navigate(['ViewStudentProfile'],{ queryParams: studentInfo  });
+// }
 
 }

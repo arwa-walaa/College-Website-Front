@@ -16,7 +16,7 @@ body{
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
 }
 .chat-app .people-list {
-    width: 300px;
+    width: 350px;
     position: absolute;
     left: 0;
     top: 0;
@@ -28,7 +28,7 @@ body{
 }
 
 .chat-app .chat {
-    margin-left: 280px;
+    margin-left: 340px;
     border-left: 1px solid #eaeaea
 }
 
@@ -234,7 +234,7 @@ body{
 @media only screen and (max-width: 767px) {
     .chat-app .people-list {
         height: 465px;
-        width: 100%;
+        width: 320px;
         overflow-x: auto;
         background: #fff;
         left: -400px;
@@ -333,11 +333,13 @@ body{
 
 .circle-icon {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background-color: green;
+    background-color:rgb(201, 199, 199);
     color: white;
+    margin-left: 200px;
+    margin-top: -19px;
   }
   
   .count {

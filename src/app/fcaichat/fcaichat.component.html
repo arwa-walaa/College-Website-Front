@@ -47,7 +47,7 @@
                                     </div>
                                     <div  *ngIf="contact.numOfUnReadMessages != 0" class="about">
                                         <div class="name" style="font-size: 15px; font-weight:bold;">{{ contact.Type}} {{ contact.name}}
-                                            <div class="circle-icon">
+                                            <div class="circle-icon"   >
                                                 <span class="count">{{contact.numOfUnReadMessages}}</span>
                                               </div>
                                         </div>
@@ -83,8 +83,8 @@
                                 <div class="col-lg-8">
                                     <div class="chat-about">
                       
-                                        <div class="chat-partner">
-                                            <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture" *ngIf="chatPartner">
+                                        <div class="chat-partner" style="margin-left: 290px;">
+                                            <img  src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture" *ngIf="chatPartner">
                                             <h6 class="m-b-0">{{chatPartner}}</h6>
                                             <span class="ellipsis"  *ngIf="chatPartner && senderInfo[0].Type != 'Student' && chatPartnerType == 'Student'" (click)="blockContent = !blockContent">
                                               <i class="fas fa-ellipsis-v" title="Click to block or unblock this contact"></i>
