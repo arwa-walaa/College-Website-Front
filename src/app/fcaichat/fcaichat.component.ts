@@ -3,6 +3,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MessageService } from './../message.service';
 import { ThisReceiver } from '@angular/compiler';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fcaichat',
@@ -30,9 +31,11 @@ export class FCAIChatComponent implements OnInit {
   blockContent:boolean = false;
   isBlocked:boolean = false;
   blockedUsers:any;
+  mailMessage:any;
+  chatPartnerId: any;
   
 
-  constructor(private messageService: MessageService,
+  constructor(private router: Router,private messageService: MessageService,
     private _AuthService: AuthService,private datePipe: DatePipe
    ) { }
 
@@ -44,6 +47,8 @@ export class FCAIChatComponent implements OnInit {
         this.senderInfo=senderInfo;
         console.log('senderInfo',this.senderInfo);
         this.currentSender=this.senderInfo[0].id;
+        this.mailMessage='new message from ' + this.senderInfo[0].Type +' '+ this.senderInfo[0].name;
+        console.log('mailMessage',this.mailMessage);
         this.getRecentContacts (this.senderInfo[0].id) ;    
     }
     ,
@@ -77,7 +82,7 @@ getAllContacts(){
 formatDate(dateString: string): any {
   const offsetMs = new Date().getTimezoneOffset() * 60 * 1000;
   const date = new Date(Date.parse(dateString) - offsetMs);
-  return this.datePipe.transform(date, 'dd/MM/yyyy HH:mm');
+  return this.datePipe.transform(date, 'dd/MM/yyyy h:mm a');
 }
 
 getRecentContacts(senderID:any){
@@ -108,16 +113,20 @@ setCurrentReceiver(receiver: any) {
   this.currentReceiver = receiver.userID;
   this.chatPartner= receiver.Type+'. '+receiver.name;
   this.chatPartnerType= receiver.Type;
+
   console.log('currentReceiver',this.currentReceiver);
+  console.log('student ID:',this.chatPartnerId);
   this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
     this.chatHistory = history;
     console.log('chatHistory',this.chatHistory);
   });
+  this.updateSeenStatus(this.currentReceiver,this.currentSender);
 }
 
 sendMessage() {
   
   this.getBlockedUsers();
+  
  
 }
 
@@ -198,6 +207,7 @@ getBlockedUsers()
     }
     formData.append('from', this.currentSender);
     formData.append('to', this.currentReceiver);
+    
   
     this.messageService.sendMessage(formData).subscribe((response: any) => {
       this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
@@ -227,6 +237,40 @@ getBlockedUsers()
   error => { 
     console.error(error); 
   }); 
+
+  ///don't delete this///
+  // this.sendNotification(this.mailMessage);
 }
+
+updateSeenStatus(from:any , to:any)
+{
+  this.messageService.updateSeenStatus(from,to)
+  .subscribe(
+    response=> {
+      console.log('seen status',response);    
+      this.getRecentContacts(this.currentSender);        
+  }
+  ,
+  error => { 
+    console.error(error); 
+  }); 
+}
+
+sendNotification(mailMessage:any)
+{
+  this.messageService.sendNotification(mailMessage)
+  .subscribe(
+    response=> {
+      console.log('sent notification successfully',response);         
+  }
+  ,
+  error => { 
+    console.error(error); 
+  }); 
+}
+// goToStudentProfile(studentInfo:any){
+//   console.log('studentInfo',studentInfo)
+//     this.router.navigate(['ViewStudentProfile'],{ queryParams: studentInfo  });
+// }
 
 }

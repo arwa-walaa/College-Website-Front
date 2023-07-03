@@ -41,9 +41,17 @@
 
                                     <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png"
                                         alt="Profile Picture">
-                                    <div class="about">
+                                    <div *ngIf="contact.numOfUnReadMessages == 0" class="about">
                                         <div class="name" style="font-size: 15px;">{{ contact.Type}} {{ contact.name}}</div>
-                                        <span class="message-data-time small" style="font-size: 13px;">{{ contact.last_contact_time}}</span>
+                                        <span class="message-data-time small" style="font-size: 13px; ">{{ contact.last_contact_time}}</span>
+                                    </div>
+                                    <div  *ngIf="contact.numOfUnReadMessages != 0" class="about">
+                                        <div class="name" style="font-size: 15px; font-weight:bold;">{{ contact.Type}} {{ contact.name}}
+                                            <div class="circle-icon"   >
+                                                <span class="count">{{contact.numOfUnReadMessages}}</span>
+                                              </div>
+                                        </div>
+                                        <span class="message-data-time small" style="font-size: 13px; font-weight:bold;">{{ contact.last_contact_time}}</span>
                                     </div>
                                     
                                 </li>
@@ -68,15 +76,15 @@
                         </div>
 
                     </div>
-                    <div class="chat">
+                    <div class="chat" >
                         <div class="chat-header clearfix">
                             <div class="row">
                                
                                 <div class="col-lg-8">
                                     <div class="chat-about">
                       
-                                        <div class="chat-partner">
-                                            <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture" *ngIf="chatPartner">
+                                        <div class="chat-partner" style="margin-left: 290px;">
+                                            <img  src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png" alt="Profile Picture" *ngIf="chatPartner">
                                             <h6 class="m-b-0">{{chatPartner}}</h6>
                                             <span class="ellipsis"  *ngIf="chatPartner && senderInfo[0].Type != 'Student' && chatPartnerType == 'Student'" (click)="blockContent = !blockContent">
                                               <i class="fas fa-ellipsis-v" title="Click to block or unblock this contact"></i>
@@ -98,7 +106,6 @@
 
 
                                 <li class="clearfix" *ngFor="let msg of chatHistory ">
-                                    <!--*ngIf="msg.from === profOrTA" -->
                                     <div class="message my-message "
                                         *ngIf="msg.to === currentSender && msg.from === currentReceiver">
                                         {{msg.message}}
@@ -145,14 +152,14 @@
                                
                             </ul>
                         </div>
-                        <div class="chat-message clearfix">
-                            <div class="input-group mb-0">
+                        <div class="chat-message clearfix" >
+                            <div class="input-group mb-0" >
                                 <form (ngSubmit)="sendMessage()">
                                     <input [(ngModel)]="message" name="message" type="text" class="form-control"
-                                        style="width: 850px;" placeholder="Enter text here..." />
+                                        style="width: 780px;" placeholder="Enter text here..." />
                                     <div class="input-group-prepend" style="width: 150px;">
                                         <span class="input-group-text"
-                                            style="margin-top: -38px; margin-left: 848px; width: 100px; height: 39px;">
+                                            style="margin-top: -38px; margin-left: 780px; width: 100px; height: 39px;">
                                             <button type="submit"> <i class="fa fa-send"
                                                     style="font-size: 24px;"></i></button>
                                             <i class="fa fa-paperclip" (click)="triggerFileInput()"
