@@ -41,9 +41,17 @@
 
                                     <img src="https://kingstonplaza.com/wp-content/uploads/2015/07/generic-avatar.png"
                                         alt="Profile Picture">
-                                    <div class="about">
+                                    <div *ngIf="contact.numOfUnReadMessages == 0" class="about">
                                         <div class="name" style="font-size: 15px;">{{ contact.Type}} {{ contact.name}}</div>
-                                        <span class="message-data-time small" style="font-size: 13px;">{{ contact.last_contact_time}}</span>
+                                        <span class="message-data-time small" style="font-size: 13px; ">{{ contact.last_contact_time}}</span>
+                                    </div>
+                                    <div  *ngIf="contact.numOfUnReadMessages != 0" class="about">
+                                        <div class="name" style="font-size: 15px; font-weight:bold;">{{ contact.Type}} {{ contact.name}}
+                                            <div class="circle-icon">
+                                                <span class="count">{{contact.numOfUnReadMessages}}</span>
+                                              </div>
+                                        </div>
+                                        <span class="message-data-time small" style="font-size: 13px; font-weight:bold;">{{ contact.last_contact_time}}</span>
                                     </div>
                                     
                                 </li>
@@ -98,7 +106,6 @@
 
 
                                 <li class="clearfix" *ngFor="let msg of chatHistory ">
-                                    <!--*ngIf="msg.from === profOrTA" -->
                                     <div class="message my-message "
                                         *ngIf="msg.to === currentSender && msg.from === currentReceiver">
                                         {{msg.message}}

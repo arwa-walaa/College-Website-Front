@@ -30,6 +30,7 @@ export class FCAIChatComponent implements OnInit {
   blockContent:boolean = false;
   isBlocked:boolean = false;
   blockedUsers:any;
+  mailMessage:any;
   
 
   constructor(private messageService: MessageService,
@@ -44,6 +45,8 @@ export class FCAIChatComponent implements OnInit {
         this.senderInfo=senderInfo;
         console.log('senderInfo',this.senderInfo);
         this.currentSender=this.senderInfo[0].id;
+        this.mailMessage='new message from ' + this.senderInfo[0].Type +' '+ this.senderInfo[0].name;
+        console.log('mailMessage',this.mailMessage);
         this.getRecentContacts (this.senderInfo[0].id) ;    
     }
     ,
@@ -113,11 +116,13 @@ setCurrentReceiver(receiver: any) {
     this.chatHistory = history;
     console.log('chatHistory',this.chatHistory);
   });
+  this.updateSeenStatus(this.currentReceiver,this.currentSender);
 }
 
 sendMessage() {
   
   this.getBlockedUsers();
+  
  
 }
 
@@ -198,7 +203,7 @@ getBlockedUsers()
     }
     formData.append('from', this.currentSender);
     formData.append('to', this.currentReceiver);
-    formData.append('senderName', this.senderInfo[0].name);
+    
   
     this.messageService.sendMessage(formData).subscribe((response: any) => {
       this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
@@ -223,6 +228,36 @@ getBlockedUsers()
   }
  
       console.log('Blocked Users' , response);         
+  }
+  ,
+  error => { 
+    console.error(error); 
+  }); 
+
+  ///don't delete this///
+  // this.sendNotification(this.mailMessage);
+}
+
+updateSeenStatus(from:any , to:any)
+{
+  this.messageService.updateSeenStatus(from,to)
+  .subscribe(
+    response=> {
+      console.log('seen status',response);    
+      this.getRecentContacts(this.currentSender);        
+  }
+  ,
+  error => { 
+    console.error(error); 
+  }); 
+}
+
+sendNotification(mailMessage:any)
+{
+  this.messageService.sendNotification(mailMessage)
+  .subscribe(
+    response=> {
+      console.log('sent notification successfully',response);         
   }
   ,
   error => { 

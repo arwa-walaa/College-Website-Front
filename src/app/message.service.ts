@@ -44,6 +44,18 @@ export class MessageService {
   getBlockedUsers(user1Id:any , user2Id:any) {
     return this.http.get(`${this.baseUrl}/getBlockedUsers/${user1Id}/${user2Id}`);
   }
+
+  updateSeenStatus(from:any , to:any)
+  {  
+      let url= "http://127.0.0.1:8000/api/updateSeenStatus/"+from+"/"+to;
+      return this.http.put(url,status);
+  }
+
+  sendNotification(mailMessage:any)
+  {
+    const url = `http://127.0.0.1:8000/api/sendNotification/${mailMessage}`;
+    return this.http.post(url, {});
+  }
     
 }
   
