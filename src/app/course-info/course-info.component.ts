@@ -77,7 +77,8 @@ export class CourseInfoComponent {
 
       // google.charts.setOnLoadCallback(this.drawHistogram);
     });
-    this.profAndTa.returnCourseStudent(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode).subscribe((studentStat: any) => {
+    this.profAndTa.returnCourseStudent(this.courseInfo.courseID,this.chooseYear,this.courseInfo.departmentCode)
+    .subscribe((studentStat: any) => {
       // console.log("studentStat==",studentStat)
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(this.drawHistogram(studentStat));
@@ -87,6 +88,7 @@ export class CourseInfoComponent {
     {this.AvgGrades=AvgGrades});
     
   });
+ // this.router.navigate(['/view_feedbacks'], { queryParams: {Year: this.chooseYear} });
   
 }
   drawPieChart(numStudentsPassed: number , numStudentsFailed: number){
