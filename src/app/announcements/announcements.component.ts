@@ -21,6 +21,10 @@ Announcemets: any;
    
   }
   ngOnInit(): void {
+    this.getAllAnnouncemets();
+  
+  }
+  getAllAnnouncemets(){
     this.studendService.getAllAnnouncemets().subscribe({
       next:(response)=>{ this.Announcemets=response
         console.log(this.Announcemets)
@@ -55,16 +59,20 @@ Announcemets: any;
       response => {
        
         console.log('Announcement status updated successfully');
+    
       },
       error => {
         console.error('Error updating announcement status:', error);
         // handle error here
       }
     );
+   
+    
     
   }
   isAnnouncementOpened(announcement: any): boolean {
     return announcement.isOpened === '1';
+
   }
  
  

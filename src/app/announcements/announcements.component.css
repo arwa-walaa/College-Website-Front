@@ -89,4 +89,17 @@ form.example button {
    color: #ABABAB;
    float: right;
    
+   
 }
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-right: 500px;
+  }
+  .table-row{
+    padding: 500px;
+  }
+  .table-row:hover {
+    background-color: rgb(237, 228, 228);
+  }
+  

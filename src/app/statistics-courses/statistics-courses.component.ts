@@ -130,7 +130,7 @@ test(){
     'legend':'bottom',
     'width':375,
     'height':400,
-    colors:['#3E8DE3', '#141ba2'],
+    colors:[ '#388E3C','#D32F2F'],
     };
 
     // Instantiate and draw our chart, passing in some options.

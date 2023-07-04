@@ -13,7 +13,7 @@
        
         <button class="childFirst top50 " style=" margin-left: auto;"><i class="bi bi-trophy"></i><a  (click)="navigateToTop50()">View Top 50</a>  </button>
     </div>
-    <div class="AnnounsmentComponent" >
+    <div class="AnnounsmentComponent" style="padding-right: 27px;">
 
 
         <div style=" width: 400px; margin-left: 67%; margin-top: -30px;">
@@ -25,22 +25,20 @@
         
         </div>
         <br>
-
-        <table id="example" class="table " >
-
-              <tr *ngFor="let ann of Announcemets | SearchService:searchText">
-                
-                <td  (click)="selectAnnouncement(ann)">
-                    <h3 *ngIf="ann.isOpened == '0'" [innerHTML]="ann.announcmentTitle" style="background-color: gray;" ></h3>
-                    <h3  [ngClass]="{'announcement-opened': isAnnouncementOpened(ann)}" *ngIf="ann.isOpened == '1'" [innerHTML]="ann.announcmentTitle" style="background-color: rgb(212, 209, 209);" ></h3>
-                    <div *ngIf="selectedAnnouncement === ann"  [innerHTML]="ann.content"></div>
-                    <hr>
-                </td>
-                <td><p class="dateFont" >{{ ann.created_at }}</p></td>
-              </tr>
-           
-            
-        </table>
+        <table id="example" class="table">
+            <tr *ngFor="let ann of Announcemets | SearchService:searchText" (click)="selectAnnouncement(ann)" class="table-row">
+              <td>
+                <h4 *ngIf="ann.isOpened == '0'" [innerHTML]="ann.announcmentTitle" style="font-weight: bold;"></h4>
+                <h4 *ngIf="ann.isOpened == '1'" [innerHTML]="ann.announcmentTitle"></h4>
+                <div *ngIf="selectedAnnouncement === ann" [innerHTML]="ann.content"></div>
+              </td>
+              <td>
+                <p class="dateFont">{{ ann.created_at }}</p>
+              </td>
+              
+            </tr>
+          </table>
+          
 
     </div>
 </body>
