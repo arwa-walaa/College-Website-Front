@@ -1,27 +1,23 @@
-<div class="container">
-    <div class="row">
-      <div class="col-4">
-          <!-- <div class="subtitle alt-font"><span class="text-primary">#04</span><span class="title">Timetable</span></div> -->
-          <h1  style="margin-top: 40px; margin-bottom: 20px; font-weight: bolder;">My Schedule</h1>
-          
-      </div>
-      <div class="col-4">
-            <button class="btn btn-primary" 
-            style="width:300px ; border:none; background-color: #3E8DE3; color:white;margin-top: 40px; margin-bottom: 20px;" 
-            (click)="navigateToPlaceSchedule()">Place Schedule</button>
-    </div>
 
-      <div class="col-4">
-          <button class="btn btn-primary" 
-          style="width:300px ; border:none; background-color: #3E8DE3; color:white;margin-top: 40px; margin-bottom: 20px;" 
-          (click)="navigateToCourseSchedule()">Course Schedule</button>
-      </div>
-      
-  </div>
-    
+<div class="container">
+    <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6">
+        <!-- <div class="subtitle alt-font"><span class="text-primary">#04</span><span class="title">Timetable</span></div> -->
+        <h1  style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">My Schedule</h1>
+    </div>
+    <select required #course (change)="update(course.value)"  class="form-select " 
+    aria-label="Default select example">
+        <option value="default">choose  Course</option>
+        <option *ngFor="let Course of myCourses" [value]="Course.courseID">
+            {{Course.courseName}}
+        </option>
+    </select> <br>
+    <!-- {{array}} -->
     <div class="row">
         <div class="col-md-18">
-            <div class="schedule-table">
+          
+         
+            <div class="schedule-table"  id="printable-table">
+              <!-- <div class="schedule-table"  id="printable-table" style="display:none"></div> -->
                 <table class="table">
                     <thead>
                       <tr>
@@ -49,6 +45,7 @@
                       </tr>
                     </tbody>
                   </table>
+
             </div>
         </div>
     </div>

@@ -15,12 +15,13 @@
                 <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
             </select>
         </div>
+        <div class="col-3">
+            <b  *ngIf="CourseInfo && CourseInfo.length > 0 ">CourseName: {{CourseInfo[0].courseName}} </b>
+        </div>
         <div class="col-2">
             <b  *ngIf="CourseInfo && CourseInfo.length > 0 ">Number of Groups: {{CourseInfo[0].Num_of_groups}} </b>
         </div>
-        <!-- <div class="col-3">
-            <b>Number of Remaning Groups: {{num_of_remaning_groups}}</b>
-        </div> -->
+       
     </div>
     <ng-container *ngIf="CourseInfo && CourseInfo[0]">
     <div style="border-bottom: 1px solid black; margin-bottom: 20px;" *ngFor="let i of groupArray" >

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+interface ApiResponse {
+  message: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -94,10 +96,15 @@ export class StudentsService {
     return this.http.get(url);
   }
 
-  registerGP(formData:any)
-  {
-    return this.http.post('http://127.0.0.1:8000/api/registerGP/',formData);
+  // registerGP(formData:any)
+  // {
+  //   return this.http.post('http://127.0.0.1:8000/api/registerGP/',formData);
+  // }
+  apiUrl = 'http://127.0.0.1:8000/api';
+  registerGP(formData: any): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>(`${this.apiUrl}/registerGP`, formData);
   }
+ 
   evaluateCourse(formData:any)
   {
     return this.http.post('http://127.0.0.1:8000/api/courseEvaluation/',formData);

@@ -29,7 +29,7 @@
         <table id="example" class="table " >
 
               <tr *ngFor="let ann of Announcemets | SearchService:searchText">
-                <!-- <td [innerHTML]="ann.content"></td> -->
+                
                 <td  (click)="selectAnnouncement(ann)">
                     <h3 *ngIf="ann.isOpened == '0'" [innerHTML]="ann.announcmentTitle" style="background-color: gray;" ></h3>
                     <h3  [ngClass]="{'announcement-opened': isAnnouncementOpened(ann)}" *ngIf="ann.isOpened == '1'" [innerHTML]="ann.announcmentTitle" style="background-color: rgb(212, 209, 209);" ></h3>

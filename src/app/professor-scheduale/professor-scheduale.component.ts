@@ -127,6 +127,11 @@ this._AuthService.getType(token).subscribe((userType:any ) => {
       }
       return result;
     }
-    
+    navigateToCourseSchedule() {
+      this.router.navigate(['CourseSchedule']);
+    }
+    navigateToPlaceSchedule() {
+      this.router.navigate(['PlaceScheduale']);
+    }
     
   }

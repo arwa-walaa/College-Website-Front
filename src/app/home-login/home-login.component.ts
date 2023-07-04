@@ -9,7 +9,8 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class HomeLoginComponent  implements OnInit{
   constructor(private router: Router) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
+    
   }
   navigateToAnnoucements() {
     this.router.navigate(['Announcements']);

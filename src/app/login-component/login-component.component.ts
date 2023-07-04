@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login-component',
@@ -49,7 +50,14 @@ export class LoginComponentComponent implements OnInit {
             //if(/([1-9][0-9]{7})$/.test(loginForm.get('name')?.value))
             this.profAndTa.getUserType(token).subscribe((type: any) => {
               if (type[0].Type === "Professor" || type[0].Type === "TA") {
-                this.router.navigate(['/drTaHome']);
+                // this.router.navigate(['/drTaHome']);
+                const navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    skipLocationChange: true
+                  }
+                };
+                this.router.navigate(['/drTaHome'], navigationExtras);
+
 
               }
               else if (type[0].Type === "Student") {
@@ -57,14 +65,18 @@ export class LoginComponentComponent implements OnInit {
                 this.router.navigate(['/home_login']);
               }
               else if (type[0].Type === "Admin") {
-                this.router.navigate(['/home_admin']);
+                this.router.navigate(['/home_admin'] );
+                
+                
+                
               }
 
             });
+            
 
           }
 
-        
+          
         
 },
 error => {

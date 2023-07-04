@@ -63,41 +63,62 @@ export class GpComponent implements OnInit {
 
   
 
-  onSubmit(GPForm:FormGroup) {
+//   onSubmit(GPForm:FormGroup) {
  
-    this.__StudentsService.registerGP(GPForm.value).subscribe(
-      response=> {
-        if (response && !('error' in response)) {
+//     this.__StudentsService.registerGP(GPForm.value).subscribe(
+//       response=> {
+//         // if (response && !('error' in response)) {
+//           console.log("response=====",response);
+//           // alert("response====="+response);  
+//           // this.router.navigate(['/home_login']);
+//         // }    
+//     }
+//     ,
+//     error => { 
+//       console.log(error);
+//       // this.error = "Data doesn't inserted";
+//       // alert(error);
+//       // this.router.navigate(['/home_login']);
+//     });
 
-          alert('data has been inserted succefully');  
+//   //   response => {
+//   //     this.snackBar.open('Data successfully inserted!', 'Close', {
+//   //       duration: 3000,
+//   //       verticalPosition: 'top'
+//   //     });
+  
+ 
+//   // },
+//   // error => {
+//   //   console.error(error);
+//   //   this.snackBar.open('Error inserting data', 'Close', {
+//   //     duration: 3000,
+//   //     verticalPosition: 'top'
+//   //   });
+  
+  
+//   // }
+//   // );
+// }
+onSubmit(GPForm:FormGroup) {
+  this.__StudentsService.registerGP(GPForm.value).subscribe(
+    response => {
+      console.log("response=====", response);
+      if (response && response.message === 'Data has been inserted successfully') {
+        alert("Data has been inserted successfully");
+        this.router.navigate(['/home_login']);
+      } else {
+        alert("Error: " + response.message);
+        this.router.navigate(['/home_login']);
+      }
+    },
+    error => {
+      console.log(error);
+      alert("Error inserting data");
       this.router.navigate(['/home_login']);
-        }    
     }
-    ,
-    error => { 
-      console.error(error);
-      this.error = "Data doesn't inserted";
-      alert('The form has been submitted successfully');
-      this.router.navigate(['/home_login']);
-    });
+  );
+}
 
-  //   response => {
-  //     this.snackBar.open('Data successfully inserted!', 'Close', {
-  //       duration: 3000,
-  //       verticalPosition: 'top'
-  //     });
-  
- 
-  // },
-  // error => {
-  //   console.error(error);
-  //   this.snackBar.open('Error inserting data', 'Close', {
-  //     duration: 3000,
-  //     verticalPosition: 'top'
-  //   });
-  
-  
-  // }
-  // );
-}}
+}
 
