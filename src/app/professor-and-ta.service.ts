@@ -142,4 +142,11 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/getTAs_Feedbacks_for_specific_course/"+courseName+"/"+professorId+"/"+year; 
     return this.http.get(url);
   }
+
+  returnTeacherGPs(teacherId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnTeacherGPs/"+teacherId;
+    return this.http.get(url);
+  }
+
 }

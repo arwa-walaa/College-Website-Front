@@ -14,6 +14,8 @@ export class OfficeHoursComponentComponent implements OnInit {
   departments: any;
   professors: any;
   TAs: any;
+ 
+
   constructor(private _OfficeHoursServiceService:OfficeHoursServiceService) {}
   title='Office Hours';
   p: number = 1;
@@ -37,26 +39,32 @@ export class OfficeHoursComponentComponent implements OnInit {
       next:(response)=>this.professors =response
      })
 
-     this._OfficeHoursServiceService.returnAllTAs().subscribe({
-      next:(response)=>this.TAs =response
-     })
-  
-  }
-  // data2=[
-  //   {professorOrTaName:"Iman Helal" ,email:"i.helal@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Ali Zedan" ,email:"a.zedan@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Saturday", location:"new building, 1st floor"},
+     this._OfficeHoursServiceService.returnAllTAs().subscribe(      // next:(response)=>this.TAs =response
+    
+      response => {
+        this.TAs=response;
+    },
+    error => {
+      console.error('Error!', error);   
+    });
+     
 
-  //   {professorOrTaName:"Ahame Galal" ,email:"a.galal@fcai.cu.edu.eg", department:"IT" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Noha Nagy" ,email:"n.nagy@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Sara Elnady" ,email:"s.elnady@fcai.cu.edu.eg", department:"CS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Sara Elnady" ,email:"s.elnady@fcai.cu.edu.eg", department:"CS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Dalia mazen" ,email:"d.mazen@fcai.cu.edu.eg", department:"DS" ,officeHours:"12:1 pm", day:"Tuesday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Khaled Maged" ,email:"k.maged@fcai.cu.edu.eg", department:"IS" ,officeHours:"12:1 pm", day:"Monday", location:"new building, 1st floor"},
-  //   {professorOrTaName:"Kamal Essam" ,email:"k.essam@fcai.cu.edu.eg", department:"IT" ,officeHours:"12:1 pm", day:"Sunday", location:"new building, 1st floor"}
-    
-    
- 
-  //  ]
+  }
+
+  selectProfessorName(teacherName:any)
+  {
+    this._OfficeHoursServiceService.selectTeacherOfficeHour(teacherName).subscribe({
+      next:(response)=>this.tableData =response
+     })
+  }
+
+  selectTAName(teacherName:any)
+  {
+    this._OfficeHoursServiceService.selectTeacherOfficeHour(teacherName).subscribe({
+      next:(response)=>this.tableData =response
+     })
+  }
+
   searchText='';
 
 }

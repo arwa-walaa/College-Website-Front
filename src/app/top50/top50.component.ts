@@ -21,11 +21,7 @@ export class Top50Component {
   previousPath: string = '';
   ngOnInit(): void {
 
- 
-  
   // You can display the path to the user using a toast, alert, or other UI element
-
-
     this.studendService.getAllCourses().subscribe({
       next:(response)=> this.Courses=response
       
@@ -40,8 +36,7 @@ export class Top50Component {
   {
     console.log("select dept"+dept );
     this.studendService.getDeptTopbyParam50(dept).subscribe({
-      next:(response)=> this.students=response
-      
+      next:(response)=> this.students=response     
     });
   }
 

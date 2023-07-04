@@ -33,6 +33,8 @@ export class FCAIChatComponent implements OnInit {
   blockedUsers:any;
   mailMessage:any;
   chatPartnerId: any;
+  BlockedProfessorOrTa:any;
+  StudentBlocked:any;
   
 
   constructor(private router: Router,private messageService: MessageService,
@@ -77,6 +79,8 @@ getAllContacts(){
   error => { 
     console.error(error);  
   });
+
+  this.getBlockedUsers();
   
 }
 formatDate(dateString: string): any {
@@ -104,6 +108,8 @@ getRecentContacts(senderID:any){
   error => { 
     console.error(error);  
   });
+
+  this.getBlockedUsers();
   
 }
 
@@ -124,7 +130,6 @@ setCurrentReceiver(receiver: any) {
 }
 
 sendMessage() {
-  
   this.getBlockedUsers();
   
  
@@ -164,13 +169,15 @@ blockUser()
     this.messageService.blockUser(this.currentSender,this.currentReceiver)
     .subscribe(
       response=> {
-        console.log('blocked users',response);             
+        console.log('blocked users',response);   
+        this.isBlocked = true;       
     }
     ,
     error => { 
       console.error(error); 
       alert("This user has been blocked");   
     }); 
+
 }
 
 unBlockUser()
@@ -228,6 +235,10 @@ getBlockedUsers()
 
   else
   {
+    this.BlockedProfessorOrTa = this.blockedUsers[0].user1;
+    this.StudentBlocked = this.blockedUsers[0].user2;
+    console.log('BlockedProfessorOrTa',this.BlockedProfessorOrTa);
+    console.log('StudentBlocked',this.StudentBlocked);
     alert("You can't send a message to this user");
   }
  
