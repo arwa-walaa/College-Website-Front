@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpParams} from '@angular/common/http';
+import {HttpClient,HttpHeaders,HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 @Injectable({
@@ -118,10 +118,17 @@ getMyStudents(professorId:any)
     return this.http.put(url,gpID);
   }
 
-  getUserType(token:any)
-  {
-    let url= "http://127.0.0.1:8000/api/getUserType/"+token;
-    return this.http.get(url);
+  // getUserType(token:any)
+  // {
+  //   let url= "http://127.0.0.1:8000/api/getUserType/"+token;
+  //   return this.http.get(url);
+  // }
+  getUserType(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const url = `http://127.0.0.1:8000/api/getUserType/${token}`;
+    return this.http.get(url, { headers });
   }
   getStudentData(StudentID:any)
   {

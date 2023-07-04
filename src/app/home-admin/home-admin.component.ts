@@ -11,16 +11,14 @@ import { filter } from 'rxjs/operators';
 export class HomeAdminComponent implements OnInit{
   isReloaded: any = null;
   constructor(private router: Router) {}
-  ngOnInit() {
-    // this.isReloaded=true;
-    // if (this.isReloaded===true)
-    // {
-    //   this.isReloaded=false;
-    //   window.location.reload();
-    // }
-    setInterval(() => {
+  ngOnInit(): void {
+    const loggedIn = localStorage.getItem('loggedIn');
+  
+    // if the user has just logged in, reload the page to prevent caching issues
+    if (loggedIn) {
+      localStorage.removeItem('loggedIn'); // remove the flag from local storage
       window.location.reload();
-    }, 216000);
+    }
   }
 
   navigateToAddAnnouncment() {

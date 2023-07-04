@@ -45,9 +45,13 @@ export class AuthService {
     localStorage.setItem('token', token); // store the token in local storage
   }
 
-  getToken()
-  {
-      return localStorage.getItem('token');
+  // getToken()
+  // {
+  //     return localStorage.getItem('token');
+  // }
+  getToken(): string {
+    const token = localStorage.getItem('token');
+    return token ? token : '';
   }
 
   getType(token:any)
