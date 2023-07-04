@@ -98,9 +98,11 @@ export class AddOfficeHoursComponent {
         (response) => {
             console.log("===============", response)
             this.flag=true;
+            this.router.navigate(['/home_dr_ta']);
         }, (error) => {
             console.error("erooooor", error);
             this.flag=false;
+            
         });
     
     console.log("test=",this.officeHours);
@@ -117,6 +119,7 @@ export class AddOfficeHoursComponent {
      
       
     }
+
     
 
 

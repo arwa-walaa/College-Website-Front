@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-admin',
@@ -7,9 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-admin.component.css']
 })
 export class HomeAdminComponent implements OnInit{
+  isReloaded: any = null;
   constructor(private router: Router) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const loggedIn = localStorage.getItem('loggedIn');
+  
+    // if the user has just logged in, reload the page to prevent caching issues
+    if (loggedIn) {
+      localStorage.removeItem('loggedIn'); // remove the flag from local storage
+      window.location.reload();
+    }
   }
 
   navigateToAddAnnouncment() {

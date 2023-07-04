@@ -1,5 +1,4 @@
-
-  <nav class="navbar navbar-expand navbar-dark" style="background-color:#143AA2; height:68px;">
+<nav class="navbar navbar-expand navbar-dark" style="background-color:#143AA2; height:68px;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="assets\logo.jpeg" alt="Logo" style="width:50px;" class="rounded-pill">
@@ -14,18 +13,20 @@
           </li>
 
           <li class="nav-item" *ngIf="isStudent==false">
-            <form class="d-flex">
-              <div class="input-group flex-nowrap">
-                <input class="form-control form-control-lg" name="searchQuery" [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
-                <span class="input-group-text"><i class="bi bi-search"></i></span>
-              </div>
-            </form>
             <!-- <form class="d-flex">
-              <div class="input-group" style="width: 300px; margin-top: 3px; margin-left: 20px;">
-                <input class="form-control form-control-lg" name="searchQuery" [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group flex-nowrap">
+                <input class="form-control form-control-lg" name="searchQuery" 
+                [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
                 <span (click)="searchUsers()" class="input-group-text"><i class="bi bi-search"></i></span>
               </div>
             </form> -->
+            <form class="d-flex">
+              <div class="input-group" style="width: 300px; margin-top: 3px; margin-left: 20px;">
+                <input class="form-control form-control-lg" name="searchQuery" 
+                [(ngModel)]="searchQuery" type="search" placeholder="Search" aria-label="Search">
+                <span (click)="searchUsers()" class="input-group-text"><i class="bi bi-search"></i></span>
+              </div>
+            </form>
           </li>
 
 
@@ -66,22 +67,22 @@
     </div>
   </nav>
 
-  <div class="row">
-    <div class="col-md-6 mx-auto mt-4" *ngIf="searchResults && searchResults.length > 0">
-      <div class="card">
-        <div class="card-body text-center">
-          <div class="row">
-            <div class="col-md-5 mb-3" *ngFor="let result of searchResults">
-              <div class="card" (click)="goToUserProfile(result)">
-                <div class="card-body">
-                  <h5 class="card-title">{{ result.studentName }}</h5>
-                  <p class="card-text">ID: {{ result.studentId }}</p>
-                </div>
-              </div>
+  
+  <div class="col-md-6" *ngIf="searchResults && searchResults.length > 0">
+
+    <div class="card-body" style="margin-left: 30%;">
+
+      <div class="row">
+        <div class="col-md-5" *ngFor="let result of searchResults">
+          <div class="card" (click)="goToUserProfile(result)">
+            <div class="card-body">
+              <h5 class="card-title">{{ result.studentName }}</h5>
+              <p class="card-text">ID: {{ result.studentId }}</p>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+</div>

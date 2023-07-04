@@ -9,8 +9,15 @@ import { ActivatedRoute, Router} from '@angular/router';
 export class HomeLoginComponent  implements OnInit{
   constructor(private router: Router) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    const loggedIn = localStorage.getItem('loggedIn');
+  
+    // if the user has just logged in, reload the page to prevent caching issues
+    if (loggedIn) {
+      localStorage.removeItem('loggedIn'); // remove the flag from local storage
+      window.location.reload();
+    }
   }
+
   navigateToAnnoucements() {
     this.router.navigate(['Announcements']);
   }

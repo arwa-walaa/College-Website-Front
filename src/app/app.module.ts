@@ -66,15 +66,17 @@ import { StatisticsCoursesCompareComponent } from './statistics-courses-compare/
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 // import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
-import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
+//import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
 import { AdminService } from './admin.service';
 import { AdminOptionsComponent } from './admin-options/admin-options.component';
 import { AddGradesComponent } from './add-grades/add-grades.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { AddGroupComponent } from './add-group/add-group.component';
-import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
 // import {BreadcrumbModule} from 'angular-crumbs';
+
+import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
+import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -123,13 +125,15 @@ import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.c
     StatisticsDepartmentComponent,
     StatisticsCoursesComponent,
     StatisticsCoursesCompareComponent,
-    AddAnnouncementsComponent,
+    // AddAnnouncementsComponent,
     AdminOptionsComponent,
     AddGradesComponent,
     AddCourseComponent,
     AddGroupComponent,
-    DrTaCurrentGPsComponent,
     // MessageService,
+    CourseScheduleComponent,
+    DrTaCurrentGPsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -151,8 +155,8 @@ import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.c
   ],
   providers:
    [DatePipe,
-  AdminService
-    // { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  AdminService,
+  
   ],
   bootstrap: [AppComponent]
   

@@ -6,6 +6,7 @@ import { ProfessorAndTaService } from '../professor-and-ta.service';
 import { StudentsService } from '../students.service';
 import { BreadcrumbService } from '../breadcrumb.service';
 import { filter } from 'rxjs';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-nav-bar-component',
@@ -25,15 +26,9 @@ export class NavBarComponentComponent {
     private http: HttpClient,
     private _AuthService:AuthService,
     private studendService: StudentsService
-    ,private breadcrumbService: BreadcrumbService) {}
+    ,private breadcrumbService: BreadcrumbService, private _AdminService:AdminService) {}
  
     ngOnInit(): void {
-
-
-
-      
-      
-
 
       const token=this._AuthService.getToken();
       if(this._AuthService.getToken()){
@@ -65,6 +60,14 @@ export class NavBarComponentComponent {
         });
     
       }
+      else if(type[0].Type==="Admin"){
+        this.isStudent=false;
+        this._AdminService.getAdminInfo(token).subscribe((AdminInfo:any ) => {
+          this.name=AdminInfo[0].name
+
+        });
+    
+      }
     
     });
     }
@@ -72,6 +75,7 @@ export class NavBarComponentComponent {
     {
       const token=this._AuthService.getToken();
       this._AuthService.removeToken();
+      window.location.reload();
     }
       
   searchUsers() {

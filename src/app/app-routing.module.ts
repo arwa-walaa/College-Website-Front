@@ -51,12 +51,13 @@ import { HomeAdminComponent } from './home-admin/home-admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ViewStudentProfileComponent } from './view-student-profile/view-student-profile.component';
 import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
-import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
+//import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component';
 import { AdminOptionsComponent } from './admin-options/admin-options.component';
 import { AddGradesComponent } from './add-grades/add-grades.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { AuthGuardService } from './auth-guard.service';
 import { AddGroupComponent } from './add-group/add-group.component';
+import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
 import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
 
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
@@ -70,7 +71,7 @@ const routes: Routes = [
 {path: 'resetPassword',component:RestPasswardComponentComponent},
 {path: 'Top50',component:Top50Component,canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin', 'TA','Professor'] }},
 {path: 'examHalls',component:ExamHallsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student','Admin'] }},
-{path: 'registerdCoursesAndResults',component:RegisterdCoursesAndResultsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student','Admin'] }},
+{path: 'registerdCoursesAndResults',component:RegisterdCoursesAndResultsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['TA','Professor','Student','Admin'] }},
 {path: 'studentGroupSelection',component:StudentGroupSelectionComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student','Admin'] }},
 {path: 'CourseEvaluation',component:CourseEvaluationComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student','Admin'] }},
 {path: 'CourseFormEvaluation',component:CourseFormEvaluationComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student','Admin'] }},
@@ -110,10 +111,11 @@ const routes: Routes = [
 ////////////////professor///////
 {path: 'Schedule', component: ProfessorSchedualeComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'PlaceScheduale', component: PlaceSchedualeComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
+{path: 'CourseSchedule', component: CourseScheduleComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'ProfProfile', component: ProfissorProfileComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'gpRequest', component: GpRequestsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'addOfficeHours', component: AddOfficeHoursComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'Professor','TA'] }},
-{path: 'AddAnnouncements', component: AddAnnouncementsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+//{path: 'AddAnnouncements', component: AddAnnouncementsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},

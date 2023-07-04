@@ -45,7 +45,11 @@ export class AdminService {
     let url= "http://127.0.0.1:8000/api/setDepatmentToStudent/";
     return this.http.get(url);  
   }
-
+  getAdminInfo(token:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getAdminInfo/"+token;
+    return this.http.get(url);  
+  }
   // setRegisterationStatus(data: any) {
   //   this.registerationStatus = data;
   //   console.log('registerationStatusssssssssss',this.registerationStatus);
