@@ -58,5 +58,7 @@ export class ExamHallsComponent {
     });
   }
   searchText='';
-
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
 }

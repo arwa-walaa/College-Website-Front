@@ -61,6 +61,12 @@ export class CourseEvaluationComponent implements OnInit  {
     this.router.navigate(['/CourseFormEvaluation'], { queryParams: { courseName: courseName, courseID: courseID} });
   
   }
+  navigateToregisterdCoursesAndResults(){
+    this.router.navigate(['registerdCoursesAndResults']);
+  }
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
 
 
 

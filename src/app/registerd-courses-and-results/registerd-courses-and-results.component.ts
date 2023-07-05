@@ -101,5 +101,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   navigateToRegisterGraduationProject(){
     this.router.navigate(['gpForm']);
   }
- 
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
 }

@@ -57,5 +57,12 @@ export class RegisterCourseComponent implements OnInit {
    
     this.router.navigate(['studentGroupSelection'], { queryParams: this.selectedCourses  });
   }
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
+ 
+  navigateToregisterdCoursesAndResults(){
+    this.router.navigate(['registerdCoursesAndResults']);
+  }
 }
 

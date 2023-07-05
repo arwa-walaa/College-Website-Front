@@ -1,6 +1,12 @@
 <br><br>
 
 <div class="container">
+    <div class="breadcrumb">
+        <a  (click)="navigateToHome()" class="navigate">Home </a>
+        <a  (click)="navigateToregisterdCoursesAndResults()" class="navigate"> / registered Courses And Results</a>
+        <a  (click)="navigateToRegisterCourse()" class="navigate"> / register course</a>
+        <p > / student Group Selection</p>
+     </div>
    
     <div class="alert alert-danger" *ngIf="!noConfilect.message&&flag">
         <strong>Error!</strong> there is conflict check the slot time.

@@ -5,3 +5,11 @@ a{
 #examTime{
     color:#143AA2; margin-top:-40px; margin-left:381px;
 }
+.breadcrumb{
+   
+    display: flex;
+      
+}
+.navigate{
+    color: #3E8DE3;
+}

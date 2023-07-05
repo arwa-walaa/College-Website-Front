@@ -1,8 +1,14 @@
 
 <div class="container">
+  <br><br>
+  <div class="breadcrumb">
+    <a  (click)="navigateToHome()" class="navigate">Home </a>
+    <a  (click)="navigateToScheduale()" class="navigate"> / My Schedule</a>
+    <p > / Course Schedule</p>
+ </div>
     <div class="w-95 w-md-75 w-lg-60 w-xl-55 mx-auto mb-6">
         <!-- <div class="subtitle alt-font"><span class="text-primary">#04</span><span class="title">Timetable</span></div> -->
-        <h1  style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">My Schedule</h1>
+        <h1  style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder;">Course Schedule</h1>
     </div>
     <select required #course (change)="update(course.value)"  class="form-select " 
     aria-label="Default select example">

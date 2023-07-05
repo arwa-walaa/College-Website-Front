@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OfficeHoursServiceService } from '../office-hours-service.service';
+import { Router } from '@angular/router';
 
 
 
@@ -16,7 +17,7 @@ export class OfficeHoursComponentComponent implements OnInit {
   TAs: any;
  
 
-  constructor(private _OfficeHoursServiceService:OfficeHoursServiceService) {}
+  constructor(private _OfficeHoursServiceService:OfficeHoursServiceService,private router:Router) {}
   title='Office Hours';
   p: number = 1;
   count: number = 5;
@@ -66,5 +67,7 @@ export class OfficeHoursComponentComponent implements OnInit {
   }
 
   searchText='';
-
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
 }

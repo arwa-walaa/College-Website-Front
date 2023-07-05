@@ -305,4 +305,13 @@ export class CourseFormEvaluationComponent implements OnInit {
   goToPreviousPage() {
     this.currentPage -= 1;
   }
+  navigateToregisterdCoursesAndResults(){
+    this.router.navigate(['registerdCoursesAndResults']);
+  }
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
+  navigateToEvaluateCourses(){
+    this.router.navigate(['CourseEvaluation']);
+  }
 }

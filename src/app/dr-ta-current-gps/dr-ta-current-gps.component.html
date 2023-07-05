@@ -1,6 +1,12 @@
 <br><br>
 <div class="container">
     <br><br>
+    <div class="breadcrumb">
+        <a  (click)="navigateToHome()" class="navigate">Home </a>
+        <a  (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
+        
+        <p > / Current Graduation Projects</p>
+     </div>
     <h2 style="font-weight: bold;">Current Graduation Projects</h2><br>
     <div class="request_card" *ngFor="let d of currentGPs">
         <div *ngIf="showData">

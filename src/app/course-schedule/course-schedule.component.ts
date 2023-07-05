@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StudentsService } from '../students.service';
 import { AuthService } from '../auth.service';
 import { ProfessorAndTaService } from '../professor-and-ta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-schedule',
@@ -15,7 +16,7 @@ export class CourseScheduleComponent {
     
    public array:any[]=[]
   myCourses: any;
-    constructor(private studendService: StudentsService,private _AuthService:AuthService ,  private profAndTa:ProfessorAndTaService) {}
+    constructor(private router:Router,private studendService: StudentsService,private _AuthService:AuthService ,  private profAndTa:ProfessorAndTaService) {}
     ngOnInit(): void {
        
       const token=this._AuthService.getToken();
@@ -52,6 +53,29 @@ export class CourseScheduleComponent {
       
      
      
+    }
+    navigateToScheduale(){
+      this.router.navigate(['Schedule']);
+    }
+   navigateToHome(){
+      const token = this._AuthService.getToken();
+  
+            if (token) { // check if the token is valid
+              this.profAndTa.getUserType(token).subscribe((type: any) => {
+                if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                  
+                  this.router.navigate(['/drTaHome']);
+                }
+                else if (type[0].Type === "Student") {
+                  this.router.navigate(['/home_login']);
+                }
+                else if (type[0].Type === "Admin") {
+                  this.router.navigate(['/home_admin']);
+                }
+              });
+              // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+            }
+      // this.router.navigate(['home_login']); 
     }
     update(courseID:any){
       this.getScheduale(courseID)

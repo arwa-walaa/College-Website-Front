@@ -102,4 +102,12 @@ form.example button {
   .table-row:hover {
     background-color: rgb(237, 228, 228);
   }
+  .breadcrumb{
+   
+    display: flex;
+      
+}
+.navigate{
+    color: #3E8DE3;
+}
   

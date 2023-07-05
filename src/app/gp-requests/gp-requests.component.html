@@ -7,6 +7,12 @@
   </div>
 <div class="container">
     <br><br>
+    <div class="breadcrumb">
+        <a  (click)="navigateToHome()" class="navigate">Home </a>
+        <a  (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
+        <p  *ngIf="userType != 'Admin'" > / Graduation Project Requests</p>
+        <p   *ngIf="userType == 'Admin'"> / Accepted Graduation Projects</p>
+     </div>
     <h2 *ngIf="userType != 'Admin'" style="font-weight: bold;">Graduation Project Requests</h2><br>
     <h2 *ngIf="userType == 'Admin'" style="font-weight: bold;">Accepted Graduation Projects</h2><br>
     <div class="request_card" *ngFor="let d of gpRequests">

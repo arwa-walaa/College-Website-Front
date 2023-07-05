@@ -39,6 +39,12 @@ export class Top50Component {
       next:(response)=> this.students=response     
     });
   }
+  navigateToAnnoucements() {
+    this.router.navigate(['Announcements']);
+  }
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  }
 
   SelectCourse(course:any)
   {

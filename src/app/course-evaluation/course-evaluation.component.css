@@ -14,3 +14,11 @@
 .list-group-item.cell:hover {
     background-color: #f0f0f0; /* set the hover background color of the cell */
   }
+  .breadcrumb{
+   
+    display: flex;
+      
+}
+.navigate{
+    color: #3E8DE3;
+}

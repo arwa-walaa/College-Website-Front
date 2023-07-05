@@ -91,7 +91,7 @@ const routes: Routes = [
 {path:'program_selection',component:ProgramSelectionComponent,title:'program_selection',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'register_course',component:RegisterCourseComponent,title:'register_course',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'login' , component:LoginComponentComponent },
-{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRol:  ['Student', 'Admin'] } },
+{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] } },
 {path: 'Chat', component: ChatComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin', 'TA','Professor'] }},
 //{path: 'FCAIChat', component: FCAIChatComponent},
 // {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
