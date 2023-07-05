@@ -32,7 +32,7 @@ import { ProfessorEvaluationFormComponent } from './professor-evaluation-form/pr
 import { TaEvaluationFormComponent } from './ta-evaluation-form/ta-evaluation-form.component';
 import { HomeDrTaComponent } from './home-dr-ta/home-dr-ta.component';
 //import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
-import { ViewStudentsComponent } from './view-students/view-students.component';
+//import { ViewStudentsComponent } from './view-students/view-students.component';
 import { DrTaCoursesComponent } from './dr-ta-courses/dr-ta-courses.component';
 import { CourseInfoComponent } from './course-info/course-info.component';
 import { ViewFeedbacksComponent } from './view-feedbacks/view-feedbacks.component';
@@ -91,11 +91,11 @@ const routes: Routes = [
 {path:'program_selection',component:ProgramSelectionComponent,title:'program_selection',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'register_course',component:RegisterCourseComponent,title:'register_course',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'login' , component:LoginComponentComponent },
-{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] } },
+{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRol:  ['Student', 'Admin'] } },
 {path: 'Chat', component: ChatComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin', 'TA','Professor'] }},
 //{path: 'FCAIChat', component: FCAIChatComponent},
 // {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
-{path:'view_students',component:ViewStudentsComponent,title:'View Students',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
+//{path:'view_students',component:ViewStudentsComponent,title:'View Students',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path:'dr_ta_courses',component:DrTaCoursesComponent,title:'My Courses',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path:'course_info',component:CourseInfoComponent,title:'Course Info',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'Professor','TA'] }},
 {path:'view_feedbacks',component:ViewFeedbacksComponent,title:'View Feedbacks',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin', 'TA','Professor'] }},

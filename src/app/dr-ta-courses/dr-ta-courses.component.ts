@@ -103,6 +103,7 @@ export class DrTaCoursesComponent {
   }
 
   navigateToCourse(d:any) {
+    console.log('course dataaaaa==',d);
     this.router.navigate(['course_info'],{ queryParams: d  });
   }
  

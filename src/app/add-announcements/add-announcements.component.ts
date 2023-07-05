@@ -61,6 +61,7 @@
         
 //         console.log('Announcement saved successfully!');
 //         this.flag=true
+//        this.router.navigate(['home_admin']);
 //       },
 //        error => {
 //         console.error('Error saving announcement:', error);

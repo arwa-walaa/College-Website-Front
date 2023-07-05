@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StudentsService } from '../students.service';
 import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-program-selection',
@@ -20,7 +21,7 @@ export class ProgramSelectionComponent {
   };
   flag:any=null;
  
-  constructor(private studendService: StudentsService,private _AuthService:AuthService,private http: HttpClient) {}
+  constructor(private router: Router,private studendService: StudentsService,private _AuthService:AuthService,private http: HttpClient) {}
   ngOnInit(): void {
      
     const token=this._AuthService.getToken();
@@ -79,6 +80,8 @@ saveData() {
   this.http.post(url, this.data,options).subscribe(
     (response) =>{
       console.log(response);
+
+      this.router.navigate(['/home_login']);
     }
     
    ,

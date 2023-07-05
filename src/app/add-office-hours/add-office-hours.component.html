@@ -1,6 +1,6 @@
 <br><br>
 <div class="alert alert-danger" *ngIf="flag===false">
-    please insert office hours data 
+   Error: please insert office hours data or invalid office houre time
   </div>
   <div class="alert alert-success" *ngIf="flag===true">
     Office Hours Added Successfully.
@@ -10,7 +10,7 @@
     <h2 style="font-weight: bold;">Add Office Hours</h2><br>
 
     <div>
-        <form (ngSubmit)="submit()">
+        <form >
             <ng-container *ngFor="let officeHour of officeHours; let i = index">
 
             <div >
