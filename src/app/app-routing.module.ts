@@ -60,6 +60,9 @@ import { AddGroupComponent } from './add-group/add-group.component';
 import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
 import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { StatisticsCoursesComponent } from './statistics-courses/statistics-courses.component';
+import { StatisticsDepartmentComponent } from './statistics-department/statistics-department.component';
+
 
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
@@ -120,6 +123,8 @@ const routes: Routes = [
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path:'StatisticsDepartment',component:StatisticsDepartmentComponent,title:'StatisticsDepartment',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path:'StatisticsCourses',component:StatisticsCoursesComponent,title:'StatisticsCourses',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 {path:'admin_options',component:AdminOptionsComponent,title:'Admin Options',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin'] }},
 {path:'add_grades',component:AddGradesComponent,title:'Add Grades',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin'] }},
 {path:'add_course',component:AddCourseComponent,title:'Add Course', canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},

@@ -71,23 +71,23 @@
 
                                     <div *ngIf="contact.numOfUnReadMessages != 0" class="about">
 
-                                        <div *ngIf="contact.isblocked == false" class="name">{{ contact.Type}} {{
+                                        <div *ngIf="contact.isblocked == false" class="name" style="font-size: 15px; font-weight:bold;">{{ contact.Type}} {{
                                             contact.name}}
                                             <div class="circle-icon">
                                                 <span class="count">{{contact.numOfUnReadMessages}}</span>
                                             </div>
                                         </div>
                                         <div *ngIf="contact.isblocked == true" class="name"
-                                            style="color:rgb(201, 199, 199);">{{ contact.Type}} {{ contact.name}}
+                                            style="color:rgb(201, 199, 199); font-size: 15px; font-weight:bold;">{{ contact.Type}} {{ contact.name}}
                                             <div class="circle-icon">
                                                 <span class="count">{{contact.numOfUnReadMessages}}</span>
                                             </div>
                                         </div>
 
                                         <span *ngIf="contact.isblocked == false" class="message-data-time small"
-                                            style="font-size: 13px; ">{{ contact.last_contact_time}}</span>
+                                            style="font-size: 13px; font-weight:bold;">{{ contact.last_contact_time}}</span>
                                         <span *ngIf="contact.isblocked == true" class="message-data-time small"
-                                            style="font-size: 13px; color:rgb(201, 199, 199); ">{{
+                                            style="font-size: 13px; color:rgb(201, 199, 199); font-weight:bold;">{{
                                             contact.last_contact_time}}</span>
                                     </div>
 

@@ -18,17 +18,38 @@ export class SideMenuComponent {
   evaluationFormStatus: any;
   programSelectionStatus:any;
   userTypeValue:any;
+  loggedUserInfo: any;
+  menuStatus:boolean=false;
+  isAdmin: boolean=false;
 
     constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
       private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
     ngOnInit(): void {
       const token=this._AuthService.getToken();
-      this._AuthService.getType(token).subscribe((userType:any ) => {
-        if (userType && userType.length > 0) {
-           this.userTypeValue = userType[0].Type;
-          console.log("usertype", this.userTypeValue);
-      
+      if(token){
+      this.menuStatus=true;
+      this.profAndTa.getUserType(token).subscribe((Type:any ) => {
+        if(Type){
+          if(Type[0].Type === "Admin"){
+            this.isAdmin=true;
+            console.log("isAdmin", this.isAdmin);
+          }
+          else{
+            this.isAdmin=false;
+            console.log("isAdmin", this.isAdmin);
+          }
         }
+      
+
+      });
+      }
+      
+      this._AuthService.getUserInfo(token).subscribe((loggedUserInfo:any ) => {
+        if(loggedUserInfo){
+          this.loggedUserInfo=loggedUserInfo;
+        console.log("loggedUserInfo", this.loggedUserInfo);
+        }
+        
       });
 
       this._AdminService.getAdminControlStatus().subscribe((data: any) => {
@@ -37,8 +58,6 @@ export class SideMenuComponent {
         console.log("evaluationFormStatus", this.evaluationFormStatus);
       });
     console.log("this.evaluationStatus",this.evaluationStatus)
-      // const token=this._AuthService.getToken();
-  
       
       this._AdminService.getAdminControlStatus()
       .subscribe(
@@ -77,6 +96,7 @@ export class SideMenuComponent {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    console.log('isMenuOpen', this.isMenuOpen)
   }
     ///////////////////
     navigateToAnnoucements() {
@@ -153,10 +173,38 @@ export class SideMenuComponent {
   }
   ///////////////////////////////////
 
- 
+  navigateToCurrentGPs() {
+    this.router.navigate(['/DrTaCurrentGPs'], { queryParams: { teacherId: this.loggedUserInfo[0].logginUserID} });
+  }
 
-
-    ///////////////////////////////////
+    ////////Admin///////////////////////////
+    navigateToAddAnnouncment() {
+      this.router.navigate(['AddAnnouncements']);
+    }
+    navigateToDashboards() {
+      this.router.navigate(['dashboard']);
+    }
+    navigateToOptions() {
+      this.router.navigate(['admin_options']);
+    }
+    navigateToAcceptedGP() {
+      this.router.navigate(['gp_requests']);
+    }
+    showDepartment(){
+      this.router.navigate(['StatisticsDepartment']);
+    }
+    showCourses(){
+      this.router.navigate(['StatisticsCourses']);
+    }
+    navigateToAddGrades(){
+      this.router.navigate(['add_grades']);
+    }
+    navigateToAddCourse(){
+      this.router.navigate(['add_course']);
+    }
+    navigateToAddGroups(){
+      this.router.navigate(['add_groups']);
+    }
 
 
 
