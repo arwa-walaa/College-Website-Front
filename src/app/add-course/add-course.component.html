@@ -36,7 +36,8 @@
                 <div class="form-group">
                    
                     <label for="courseName">Department Code</label>
-                    <select #dep  formControlName="department_code" class="form-select" aria-label="Default select example">
+                    <select #dep  formControlName="department_code" class="form-select" 
+                    aria-label="Default select example">
                         <option value="default">choose Department Code</option>
                         <option *ngFor="let d of departments" [value]="d.departmentCode">{{d.departmentCode}}</option>
                       </select>
@@ -60,8 +61,9 @@
             <div class="col-4">
                 <div class="form-group">
                     <label for="type">Type</label>
-                    <select #Type formControlName="type" aria-label="Default select example" class="form-control">
-                      <option value="mandatory">mandatory</option>
+                    <select #Type formControlName="type" aria-label="Default select example" class="form-select">
+                        <option  value="default" disabled selected>Type</option>
+                        <option value="mandatory">mandatory</option>
                       <option value="optional">optional</option>
                       
                     </select>
@@ -74,7 +76,8 @@
                 <div class="form-group">
                     <label  for="currentSemester">Current Semester</label>
                     <select aria-label="Default select example" class="form-control" #semster formControlName="semester">
-                      <option value="First">First</option>
+                        <option  value="default" disabled selected>Semester</option>
+                        <option value="First">First</option>
                       <option value="Second">Second</option>
                       <option value="Summer">Summer</option>
                     </select>
@@ -90,6 +93,7 @@
                 <div class="form-group">
                     <label for="Level"> Level</label>
                     <select #level aria-label="Default select example" class="form-control" formControlName="level">
+                        <option  value="default" disabled selected>Level</option>
                         <option value="First Level">First Level</option>
                         <option value="Second Level">Second Level</option>
                         <option value="Third Level">Third Level</option>
@@ -108,7 +112,7 @@
                    
                     <label for="courseName">Professor 1</label>
                     <select #prof1  formControlName="professor1" class="form-select" aria-label="Default select example">
-                        <option value="">choose Professor</option>
+                        <option value="default">choose Professor</option>
                         <option *ngFor="let p of professors" [value]="p.professorId">{{p.professorName}}</option>
                       </select>
                   </div>
@@ -118,7 +122,7 @@
                 <div class="form-group">
                     <label for="courseName">Professor 2</label>
                     <select #prof2  formControlName="professor2" class="form-select" aria-label="Default select example">
-                        <option value="">choose Professor</option>
+                        <option value="default">choose Professor</option>
                         <option *ngFor="let p1 of professors" [value]="p1.professorId">{{p1.professorName}}</option>
                       </select>
                   </div>

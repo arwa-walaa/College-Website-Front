@@ -48,7 +48,7 @@ weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
       professor2: new FormControl(null),
       credit_hours: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(5)] ),
       num_of_groups: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(100)] ),
-      type: new FormControl('mandatory', Validators.required),
+      type: new FormControl(null, Validators.required),
       slot_day1: new FormControl(null, Validators.required),
       start_time1: new FormControl(null, Validators.required),
       end_time1: new FormControl(null, Validators.required),
