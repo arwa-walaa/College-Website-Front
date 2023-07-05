@@ -11,7 +11,6 @@ import { RegisterdCoursesAndResultsComponent } from './registerd-courses-and-res
 import { RestPasswardComponentComponent } from './rest-passward-component/rest-passward-component.component';
 import { StudentGroupSelectionComponent } from './student-group-selection/student-group-selection.component';
 import { Top50Component } from './top50/top50.component';
-import { ChatComponent } from './chat/chat.component';
 import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 
 
@@ -95,7 +94,6 @@ const routes: Routes = [
 {path:'register_course',component:RegisterCourseComponent,title:'register_course',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'login' , component:LoginComponentComponent },
 {path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] } },
-{path: 'Chat', component: ChatComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin', 'TA','Professor'] }},
 //{path: 'FCAIChat', component: FCAIChatComponent},
 // {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 //{path:'view_students',component:ViewStudentsComponent,title:'View Students',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},

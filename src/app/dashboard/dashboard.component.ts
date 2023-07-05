@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
+  constructor(private router:Router) {
+    
+  }
   ngOnInit(): void {
   }
   
@@ -19,6 +23,9 @@ export class DashboardComponent {
   showCourses(){
     this.showDept = false;
     this.showCors = true;
+  }
+  navigateToHome(){
+    this.router.navigate(['home_admin']); 
   }
 
 
