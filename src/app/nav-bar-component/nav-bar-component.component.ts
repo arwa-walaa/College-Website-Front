@@ -119,19 +119,22 @@ export class NavBarComponentComponent {
     else if(type[0].Type==="Student"){
       this.router.navigate(['home_login']);
     }
+    else if(type[0].Type==="Admin"){
+      this.router.navigate(['home_admin']);
+    }
   
   });
 
   }
-  private updateBreadcrumbData(url: string): void {
-    const segments = url.split('/').slice(1);
-    const crumbs = [{ label: 'Home', path: '/' }];
-    segments.forEach((segment, index) => {
-      const label = segment.charAt(0).toUpperCase() + segment.slice(1); // Capitalize first letter
-      const path = `/${segments.slice(0, index + 1).join('/')}`;
-      crumbs.push({ label, path });
-    });
-    this.breadcrumbService.crumbsSubject.next(crumbs);
-  }
+  // private updateBreadcrumbData(url: string): void {
+  //   const segments = url.split('/').slice(1);
+  //   const crumbs = [{ label: 'Home', path: '/' }];
+  //   segments.forEach((segment, index) => {
+  //     const label = segment.charAt(0).toUpperCase() + segment.slice(1); // Capitalize first letter
+  //     const path = `/${segments.slice(0, index + 1).join('/')}`;
+  //     crumbs.push({ label, path });
+  //   });
+  //   this.breadcrumbService.crumbsSubject.next(crumbs);
+  // }
 
 }

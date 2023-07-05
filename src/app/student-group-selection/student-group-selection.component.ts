@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentsService } from '../students.service';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
@@ -29,7 +29,7 @@ export class StudentGroupSelectionComponent {
   // count:any=0;
 
  
-  constructor(private route: ActivatedRoute,private studendService: StudentsService ,private http: HttpClient,private _AuthService:AuthService) {
+  constructor(private router: Router,private route: ActivatedRoute,private studendService: StudentsService ,private http: HttpClient,private _AuthService:AuthService) {
   
   }
 
@@ -144,8 +144,6 @@ saveSelectedGroup(courseData: any, selectedGroup: any, id: any) {
 // }
 
 saveData() {
- 
- 
   let url = 'http://127.0.0.1:8000/api/registerCourses';
    let options = { headers: { 'Content-Type': 'application/json' } };
   this.http.post(url, this.courseDataArray,options).subscribe(
@@ -157,8 +155,9 @@ saveData() {
     
    
   );
- 
+  
   this.flag=true
+  this.router.navigate(['/registerdCoursesAndResults']);
 }
 // groupCount(groupCount:any)
 // {

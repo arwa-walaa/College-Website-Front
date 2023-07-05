@@ -3,7 +3,7 @@
     <h2 style="font-weight: bold;">Add Course</h2><br>
     
       <div class="alert alert-danger" *ngIf="flag===false">
-        please insert All Course information
+        Error: please insert All Course information or invalid lecture time 
       </div>
       <div class="alert alert-success" *ngIf="flag===true">
         Course Added Successfully.
@@ -44,10 +44,33 @@
             </div>
            
         </div>
-
-
         <div class="row">
             <div class="col-4">
+                <div class="form-group">
+                    <label for="ta"> CreditHours</label>
+                    <input type="number" formControlName="credit_hours" class="form-control" placeholder="Enter creditHours">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="ta"> Number of Groups</label>
+                    <input type="number" formControlName="num_of_groups" class="form-control" placeholder="Enter number of teaching assistants">
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select #Type formControlName="type" aria-label="Default select example" class="form-control">
+                      <option value="mandatory">mandatory</option>
+                      <option value="optional">optional</option>
+                      
+                    </select>
+                  </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
                 <div class="form-group">
                     <label  for="currentSemester">Current Semester</label>
                     <select aria-label="Default select example" class="form-control" #semster formControlName="semester">
@@ -57,13 +80,13 @@
                     </select>
                 </div>
             </div>
-            <div class="col-4">
+            <!-- <div class="col-4">
                 <div class="form-group">
                     <label for="currentYear"> Current Year</label>
                     <input type="number" formControlName="year" class="form-control" placeholder="Enter current year">
                 </div>
-            </div>
-            <div class="col-4">
+            </div> -->
+            <div class="col-6">
                 <div class="form-group">
                     <label for="Level"> Level</label>
                     <select #level aria-label="Default select example" class="form-control" formControlName="level">
@@ -104,30 +127,7 @@
         </div>
        
 
-        <div class="row">
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="ta"> CreditHours</label>
-                    <input type="number" formControlName="credit_hours" class="form-control" placeholder="Enter creditHours">
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="ta"> Number of Groups</label>
-                    <input type="number" formControlName="num_of_groups" class="form-control" placeholder="Enter number of teaching assistants">
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="type">Type</label>
-                    <select #Type formControlName="type" aria-label="Default select example" class="form-control">
-                      <option value="mandatory">mandatory</option>
-                      <option value="optional">optional</option>
-                      
-                    </select>
-                  </div>
-            </div>
-        </div>
+       
         
 
         <div class="row">

@@ -29,27 +29,48 @@ export class CourseInfoComponent {
   ngOnInit(): void {
    
     this.route.queryParams.subscribe(params => {
+      
       const test = params['courseName'];
       const test2 = params['Course_Code'];
       this.courseName=test;
       this.courseID = test2;
       //////////////////////////////
+
       this.courseInfo=params;  
-      const token=this._AuthService.getToken();
-      this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-        this.studendService.getCourseProfYears(ProfessorData[0].professorId,params['courseID'])
-        .subscribe({
-          next:(response)=>{this.Years=response
-          console.log("years,",this.Years)} 
-          
-        });
-      });
-    
-      
+      console.log('test==',test);
+      console.log('test=2=',test2);
       console.log('courseInfo==',this.courseInfo);
       this.profAndTa.returnCourseTAS(this.courseInfo.courseID).subscribe(TAs => {this.TAs=TAs
       console.log("tas==",this.TAs)
     })
+      const token=this._AuthService.getToken();
+      this.profAndTa.getUserType(token).subscribe((type: any) => {
+        if (type[0].Type === "Professor" ) {
+          this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+            this.studendService.getCourseProfYears(ProfessorData[0].professorId,params['courseID'])
+            .subscribe({
+              next:(response)=>{this.Years=response
+              console.log("years,",this.Years)} 
+              
+            });
+          });
+        }
+        else if (type[0].Type === "TA") {
+          this.profAndTa.getTAInfo(token).subscribe((TAData:any ) => {
+            this.studendService.getCourseTAYears(TAData[0].TAId,params['courseName'])
+            .subscribe({
+              next:(response)=>{this.Years=response
+              console.log("years,",this.Years)} 
+              
+            });
+          });
+        }
+       
+      });
+      
+    
+      
+     
      
     });
  

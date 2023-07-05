@@ -3,6 +3,7 @@ import { OfficeHoursServiceService } from '../office-hours-service.service';
 import { StudentsService } from '../students.service';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -19,7 +20,7 @@ export class AddCourseComponent {
   flag: any=null;
  
 
-  constructor( private http: HttpClient, private _OfficeHoursServiceService:OfficeHoursServiceService,private __StudentsService:StudentsService) {}
+  constructor(private router: Router, private http: HttpClient, private _OfficeHoursServiceService:OfficeHoursServiceService,private __StudentsService:StudentsService) {}
 
 weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
   
@@ -44,7 +45,7 @@ weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
       year: new FormControl(2000, [Validators.required, Validators.pattern("/^[2-3]\d{3}$/")]),
       level: new FormControl(null, Validators.required),
       professor1: new FormControl(null, Validators.required),
-      professor2: new FormControl('none',),
+      professor2: new FormControl(null),
       credit_hours: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(5)] ),
       num_of_groups: new FormControl(0, [Validators.required,Validators.min(0),Validators.max(100)] ),
       type: new FormControl('mandatory', Validators.required),
@@ -72,6 +73,7 @@ weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
         (response) => {
             console.log("===============", response)
             this.flag=true;
+            this.router.navigate(['admin_options']);
         }, (error) => {
             console.error("erooooor", error);
             this.flag=false;

@@ -109,14 +109,14 @@ onSubmit(GPForm:FormGroup) {
         this.router.navigate(['/home_login']);
       } else {
         alert("Error: " + response.message);
-        this.router.navigate(['/gpForm']);
-        window.location.reload();
+        // this.router.navigate(['/gpForm']);
+        
       }
     },
     error => {
       console.log(error);
       alert("Error inserting data");
-      this.router.navigate(['/home_login']);
+      
       
     }
   );

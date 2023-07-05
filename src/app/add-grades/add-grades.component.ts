@@ -75,7 +75,8 @@ export class AddGradesComponent implements OnInit{
       response=> {
         if (response && !('error' in response)) {
           alert('grades have been inserted succefully');     
-        }    
+        } 
+        this.router.navigate(['admin_options']);   
     }
     ,
     error => { 

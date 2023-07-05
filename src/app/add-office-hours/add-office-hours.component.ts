@@ -88,6 +88,8 @@ export class AddOfficeHoursComponent {
 
     console.log("this.officeHours",this.officeHours)
     console.log("this.officeHours.id",this.officeHours[0].id)
+    console.log("this.officeHours.endTime",this.officeHours[0].endTime)
+    console.log("this.officeHours.startTime",this.officeHours[0].startTime)
     // Loop through the form inputs and update the corresponding office hours
     // console.log("===============start test=========");
     let url = 'http://127.0.0.1:8000/api/insertOfficeHour';
