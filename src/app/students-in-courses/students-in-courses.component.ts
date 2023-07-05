@@ -16,70 +16,79 @@ export class StudentsInCoursesComponent {
   myStudents: any;
   myCourses: any;
   grades:any;
+  userTypeValue:any;
+  loggedInUserInfo:any;
 
   constructor(private router: Router,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService) {} 
 
   ngOnInit(): void {
     const token=this._AuthService.getToken();
-    this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-      this.getMyStudents(ProfessorData[0].professorId);
+    this._AuthService.getUserInfo(token).subscribe((loggedInUserInfo:any ) => {
       
-      this.getCourses(ProfessorData[0].professorId);
-      this.getGrades(ProfessorData[0].professorId);
+        this.loggedInUserInfo = loggedInUserInfo
+       console.log("loggedInUserInfo", this.loggedInUserInfo);
+       this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
+       
+      this.getCourses(this.loggedInUserInfo[0].logginUserID);
+      this.getGrades(this.loggedInUserInfo[0].logginUserID);
+   
     });
-
+    
   }
 
   searchText='';
 
-  getMyStudents(professorId:any)
+  getMyStudents(teacherId:any)
   {
-    this.profAndTa.getMyStudents(professorId).subscribe(
+    this.profAndTa.getMyStudents(teacherId).subscribe(
       response => {
         this.myStudents=response;
+        console.log('id',teacherId);
+        console.log('myStudents',this.myStudents);
     },
     error => {
       console.error('Error!', error);   
     });
   }
-getGrades(professorId: any){
-  this.profAndTa.getGrades(professorId).subscribe({
+getGrades(teacherId: any){
+  this.profAndTa.getGrades(teacherId).subscribe({
     next:(response)=> this.grades=response
     
   });
 }
- getCourses(professorId: any)
+ getCourses(teacherId: any)
   {
-       this.profAndTa.getMyCourses(professorId).subscribe({
+       this.profAndTa.getMyCourses(teacherId).subscribe({
         next:(response)=> this.myCourses=response
         
       });
   }
-  SelectCourse(course:any)
+  SelectCourse(course:any,teacherId:any)
   {if(course === "Course Name") {
-    const token=this._AuthService.getToken();
-    this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-      this.getMyStudents(ProfessorData[0].professorId);
+
+      this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
       
-      this.getCourses(ProfessorData[0].professorId);
-    });
-  }
+      this.getCourses(this.loggedInUserInfo[0].logginUserID);
+   
+}
   else{
     console.log("select course "+course );
-    this.profAndTa.selectCourse(course).subscribe({
-      next:(response)=> this.myStudents=response
-      
+    this.profAndTa.selectCourse(course,teacherId).subscribe({
+      next:(response)=> {
+        this.myStudents=response   
+        console.log('=======',response);
+      }
+
     });
     }
   }
   selectGrade(grade:any)
   { if(grade ==="Course Grade") {
-    const token=this._AuthService.getToken();
-    this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-      this.getMyStudents(ProfessorData[0].professorId);
+    
+      this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
       
   
-    });
+   
   }else{
     console.log("select course "+grade );
    

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
  public Token:any;
+ private baseUrl = 'http://127.0.0.1:8000/api';
   constructor(private _HttpClient:HttpClient) { }
   login(data:any):Observable<any>{
     
@@ -18,6 +19,9 @@ export class AuthService {
     return this._HttpClient.post(
       'http://127.0.0.1:8000/api/auth/resetPassword',data
     );
+  }
+  getUserInfo(token: any) {
+    return this._HttpClient.get(`${this.baseUrl}/getUserInfo/${token}`);
   }
   userData:any = null;
   saveUserData(){

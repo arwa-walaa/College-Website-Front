@@ -43,9 +43,9 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/getGrades/"+professorId;
     return this.http.get(url);
   }
-  selectCourse(course:any)
+  selectCourse(course:any,teacherId:any)
   {
-    let url= "http://127.0.0.1:8000/api/selectCourse/"+course;
+    let url= "http://127.0.0.1:8000/api/selectCourse/"+course+"/"+teacherId;
     return this.http.get(url);
   }
   selectGrade(grade:any)

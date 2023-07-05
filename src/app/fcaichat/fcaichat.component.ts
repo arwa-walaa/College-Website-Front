@@ -43,7 +43,7 @@ export class FCAIChatComponent implements OnInit {
 
   ngOnInit() {
     const token = this._AuthService.getToken();
-    this.messageService.getUserInfo(token).subscribe(
+    this._AuthService.getUserInfo(token).subscribe(
       senderInfo=> {
         this.senderInfo=senderInfo;
         console.log('senderInfo',this.senderInfo);
@@ -235,7 +235,9 @@ getBlockedUsers()
 
   else
   {
-  alert("You can't send a message to this user");
+    
+
+    alert("You can't send a message to this user");
   }
  
       console.log('Blocked Users' , response);         

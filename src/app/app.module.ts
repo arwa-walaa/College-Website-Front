@@ -77,6 +77,7 @@ import { AddGroupComponent } from './add-group/add-group.component';
 
 import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
 import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,7 +133,8 @@ import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.c
     AddGroupComponent,
     // MessageService,
     CourseScheduleComponent,
-    DrTaCurrentGPsComponent
+    DrTaCurrentGPsComponent,
+    SideMenuComponent
 
   ],
   imports: [

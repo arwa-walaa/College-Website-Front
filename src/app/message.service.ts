@@ -25,9 +25,7 @@ export class MessageService {
     return this.http.get(`${this.baseUrl}/getRecentContacts/${senderID}`);
   }
 
-  getUserInfo(token: any) {
-    return this.http.get(`${this.baseUrl}/getUserInfo/${token}`);
-  }
+ 
 
   blockUser(user1Id:any , user2Id:any)
   {
