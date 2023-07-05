@@ -49,3 +49,11 @@
     background-color: rgb(251, 251, 59);
     padding: 10px;
 }
+.breadcrumb{
+   
+    display: flex;
+      
+}
+.navigate{
+    color: #3E8DE3;
+}

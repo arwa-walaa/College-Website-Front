@@ -3,6 +3,7 @@ import { StudentsService } from '../students.service';
 import { AuthService } from '../auth.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scheduale',
@@ -15,7 +16,7 @@ times = ['08:00:00', '09:30:00', '11:15:00', '12:45:00', '02:30:00', '04:00:00',
   ScheduleInfo: any;
   
  public array:any[]=[]
-  constructor(private studendService: StudentsService,private _AuthService:AuthService) {}
+  constructor(private studendService: StudentsService,private _AuthService:AuthService,private router:Router) {}
   ngOnInit(): void {
      
     const token=this._AuthService.getToken();
@@ -160,7 +161,9 @@ times = ['08:00:00', '09:30:00', '11:15:00', '12:45:00', '02:30:00', '04:00:00',
     }
   }
   
-  
+  navigateToHome(){
+    this.router.navigate(['home_login']); 
+  } 
   
   
   

@@ -28,3 +28,11 @@ label
 .input-group-append {
     cursor: pointer;
   }
+  .breadcrumb{
+   
+    display: flex;
+      
+}
+.navigate{
+    color: #3E8DE3;
+}

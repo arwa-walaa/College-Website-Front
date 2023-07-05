@@ -1,4 +1,10 @@
-<div class="container"><br>
+<div class="container"> 
+    <div class="breadcrumb">
+      <a  (click)="navigateToHome()" class="navigate">Home </a>
+      <a  (click)="navigateToAdmin_options()" class="navigate"> / Admin Options</a>
+      <p > / Add Groups</p>
+   </div>
+
     <div class="alert alert-danger" *ngIf="flag===false">
        Error: please,Enter All Group Data, or invalid group time
       </div>

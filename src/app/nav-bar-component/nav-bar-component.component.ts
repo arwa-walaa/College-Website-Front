@@ -110,7 +110,7 @@ export class NavBarComponentComponent {
   navigateHome(){
 
     const token=this._AuthService.getToken();
-
+    if(token){
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
       console.log("type=",type[0].Type)
     if(type[0].Type==="Professor" ||type[0].Type==="TA"){
@@ -123,7 +123,10 @@ export class NavBarComponentComponent {
       this.router.navigate(['home_admin']);
     }
   
-  });
+  });}
+  else{
+    this.router.navigate(['home']);
+  }
 
   }
   // private updateBreadcrumbData(url: string): void {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-forget-password-component',
   templateUrl: './forget-password-component.component.html',
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class ForgetPasswordComponentComponent implements OnInit {
   error:any = null;
   successMsg:any = null;
-  constructor( private _AuthService:AuthService){}
+  constructor( private _AuthService:AuthService,private router:Router ){}
   forgotPasswordForm:FormGroup = new FormGroup({
 
     // id: new FormControl (null,[Validators.pattern('^([1-9]{1})([0-9]{7})$'),Validators.required]),
@@ -23,6 +24,10 @@ export class ForgetPasswordComponentComponent implements OnInit {
   
   ngOnInit(): void {
     // throw new Error('Method not implemented.');
+  }
+  navigateToLogin(){
+    this.router.navigate(['/login'])
+
   }
   onSubmit(){
     this._AuthService.sendResetPasswordLink(this.forgotPasswordForm.value).subscribe(

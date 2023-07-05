@@ -1,7 +1,10 @@
-
-<br><br>
-
+<br>
 <div class="container" p-5>
+      <div class="breadcrumb">
+        <a  (click)="navigateToHome()" class="navigate">Home</a>
+        <a  (click)="navigateToAnnoucements()" class="navigate"> /Announcements</a>
+        <p > /Top 50</p>
+     </div>
     <h2 style="font-weight: bold;">Top 50</h2><br>
     <select #depts (change)="SelectDept(depts.value)"  style="margin-right:30px; width:400px; height:30px;" >
         <option  value="" disabled selected>Program</option>

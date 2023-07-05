@@ -3,6 +3,12 @@
 
 <!-- {{places[0]['slotPlace1']}} -->
 <div class="container">
+  <br><br>
+  <div class="breadcrumb">
+    <a  (click)="navigateToHome()" class="navigate">Home </a>
+    <a  (click)="navigateToScheduale()" class="navigate"> / My Schedule</a>
+    <p > / Hall Schedule</p>
+ </div>
     <select required #place (change)="update(place.value)"  class="form-select " aria-label="Default select example">
         <option value="default">choose place</option>
         <option *ngFor="let place of places" [value]="place['slotPlace1']">

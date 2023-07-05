@@ -121,6 +121,12 @@ onSubmit(GPForm:FormGroup) {
     }
   );
 }
+navigateToHome(){
+  this.router.navigate(['home_login']); 
+}
 
+navigateToregisterdCoursesAndResults(){
+  this.router.navigate(['registerdCoursesAndResults']);
+}
 }
 

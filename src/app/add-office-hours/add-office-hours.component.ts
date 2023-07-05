@@ -50,6 +50,26 @@ export class AddOfficeHoursComponent {
       }
     });
   }
+  navigateToHome(){
+    const token = this._AuthService.getToken();
+
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
   addOfficeHour() {
     const token=this._AuthService.getToken();
     this.profAndTa.getUserType(token).subscribe((type:any ) => {

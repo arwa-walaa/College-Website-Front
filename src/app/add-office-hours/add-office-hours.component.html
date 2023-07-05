@@ -1,4 +1,3 @@
-<br><br>
 <div class="alert alert-danger" *ngIf="flag===false">
    Error: please insert office hours data or invalid office houre time
   </div>
@@ -6,7 +5,12 @@
     Office Hours Added Successfully.
   </div>
 <div class="container">
-    <br><br>
+    <br>
+    
+      <div class="breadcrumb">
+        <a  (click)="navigateToHome()" class="navigate">Home</a>
+        <p> /Add Office Hours</p>
+     </div>
     <h2 style="font-weight: bold;">Add Office Hours</h2><br>
 
     <div>

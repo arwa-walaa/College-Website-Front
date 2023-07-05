@@ -11,7 +11,6 @@ import { RegisterdCoursesAndResultsComponent } from './registerd-courses-and-res
 import { RestPasswardComponentComponent } from './rest-passward-component/rest-passward-component.component';
 import { StudentGroupSelectionComponent } from './student-group-selection/student-group-selection.component';
 import { Top50Component } from './top50/top50.component';
-import { ChatComponent } from './chat/chat.component';
 import { FCAIChatComponent } from './fcaichat/fcaichat.component';
 
 
@@ -59,6 +58,10 @@ import { AuthGuardService } from './auth-guard.service';
 import { AddGroupComponent } from './add-group/add-group.component';
 import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
 import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
+import { SideMenuComponent } from './side-menu/side-menu.component';
+import { StatisticsCoursesComponent } from './statistics-courses/statistics-courses.component';
+import { StatisticsDepartmentComponent } from './statistics-department/statistics-department.component';
+
 
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
@@ -90,8 +93,7 @@ const routes: Routes = [
 {path:'program_selection',component:ProgramSelectionComponent,title:'program_selection',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'register_course',component:RegisterCourseComponent,title:'register_course',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] }},
 {path:'login' , component:LoginComponentComponent },
-{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRol:  ['Student', 'Admin'] } },
-{path: 'Chat', component: ChatComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin', 'TA','Professor'] }},
+{path: 'gpForm',component: GpComponent,title:'register_gp',canActivate: [AuthGuardService], data: { expectedRole:  ['Student', 'Admin'] } },
 //{path: 'FCAIChat', component: FCAIChatComponent},
 // {path:'addOfficeHours',component:AddOfficeHoursComponent,title:'Add Office Hours'},
 //{path:'view_students',component:ViewStudentsComponent,title:'View Students',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
@@ -119,11 +121,14 @@ const routes: Routes = [
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path:'StatisticsDepartment',component:StatisticsDepartmentComponent,title:'StatisticsDepartment',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path:'StatisticsCourses',component:StatisticsCoursesComponent,title:'StatisticsCourses',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 {path:'admin_options',component:AdminOptionsComponent,title:'Admin Options',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin'] }},
 {path:'add_grades',component:AddGradesComponent,title:'Add Grades',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin'] }},
 {path:'add_course',component:AddCourseComponent,title:'Add Course', canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 {path:'add_groups',component:AddGroupComponent,title:'Add Groups', canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 {path: 'DrTaCurrentGPs', component: DrTaCurrentGPsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Professor','TA'] }},
+{path: 'SideMenu', component: SideMenuComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Professor','TA','Admin','Student'] }},
 
 {path:'',redirectTo:'home',pathMatch:'full'},
 ];

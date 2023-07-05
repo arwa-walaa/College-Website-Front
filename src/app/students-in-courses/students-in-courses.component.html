@@ -1,12 +1,16 @@
-<br><br>
-
 <div class="container" p-5>
+    <br>
+    <div class="breadcrumb">
+      <a  (click)="navigateToHome()" class="navigate">Home </a>
+    
+      <p > / Students Registered in My Courses</p>
+   </div>
     <h2 style="font-weight: bold;">Students Registered in My Courses</h2><br>
    
     
    <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
    <!-- <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;"> -->
-    <select #coursesNames (change)="SelectCourse(coursesNames.value)"  class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
+    <select #coursesNames (change)="SelectCourse(coursesNames.value,this.loggedInUserInfo[0].logginUserID)"  class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
     <option  value="Course Name" style="color: grey;">Course Name</option>
     <option *ngFor="let course of myCourses">
         {{course.courseName}}

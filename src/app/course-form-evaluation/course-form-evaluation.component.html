@@ -1,6 +1,11 @@
-
 <div class="container " p-5>
-
+  <div class="breadcrumb">
+    <a  (click)="navigateToHome()" class="navigate">Home </a>
+    <a  (click)="navigateToregisterdCoursesAndResults()" class="navigate"> / registered Courses And Results</a>
+    <a  (click)="navigateToEvaluateCourses()" class="navigate"> / Course Evaluation</a>
+   
+    <p > / Course Evaluation Form</p>
+ </div>
   <div class="mx-0 mx-sm-auto">
     <div *ngIf="currentPage === 1">
       <h2 style="font-weight: bold;">Course Evaluation</h2>

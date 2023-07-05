@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ProfessorTAService } from '../professor-ta.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-place-scheduale',
@@ -14,7 +17,7 @@ export class PlaceSchedualeComponent {
     public places:any[]=[] 
    public array:any[]=[]
   Semeter: any='Second';
-    constructor(private ProfService: ProfessorTAService) {}
+    constructor(private ProfService: ProfessorTAService,private profAndTa:ProfessorAndTaService,private router:Router,private _AuthService:AuthService ) {}
     ngOnInit(): void {
       // this.getScheduale()
     //  this.places=[...this.ProfService.returnAllPlaces()]
@@ -27,6 +30,29 @@ export class PlaceSchedualeComponent {
     }
     update(place:any){
       this.getScheduale(place)
+    }
+    navigateToScheduale(){
+      this.router.navigate(['Schedule']);
+    }
+   navigateToHome(){
+      const token = this._AuthService.getToken();
+  
+            if (token) { // check if the token is valid
+              this.profAndTa.getUserType(token).subscribe((type: any) => {
+                if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                  
+                  this.router.navigate(['/drTaHome']);
+                }
+                else if (type[0].Type === "Student") {
+                  this.router.navigate(['/home_login']);
+                }
+                else if (type[0].Type === "Admin") {
+                  this.router.navigate(['/home_admin']);
+                }
+              });
+              // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+            }
+      // this.router.navigate(['home_login']); 
     }
     getScheduale(place:any){
       this.ProfService.returnSchedualePlace(place,this.Semeter).subscribe({

@@ -164,5 +164,15 @@ saveData() {
 //   this.count=groupCount-1;
 //   console.log(this.count);
 // }
+navigateToRegisterCourse()
+{
+  this.router.navigate(['register_course']);
+}
+navigateToregisterdCoursesAndResults(){
+  this.router.navigate(['registerdCoursesAndResults']);
+}
+navigateToHome(){
+  this.router.navigate(['home_login']); 
+}
  
 }

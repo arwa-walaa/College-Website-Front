@@ -1,0 +1,74 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<i *ngIf="menuStatus == true" class="fas fa-bars" (click)="toggleMenu()"></i>
+
+<ul *ngIf="isMenuOpen == true && loggedUserInfo[0].Type=='Student'">
+  <li><a (click)="navigateToRegisterdCoursesAndResults()">
+
+      Registered Courses & Result
+    </a></li>
+  <ul>
+    <li *ngIf="registerationStatus[0].registerationStatus == 1"><a (click)="navigateToRegisterCourse()">Register New
+        Courses</a></li>
+    <li *ngIf="evaluationFormStatus == 1"><a (click)="navigateToEvaluateCourses()">Evaluate Courses</a></li>
+    <li *ngIf="StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==1"><a
+        (click)="navigateToSelectSpecializationProgram()">Select Specialization Program</a></li>
+    <li *ngIf="StudentData[0].level==='Fourth Level' && gpFormStatus == 1"><a
+        (click)="navigateToRegisterGraduationProject()">Register Graduation Project</a></li>
+  </ul>
+
+  <li><a (click)="navigateToScheduale()">My Schedule</a></li>
+  <li><a (click)="navigateToExamHalls()">Exam Halls</a></li>
+  <li><a (click)="navigateToAnnoucements()">Announcements</a></li>
+  <ul>
+    <li><a (click)="navigateToTop50()">View Top 50</a></li>
+  </ul>
+  <li><a (click)="navigateToChat()">Chat</a></li>
+  <li><a (click)="navigateToOfficeHours()">Office Hours</a></li>
+</ul>
+
+<ul *ngIf="isMenuOpen == true && loggedUserInfo[0].Type=='Professor' || loggedUserInfo[0].Type=='TA'">
+
+  <li><a (click)="navigateToAnnoucements()">Announcements</a></li>
+  <ul>
+    <li><a (click)="navigateToTop50()">View Top 50</a></li>
+  </ul>
+  <li><a (click)="navigateToChat()">Chat</a></li>
+  <li><a (click)="navigateToAddOfficeHours() ">Add Office Hours</a></li>
+  <li><a (click)="navigateToMyCourses()">My Courses</a></li>
+  <ul>
+    <li><a (click)="navigateToGpRequest()">Graduation Project Requests</a></li>
+    <li><a (click)="navigateToCurrentGPs()">My Graduation Projects</a></li>
+  </ul>
+  <li><a (click)="navigateToProfOrTaScheduale()">Schedule</a></li>
+  <ul>
+    <li><a (click)="navigateToPlaceSchedule()">Place Schedule</a></li>
+    <li><a (click)="navigateToCourseSchedule()">Course Schedule</a></li>
+  </ul>
+  <li><a (click)="navigateToViewStudents()">View Students in My Courses</a></li>
+
+
+
+
+
+
+
+
+</ul>
+
+<ul >
+
+  <li><a (click)="navigateToAddAnnouncment()">Add Announcment</a></li>
+  <li><a (click)="navigateToDashboards()">Dashboards</a></li>
+  <ul>
+    <li><a (click)="  showDepartment()">Statistics about Departments</a></li>
+    <li><a (click)="showCourses()">Statistics about Courses</a></li>
+  </ul>
+  <li><a (click)="navigateToOptions()">Admin Options</a></li>
+  <ul>
+    <li><a (click)="  showDepartment()">Statistics about Departments</a></li>
+    <li><a (click)="showCourses()">Statistics about Courses</a></li>
+  </ul>
+  <li><a (click)="navigateToAcceptedGP()">Accepted Graduation Projects</a></li>
+</ul>

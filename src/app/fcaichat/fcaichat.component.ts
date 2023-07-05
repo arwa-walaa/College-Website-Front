@@ -4,6 +4,7 @@ import { MessageService } from './../message.service';
 import { ThisReceiver } from '@angular/compiler';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-fcaichat',
@@ -37,13 +38,32 @@ export class FCAIChatComponent implements OnInit {
   
 
   constructor(private router: Router,private messageService: MessageService,
-    private _AuthService: AuthService,private datePipe: DatePipe
+    private _AuthService: AuthService,private datePipe: DatePipe,private profAndTa:ProfessorAndTaService
    ) { }
 
+   navigateToHome(){
+    const token = this._AuthService.getToken();
 
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
   ngOnInit() {
     const token = this._AuthService.getToken();
-    this.messageService.getUserInfo(token).subscribe(
+    this._AuthService.getUserInfo(token).subscribe(
       senderInfo=> {
         this.senderInfo=senderInfo;
         console.log('senderInfo',this.senderInfo);
@@ -235,7 +255,9 @@ getBlockedUsers()
 
   else
   {
-  alert("You can't send a message to this user");
+    
+
+    alert("You can't send a message to this user");
   }
  
       console.log('Blocked Users' , response);         

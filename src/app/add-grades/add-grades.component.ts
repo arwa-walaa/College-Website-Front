@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { StudentsService } from '../students.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from './../admin.service';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-add-grades',
@@ -24,9 +25,32 @@ export class AddGradesComponent implements OnInit{
     private route: ActivatedRoute,
     private http: HttpClient,
     private _AuthService:AuthService,
-    private _AdminService:AdminService) {
+    private _AdminService:AdminService,
+   private profAndTa:ProfessorAndTaService ) {
   }
+  navigateToAdmin_options(){
+    this.router.navigate(['admin_options']);
+  }
+ navigateToHome(){
+    const token = this._AuthService.getToken();
 
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
   
   ngOnInit(): void {
     this.form = new FormGroup({
