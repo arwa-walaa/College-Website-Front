@@ -9,7 +9,7 @@
     <br><br>
     <div class="breadcrumb">
         <a  (click)="navigateToHome()" class="navigate">Home </a>
-        <a  (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
+        <a  *ngIf="userType != 'Admin'" (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
         <p  *ngIf="userType != 'Admin'" > / Graduation Project Requests</p>
         <p   *ngIf="userType == 'Admin'"> / Accepted Graduation Projects</p>
      </div>

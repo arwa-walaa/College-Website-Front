@@ -1,5 +1,10 @@
 <div class="container">
     <br><br>
+    <div class="breadcrumb">
+      <a  (click)="navigateToHome()" class="navigate">Home </a>
+      <a  (click)="navigateToAdmin_options()" class="navigate"> / Admin Options</a>
+      <p > / Add Course</p>
+   </div>
     <h2 style="font-weight: bold;">Add Course</h2><br>
     
       <div class="alert alert-danger" *ngIf="flag===false">

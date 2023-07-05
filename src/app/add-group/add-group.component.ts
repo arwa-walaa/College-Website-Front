@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentsService } from '../students.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-add-group',
@@ -22,7 +25,7 @@ export class AddGroupComponent {
   flag: any=null;
 //  groupForms: FormGroup[] = [];
 
-constructor(private studendService: StudentsService,private http: HttpClient){}
+constructor(private studendService: StudentsService,private http: HttpClient,private router: Router,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService){}
   ngOnInit(): void {
     this.studendService.getAllCourses().subscribe({
       next:(response)=> this.Courses=response
@@ -46,6 +49,29 @@ constructor(private studendService: StudentsService,private http: HttpClient){}
     })
   }
 
+  navigateToAdmin_options(){
+    this.router.navigate(['admin_options']);
+  }
+ navigateToHome(){
+    const token = this._AuthService.getToken();
+
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
   SelectCourse(course:any)
   {
     this.courseId=course;
