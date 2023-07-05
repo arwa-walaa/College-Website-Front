@@ -29,10 +29,11 @@ export class FCAIChatComponent implements OnInit {
   flag: boolean=false;
   flag2: any;
   blockContent:boolean = false;
-  isBlocked:boolean = false;
+  receiverStatus:boolean = false;
   blockedUsers:any;
   mailMessage:any;
   chatPartnerId: any;
+ 
   
 
   constructor(private router: Router,private messageService: MessageService,
@@ -77,6 +78,8 @@ getAllContacts(){
   error => { 
     console.error(error);  
   });
+
+  // this.getBlockedUsers();
   
 }
 formatDate(dateString: string): any {
@@ -87,6 +90,7 @@ formatDate(dateString: string): any {
 
 getRecentContacts(senderID:any){
   this.flag2=true;
+  this.flag=false;
   this.messageService.getRecentContacts(senderID).subscribe(
     response=> {
       this.recentContacts=response;
@@ -104,7 +108,7 @@ getRecentContacts(senderID:any){
   error => { 
     console.error(error);  
   });
-  
+
 }
 
 setCurrentReceiver(receiver: any) {
@@ -113,7 +117,8 @@ setCurrentReceiver(receiver: any) {
   this.currentReceiver = receiver.userID;
   this.chatPartner= receiver.Type+'. '+receiver.name;
   this.chatPartnerType= receiver.Type;
-
+  this.receiverStatus=receiver.isblocked;
+  console.log('receiverStatus',this.receiverStatus);
   console.log('currentReceiver',this.currentReceiver);
   console.log('student ID:',this.chatPartnerId);
   this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
@@ -124,11 +129,8 @@ setCurrentReceiver(receiver: any) {
 }
 
 sendMessage() {
-  
   this.getBlockedUsers();
-  
- 
-}
+ }
 
 getHistory(currentSender:any,currentReceiver:any) {
     return this.messageService.getHistory(currentSender, currentReceiver);
@@ -164,13 +166,17 @@ blockUser()
     this.messageService.blockUser(this.currentSender,this.currentReceiver)
     .subscribe(
       response=> {
-        console.log('blocked users',response);             
+        console.log('blocked users',response);              
     }
     ,
     error => { 
       console.error(error); 
+      this.getAllContacts();
+      this.getRecentContacts(this.currentSender);  
       alert("This user has been blocked");   
     }); 
+
+    this.receiverStatus = true;
 }
 
 unBlockUser()
@@ -183,8 +189,11 @@ unBlockUser()
   ,
   error => { 
     console.error(error); 
+    this.getAllContacts();
+    this.getRecentContacts(this.currentSender);  
     alert("This user has been unblocked");   
   }); 
+  this.receiverStatus = false; 
 }
 
 getBlockedUsers()
@@ -207,8 +216,6 @@ getBlockedUsers()
     }
     formData.append('from', this.currentSender);
     formData.append('to', this.currentReceiver);
-    
-  
     this.messageService.sendMessage(formData).subscribe((response: any) => {
       this.getHistory(this.currentSender,this.currentReceiver).subscribe((history) => {
         this.chatHistory = history;
@@ -228,7 +235,7 @@ getBlockedUsers()
 
   else
   {
-    alert("You can't send a message to this user");
+  alert("You can't send a message to this user");
   }
  
       console.log('Blocked Users' , response);         

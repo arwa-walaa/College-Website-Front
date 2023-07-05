@@ -154,4 +154,10 @@ getMyStudents(professorId:any)
     let url= "http://127.0.0.1:8000/api/returnCourseScheudule/"+CourseId+"/"+Semester;
     return this.http.get(url);
   }
+  returnTeacherGPs(teacherId:any)
+  {
+    let url= "http://127.0.0.1:8000/api/returnTeacherGPs/"+teacherId;
+    return this.http.get(url);
+  }
+
 }

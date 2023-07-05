@@ -72,13 +72,6 @@ export class GpRequestsComponent {
   // })
  
 
-
-
-
- 
-
- 
-
   navigateToStudent(studentID: any) {
     this.profAndTa.getStudentData(studentID).subscribe((studentData:any ) => {
       console.log('studentData[0]',studentData[0])

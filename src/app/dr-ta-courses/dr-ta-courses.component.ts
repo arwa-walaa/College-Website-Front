@@ -10,12 +10,16 @@ import { AuthService } from '../auth.service';
 })
 export class DrTaCoursesComponent {
   myCourses: any;
+  teacherId: any;
+
   constructor(private router: Router,private _AuthService:AuthService,
     private profAndTa:ProfessorAndTaService) {}
   navigateToGpRequest() {
     this.router.navigate(['gp_requests']);
   }
 
+  
+  
   ngOnInit(): void {
     const token=this._AuthService.getToken();
     this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
@@ -33,6 +37,7 @@ export class DrTaCoursesComponent {
           this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {  
             if (ProfessorData && ProfessorData.length > 0) {
               this.getCourses(ProfessorData[0].professorId)
+              this.teacherId = ProfessorData[0].professorId; 
               console.log('prof data',this.getCourses(ProfessorData[0].professorId));
             } else {
               console.error("ProfessorData is empty or null");
@@ -42,6 +47,7 @@ export class DrTaCoursesComponent {
           this.profAndTa.getTAInfo(token).subscribe((TAData:any ) => {   
             if (TAData && TAData.length > 0) {
               this.getTACourses(TAData[0].TAId);
+              this.teacherId = TAData[0].TAId; 
               console.log('Ta course',this.getTACourses(TAData[0].TAId));
             } else {
               console.error("TAData is empty or null");
@@ -56,6 +62,10 @@ export class DrTaCoursesComponent {
     });
     /////////////////////
 
+  }
+
+  navigateToCurrentGPs() {
+    this.router.navigate(['/DrTaCurrentGPs'], { queryParams: { teacherId: this.teacherId} });
   }
 
   navigateToSelectedCourse(courseName: string, courseID: string) {
@@ -88,14 +98,10 @@ export class DrTaCoursesComponent {
     
     },
     error => {
-      console.error('Error!', error);
-      
-      
+      console.error('Error!', error);   
     });
   }
 
- 
-  
   navigateToCourse(d:any) {
     console.log('course dataaaaa==',d);
     this.router.navigate(['course_info'],{ queryParams: d  });

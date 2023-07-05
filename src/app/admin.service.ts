@@ -74,12 +74,6 @@ export class AdminService {
       return this.http.put(url,status);
   }
   
-  
-
-
-
- 
-
   getAllCourses()
   {
     let url= "http://127.0.0.1:8000/api/getAllCourses/";

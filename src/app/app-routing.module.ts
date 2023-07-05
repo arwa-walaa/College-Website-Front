@@ -58,6 +58,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { AuthGuardService } from './auth-guard.service';
 import { AddGroupComponent } from './add-group/add-group.component';
 import { CourseScheduleComponent } from './course-schedule/course-schedule.component';
+import { DrTaCurrentGPsComponent } from './dr-ta-current-gps/dr-ta-current-gps.component';
 
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 // import { ProfessorSchedualeComponent } from './professor-scheduale.component';
@@ -122,6 +123,7 @@ const routes: Routes = [
 {path:'add_grades',component:AddGradesComponent,title:'Add Grades',canActivate: [AuthGuardService], data: { expectedRole:  [ 'Admin'] }},
 {path:'add_course',component:AddCourseComponent,title:'Add Course', canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
 {path:'add_groups',component:AddGroupComponent,title:'Add Groups', canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path: 'DrTaCurrentGPs', component: DrTaCurrentGPsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Professor','TA'] }},
 
 {path:'',redirectTo:'home',pathMatch:'full'},
 ];

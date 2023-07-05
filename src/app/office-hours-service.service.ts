@@ -24,4 +24,9 @@ export class OfficeHoursServiceService {
   {
     return this._HttpClient.get("http://127.0.0.1:8000/api/returnAllTAs/");
   }
+  selectTeacherOfficeHour(teacherName:any)
+  {
+    let url= "http://127.0.0.1:8000/api/selectTeacherOfficeHour/"+teacherName;
+    return this._HttpClient.get(url);  
+  }
 }
