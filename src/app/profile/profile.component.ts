@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { StudentsService } from '../students.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ProfessorAndTaService } from '../professor-and-ta.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +13,12 @@ import { HttpClient } from '@angular/common/http';
 export class ProfileComponent {
   StudentData: any;
   flag :any=false;
-  constructor(private _AuthService:AuthService,private studendService: StudentsService,private http: HttpClient){}
+  constructor(private _AuthService:AuthService,
+    private studendService: StudentsService,private http: HttpClient
+   ,private router: Router,
+   private profAndTa: ProfessorAndTaService
+   ){}
+
   ngOnInit(): void {
     
     const token=this._AuthService.getToken();
@@ -21,6 +28,27 @@ export class ProfileComponent {
     });
  
   }
+  navigateToHome(){
+    const token = this._AuthService.getToken();
+
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
+
   onSubmit() {
     const updatedValues = {
       EName: (<HTMLInputElement>document.getElementById('EName')).value,

@@ -22,6 +22,7 @@ export class ViewFeedbacksComponent implements OnInit {
   TAsIds: string[] = [];
   Years:any
   chartData: { [key: string]: Array<any> } = {};
+  course: any;
 
   constructor(private http: HttpClient, private stdService: StudentsService,
     private route: ActivatedRoute, private router: Router,
@@ -105,6 +106,36 @@ export class ViewFeedbacksComponent implements OnInit {
     });
 
   }
+   navigateToHome(){
+    const token = this._AuthService.getToken();
+
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                
+                this.router.navigate(['/drTaHome']);
+              }
+              else if (type[0].Type === "Student") {
+                this.router.navigate(['/home_login']);
+              }
+              else if (type[0].Type === "Admin") {
+                this.router.navigate(['/home_admin']);
+              }
+            });
+            // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+    // this.router.navigate(['home_login']); 
+  }
+  navigateToMyCourses() {
+    this.router.navigate(['drTaCourses']);
+  }
+  navigateToCourseInfo() {
+    this.route.queryParams.subscribe(params => {
+      this.course = params;
+      console.log("params",params)
+    this.router.navigate(['course_info'],{ queryParams: this.course} );
+  });
+  }
   update(year: any){
     
     const token = this._AuthService.getToken();
@@ -126,6 +157,7 @@ export class ViewFeedbacksComponent implements OnInit {
                 console.log('prof id', this.professorId);
 
                 this.route.queryParams.subscribe(params => {
+                  this.course = params;
                   this.courseName = params['courseName'];
                   console.log('courseName', this.courseName);
                   this.stdService.getCourseProfYears2(ProfessorData[0].professorId,params['courseName'])

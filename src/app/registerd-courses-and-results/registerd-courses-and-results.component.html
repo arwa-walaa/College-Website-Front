@@ -3,10 +3,12 @@
 
 <div class="container" p-5>
     <div class="breadcrumb">
-  <a  (click)="navigateToHome()" class="navigate">Home</a>
+  <a  (click)="navigateToHome()" class="navigate">Home </a>
+ 
+  <a *ngIf="type[0].Type !== 'Student'" (click)="navigateToStudentProfile()" class="navigate"> /Student Profile</a>
   <p > /registered Courses And Results</p>
 </div>
-    
+
     <h2 style="font-weight: bold;">Registered Courses & Results</h2><br>
     <!-- <mat-select (selectonChange)="onChange"></mat-select> -->
     <div class="row">

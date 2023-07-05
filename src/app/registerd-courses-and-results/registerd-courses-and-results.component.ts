@@ -18,10 +18,38 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   gpFormStatus: any;
   evaluationFormStatus: any;
   programSelectionStatus:any
+  type: any;
 
   constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
   
+navigateToStudentProfile(){
+  this.route.queryParams.subscribe(params => {
+    this.StudentData=params
+  this.router.navigate(['/ViewStudentProfile'],{ queryParams: this.StudentData  });
+});
+}
+  navigateToHome(){
+      const token = this._AuthService.getToken();
+  
+            if (token) { // check if the token is valid
+              this.profAndTa.getUserType(token).subscribe((type: any) => {
+                this.type=type
+                if (type[0].Type === "Professor" || type[0].Type === "TA") {
+                  
+                  this.router.navigate(['/drTaHome']);
+                }
+                else if (type[0].Type === "Student") {
+                  this.router.navigate(['/home_login']);
+                }
+                else if (type[0].Type === "Admin") {
+                  this.router.navigate(['/home_admin']);
+                }
+              });
+              // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+            }
+      // this.router.navigate(['home_login']); 
+    } 
   ngOnInit(): void {
     this._AdminService.getAdminControlStatus().subscribe((data: any) => {
       this.gpFormStatus = data[0].GpFormStatus;
@@ -46,6 +74,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   
 
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
+      this.type=type
       if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
         this.route.queryParams.subscribe(params => {
           this.StudentData=[params]
@@ -101,7 +130,5 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   navigateToRegisterGraduationProject(){
     this.router.navigate(['gpForm']);
   }
-  navigateToHome(){
-    this.router.navigate(['home_login']); 
-  }
+
 }

@@ -229,8 +229,11 @@ seeYears(){
     this.router.navigate(['']);
   }
   navigateToSeeFeedbacks() {
-    this.router.navigate(['view_feedbacks'], { queryParams: { courseName: this.courseName, courseID: this.courseID} });
-  }
+    this.route.queryParams.subscribe(params => {
+      this.courseInfo=params; 
+    this.router.navigate(['view_feedbacks'], { queryParams: params });
+  })
+}
 
   navigateToViewStudents() {
     this.router.navigate(['StudentsInCourses']);

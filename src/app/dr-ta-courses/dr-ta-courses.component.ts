@@ -87,11 +87,11 @@ export class DrTaCoursesComponent {
     this.router.navigate(['/DrTaCurrentGPs'], { queryParams: { teacherId: this.teacherId} });
   }
 
-  navigateToSelectedCourse(courseName: string, courseID: string) {
+  // navigateToSelectedCourse(courseName: string, courseID: string) {
    
-    this.router.navigate(['/course_info'], { queryParams: {courseID: courseID, courseName: courseName} });
+  //   this.router.navigate(['/course_info'], { queryParams: {courseID: courseID, courseName: courseName} });
   
-  }
+  // }
 
   getCourses(professorId:any)
   {
