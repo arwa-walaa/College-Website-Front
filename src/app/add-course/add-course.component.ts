@@ -96,11 +96,11 @@ weekdays = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
     this.http.post('http://127.0.0.1:8000/api/AddCourse', form.value).subscribe(
     // this.http.post(url +this.Course_Info, options).subscribe(
         (response) => {
-            console.log("===============", response)
+            // console.log("===============", response)
             this.flag=true;
             this.router.navigate(['admin_options']);
         }, (error) => {
-            console.error("erooooor", error);
+            // console.error("erooooor", error);
             this.flag=false;
         });
    

@@ -40,10 +40,20 @@ export class DrTaCoursesComponent {
   
   
   ngOnInit(): void {
-    const token=this._AuthService.getToken();
-    this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
-      this.getCourses(ProfessorData[0].professorId)
-    });
+     const token=this._AuthService.getToken();
+    // this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+    //   if(ProfessorData[0]){
+    //     this.getCourses(ProfessorData[0].professorId)
+    //   }
+     
+    // });
+    // this.profAndTa.getProfessorInfo(token).subscribe((ProfessorData:any ) => {
+    //   if (ProfessorData && ProfessorData.length > 0) {
+    //     this.getCourses(ProfessorData[0].professorId);
+    //   } else {
+    //     console.error("ProfessorData is empty or null");
+    //   }
+    // });
 
     /////////////////////
 

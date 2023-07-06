@@ -97,15 +97,16 @@ export class AddGradesComponent implements OnInit{
 
     this._AdminService.addGrade(this.courseId,this.studentId,form.value).subscribe(
       response=> {
-        if (response && !('error' in response)) {
+       
           alert('grades have been inserted succefully');     
-        } 
+       
         this.router.navigate(['admin_options']);   
     }
     ,
     error => { 
       alert('grades have been inserted succefully'); 
-      console.error(error);  
+      this.router.navigate(['admin_options']);   
+      // console.error(error);  
     });
   }
 

@@ -108,8 +108,9 @@ constructor(private studendService: StudentsService,private http: HttpClient,pri
       (response) => {
         console.log("===============", response)
         this.flag=true;
+        this.router.navigate(['admin_options']);   
     }, (error) => {
-        console.error("erooooor", error);
+        // console.error("erooooor", error);
         this.flag=false;
     });
     // Save the form values to the database or perform other operations

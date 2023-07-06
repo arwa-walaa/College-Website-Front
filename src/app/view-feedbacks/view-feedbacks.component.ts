@@ -239,7 +239,7 @@ export class ViewFeedbacksComponent implements OnInit {
                 this.route.queryParams.subscribe(params => {
                   this.courseName = params['courseName'];
                   console.log('courseName', this.courseName);
-
+                  console.log("year",year)
                   this.profAndTa.getFeedbacks(this.courseName, this.TAId,year).subscribe((data: any) => {
                     this.feedbacks = data;
 

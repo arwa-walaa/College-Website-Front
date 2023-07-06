@@ -129,16 +129,28 @@ export class AddOfficeHoursComponent {
     
     console.log("test=",this.officeHours);
     for (let i = 0; i < this.officeHours.length; i++) {
+      // const startTimeInput = document.getElementsByName(`startTime${i}`)[0] as HTMLInputElement;
+      // const endTimeInput = document.getElementsByName(`endTime${i}`)[0] as HTMLInputElement;
+      // const locationInput = document.getElementsByName(`location${i}`)[0] as HTMLInputElement;
+      // const dayInput = document.getElementsByName(`Day${i}`)[0] as HTMLSelectElement;
+
+      // this.officeHours[i].startTime = startTimeInput.value;
+      // this.officeHours[i].endTime = endTimeInput.value;
+      // this.officeHours[i].location = locationInput.value;
+      // this.officeHours[i].Day = dayInput.value;
       const startTimeInput = document.getElementsByName(`startTime${i}`)[0] as HTMLInputElement;
       const endTimeInput = document.getElementsByName(`endTime${i}`)[0] as HTMLInputElement;
       const locationInput = document.getElementsByName(`location${i}`)[0] as HTMLInputElement;
       const dayInput = document.getElementsByName(`Day${i}`)[0] as HTMLSelectElement;
-
-      this.officeHours[i].startTime = startTimeInput.value;
-      this.officeHours[i].endTime = endTimeInput.value;
-      this.officeHours[i].location = locationInput.value;
-      this.officeHours[i].Day = dayInput.value;
-     
+      
+      if (startTimeInput && endTimeInput && locationInput && dayInput) {
+        this.officeHours[i].startTime = startTimeInput.value;
+        this.officeHours[i].endTime = endTimeInput.value;
+        this.officeHours[i].location = locationInput.value;
+        this.officeHours[i].Day = dayInput.value;
+      } else {
+        console.log(`Input elements for index ${i} not found`);
+      }
       
     }
 
