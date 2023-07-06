@@ -70,4 +70,5 @@ export class OfficeHoursComponentComponent implements OnInit {
   navigateToHome(){
     this.router.navigate(['home_login']); 
   }
+ 
 }

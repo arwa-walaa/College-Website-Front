@@ -19,6 +19,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   evaluationFormStatus: any;
   programSelectionStatus:any
   type: any;
+  isStudent:any=null
 
   constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
@@ -28,6 +29,12 @@ navigateToStudentProfile(){
     this.StudentData=params
   this.router.navigate(['/ViewStudentProfile'],{ queryParams: this.StudentData  });
 });
+}
+navigateToMyCourses(){
+  this.router.navigate(['drTaCourses']); 
+}
+navigateTogp_requests(){
+  this.router.navigate(['gp_requests']); 
 }
   navigateToHome(){
       const token = this._AuthService.getToken();
@@ -76,6 +83,7 @@ navigateToStudentProfile(){
     this.profAndTa.getUserType(token).subscribe((type:any ) => {
       this.type=type
       if(type[0].Type==="Professor" || type[0].Type==="TA"|| type[0].Type==="Admin"){
+        this.isStudent=false
         this.route.queryParams.subscribe(params => {
           this.StudentData=[params]
           
@@ -85,7 +93,7 @@ navigateToStudentProfile(){
       }
      
       else if(type[0].Type==="Student"){
-       
+       this.isStudent=true
         this.studentService.getStudentInfo(token).subscribe((StudentData:any ) => {
           this.StudentData=StudentData;
           this.getRegisteredCourses(StudentData[0].studentId);  

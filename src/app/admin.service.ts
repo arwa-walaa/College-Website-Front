@@ -43,7 +43,7 @@ export class AdminService {
   setDepatmentToStudent()
   {
     let url= "http://127.0.0.1:8000/api/setDepatmentToStudent/";
-    return this.http.get(url);  
+    return this.http.put(url,1);  
   }
   getAdminInfo(token:any)
   {

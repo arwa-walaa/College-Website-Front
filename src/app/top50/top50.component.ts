@@ -37,6 +37,7 @@ export class Top50Component {
   }
   SelectDept(dept:any)
   {
+    this.deptDisabled=false
     this.levelDisabled = true;
   this.courseDisabled = true;
     console.log("select dept"+dept );
@@ -50,9 +51,11 @@ export class Top50Component {
   navigateToHome(){
     this.router.navigate(['home_login']); 
   }
-
+ 
   SelectCourse(course:any)
   {
+    this.courseDisabled = false;
+
     this.levelDisabled = true;
   this.deptDisabled = true;
     console.log("select course "+course );
@@ -63,6 +66,8 @@ export class Top50Component {
   }
   SelectLevel(level:any)
   {
+
+    this.levelDisabled = false;
     this.courseDisabled = true;
   this.deptDisabled = true;
     console.log("select Level "+level );

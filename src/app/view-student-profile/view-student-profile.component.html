@@ -14,6 +14,8 @@
 <body>
     <div class="breadcrumb">
         <a  (click)="navigateToHome()" class="navigate">Home </a>
+        <a  (click)="navigateToMyCourses()" class="navigate">/ My Courses</a>
+        <a  (click)="navigateTogp_requests()" class="navigate">/ my Graduation Project Requests</a>
         <p > /Student Profile</p>
      </div>
     <h1 style="margin-top: 50px; margin-bottom: 30px; font-weight: bolder; display: inline-block;">Profile</h1>
@@ -37,16 +39,7 @@
     
     <label >Program</label><br>
     <input type="text" id="Program" name="Program" value={{StudentData.departmentCode}} class="disabled"disabled><br><br>
-    
-    <label >Address</label><br>
-    <input type="text" id="Address" name="Address" value={{StudentData.address}} class="disabled" disabled ><br><br>
-    
-    <label >Phone</label><br>
-    <input type="text" id="Phone" name="Phone" value={{StudentData.phone}} class="disabled" disabled><br><br>
-    
-    <label >Mobile</label><br>
-    <input type="text" id="Mobile" name="Mobile" value={{StudentData.mobile}} class="disabled" disabled ><br><br>
-
+   
     <label >Entry Year</label><br>
     <input type="text" id="Entry Year" name="Entry Year" value={{StudentData.Entry_year}} disabled><br><br>
 
@@ -74,15 +67,6 @@
    
     <label >Nationlity</label><br>
     <input type="text" id="Nationlity" name="Nationlity"   value={{StudentData.nationality}} class="disabled" disabled><br><br>
-
-    <label >Birth Place</label><br>
-    <input type="text" id="Birth Place" name="Birth Place"   value={{StudentData.birth_place}} class="disabled" disabled><br><br>
-   
-    <label >Birth Date</label><br>
-    <input type="date" id="data" name="birthday" value={{StudentData.birthdate}} class="disabled" disabled><br><br>
-
-    <label >Country</label><br>
-    <input type="text" id="Country" name="Country" class="disabled"  value={{StudentData.country}} disabled><br><br>
 
     <label >Compulsory Hours</label><br>
     <input type="text" id="compulsoryHours" name="compulsoryHours"   value={{StudentData.Compulsory_Hours}}  class="disabled"disabled><br><br>

@@ -108,7 +108,7 @@ onSubmit(GPForm:FormGroup) {
         alert("Data has been inserted successfully");
         this.router.navigate(['/home_login']);
       } else {
-        alert("Error: " + response.message);
+        alert(response.message);
         // this.router.navigate(['/gpForm']);
         
       }

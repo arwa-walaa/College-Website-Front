@@ -63,7 +63,10 @@ export class AdminOptionsComponent implements OnInit{
 
   calculatePreferences(){
 
-  this.adminService.setDepatmentToStudent()
+  this.adminService.setDepatmentToStudent().subscribe(()=>{
+    alert("Students have been distributed over Departments ")
+  })
+  
   }
 
   setRegistrationStatus(event: Event) {

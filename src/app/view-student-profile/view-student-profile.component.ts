@@ -19,6 +19,12 @@ export class ViewStudentProfileComponent {
       console.log("this.StudentData",this.StudentData)
      }); 
   }
+  navigateToMyCourses(){
+    this.router.navigate(['drTaCourses']); 
+  }
+  navigateTogp_requests(){
+    this.router.navigate(['gp_requests']); 
+  }
   navigateToStudentGrades(){
     this.router.navigate(['registerdCoursesAndResults'],{ queryParams: this.StudentData  });
 

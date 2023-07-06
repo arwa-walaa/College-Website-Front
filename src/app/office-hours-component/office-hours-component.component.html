@@ -2,21 +2,25 @@
     <br>
         <div class="breadcrumb">
           <a  (click)="navigateToHome()" class="navigate">Home</a>
+         
           <p > /Office Hours</p>
        </div>
     <h2 style="font-weight: bold;">Office Hours</h2>
     <br>
-    <p>Search with professor name or TA name</p>
+    <!-- <p>Search with professor name or TA name</p> -->
   
-<select #professorsNames (change)="selectProfessorName(professorsNames.value); TAsNames.value = ''" class="selectButton" style="width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;">
-    <option value="" disabled selected>Professors</option>
-    <option *ngFor="let professor of professors">{{ professor.professorName }}</option>
-</select>
+    <div style="display: flex; align-items: center;">
+        <select #professorsNames (change)="selectProfessorName(professorsNames.value); TAsNames.value = ''" class="selectButton" style="width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;">
+          <option value="" disabled selected>Professors</option>
+          <option *ngFor="let professor of professors">{{ professor.professorName }}</option>
+        </select>
+        <p style="margin: 0 10px; font-size: large;">or</p>
+        <select #TAsNames (change)="selectTAName(TAsNames.value); professorsNames.value = ''" class="selectButton" style="width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;">
+          <option value="" disabled selected>TAs</option>
+          <option *ngFor="let ta of TAs">{{ ta.TAName }}</option>
+        </select>
+      </div>
 
-<select #TAsNames (change)="selectTAName(TAsNames.value); professorsNames.value = ''" class="selectButton" style="margin-left: 30px; width: 405px; height: 30px; border-radius: 5px; border-color: gainsboro;">
-    <option value="" disabled selected>TAs</option>
-    <option *ngFor="let ta of TAs">{{ ta.TAName }}</option>
-</select>
    <br><br>
     <table class="table table-hover table-striped">
         <thead>

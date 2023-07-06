@@ -6,38 +6,23 @@
         <p > /Top 50</p>
      </div>
     <h2 style="font-weight: bold;">Top 50</h2><br>
-    <!-- <select #depts (change)="SelectDept(depts.value)"  style="margin-right:30px; width:400px; height:30px;" >
-        <option  value="" disabled selected>Program</option>
-        <option *ngFor="let dept of Departments">
-          {{dept.departmentCode}}
-        </option>
-    </select>
     
-    <select #levels (change)="SelectLevel(levels.value)"  style="margin-right: 30px; width:405px; height:30px;">
-        <option  value="" disabled selected>Level</option>
-        <option *ngFor="let level of Levels_data">
-          {{level}}
-        </option>
-	</select>
-    
-    <select #courses (change)="SelectCourse(courses.value)"  style="width:405px; height:30px;" >
-        <option  value="" disabled selected>Course</option>
-        <option *ngFor="let course of Courses">{{course.courseName}}</option>
-    </select> -->
-    <select #depts (change)="SelectDept(depts.value)" [disabled]="deptDisabled" style="margin-right:30px; width:400px; height:30px;">
-        <option value="" disabled selected>Program</option>
-        <option *ngFor="let dept of Departments">{{dept.departmentCode}}</option>
-      </select>
-      
-      <select #levels (change)="SelectLevel(levels.value)" [disabled]="levelDisabled" style="margin-right: 30px; width:405px; height:30px;">
-        <option value="" disabled selected>Level</option>
-        <option *ngFor="let level of Levels_data">{{level}}</option>
-      </select>
-      
-      <select #courses (change)="SelectCourse(courses.value)" [disabled]="courseDisabled" style="width:405px; height:30px;">
-        <option value="" disabled selected>Course</option>
-        <option *ngFor="let course of Courses">{{course.courseName}}</option>
-      </select>
+      <div style="display: flex; align-items: center;">
+        <select #depts (click)="SelectDept(depts.value); levels.value=''; courses.value=''" style="margin-right: 30px; width: 400px; height: 30px;">
+          <option value="" disabled selected>Program</option>
+          <option *ngFor="let dept of Departments">{{dept.departmentCode}}</option>
+        </select>
+        <p style="margin-right: 30px; font-size: large;">or</p>
+        <select #levels (click)="SelectLevel(levels.value); depts.value=''; courses.value=''" style="margin-right: 30px; width: 405px; height: 30px;">
+          <option value="" disabled selected>Level</option>
+          <option *ngFor="let level of Levels_data">{{level}}</option>
+        </select>
+        <p style="margin-right: 30px ;font-size: large;">or</p>
+        <select #courses (click)="SelectCourse(courses.value); depts.value=''; levels.value=''" style="width: 405px; height: 30px;">
+          <option value="" disabled selected>Course</option>
+          <option *ngFor="let course of Courses">{{course.courseName}}</option>
+        </select>
+      </div>
     <br><br>
    
     <table class="table table-hover table-striped">

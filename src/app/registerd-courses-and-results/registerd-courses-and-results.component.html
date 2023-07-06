@@ -5,15 +5,17 @@
   <a  (click)="navigateToHome()" class="navigate">Home </a>
  
   <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateToStudentProfile()" class="navigate"> /Student Profile</a>
+  <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
+  <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateTogp_requests()" class="navigate"> / My Graduation Prohect Request</a>
   <p > /registered Courses And Results</p>
 </div>
 
     <h2 style="font-weight: bold;">Registered Courses & Results</h2><br>
     <!-- <mat-select (selectonChange)="onChange"></mat-select> -->
-    <div class="row">
+    <div class="row" *ngIf="isStudent===true">
         <div *ngIf="registerationStatus?.[0]?.registerationStatus == 1" class="col-3">
         <!-- <div *ngIf ="registerationStatus[0].registerationStatus == 1" class="col-3"> -->
-            <button class="btn btn-primary"  style="width:300px ; border:none; " (click)="navigateToRegisterCourse()">Register New Courses</button>        
+            <button  class="btn btn-primary"  style="width:300px ; border:none; " (click)="navigateToRegisterCourse()">Register New Courses</button>        
         </div>
         <div *ngIf =" registerationStatus && registerationStatus.length > 0 && registerationStatus[0].registerationStatus == 0" class="col-3">
             <button class="btn btn-primary" style="width:300px ; border:none; "  disabled >Register New Courses</button>
@@ -44,9 +46,9 @@
     </div>
     <br> <br>
    
-    <div style="display: flex;">
-        <label style="margin-right:20px" for="Level">Level</label>
-        <select [(ngModel)]="searchText" style="margin-right: 30px; width:405px; height:30px;">
+   
+        <!-- <label style="margin-right:20px" for="Level">Level</label>
+        <select #level [(ngModel)]="searchText" style="margin-right: 30px; width:405px; height:30px;">
           <option value="" disabled selected>Level</option>
           <option>First Level</option>
           <option>Second Level</option>
@@ -55,12 +57,16 @@
         </select>
       
         <label for="Term" style="margin-left: 40px; margin-right:20px">Term</label>
-        <select [(ngModel)]="searchText" style="width:405px; height:30px;">
+        <select #term   [(ngModel)]="searchText" style="width:405px; height:30px;">
           <option value="" disabled selected>Term</option>
           <option>First</option>
           <option>Second</option>
         </select>
-      </div>
+      </div> -->
+      <div class="input-group date" id="datepicker">
+        <input type="text" class="form-control" id="date" placeholder="Search"  [(ngModel)]="searchText" />
+        
+    </div>
     <br><br>
 
     <table  class="table table-hover table-striped ">

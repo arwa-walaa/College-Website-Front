@@ -12,7 +12,8 @@ export class CourseEvaluationComponent implements OnInit  {
   userTypeValue: any;
   
   StudentID: any;
-  courses: any;
+courses  : any;
+  flag: any=false;
   constructor(
     private stdService: StudentsService,
     private _AuthService: AuthService,
@@ -39,16 +40,19 @@ export class CourseEvaluationComponent implements OnInit  {
  
   getStudentCourses(studID:any){
     this.stdService.getStudentCourses(studID,'Second').subscribe((studCourses: any) => {
+     
       if (studCourses && studCourses.length > 0) {
        this.courses=studCourses;
+       
         console.log('studCourses',studCourses);
       } else {
-        console.error("studCourses  are empty or null");
+        this.flag=true;
+        // console.error("studCourses  are empty or null");
       }
     }
    
     );
-
+   
   }
   navigateToEvaluateCourse(courseName: string, courseID: string) {
    
