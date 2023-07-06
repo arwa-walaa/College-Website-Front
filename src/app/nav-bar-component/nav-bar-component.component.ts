@@ -31,45 +31,48 @@ export class NavBarComponentComponent {
     ngOnInit(): void {
 
       const token=this._AuthService.getToken();
-      if(this._AuthService.getToken()){
-        this.isLog=true;
-        
-      } else{
-        this.isLog=false;
+      if(token){
+        if(this._AuthService.getToken()){
+          this.isLog=true;
+          
+        } else{
+          this.isLog=false;
+        }
+        this.profAndTa.getUserType(token).subscribe((type:any ) => {
+        if(type[0].Type==="Professor" ){
+          this.isStudent=false;
+          this.profAndTa.getProfessorInfo(token).subscribe((profInfo:any ) => {
+            this.name=profInfo[0].professorName
+  
+          });
+        }
+        else if(type[0].Type==="TA"){
+          this.isStudent=false;
+          this.profAndTa.getTAInfo(token).subscribe((TaInfo:any ) => {
+            this.name=TaInfo[0].TAName
+  
+          });
+        }
+        else if(type[0].Type==="Student"){
+          this.isStudent=true;
+          this.studendService.getStudentInfo(token).subscribe((StudentInfo:any ) => {
+            this.name=StudentInfo[0].studentName
+  
+          });
+      
+        }
+        else if(type[0].Type==="Admin"){
+          this.isStudent=false;
+          this._AdminService.getAdminInfo(token).subscribe((AdminInfo:any ) => {
+            this.name=AdminInfo[0].name
+  
+          });
+      
+        }
+      
+      });
       }
-      this.profAndTa.getUserType(token).subscribe((type:any ) => {
-      if(type[0].Type==="Professor" ){
-        this.isStudent=false;
-        this.profAndTa.getProfessorInfo(token).subscribe((profInfo:any ) => {
-          this.name=profInfo[0].professorName
-
-        });
-      }
-      else if(type[0].Type==="TA"){
-        this.isStudent=false;
-        this.profAndTa.getTAInfo(token).subscribe((TaInfo:any ) => {
-          this.name=TaInfo[0].TAName
-
-        });
-      }
-      else if(type[0].Type==="Student"){
-        this.isStudent=true;
-        this.studendService.getStudentInfo(token).subscribe((StudentInfo:any ) => {
-          this.name=StudentInfo[0].studentName
-
-        });
-    
-      }
-      else if(type[0].Type==="Admin"){
-        this.isStudent=false;
-        this._AdminService.getAdminInfo(token).subscribe((AdminInfo:any ) => {
-          this.name=AdminInfo[0].name
-
-        });
-    
-      }
-    
-    });
+      
     }
     logout()
     {

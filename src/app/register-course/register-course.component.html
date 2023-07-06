@@ -54,8 +54,8 @@
         </div>
         <div class="float-child-element" >
             <div class="remaining" >
-                    <p > Elective Hours: {{StudentData[0].electrive_hours}}</p>
-                    <p > Mandatory Hours: {{StudentData[0].Compulsory_Hours}}</p>
+                    <p *ngIf="StudentData && StudentData.length > 0 "> Elective Hours: {{StudentData[0].electrive_hours}}</p>
+                    <p *ngIf="StudentData && StudentData.length > 0 "> Mandatory Hours: {{StudentData[0].Compulsory_Hours}}</p>
                     <!-- <p>remaining hours per Term: 0</p>
                     <p>Minimum hours per Term: 3</p> -->
             </div>

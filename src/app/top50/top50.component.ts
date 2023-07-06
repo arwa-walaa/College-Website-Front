@@ -15,6 +15,9 @@ export class Top50Component {
   Courses:any;
   Departments:any;
   students:any;
+  levelDisabled: any;
+  courseDisabled: any;
+  deptDisabled:any;
   constructor(private route: ActivatedRoute,private router: Router, private studendService: StudentsService) {
    
   }
@@ -34,6 +37,8 @@ export class Top50Component {
   }
   SelectDept(dept:any)
   {
+    this.levelDisabled = true;
+  this.courseDisabled = true;
     console.log("select dept"+dept );
     this.studendService.getDeptTopbyParam50(dept).subscribe({
       next:(response)=> this.students=response     
@@ -48,6 +53,8 @@ export class Top50Component {
 
   SelectCourse(course:any)
   {
+    this.levelDisabled = true;
+  this.deptDisabled = true;
     console.log("select course "+course );
     this.studendService.getCourseTopbyParam50(course).subscribe({
       next:(response)=> this.students=response
@@ -56,6 +63,8 @@ export class Top50Component {
   }
   SelectLevel(level:any)
   {
+    this.courseDisabled = true;
+  this.deptDisabled = true;
     console.log("select Level "+level );
     this.studendService.getLevelTopbyParam50(level).subscribe({
       next:(response)=> this.students=response

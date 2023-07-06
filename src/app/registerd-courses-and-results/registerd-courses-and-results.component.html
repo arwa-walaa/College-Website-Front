@@ -4,17 +4,18 @@
     <div class="breadcrumb">
   <a  (click)="navigateToHome()" class="navigate">Home </a>
  
-  <a *ngIf="type[0].Type !== 'Student'" (click)="navigateToStudentProfile()" class="navigate"> /Student Profile</a>
+  <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateToStudentProfile()" class="navigate"> /Student Profile</a>
   <p > /registered Courses And Results</p>
 </div>
 
     <h2 style="font-weight: bold;">Registered Courses & Results</h2><br>
     <!-- <mat-select (selectonChange)="onChange"></mat-select> -->
     <div class="row">
-        <div *ngIf ="registerationStatus[0].registerationStatus == 1" class="col-3">
+        <div *ngIf="registerationStatus?.[0]?.registerationStatus == 1" class="col-3">
+        <!-- <div *ngIf ="registerationStatus[0].registerationStatus == 1" class="col-3"> -->
             <button class="btn btn-primary"  style="width:300px ; border:none; " (click)="navigateToRegisterCourse()">Register New Courses</button>        
         </div>
-        <div *ngIf ="registerationStatus[0].registerationStatus == 0" class="col-3">
+        <div *ngIf =" registerationStatus && registerationStatus.length > 0 && registerationStatus[0].registerationStatus == 0" class="col-3">
             <button class="btn btn-primary" style="width:300px ; border:none; "  disabled >Register New Courses</button>
 
         </div>
@@ -22,49 +23,44 @@
         </div>
         <div *ngIf ="evaluationFormStatus == 0" class="col-3"><button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToEvaluateCourses()" disabled >Evaluate Courses</button>
         </div>
-        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==1">
+        <div class="col-3"  *ngIf="programSelectionStatus && programSelectionStatus.length > 0 && StudentData && StudentData.length > 0 && StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==1">
             <button class="btn btn-primary" style="width:300px ; border:none"
             (click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
         </div>
 
-        <div class="col-3"  *ngIf="StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==0">
+        <div class="col-3"  *ngIf="programSelectionStatus && programSelectionStatus.length > 0 && StudentData && StudentData.length > 0 &&  StudentData[0].level==='Third Level' && programSelectionStatus[0].programSelectionStatus==0">
             <button class="btn btn-primary" style="width:300px ; border:none" disabled
             (click)="navigateToSelectSpecializationProgram()">Select Specialization Program</button>
         </div>
 
-        <div class="col-3"  *ngIf="StudentData[0].level==='Fourth Level' && gpFormStatus == 1"><button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToRegisterGraduationProject()" 
+        <div class="col-3"  *ngIf="StudentData && StudentData.length > 0 &&  StudentData[0].level==='Fourth Level' && gpFormStatus == 1"><button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToRegisterGraduationProject()" 
            >Register Graduation Project</button>
         </div>
-        <div class="col-3"  *ngIf="StudentData[0].level==='Fourth Level' && gpFormStatus == 0">
+        <div class="col-3"  *ngIf="StudentData && StudentData.length > 0 &&  StudentData[0].level==='Fourth Level' && gpFormStatus == 0">
             <button class="btn btn-primary" style="width:300px ; border:none;"(click)="navigateToRegisterGraduationProject()" disabled
             >Register Graduation Project</button>
          </div>
 
     </div>
     <br> <br>
-    <!-- <select [(ngModel)]="searchText" style="margin-right:30px; width:400px; height:30px;">
-        <option value="" disabled selected>Year</option>
-        <option>2019</option>
-        <option>2020</option>
-        <option>2021</option>
-        <option>2022</option>
-    </select> -->
-
-    <select [(ngModel)]="searchText" style="margin-right: 30px; width:405px; height:30px;">
-        <option value="" disabled selected>Level</option>
-        <option>First Level</option>
-        <option>Second Level</option>
-        <option>Third Level</option>
-        <option>Fourth Level</option>
-    </select>
-
-
-    <select [(ngModel)]="searchText" style="width:405px; height:30px; margin-left: 33.8%;">
-        <option value="" disabled selected>Term</option>
-        <option>First</option>
-        <option>Second</option>
-
-    </select>
+   
+    <div style="display: flex;">
+        <label style="margin-right:20px" for="Level">Level</label>
+        <select [(ngModel)]="searchText" style="margin-right: 30px; width:405px; height:30px;">
+          <option value="" disabled selected>Level</option>
+          <option>First Level</option>
+          <option>Second Level</option>
+          <option>Third Level</option>
+          <option>Fourth Level</option>
+        </select>
+      
+        <label for="Term" style="margin-left: 40px; margin-right:20px">Term</label>
+        <select [(ngModel)]="searchText" style="width:405px; height:30px;">
+          <option value="" disabled selected>Term</option>
+          <option>First</option>
+          <option>Second</option>
+        </select>
+      </div>
     <br><br>
 
     <table  class="table table-hover table-striped ">

@@ -85,7 +85,8 @@ saveData() {
     }
     
    ,
-    (error) => console.error("error",error),
+    (error) => {console.error("error",error),
+    this.flag=true;}
     
    
   );

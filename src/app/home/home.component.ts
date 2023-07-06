@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit  {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   navigateToAnnoucements() {

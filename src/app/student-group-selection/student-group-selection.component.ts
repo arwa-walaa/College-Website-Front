@@ -116,40 +116,19 @@ saveSelectedGroup(courseData: any, selectedGroup: any, id: any) {
    
   }
 }
-// saveSelectedGroup(courseData: any,selectedGroup: any,id:any) {
-//   // find the object in the array with the matching course code
-//   const courseObjIndex = this.courseDataArray.findIndex(obj => obj.Course_Code === courseData.Course_Code);
 
-//   // if the object already exists, update the selected group
-//   if (courseObjIndex !== -1) {
-//     this.courseDataArray[courseObjIndex].selectedGroup = selectedGroup;
-//   }
-//   // otherwise, add a new object to the array with the course data and selected group
-//   else {
-//     this.courseDataArray.push({
-//       courseID: courseData.courseID,
-//       endTimeCourse: courseData.startTime,
-//       startTimeCourse: courseData.startTime,
-//       slotDayCourse: courseData.slotDay,
-//       selectedGroup: selectedGroup,
-//       grade:0,
-//       creditHours:courseData.creditHours,
-//       studentId:id,
-   
-
-
-//     });
-//   }
- 
-// }
 
 saveData() {
   let url = 'http://127.0.0.1:8000/api/registerCourses';
    let options = { headers: { 'Content-Type': 'application/json' } };
   this.http.post(url, this.courseDataArray,options).subscribe(
     (response) =>{this.noConfilect=response
-      console.log(this.noConfilect.message)}
-    // this.noConfilect=response.message
+      console.log(response)
+      if(this.noConfilect.message){
+        this.router.navigate(['/registerdCoursesAndResults']);
+      }
+     
+    }
    ,
     (error) => console.error("error",error),
     
@@ -157,7 +136,8 @@ saveData() {
   );
   
   this.flag=true
-  this.router.navigate(['/registerdCoursesAndResults']);
+ 
+ 
 }
 // groupCount(groupCount:any)
 // {

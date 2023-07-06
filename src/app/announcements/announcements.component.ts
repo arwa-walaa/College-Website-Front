@@ -41,8 +41,12 @@ Announcemets: any;
               else if (type[0].Type === "Admin") {
                 this.router.navigate(['/home_admin']);
               }
+             
             });
             // localStorage.setItem('loggedIn', 'true'); // set the flag in local storage
+          }
+          else{
+            this.router.navigate(['/home']);
           }
     // this.router.navigate(['home_login']); 
   }

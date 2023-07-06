@@ -29,24 +29,27 @@ export class InfoBarComponent {
   ngOnInit(): void {
     const token=this._AuthService.getToken();
     // alert(this._AuthService.getToken());
-    this.profAndTa.getUserType(token).subscribe((type:any ) => {
-      if(type[0].Type==="Professor" ||type[0].Type==="TA"){
-        this.isStudent=false;
+    if(token){
+      this.profAndTa.getUserType(token).subscribe((type:any ) => {
+        if(type[0].Type==="Professor" ||type[0].Type==="TA"){
+          this.isStudent=false;
+        }
+        else if(type[0].Type==="Student"){
+          this.isStudent=true;
+        }
+      });
+      if(this._AuthService.getToken()){
+        this.isLog=true;
+        
+      } else{
+        this.isLog=false;
       }
-      else if(type[0].Type==="Student"){
-        this.isStudent=true;
-      }
-    });
-    if(this._AuthService.getToken()){
-      this.isLog=true;
-      
-    } else{
-      this.isLog=false;
+      this.studendService.getStudentInfo(token).subscribe({
+        next:(response)=> this.StudentData=response
+        
+      });
     }
-    this.studendService.getStudentInfo(token).subscribe({
-      next:(response)=> this.StudentData=response
-      
-    });
+    
  
   }
 

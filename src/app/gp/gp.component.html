@@ -21,7 +21,7 @@
 <form [formGroup]="GPForm" (ngSubmit)="onSubmit(GPForm)" class = "form" >
     
     <label >ID Team Member 1</label><br>
-    <input type="text" formControlName="member1" id="id" name="id" placeholder="enter Id team member 1"><br><br>
+    <input type="text" formControlName="member1" class="form-control" id="id" name="id" placeholder="enter Id team member 1"><br>
     <div *ngIf="GPForm.get('member1')?.errors && GPForm.get('member1')?.touched" class = "form">
         <p *ngIf="GPForm.get('member1')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>   
         <p *ngIf="GPForm.get('member1')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>  
@@ -32,7 +32,7 @@
     <input type="text" id="Email" name="Email" placeholder="enter email team member 1" ><br><br> -->
 
     <label >ID Team Member 2</label><br>
-    <input type="text"  formControlName="member2" id="id" name="id" placeholder="enter Id team member 2"><br><br>
+    <input type="text" class="form-control" formControlName="member2" id="id" name="id" placeholder="enter Id team member 2"><br>
     <div *ngIf="GPForm.get('member2')?.errors && GPForm.get('member2')?.touched">
         <p *ngIf="GPForm.get('member2')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>  
         <p *ngIf="GPForm.get('member2')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>     
@@ -43,7 +43,7 @@
     <input type="text" id="Email" name="Email" placeholder="enter email team member 2"  ><br><br> -->
 
     <label >ID Team Member 3</label><br>
-    <input type="text"  formControlName="member3" id="id" name="id" placeholder="enter Id team member 3"><br><br>
+    <input type="text" class="form-control" formControlName="member3" id="id" name="id" placeholder="enter Id team member 3"><br>
     <div *ngIf="GPForm.get('member3')?.errors && GPForm.get('member3')?.touched">
         <p *ngIf="GPForm.get('member3')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>  
         <p *ngIf="GPForm.get('member3')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>  
@@ -54,7 +54,7 @@
     <input type="text" id="Email" name="Email" placeholder="enter email team member 3"  ><br><br> -->
 
     <label >ID Team Member 4</label><br>
-    <input type="text"  formControlName="member4" id="id" name="id" placeholder="enter Id team member 4"><br><br>
+    <input type="text" class="form-control" formControlName="member4" id="id" name="id" placeholder="enter Id team member 4"><br>
     <div *ngIf="GPForm.get('member4')?.errors && GPForm.get('member4')?.touched">
         <p *ngIf="GPForm.get('member4')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>   
         <p *ngIf="GPForm.get('member4')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>    
@@ -65,7 +65,7 @@
     <input type="text" id="Email" name="Email" placeholder="enter email team member 4"  ><br><br> -->
 
     <label >ID Team Member 5</label><br>
-    <input type="text"  formControlName="member5" id="id" name="id" placeholder="enter Id team member 5"><br><br>
+    <input type="text" class="form-control" formControlName="member5" id="id" name="id" placeholder="enter Id team member 5"><br>
     <div *ngIf="GPForm.get('member5')?.errors && GPForm.get('member5')?.touched">
         <p *ngIf="GPForm.get('member5')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p> 
         <p *ngIf="GPForm.get('member5')?.getError('pattern')" class="alert  py-1 alert-danger" style="width: 1300px;">Invalid ID</p>      
@@ -83,13 +83,13 @@
     <input type="text" id="Email" name="Email" placeholder="enter email team member 6" ><br><br> -->
 
     <label >Graduation project idea</label><br>
-    <textarea name="Graduation project idea" formControlName="idea" placeholder="Enter idea here..." form="usrform"></textarea>
+    <textarea name="Graduation project idea" class="form-control" formControlName="idea" placeholder="Enter idea here..." form="usrform"></textarea>
     <div *ngIf="GPForm.get('idea')?.errors && GPForm.get('idea')?.touched">
         <p *ngIf="GPForm.get('idea')?.getError('required')" class="alert py-2 alert-danger"  style="width: 1300px;" >This field is required</p>     
     </div>
 
     <label >Graduation project Requirements</label><br>
-    <textarea name="Graduation project Requirements" formControlName="requirements" placeholder="Enter Requirements here..." form="usrform"></textarea>
+    <textarea name="Graduation project Requirements" class="form-control" formControlName="requirements" placeholder="Enter Requirements here..." form="usrform"></textarea>
     <div *ngIf="GPForm.get('requirements')?.errors && GPForm.get('requirements')?.touched">
         <p *ngIf="GPForm.get('requirements')?.getError('required')" class="alert py-2 alert-danger" style="width: 1300px;" >This field is required</p>     
     </div>
