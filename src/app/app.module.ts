@@ -66,7 +66,7 @@ import { StatisticsCoursesCompareComponent } from './statistics-courses-compare/
 // import { AddOfficeHoursComponent } from './add-office-hours/add-office-hours.component';
 //import { TaSchedualeComponent } from './ta-scheduale/ta-scheduale.component';
 // import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
-//import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
+import { AddAnnouncementsComponent } from './add-announcements/add-announcements.component'
 import { DatePipe } from '@angular/common';
 import { AdminService } from './admin.service';
 import { AdminOptionsComponent } from './admin-options/admin-options.component';
@@ -126,7 +126,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     StatisticsDepartmentComponent,
     StatisticsCoursesComponent,
     StatisticsCoursesCompareComponent,
-    // AddAnnouncementsComponent,
+     AddAnnouncementsComponent,
     AdminOptionsComponent,
     AddGradesComponent,
     AddCourseComponent,
