@@ -43,7 +43,10 @@ editorConfig = {
 };
 
 constructor(private http: HttpClient,private router: Router,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService) {}
- navigateToHome(){
+navigateToAnnouncement(){
+  this.router.navigate(['/Announcements']);
+}
+navigateToHome(){
     const token = this._AuthService.getToken();
 
           if (token) { // check if the token is valid

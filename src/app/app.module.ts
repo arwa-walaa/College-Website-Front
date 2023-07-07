@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OfficeHoursComponentComponent } from './office-hours-component/office-hours-component.component';
 import { OfficeHoursSearchPipe } from './office-hours-search.pipe';
-import { IconComponentComponent } from './icon-component/icon-component.component';
+//import { IconComponentComponent } from './icon-component/icon-component.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { ForgetPasswordComponentComponent } from './forget-password-component/forget-password-component.component';
 import { NavBarComponentComponent } from './nav-bar-component/nav-bar-component.component';
@@ -84,7 +84,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     OfficeHoursComponentComponent,
     OfficeHoursSearchPipe,
     SearchService,
-    IconComponentComponent,
+   
     LoginComponentComponent,
     ForgetPasswordComponentComponent,
     NavBarComponentComponent,

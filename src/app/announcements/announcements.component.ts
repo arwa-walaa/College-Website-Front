@@ -17,6 +17,7 @@ Announcemets: any;
   searchText='';
   selectedAnnouncement: any;
   isOpened:any;
+  flag:any=false
  
   constructor(private router: Router, private studendService: StudentsService
     ,private sanitizer: DomSanitizer, private datePipe: DatePipe,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService) {
@@ -24,6 +25,15 @@ Announcemets: any;
   }
   ngOnInit(): void {
     this.getAllAnnouncemets();
+    const token = this._AuthService.getToken();
+
+          if (token) { // check if the token is valid
+            this.profAndTa.getUserType(token).subscribe((type: any) => {
+              if (type[0].Type === "Professor" || type[0].Type === "TA"||type[0].Type === "Admin") {
+                this.flag=true;
+              }
+            })
+          }
   
   }
   navigateToHome(){
@@ -67,13 +77,17 @@ Announcemets: any;
   }
   formatDate(dateString: string): any {
     const offsetMs = new Date().getTimezoneOffset() * 60 * 1000;
-    const date = new Date(Date.parse(dateString) - offsetMs);
+    const date = new Date(Date.parse(dateString) + offsetMs);
     return this.datePipe.transform(date, 'dd/MM/yyyy h:mm a');
   }
  
   navigateToTop50()
   {
     this.router.navigate(['Top50']);
+  }
+  navigateToAddAnn()
+  {
+    this.router.navigate(['AddAnnouncements']);
   }
   selectAnnouncement(announcement: any) {
     this.selectedAnnouncement = announcement;

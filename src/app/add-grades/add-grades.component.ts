@@ -54,8 +54,8 @@ export class AddGradesComponent implements OnInit{
   
   ngOnInit(): void {
     this.form = new FormGroup({
-      course: new FormControl(this.courseId, Validators.required),
-      student: new FormControl(this.studentId, Validators.required),
+      // course: new FormControl(this.courseId, Validators.required),
+      // student: new FormControl(this.studentId, Validators.required),
       termGrade: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(40)] ),
       finalGrade: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(60)]),
     })
@@ -92,22 +92,28 @@ export class AddGradesComponent implements OnInit{
   }
 
   submit(form:FormGroup){
-    this.formSubmitted = true;
-    console.log('form',form.value),
+   
+    console.log('form',form.value)
+if(form.valid){ 
+  this.formSubmitted = true;
+  this._AdminService.addGrade(this.courseId,this.studentId,form.value).subscribe(
+  response=> {
 
-    this._AdminService.addGrade(this.courseId,this.studentId,form.value).subscribe(
-      response=> {
-       
-          alert('grades have been inserted succefully');     
-       
-        this.router.navigate(['admin_options']);   
-    }
-    ,
-    error => { 
-      alert('grades have been inserted succefully'); 
-      this.router.navigate(['admin_options']);   
-      // console.error(error);  
-    });
+   
+      // alert('grades have been inserted succefully');     
+   
+    this.router.navigate(['admin_options']);   
+}
+,
+error => { 
+  // alert('grades have been inserted succefully'); 
+  this.router.navigate(['admin_options']);   
+  // console.error(error);  
+})}
+else{
+  alert('the form is invalid'); 
+}
+  
   }
 
 }

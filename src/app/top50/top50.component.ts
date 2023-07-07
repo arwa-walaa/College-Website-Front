@@ -29,22 +29,13 @@ export class Top50Component {
       next:(response)=> this.Courses=response
       
     });
-    this.studendService.getAllDepartments().subscribe({
+    this.studendService.getAllDepartmentswithGeneral().subscribe({
       next:(response)=> this.Departments=response
       
     });
     
   }
-  SelectDept(dept:any)
-  {
-    this.deptDisabled=false
-    this.levelDisabled = true;
-  this.courseDisabled = true;
-    console.log("select dept"+dept );
-    this.studendService.getDeptTopbyParam50(dept).subscribe({
-      next:(response)=> this.students=response     
-    });
-  }
+  
   navigateToAnnoucements() {
     this.router.navigate(['Announcements']);
   }
@@ -64,18 +55,64 @@ export class Top50Component {
       
     });
   }
-  SelectLevel(level:any)
-  {
-
-    this.levelDisabled = false;
-    this.courseDisabled = true;
-  this.deptDisabled = true;
-    console.log("select Level "+level );
-    this.studendService.getLevelTopbyParam50(level).subscribe({
-      next:(response)=> this.students=response
-      
-    });
+  selectDeptAndLevel(selectedLevel: string, selectedDept: string): void {
+    const deptSelect = document.getElementById('deptSelect') as HTMLSelectElement;
+    const levelSelect = document.getElementById('levelSelect') as HTMLSelectElement;
+  
+    if (selectedDept && !selectedLevel) {
+      // Call function when only department is selected
+      console.log('Only department selected:', selectedDept);
+      this.studendService.getDeptTopbyParam50(selectedDept).subscribe({
+              next:(response)=> this.students=response     
+            });
+      // Call your specific function here
+      // functionName(selectedDept);
+    } else if (!selectedDept && selectedLevel) {
+      // Call function when only level is selected
+      console.log('Only level selected:', selectedLevel);
+      this.studendService.getLevelTopbyParam50(selectedLevel).subscribe({
+              next:(response)=> this.students=response
+              
+            });
+      // Call your specific function here
+      // functionName(selectedLevel);
+    } else if (selectedDept && selectedLevel) {
+      // Call function when both department and level are selected
+      console.log('Both department and level selected:', selectedDept, selectedLevel);
+      this.studendService.getTopLevelAndDept(selectedLevel,selectedDept).subscribe({
+              next:(response)=> this.students=response
+              
+            });
+      // Call your specific function here
+      // functionName(selectedDept, selectedLevel);
+    } else {
+      // No selection made
+      console.log('No selection made.');
+    }
   }
+  
+  // selectDeptAndLevel(level:any="",dept:any=""){
+  //   console.log("dept=",dept,"level=",level)
+  //   if(dept != "" && level != ""){
+  //     this.studendService.getTopLevelAndDept(level,dept).subscribe({
+  //       next:(response)=> this.students=response
+        
+  //     });
+  //   }
+  //   if(dept != "" && level == ""){
+  //     this.studendService.getDeptTopbyParam50(dept).subscribe({
+  //       next:(response)=> this.students=response     
+  //     });
+
+  //   }
+  //   if(dept == "" && level != "") {
+  //     this.studendService.getLevelTopbyParam50(level).subscribe({
+  //       next:(response)=> this.students=response
+        
+  //     });
+  //   }
+  // }
+ 
   
 
   // onChange($event:any)

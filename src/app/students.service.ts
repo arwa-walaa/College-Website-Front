@@ -42,13 +42,20 @@ export class StudentsService {
   getAllDepartments(){
     return this.http.get("http://127.0.0.1:8000/api/getAllDepartments");
   }
+  getAllDepartmentswithGeneral(){
+    return this.http.get("http://127.0.0.1:8000/api/getAllDepartmentswithGeneral");
+  }
   
   getDeptTopbyParam50(dept:any)
   {
     let url= "http://127.0.0.1:8000/api/getTopDept50/"+dept;
     return this.http.get(url);
   }
-
+  getTopLevelAndDept(Level:any,dept:any)
+  {
+    let url= "http://127.0.0.1:8000/api/getTopLevelAndDept/"+Level+'/'+dept;
+    return this.http.get(url);
+  }
   
   getCourseTopbyParam50(course:any)
   {

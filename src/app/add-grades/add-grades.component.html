@@ -4,18 +4,21 @@
       <a  (click)="navigateToAdmin_options()" class="navigate" style="cursor: pointer;"> / Admin Options</a>
       <p > / Add Grades</p>
    </div>
-    <h2 style="font-weight: bold;">Add Grades</h2><br>
 
+    <h2 style="font-weight: bold;">Add Grades</h2><br>
+    <div  style="margin-top: 10px;">
+        <p *ngIf="formSubmitted && form.valid" class="alert py-1 alert-success">Grade was added successfully.</p>
+    </div>
     <div style="width: 1000px; margin: 5px auto;">
         <div class="row" style="margin-bottom: 20px;">
             <div class="col-6">
-                <select #courses (change)="SelectCourse(courses.value)"  style="width:490px; height:30px;" >
+                <select required #courses (change)="SelectCourse(courses.value)"  style="width:490px; height:30px;" >
                     <option  value="" disabled selected>Course</option>
                     <option *ngFor="let course of Courses" [value]="course.courseID">{{course.courseName}}</option>
                 </select>
             </div>
             <div class="col-6">
-                <select #students (change)="SelectStudent(students.value)"  style="width:490px; height:30px;" >
+                <select required #students (change)="SelectStudent(students.value)"  style="width:490px; height:30px;" >
                     <option  value="" disabled selected>Student</option>
                     <option *ngFor="let student of Students" [value]="student.studentId">{{student.studentId}}</option>
                 </select>
@@ -45,12 +48,10 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center" style="margin-top: 10px;">
-                <button type="submit"  class="btn btn-primary button">Add Grades</button>
+                <button type="submit"[disabled]="form.invalid"  class="btn btn-primary button">Add Grades</button>
             </div>  
 
-            <div  style="margin-top: 10px;">
-                <p *ngIf="formSubmitted && form.valid" class="alert py-1 alert-success">Grade was added successfully.</p>
-            </div>
+            
         </form>
     </div>
 

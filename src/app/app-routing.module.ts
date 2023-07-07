@@ -117,7 +117,7 @@ const routes: Routes = [
 {path: 'ProfProfile', component: ProfissorProfileComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'gpRequest', component: GpRequestsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'TA','Professor'] }},
 {path: 'addOfficeHours', component: AddOfficeHoursComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'Professor','TA'] }},
-{path: 'AddAnnouncements', component: AddAnnouncementsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},
+{path: 'AddAnnouncements', component: AddAnnouncementsComponent,canActivate: [AuthGuardService], data: { expectedRole:  ['Admin', 'Professor','TA'] }},
 ////////////ta////////////
 
 {path:'dashboard',component:DashboardComponent,title:'Dashboards',canActivate: [AuthGuardService], data: { expectedRole:  ['Admin'] }},

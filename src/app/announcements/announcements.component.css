@@ -8,7 +8,7 @@
 
 .childFirst {
     display: inline;
-    margin-top: -40px;
+    /* margin-top: -40px; */
 
 
 
@@ -17,8 +17,8 @@
 
 .top50 {
 
-    width: 250px;
-    height: 52px;
+    width: 150px;
+    height: 40px;
     left: 1134px;
     top: 169px;
     color: white;
