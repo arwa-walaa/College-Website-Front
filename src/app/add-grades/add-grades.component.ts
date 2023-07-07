@@ -102,7 +102,7 @@ if(form.valid){
    
       // alert('grades have been inserted succefully');     
    
-    this.router.navigate(['admin_options']);   
+    // this.router.navigate(['admin_options']);   
 }
 ,
 error => { 

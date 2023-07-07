@@ -1,3 +1,10 @@
+<div class="alert alert-danger" *ngIf="flag===false">
+    Error: please insert All Course information or invalid lecture time 
+  </div>
+  <div class="alert alert-success" *ngIf="flag===true">
+    Course Added Successfully.
+  </div>
+<br>
 <div class="container"> 
     <div class="breadcrumb">
       <a  (click)="navigateToHome()" class="navigate" style="cursor: pointer;">Home </a>

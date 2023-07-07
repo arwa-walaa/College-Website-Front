@@ -11,16 +11,17 @@ import { ProfessorAndTaService } from '../professor-and-ta.service';
   styleUrls: ['./add-announcements.component.css']
 })
 export class AddAnnouncementsComponent {
-  AnnTitle:any
-  flag:any=null
-  announcementBody:any
+  AnnTitle:any;
+  flag:any=null;
+  announcementBody:any;
+  userType:any;
+
 //   editorConfig = {
 //     base_url: '/tinymce',
 //     suffix: '.min',
 //     plugins: 'lists link image table wordcount',
 //     toolbar: ['undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | forecolor'],
 // };
-
 
 editorConfig = {
   base_url: '/tinymce',
@@ -51,6 +52,7 @@ navigateToHome(){
 
           if (token) { // check if the token is valid
             this.profAndTa.getUserType(token).subscribe((type: any) => {
+              this.userType = type[0].Type;
               if (type[0].Type === "Professor" || type[0].Type === "TA") {
                 
                 this.router.navigate(['/drTaHome']);
@@ -81,17 +83,20 @@ ngOnInit() {
   this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {
         
         console.log('Announcement saved successfully!');
-        this.flag=true
-       this.router.navigate(['home_admin']);
+        this.flag=true;
+        const token = this._AuthService.getToken();
+        this.profAndTa.getUserType(token).subscribe((type: any) => {
+          if (type[0].Type === "Professor" || type[0].Type === "TA") {      
+            this.router.navigate(['/drTaHome']);
+          }
+          else if (type[0].Type === "Admin") {
+            this.router.navigate(['/home_admin']);
+          }
+        });     
       },
        error => {
         console.error('Error saving announcement:', error);
         this.flag=false
-      });
-    // }
-    
-    
-
-    
+      });  
    }
 }

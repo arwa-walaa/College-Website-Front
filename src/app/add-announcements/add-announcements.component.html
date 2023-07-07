@@ -1,6 +1,12 @@
-
 <div class="container">
-   <br><br>
+  <br>
+  <div class="alert alert-success" *ngIf="flag===true">
+    Announcement saved successfully!
+  </div>
+  <div class="alert alert-danger" *ngIf="flag===false">
+    Error saving announcement
+  </div>
+   <br>
   <div class="breadcrumb">
     <a  (click)="navigateToHome()" class="navigate" style="cursor: pointer;">Home </a>
     <a  (click)="navigateToAnnouncement()" class="navigate" style="cursor: pointer;"> / Announcement </a>
@@ -10,12 +16,7 @@
   <br>
  
   <h2 style="font-weight: bold;">Add Announcement</h2><br>
-  <div class="alert alert-success" *ngIf="flag===true">
-    Announcement saved successfully!
-  </div>
-  <div class="alert alert-danger" *ngIf="flag===false">
-    Error saving announcement
-  </div>
+ 
 
 <form (submit)="saveAnnouncement()">
   <div class="form-group col-md-12">

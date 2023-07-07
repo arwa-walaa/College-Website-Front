@@ -6,13 +6,7 @@
    </div>
     <h2 style="font-weight: bold;">Add Course</h2><br>
     
-      <div class="alert alert-danger" *ngIf="flag===false">
-        Error: please insert All Course information or invalid lecture time 
-      </div>
-      <div class="alert alert-success" *ngIf="flag===true">
-        Course Added Successfully.
-      </div>
-    
+      
     
     <form [formGroup]="form" (ngSubmit)="supmit(form)">
         <div class="row">
