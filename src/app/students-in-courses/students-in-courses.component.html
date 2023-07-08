@@ -8,11 +8,11 @@
     <h2 style="font-weight: bold;">Students Registered in My Courses</h2><br>
    
     
-   <input class="form-control" type="text"  placeholder="Search by student name" [(ngModel)]="searchText"><br>
+   <input class="form-control" type="text"  placeholder="Search" [(ngModel)]="searchText"><br>
    <!-- <select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;"> -->
-    <select #coursesNames (change)="SelectCourse(coursesNames.value,this.loggedInUserInfo[0].logginUserID)"  class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
-    <option  value="Course Name" style="color: grey;">Course Name</option>
-    <option *ngFor="let course of myCourses">
+    <select #courses (change)="selectGrade_level_course(coursesGrade.value,level.value,courses.value)"  class="selectButton" style="margin-right: 30px; width:400px; height: 30px;; border-radius:5px;  border-color:gainsboro;">
+    <option  value="" style="color: grey;">Course Name</option>
+    <option  *ngFor="let course of myCourses" [value]="course.courseName">
         {{course.courseName}}
     </option>
    
@@ -20,18 +20,18 @@
 
 
 
-<select [(ngModel)]="searchText" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
+<select #level (change)="selectGrade_level_course(coursesGrade.value,level.value,courses.value)" class="selectButton" style="margin-right: 30px; width:405px; height:30px;  border-radius:5px;  border-color:gainsboro;">
     <option value=""  style="color: grey;">Level</option>
-    <option>First Level</option>
-    <option>Second Level</option>
-    <option>Third Level</option>
-    <option>Fourth Level</option>
+    <option value="First Level">First Level</option>
+    <option value="Second Level">Second Level</option>
+    <option value="Third Level">Third Level</option>
+    <option value="Fourth Level">Fourth Level</option>
 
 </select>
 
-<select #coursesGrade (change)="selectGrade(coursesGrade.value)" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
-    <option  value="Course Grade" style="color: grey;">Course Grade</option>
-    <option *ngFor="let grade of grades">
+<select #coursesGrade (change)="selectGrade_level_course(coursesGrade.value,level.value,courses.value)" class="selectButton" style=" width:405px; height:30px;  border-radius:5px; border-color:gainsboro;">
+    <option  value="" style="color: grey;">Course Grade</option>
+    <option *ngFor="let grade of grades" [value]="grade.grade">
        {{grade.grade}}
     </option>
    

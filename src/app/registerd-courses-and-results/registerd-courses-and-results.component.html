@@ -1,6 +1,6 @@
 <!-- {{RegisteredCoursesInfo}} -->
 <div class="container" p-5>
-    <br>
+    <br> 
     <div class="breadcrumb">
   <a  (click)="navigateToHome()" class="navigate">Home </a>
  
@@ -12,6 +12,7 @@
 
     <h2 style="font-weight: bold;">Registered Courses & Results</h2><br>
     <!-- <mat-select (selectonChange)="onChange"></mat-select> -->
+    <h4 *ngIf="type && type.length > 0 && type[0].Type !== 'Student'">Student Name: {{this.StudentData[0].studentName}} </h4>
     <div class="row" *ngIf="isStudent===true">
         <div *ngIf="registerationStatus?.[0]?.registerationStatus == 1" class="col-3">
         <!-- <div *ngIf ="registerationStatus[0].registerationStatus == 1" class="col-3"> -->

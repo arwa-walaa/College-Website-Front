@@ -35,7 +35,7 @@
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" style="font-weight:bold; color: white;" (click)="navigateHome()">Home</a>
+            <a class="nav-link" style="font-weight:bold; color: white; cursor: pointer;" (click)="navigateHome()">Home</a>
 
           </li>
           <li class="nav-item">
@@ -51,7 +51,7 @@
           </li>
 
           <li class="nav-item" *ngIf="isLog===true " (click)="logout()">
-            <a class="nav-link" style="font-weight:bold; color: white;" id="navbarDropdown" role="button"
+            <a class="nav-link" style="font-weight:bold; color: white; cursor: pointer;" id="navbarDropdown" role="button"
               data-mdb-toggle="dropdown" aria-expanded="false" routerLink="home"> Logout
               <i class="bi bi-box-arrow-right"></i>
             </a>

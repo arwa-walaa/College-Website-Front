@@ -58,6 +58,80 @@ export class StudentsInCoursesComponent {
   }
 
   searchText='';
+  selectGrade_level_course(grade:any,level:any,course:any){
+   console.log("Course=======",course)
+    if (grade && !level && !course) {
+      if(grade ==="Course Grade") {
+    
+        this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
+        
+    
+     
+    }else{
+      console.log("select course "+grade );
+     
+    this.profAndTa.selectGrade(grade).subscribe({
+        next:(response)=> this.myStudents=response
+        
+      });
+        
+    }
+      
+    } else if (!grade && !level && course) {
+      console.log("",course)
+  //     if(course === "Course Name") {
+
+  //       this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
+        
+  //       this.getCourses(this.loggedInUserInfo[0].logginUserID);
+     
+  // }
+    // else{
+      console.log("select course "+course );
+      this.profAndTa.selectCourse(course,this.loggedInUserInfo[0].logginUserID).subscribe({
+        next:(response)=> {
+          this.myStudents=response   
+          console.log('=======',response);
+        }
+  
+      });
+      
+    // }
+     
+      
+    }else if(level && !grade && !course){
+      this.profAndTa.getLevel(level).subscribe({
+        next:(response)=> this.myStudents=response
+        
+      });
+    }
+    else if (!grade && level && course) {
+   
+      // console.log("select course "+course );
+      this.profAndTa.selectLevel_Course(level,course).subscribe({
+        next:(response)=> this.myStudents=response
+        
+      });
+      
+  
+     
+      
+    }
+     else if (grade && level && course) {
+      // Call function when both department and level are selected
+      console.log('Both department and level selected:', grade,level,course);
+      this.profAndTa.selectGrade_level_course(grade,level,course).subscribe({
+              next:(response)=> this.myStudents=response
+              
+            });
+      // Call your specific function here
+      // functionName(selectedDept, selectedLevel);
+    } else {
+      // No selection made
+      console.log('No selection made.');
+    }
+
+  }
 
   getMyStudents(teacherId:any)
   {
@@ -84,41 +158,41 @@ getGrades(teacherId: any){
         
       });
   }
-  SelectCourse(course:any,teacherId:any)
-  {if(course === "Course Name") {
+//   SelectCourse(course:any,teacherId:any)
+//   {if(course === "Course Name") {
 
-      this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
+//       this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
       
-      this.getCourses(this.loggedInUserInfo[0].logginUserID);
+//       this.getCourses(this.loggedInUserInfo[0].logginUserID);
    
-}
-  else{
-    console.log("select course "+course );
-    this.profAndTa.selectCourse(course,teacherId).subscribe({
-      next:(response)=> {
-        this.myStudents=response   
-        console.log('=======',response);
-      }
+// }
+//   else{
+//     console.log("select course "+course );
+//     this.profAndTa.selectCourse(course,this.loggedInUserInfo[0].logginUserID).subscribe({
+//       next:(response)=> {
+//         this.myStudents=response   
+//         console.log('=======',response);
+//       }
 
-    });
-    }
-  }
-  selectGrade(grade:any)
-  { if(grade ==="Course Grade") {
+//     });
+//     }
+//   }
+  // selectGrade(grade:any)
+  // { if(grade ==="Course Grade") {
     
-      this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
+  //     this.getMyStudents(this.loggedInUserInfo[0].logginUserID);
       
   
    
-  }else{
-    console.log("select course "+grade );
+  // }else{
+  //   console.log("select course "+grade );
    
-  this.profAndTa.selectGrade(grade).subscribe({
-      next:(response)=> this.myStudents=response
+  // this.profAndTa.selectGrade(grade).subscribe({
+  //     next:(response)=> this.myStudents=response
       
-    });
+  //   });
       
-  }
-  }
+  // }
+  // }
     
   }

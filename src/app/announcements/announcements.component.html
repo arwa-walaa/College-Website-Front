@@ -14,13 +14,14 @@
         <a  (click)="navigateToHome()" class="navigate" style="cursor: pointer;">Home</a>
         <p> / Announcements</p>
      </div>
-        
-        <div class="row">
-        <h1 class="childFirst col-4">Announcements</h1>
-        <button  *ngIf="flag===true" class="btn btn-primary col-3 " style=" width: 200px; height: 40px; margin-left: 440px;" ><a  (click)="navigateToAddAnn()">Add Announcements</a>  </button>
+     <h1 class="childFirst col-4">Announcements</h1>
+        <div class="row"  *ngIf="flag===true">
+     
+        <button  class="btn btn-primary col-3 " style=" width: 200px; height: 40px; margin-left: 870px;" ><a  (click)="navigateToAddAnn()">Add Announcements</a>  </button>
        
        <button class="btn btn-primary col-3 "  style="width: 200px; height: 40px; margin-left: 20px; "><i class="bi bi-trophy" ></i><a  (click)="navigateToTop50()">View Top 50</a>  </button>
       </div>
+      <button *ngIf="flag===false" class="btn btn-primary col-3 "  style="width: 200px; height: 40px; margin-left: 773px; "><i class="bi bi-trophy" ></i><a  (click)="navigateToTop50()">View Top 50</a>  </button>
        <!-- </div> -->
     <div class="AnnounsmentComponent" style="padding-right: 27px;">
 

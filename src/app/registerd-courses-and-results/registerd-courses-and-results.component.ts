@@ -20,6 +20,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
   programSelectionStatus:any
   type: any;
   isStudent:any=null
+  StudentName: any;
 
   constructor(private router: Router,private route: ActivatedRoute,private studentService: StudentsService,
     private _AuthService:AuthService ,private _AdminService:AdminService,private profAndTa:ProfessorAndTaService) {}
@@ -27,6 +28,7 @@ export class RegisterdCoursesAndResultsComponent implements OnInit{
 navigateToStudentProfile(){
   this.route.queryParams.subscribe(params => {
     this.StudentData=params
+    
   this.router.navigate(['/ViewStudentProfile'],{ queryParams: this.StudentData  });
 });
 }
