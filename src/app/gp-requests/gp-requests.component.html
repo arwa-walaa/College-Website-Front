@@ -7,7 +7,7 @@
   </div>
 <div class="container">
     <div class="breadcrumb">
-        <a  (click)="navigateToHome()" class="navigate">Home </a>
+        <a  (click)="navigateToHome()" class="navigate" style="cursor: pointer;">Home </a>
         <a  *ngIf="userType != 'Admin'" (click)="navigateToMyCourses()" class="navigate" style="cursor: pointer;"> / My Courses</a>
         <p  *ngIf="userType != 'Admin'" style="cursor: pointer;" > / Graduation Project Requests</p>
         <p   *ngIf="userType == 'Admin'"> / Accepted Graduation Projects</p>

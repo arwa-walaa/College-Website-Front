@@ -2,7 +2,7 @@
 <div class="container" p-5>
     <br> 
     <div class="breadcrumb">
-  <a  (click)="navigateToHome()" class="navigate">Home </a>
+  <a  (click)="navigateToHome()" class="navigate" style="cursor: pointer;">Home </a>
  
   <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateToStudentProfile()" class="navigate"> /Student Profile</a>
   <a *ngIf="type && type.length > 0 && type[0].Type !== 'Student'" (click)="navigateToMyCourses()" class="navigate"> / My Courses</a>
