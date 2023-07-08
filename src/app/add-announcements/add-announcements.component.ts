@@ -23,27 +23,28 @@ export class AddAnnouncementsComponent {
 //     toolbar: ['undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | forecolor'],
 // };
 
-editorConfig = {
-  base_url: '/tinymce',
-  suffix: '.min',
-  plugins: 'lists link image table wordcount',
-  toolbar: ['undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | forecolor'],
-  init: {
-    height: 500,
-    menubar: false,
-    plugins: [
-      'advlist autolink lists link image charmap print preview anchor',
-      'searchreplace visualblocks code fullscreen',
-      'insertdatetime media table paste code help wordcount'
-    ],
-    toolbar:
-      'undo redo | formatselect | bold italic backcolor | \
-      alignleft aligncenter alignright alignjustify | \
-      bullist numlist outdent indent | removeformat | help'
-  }
-};
+// editorConfig = {
+//   base_url: '/tinymce',
+//   suffix: '.min',
+//   plugins: 'lists link image table wordcount',
+//   toolbar: ['undo redo | bold italic underline | alignleft aligncenter alignright | bullist numlist outdent indent | forecolor'],
+//   init: {
+//     height: 500,
+//     menubar: false,
+//     plugins: [
+//       'advlist autolink lists link image charmap print preview anchor',
+//       'searchreplace visualblocks code fullscreen',
+//       'insertdatetime media table paste code help wordcount'
+//     ],
+//     toolbar:
+//       'undo redo | formatselect | bold italic backcolor | \
+//       alignleft aligncenter alignright alignjustify | \
+//       bullist numlist outdent indent | removeformat | help'
+//   }
+// };
 
-constructor(private http: HttpClient,private router: Router,private _AuthService:AuthService,private profAndTa:ProfessorAndTaService) {}
+constructor(private http: HttpClient,private router: Router,private _AuthService:AuthService,
+  private profAndTa:ProfessorAndTaService) {}
 navigateToAnnouncement(){
   this.router.navigate(['/Announcements']);
 }
@@ -77,7 +78,8 @@ ngOnInit() {
 //     //   const editorContent = tinymce.activeEditor.getContent(); 
       const currentDateTimeString = new Date().toLocaleString();
       console.log(currentDateTimeString);
-      const announcementData = { content: this.announcementBody,time:currentDateTimeString ,announcmentTitle:this.AnnTitle};
+      const announcementData = { content: this.announcementBody,time:currentDateTimeString ,
+        announcmentTitle:this.AnnTitle};
       console.log('you write == ',announcementData);
       
   this.http.post('http://127.0.0.1:8000/api/addAnnouncments', announcementData).subscribe(response => {

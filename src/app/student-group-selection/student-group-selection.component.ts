@@ -57,7 +57,7 @@ export class StudentGroupSelectionComponent {
     }
     forkJoin(observables1).subscribe((responses) => {
       this.apiResponseArrayGroup = responses;
-      console.log("this.apiResponseArray",this.apiResponseArrayGroup)
+      console.log("this.apiResponseArray1",this.apiResponseArrayGroup) //groups
     });
     for (let key in this.selectedCoursesIds) {
       let urlCourse = this.apiUrlCourse+this.selectedCoursesIds[key];
@@ -65,7 +65,7 @@ export class StudentGroupSelectionComponent {
     }
     forkJoin(observables2).subscribe((responses) => {
       this.apiResponseArrayCourse = responses;
-      console.log("this.apiResponseArray",this.apiResponseArrayCourse)
+      console.log("this.apiResponseArray2",this.apiResponseArrayCourse) //courses
     });
      
     }

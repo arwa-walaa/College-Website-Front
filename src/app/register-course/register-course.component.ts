@@ -23,8 +23,7 @@ export class RegisterCourseComponent implements OnInit {
     this.studendService.getStudentInfo(token).subscribe((StudentData:any ) => {
        console.log("<<<<",(StudentData.length))
       this.StudentData=StudentData
-      this.getStudentData(StudentData[0].level,StudentData[0].studentId,
-      this.semester)
+      this.getStudentData(StudentData[0].level,StudentData[0].studentId,this.semester)
       
       // this.getStudentData('Second Level',20190022,'CS',this.semester)
       // console.log(StudentData)
