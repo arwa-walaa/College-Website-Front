@@ -1,7 +1,7 @@
-# Discription 
+# Description 
 E-community (e-com) is a website for the benefit of both students and 
 faculty staff members in FCAI. It provides a set of comprehensive 
-features to support students to register for courses, chatting with Professors and TAs, notifications for every important announcement , and viewing their 
+features to support students to register for courses, chatting with Professors and TAs, notifications for every important announcement, and viewing their 
 grades and exam halls, get to know the schedule and more. 
 Professors and teaching assistants can view the number of students 
 registered in every course, statistics for students, fill-in attendance sheets, and more. In this 
